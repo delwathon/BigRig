@@ -13,6 +13,7 @@ use PhpParser\Node\Stmt;
 class EnumCase implements PhpParser\Builder {
     /** @var Identifier|string */
     protected $name;
+    /** @var ?Node\Expr */
     protected ?Node\Expr $value = null;
     /** @var array<string, mixed> */
     protected array $attributes = [];

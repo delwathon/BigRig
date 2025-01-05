@@ -12,6 +12,7 @@ use Exception;
 use InvalidArgumentException;
 use LogicException;
 use RuntimeException;
+use Webmozart\Assert\Assert;
 
 /**
  * CRON expression parser that can determine whether or not a CRON expression is
@@ -147,7 +148,7 @@ class CronExpression
     /**
      * @deprecated since version 3.0.2, use __construct instead.
      */
-    public static function factory(string $expression, ?FieldFactoryInterface $fieldFactory = null): CronExpression
+    public static function factory(string $expression, FieldFactoryInterface $fieldFactory = null): CronExpression
     {
         /** @phpstan-ignore-next-line */
         return new static($expression, $fieldFactory);
@@ -178,7 +179,7 @@ class CronExpression
      * @param null|FieldFactoryInterface $fieldFactory Factory to create cron fields
      * @throws InvalidArgumentException
      */
-    public function __construct(string $expression, ?FieldFactoryInterface $fieldFactory = null)
+    public function __construct(string $expression, FieldFactoryInterface $fieldFactory = null)
     {
         $shortcut = strtolower($expression);
         $expression = self::$registeredAliases[$shortcut] ?? $expression;
@@ -199,12 +200,7 @@ class CronExpression
     public function setExpression(string $value): CronExpression
     {
         $split = preg_split('/\s/', $value, -1, PREG_SPLIT_NO_EMPTY);
-
-        if (!\is_array($split)) {
-            throw new InvalidArgumentException(
-                $value . ' is not a valid CRON expression'
-            );
-        }
+        Assert::isArray($split);
 
         $notEnoughParts = \count($split) < 5;
 
@@ -338,10 +334,7 @@ class CronExpression
             $currentTime = new DateTime($currentTime);
         }
 
-        if (!$currentTime instanceof DateTime) {
-            throw new InvalidArgumentException('invalid current time');
-        }
-
+        Assert::isInstanceOf($currentTime, DateTime::class);
         $currentTime->setTimezone(new DateTimeZone($timeZone));
 
         $matches = [];
@@ -427,10 +420,7 @@ class CronExpression
             $currentTime = new DateTime($currentTime);
         }
 
-        if (!$currentTime instanceof DateTime) {
-            throw new InvalidArgumentException('invalid current time');
-        }
-
+        Assert::isInstanceOf($currentTime, DateTime::class);
         $currentTime->setTimezone(new DateTimeZone($timeZone));
 
         // drop the seconds to 0
@@ -472,10 +462,7 @@ class CronExpression
             $currentDate = new DateTime('now');
         }
 
-        if (!$currentDate instanceof DateTime) {
-            throw new InvalidArgumentException('invalid current date');
-        }
-
+        Assert::isInstanceOf($currentDate, DateTime::class);
         $currentDate->setTimezone(new DateTimeZone($timeZone));
         // Workaround for setTime causing an offset change: https://bugs.php.net/bug.php?id=81074
         $currentDate = DateTime::createFromFormat("!Y-m-d H:iO", $currentDate->format("Y-m-d H:iP"), $currentDate->getTimezone());

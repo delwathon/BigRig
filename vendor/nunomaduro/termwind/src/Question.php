@@ -20,7 +20,7 @@ final class Question
     /**
      * The streamable input to receive the input from the user.
      */
-    private static StreamableInputInterface|null $streamableInput;
+    private static ?StreamableInputInterface $streamableInput;
 
     /**
      * An instance of Symfony's question helper.
@@ -29,15 +29,15 @@ final class Question
 
     public function __construct(?SymfonyQuestionHelper $helper = null)
     {
-        $this->helper = $helper ?? new QuestionHelper;
+        $this->helper = $helper ?? new QuestionHelper();
     }
 
     /**
      * Sets the streamable input implementation.
      */
-    public static function setStreamableInput(StreamableInputInterface|null $streamableInput): void
+    public static function setStreamableInput(?StreamableInputInterface $streamableInput): void
     {
-        self::$streamableInput = $streamableInput ?? new ArgvInput;
+        self::$streamableInput = $streamableInput ?? new ArgvInput();
     }
 
     /**
@@ -45,7 +45,7 @@ final class Question
      */
     public static function getStreamableInput(): StreamableInputInterface
     {
-        return self::$streamableInput ??= new ArgvInput;
+        return self::$streamableInput ??= new ArgvInput();
     }
 
     /**
@@ -73,7 +73,7 @@ final class Question
 
             $currentHelper = $property->isInitialized($output)
                 ? $property->getValue($output)
-                : new SymfonyQuestionHelper;
+                : new SymfonyQuestionHelper();
 
             $property->setValue($output, new QuestionHelper);
 

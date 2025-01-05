@@ -19,7 +19,7 @@ abstract class AbstractUid implements \JsonSerializable, \Stringable
     /**
      * The identifier in its canonic representation.
      */
-    protected $uid;
+    protected string $uid;
 
     /**
      * Whether the passed value is valid for the constructor of the current class.
@@ -70,8 +70,6 @@ abstract class AbstractUid implements \JsonSerializable, \Stringable
     }
 
     /**
-     * @param string $uid A valid RFC 9562/4122 uid
-     *
      * @throws \InvalidArgumentException When the passed value is not valid
      */
     public static function fromRfc4122(string $uid): static
@@ -89,7 +87,7 @@ abstract class AbstractUid implements \JsonSerializable, \Stringable
     abstract public function toBinary(): string;
 
     /**
-     * Returns the identifier as a base58 case sensitive string.
+     * Returns the identifier as a base58 case-sensitive string.
      *
      * @example 2AifFTC3zXgZzK5fPrrprL (len=22)
      */
@@ -99,7 +97,7 @@ abstract class AbstractUid implements \JsonSerializable, \Stringable
     }
 
     /**
-     * Returns the identifier as a base32 case insensitive string.
+     * Returns the identifier as a base32 case-insensitive string.
      *
      * @see https://tools.ietf.org/html/rfc4648#section-6
      *
@@ -122,9 +120,9 @@ abstract class AbstractUid implements \JsonSerializable, \Stringable
     }
 
     /**
-     * Returns the identifier as a RFC 9562/4122 case insensitive string.
+     * Returns the identifier as a RFC4122 case-insensitive string.
      *
-     * @see https://datatracker.ietf.org/doc/html/rfc9562/#section-4
+     * @see https://tools.ietf.org/html/rfc4122#section-3
      *
      * @example 09748193-048a-4bfb-b825-8528cf74fdc1 (len=36)
      */
@@ -164,6 +162,11 @@ abstract class AbstractUid implements \JsonSerializable, \Stringable
     public function compare(self $other): int
     {
         return (\strlen($this->uid) - \strlen($other->uid)) ?: ($this->uid <=> $other->uid);
+    }
+
+    final public function toString(): string
+    {
+        return $this->__toString();
     }
 
     public function __toString(): string

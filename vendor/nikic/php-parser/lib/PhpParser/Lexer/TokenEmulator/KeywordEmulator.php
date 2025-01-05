@@ -14,12 +14,8 @@ abstract class KeywordEmulator extends TokenEmulator {
 
     /** @param Token[] $tokens */
     protected function isKeywordContext(array $tokens, int $pos): bool {
-        $prevToken = $this->getPreviousNonSpaceToken($tokens, $pos);
-        if ($prevToken === null) {
-            return false;
-        }
-        return $prevToken->id !== \T_OBJECT_OPERATOR
-            && $prevToken->id !== \T_NULLSAFE_OBJECT_OPERATOR;
+        $previousNonSpaceToken = $this->getPreviousNonSpaceToken($tokens, $pos);
+        return $previousNonSpaceToken === null || $previousNonSpaceToken->id !== \T_OBJECT_OPERATOR;
     }
 
     public function emulate(string $code, array $tokens): array {

@@ -18,8 +18,6 @@ class Property extends Node\Stmt {
     public ?Node $type;
     /** @var Node\AttributeGroup[] PHP attribute groups */
     public array $attrGroups;
-    /** @var Node\PropertyHook[] Property hooks */
-    public array $hooks;
 
     /**
      * Constructs a class property list node.
@@ -29,19 +27,17 @@ class Property extends Node\Stmt {
      * @param array<string, mixed> $attributes Additional attributes
      * @param null|Identifier|Name|ComplexType $type Type declaration
      * @param Node\AttributeGroup[] $attrGroups PHP attribute groups
-     * @param Node\PropertyHook[] $hooks Property hooks
      */
-    public function __construct(int $flags, array $props, array $attributes = [], ?Node $type = null, array $attrGroups = [], array $hooks = []) {
+    public function __construct(int $flags, array $props, array $attributes = [], ?Node $type = null, array $attrGroups = []) {
         $this->attributes = $attributes;
         $this->flags = $flags;
         $this->props = $props;
         $this->type = $type;
         $this->attrGroups = $attrGroups;
-        $this->hooks = $hooks;
     }
 
     public function getSubNodeNames(): array {
-        return ['attrGroups', 'flags', 'type', 'props', 'hooks'];
+        return ['attrGroups', 'flags', 'type', 'props'];
     }
 
     /**
@@ -78,27 +74,6 @@ class Property extends Node\Stmt {
      */
     public function isReadonly(): bool {
         return (bool) ($this->flags & Modifiers::READONLY);
-    }
-
-    /**
-     * Whether the property has explicit public(set) visibility.
-     */
-    public function isPublicSet(): bool {
-        return (bool) ($this->flags & Modifiers::PUBLIC_SET);
-    }
-
-    /**
-     * Whether the property has explicit protected(set) visibility.
-     */
-    public function isProtectedSet(): bool {
-        return (bool) ($this->flags & Modifiers::PROTECTED_SET);
-    }
-
-    /**
-     * Whether the property has explicit private(set) visibility.
-     */
-    public function isPrivateSet(): bool {
-        return (bool) ($this->flags & Modifiers::PRIVATE_SET);
     }
 
     public function getType(): string {

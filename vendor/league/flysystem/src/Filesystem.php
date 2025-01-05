@@ -187,10 +187,7 @@ class Filesystem implements FilesystemOperator
             ?? throw UnableToGeneratePublicUrl::noGeneratorConfigured($path);
         $config = $this->config->extend($config);
 
-        return $this->publicUrlGenerator->publicUrl(
-            $this->pathNormalizer->normalizePath($path),
-            $config,
-        );
+        return $this->publicUrlGenerator->publicUrl($this->pathNormalizer->normalizePath($path), $config);
     }
 
     public function temporaryUrl(string $path, DateTimeInterface $expiresAt, array $config = []): string
@@ -217,15 +214,9 @@ class Filesystem implements FilesystemOperator
         }
 
         try {
-            return $this->adapter->checksum(
-                $this->pathNormalizer->normalizePath($path),
-                $config,
-            );
+            return $this->adapter->checksum($path, $config);
         } catch (ChecksumAlgoIsNotSupported) {
-            return $this->calculateChecksumFromStream(
-                $this->pathNormalizer->normalizePath($path),
-                $config,
-            );
+            return $this->calculateChecksumFromStream($path, $config);
         }
     }
 

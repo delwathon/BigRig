@@ -1,31 +1,50 @@
-# Changelog
+# CHANGELOG.md
 
-All notable changes to this template will be documented in this file.
+## [6.1.0] - 2024-08-23
 
-## v1.1.1 (2023-11-09)
+- Upgrade to Laravel 11 and Jetstream 5
 
-### Fixed
+## [6.0.0] - 2024-07-04
 
-- Minor improvements & Bugfixes
+- Mosaic Redesign
 
-## v1.1.0 (2023-11-03)
+## [5.2.0] - 2024-01-05
 
-#### Fixed
+- Upgrade to Laravel 10, Jetstream 4 and Livewire 3
 
-- Minor bug fixes and UI improvements
+## [5.1.0] - 2023-06-22
 
-#### Updated
+- Account settings page fixes
 
-- Updated Routes
-- Updated Laravel 10 base Folders & files
-- Updated Third party libraries
-- Updated Bootstrap to latest version(5.3.2)
-- Updated SCSS & Mixins as per Bootstrap 5.3.2
-- Updated Font weights for better appearance
-- Carousel HTML Structure as per latest Bootstrap
+## [5.0.0] - 2023-05-31
 
-## [1.0.0] - (2022-04-26)
+- Dark mode support
 
-### Added
+## [4.6.0] - 2023-05-04
 
-- Initial Release
+- Several minor improvements
+
+## [4.5.4] - 2023-04-11
+
+- Dependency updates
+
+## [4.5.3] - 2023-03-28
+
+- Improve sidebar group links behaviour
+
+## [4.5.2] - 2023-02-13
+
+- Update dependencies
+- Improve sidebar icons color logic
+
+## [4.5.0] - 2022-09-14
+
+Fix Livewire error with manifest.json 
+
+## [4.4.0] - 2022-09-09
+
+Fix Livewire error with manifest.json 
+
+## [4.3.0] - 2022-07-13
+
+First release

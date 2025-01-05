@@ -194,7 +194,7 @@ final class NamePrettifier
                     array_keys($providedData),
                 );
 
-                $result = preg_replace($variables, $providedData, $annotation);
+                $result = trim(preg_replace($variables, $providedData, $annotation));
 
                 $annotationWithPlaceholders = true;
             }
@@ -280,7 +280,7 @@ final class NamePrettifier
                 }
             }
 
-            $providedData['$' . $parameter->getName()] = str_replace('$', '\\$', $value);
+            $providedData['$' . $parameter->getName()] = $value;
         }
 
         if ($colorize) {

@@ -65,6 +65,9 @@ final class MigrationBuilder
         ],
     ];
 
+    /**
+     * @throws MigrationBuilderException
+     */
     public function build(string $fromVersion): array
     {
         $stack = [new UpdateSchemaLocation];

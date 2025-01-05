@@ -16,7 +16,6 @@ trait InteractsWithDockerComposeServices
         'mysql',
         'pgsql',
         'mariadb',
-        'mongodb',
         'redis',
         'memcached',
         'meilisearch',
@@ -82,6 +81,13 @@ trait InteractsWithDockerComposeServices
                 ->all();
         }
 
+        // Update the dependencies if the MariaDB service is used...
+        if (in_array('mariadb', $services)) {
+            $compose['services']['laravel.test']['depends_on'] = array_map(function ($dependedItem) {
+                return $dependedItem;
+            }, $compose['services']['laravel.test']['depends_on']);
+        }
+
         // Add the services to the docker-compose.yml...
         collect($services)
             ->filter(function ($service) use ($compose) {
@@ -93,7 +99,7 @@ trait InteractsWithDockerComposeServices
         // Merge volumes...
         collect($services)
             ->filter(function ($service) {
-                return in_array($service, ['mysql', 'pgsql', 'mariadb', 'mongodb', 'redis', 'meilisearch', 'typesense', 'minio']);
+                return in_array($service, ['mysql', 'pgsql', 'mariadb', 'redis', 'meilisearch', 'typesense', 'minio']);
             })->filter(function ($service) use ($compose) {
                 return ! array_key_exists($service, $compose['volumes'] ?? []);
             })->each(function ($service) use (&$compose) {
@@ -105,11 +111,12 @@ trait InteractsWithDockerComposeServices
             unset($compose['volumes']);
         }
 
-        $yaml = Yaml::dump($compose, Yaml::DUMP_OBJECT_AS_MAP);
+        // Replace Selenium with ARM base container on Apple Silicon...
+        if (in_array('selenium', $services) && in_array(php_uname('m'), ['arm64', 'aarch64'])) {
+            $compose['services']['selenium']['image'] = 'seleniarm/standalone-chromium';
+        }
 
-        $yaml = str_replace('{{PHP_VERSION}}', $this->hasOption('php') ? $this->option('php') : '8.3', $yaml);
-
-        file_put_contents($this->laravel->basePath('docker-compose.yml'), $yaml);
+        file_put_contents($this->laravel->basePath('docker-compose.yml'), Yaml::dump($compose, Yaml::DUMP_OBJECT_AS_MAP));
     }
 
     /**
@@ -162,11 +169,6 @@ trait InteractsWithDockerComposeServices
 
         if (in_array('redis', $services)) {
             $environment = str_replace('REDIS_HOST=127.0.0.1', 'REDIS_HOST=redis', $environment);
-        }
-
-        if (in_array('mongodb', $services)) {
-            $environment .= "\nMONGODB_URI=mongodb://mongodb:27017";
-            $environment .= "\nMONGODB_DATABASE=laravel";
         }
 
         if (in_array('meilisearch', $services)) {

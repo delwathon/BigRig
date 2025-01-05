@@ -14,10 +14,8 @@ use const PREG_OFFSET_CAPTURE;
 use function array_key_exists;
 use function assert;
 use function explode;
-use function get_debug_type;
 use function is_array;
 use function is_int;
-use function is_string;
 use function json_decode;
 use function json_last_error;
 use function json_last_error_msg;
@@ -183,29 +181,20 @@ final class DataProvider
             foreach ($data as $key => $value) {
                 if (is_int($key)) {
                     $result[] = $value;
-                } elseif (is_string($key)) {
-                    if (array_key_exists($key, $result)) {
-                        Event\Facade::emitter()->dataProviderMethodFinished(
-                            $testMethod,
-                            ...$methodsCalled,
-                        );
+                } elseif (array_key_exists($key, $result)) {
+                    Event\Facade::emitter()->dataProviderMethodFinished(
+                        $testMethod,
+                        ...$methodsCalled,
+                    );
 
-                        throw new InvalidDataProviderException(
-                            sprintf(
-                                'The key "%s" has already been defined by a previous data provider',
-                                $key,
-                            ),
-                        );
-                    }
-
-                    $result[$key] = $value;
-                } else {
                     throw new InvalidDataProviderException(
                         sprintf(
-                            'The key must be an integer or a string, %s given',
-                            get_debug_type($key),
+                            'The key "%s" has already been defined by a previous data provider',
+                            $key,
                         ),
                     );
+                } else {
+                    $result[$key] = $value;
                 }
             }
         }
