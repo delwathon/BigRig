@@ -23,10 +23,10 @@
                 <!-- People list -->
                 <div class="flex -space-x-3 -ml-px">
                     <a class="block" href="#0">
-                        <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-01.jpg') }}" width="32" height="32" alt="User 01" />
+                        <img class="rounded-full w-8 h-8 border-2 border-white dark:border-gray-800 box-content" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="32" height="32" alt="User 01" />
                     </a>
                     <a class="block" href="#0">
-                        <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-07.jpg') }}" width="32" height="32" alt="User 04" />
+                        <img class="rounded-full w-8 h-8 border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-07.jpg') }}" width="32" height="32" alt="User 04" />
                     </a>
                 </div>
             </div>
@@ -50,7 +50,7 @@
     <div class="grow px-4 sm:px-6 md:px-5 py-6">
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
             <div>
                 <div class="text-sm bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-100 p-3 rounded-lg rounded-tl-none mb-1">
                     Can anyone help? I have a question about Acme Professional
@@ -62,7 +62,7 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full mr-4" src="{{ asset('images/user-40-12.jpg') }}" width="40" height="40" alt="User 02" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="40" height="40" alt="User 02" />
             <div>
                 <div class="text-sm bg-violet-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent mb-1">
                     Hey Dominik Lamakani 👋<br />
@@ -78,7 +78,7 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
             <div>
                 <div class="flex items-center">
                     <img class="rounded-lg shadow-sm mb-1" src="{{ asset('images/chat-image.jpg') }}" width="240" height="180" alt="Chat image" />
@@ -96,7 +96,7 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
             <div>
                 <div class="text-sm bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-100 p-3 rounded-lg rounded-tl-none mb-1">
                     What do you think? Duis aute irure dolor in reprehenderit 🔥
@@ -108,7 +108,7 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full mr-4" src="{{ asset('images/user-40-12.jpg') }}" width="40" height="40" alt="User 02" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="40" height="40" alt="User 02" />
             <div>
                 <div class="text-sm bg-violet-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent mb-1">
                     Sed euismod nisi porta lorem mollis. Tellus elementum sagittis vitae et leo duis. Viverra justo nec ultrices dui.<br />
@@ -130,7 +130,7 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full mr-4" src="{{ asset('images/user-40-12.jpg') }}" width="40" height="40" alt="User 02" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="40" height="40" alt="User 02" />
             <div>
                 <div class="text-sm bg-violet-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent mb-1">
                     Can you join <a class="font-medium" href="#0">@dominik</a>? <a class="underline" href="#0">https://meet.google.com/haz-r3gt-idj</a>
@@ -145,7 +145,7 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
             <div>
                 <div class="text-sm bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-100 p-3 rounded-lg rounded-tl-none mb-1">
                     <svg class="fill-current text-gray-400 dark:text-gray-500" viewBox="0 0 15 3" width="15" height="3">

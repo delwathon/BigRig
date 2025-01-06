@@ -16,7 +16,7 @@
                             </div>
                         </th>
                         <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                            <div class="font-semibold text-left">Counterparty</div>
+                            <div class="font-semibold text-left">Trnx Ref</div>
                         </th>
                         <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                             <div class="font-semibold text-left">Payment Date</div>
@@ -34,14 +34,14 @@
                     <!-- Row -->
                     @foreach($transactions as $transaction)
                         @php                    
-                            if ($transaction->status === 'Completed') :
+                            if ($transaction->payment_status === 'completed') :
                                 $status_color = 'bg-green-500/20 text-green-700';
-                            elseif ($transaction->status === 'Canceled') :
+                            elseif ($transaction->payment_status === 'failed') :
                                 $status_color = 'bg-red-500/20 text-red-700';
                             else :
                                 $status_color = 'bg-gray-400/20 text-gray-500 dark:text-gray-400';
                             endif;
-                            if (substr($transaction->amount, 0, 1) === '+') :
+                            if (substr($transaction->total_amount, 0, 1) === '+') :
                                 $amount_color = 'text-green-500';
                             else :
                                 $amount_color = 'text-gray-800 dark:text-gray-300';
@@ -58,22 +58,19 @@
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap md:w-1/2">
                                 <div class="flex items-center">
-                                    <div class="w-9 h-9 shrink-0 mr-2 sm:mr-3">
-                                        <img class="w-9 h-9 rounded-full" src="{{ asset('images/' . $transaction->image) }}" width="36" height="36" alt="{{ $transaction->name }}" />
-                                    </div>
-                                    <div class="font-medium text-gray-800 dark:text-gray-100">{{ $transaction->name }}</div>
+                                    <div class="font-medium text-gray-800 dark:text-gray-100"><a href="{{ route('transaction-details') }}">{{ $transaction->payment_reference }}</a></div>
                                 </div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                <div class="text-left">{{ \Carbon\Carbon::parse($transaction->created_at)->format('d/m/Y') }}</div>
+                                <div class="text-left">{{ \Carbon\Carbon::parse($transaction->updated_at)->format('d/m/Y') }}</div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                 <div class="text-left">
-                                    <div class="text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 {{$status_color}}">{{ $transaction->status }}</div>
+                                    <div class="text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 {{$status_color}}">{{ $transaction->payment_status }}</div>
                                 </div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
-                                <div class="text-right font-medium {{$amount_color}}">{{ $transaction->amount }}</div>
+                                <div class="text-right font-medium {{$amount_color}}">${{ $transaction->total_amount }}</div>
                             </td>
                         </tr>
                     @endforeach

@@ -2,16 +2,21 @@
 
 namespace App\Providers;
 
+use App\Models\Subscription;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -20,7 +25,40 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Customizing login response
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request)
+            {
+                $user = Auth::user();
+
+                // Check subscription payment status
+                $subscription = Subscription::where('user_id', $user->id)->first();
+
+                if ($subscription && $subscription->payment_status === 'pending') {
+                    // Redirect to checkout/pay if payment is still pending
+                    return redirect('/checkout/pay');
+                }
+
+                // Otherwise, redirect to dashboard
+                return redirect('/dashboard');
+            }
+        });
+
+        // Customizing registration response
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
+            public function toResponse($request)
+            {
+                return redirect('/checkout/pay'); // Redirect to checkout
+            }
+        });
+
+        // Customizing logout response
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request)
+            {
+                return redirect('/login');
+            }
+        });
     }
 
     /**

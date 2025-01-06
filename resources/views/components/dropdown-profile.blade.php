@@ -9,9 +9,19 @@
         @click.prevent="open = !open"
         :aria-expanded="open"                        
     >
-        <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" width="32" height="32" alt="{{ Auth::user()->name }}" />
+        {{-- <a class="relative inline-flex items-start" href="javascript:void(0)"> --}}
+            <div class="relative -top-2 right-0 -mr-3" aria-hidden="true">
+                @if (Auth::user()->hasVerifiedEmail())
+                    <svg class="w-8 h-8 fill-current text-yellow-500" viewBox="0 0 32 32">
+                        <path d="M21 14.077a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 010 1.5 1.5 1.5 0 00-1.5 1.5.75.75 0 01-.75.75zM14 24.077a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z" />
+                    </svg>
+                @endif
+            </div>
+            <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="32" height="32" alt="{{ Auth::user()->firstName }}" />
+        {{-- </a> --}}
+        {{-- <img class="w-8 h-8 rounded-full" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="32" height="32" alt="{{ Auth::user()->firstName }}" /> --}}
         <div class="flex items-center truncate">
-            <span class="truncate ml-2 text-sm font-medium text-gray-600 dark:text-gray-100 group-hover:text-gray-800 dark:group-hover:text-white">{{ Auth::user()->name }}</span>
+            <span class="truncate ml-2 text-sm font-medium text-gray-600 dark:text-gray-100 group-hover:text-gray-800 dark:group-hover:text-white">{{ Auth::user()->firstName }}</span>
             <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-400 dark:text-gray-500" viewBox="0 0 12 12">
                 <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
             </svg>
@@ -31,12 +41,12 @@
         x-cloak                    
     >
         <div class="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200 dark:border-gray-700/60">
-            <div class="font-medium text-gray-800 dark:text-gray-100">{{ Auth::user()->name }}</div>
+            <div class="font-medium text-gray-800 dark:text-gray-100">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</div>
             <div class="text-xs text-gray-500 dark:text-gray-400 italic">Administrator</div>
         </div>
         <ul>
             <li>
-                <a class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3" href="{{ route('profile.show') }}" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a>
+                <a class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3" href="{{ route('profile.show') }}" @click="open = false" @focus="open = true" @focusout="open = false">My Account</a>
             </li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" x-data>

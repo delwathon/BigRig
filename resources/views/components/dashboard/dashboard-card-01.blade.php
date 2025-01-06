@@ -1,7 +1,7 @@
 <div class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-gray-800 shadow-sm rounded-xl">
     <div class="px-5 pt-5">
         <header class="flex justify-between items-start mb-2">
-            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Acme Plus</h2>
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Users</h2>
             <!-- Menu button -->
             <div class="relative inline-flex" x-data="{ open: false }">
                 <button
@@ -11,7 +11,7 @@
                     @click.prevent="open = !open"
                     :aria-expanded="open"
                 >
-                    <span class="sr-only">Menu</span>
+                    <span class="sr-only">Action</span>
                     <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
                         <circle cx="16" cy="16" r="2" />
                         <circle cx="10" cy="16" r="2" />
@@ -33,22 +33,25 @@
                 >
                     <ul>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="{{ route('users') }}" @click="open = false" @focus="open = true" @focusout="open = false">View</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
                         </li>
                         <li>
                             <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
         </header>
-        <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-1">Sales</div>
+        <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-1">Verified Users</div>
         <div class="flex items-start">
-            <div class="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">${{ number_format($dataFeed->sumDataSet(1, 1), 0) }}</div>
-            <div class="text-sm font-medium text-green-700 px-1.5 bg-green-500/20 rounded-full">+49%</div>
+            <div class="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">{{ $activeUsers }}</div>
+            {{-- <div class="text-sm font-medium px-1.5 rounded-full 
+                {{ $userPI >= 0 ? 'text-green-700 bg-green-500/20' : 'text-red-700 bg-red-500/20' }}">
+                {{ number_format($userPI, 0) }}%
+            </div> --}}
         </div>
     </div>
     <!-- Chart built with Chart.js 3 -->

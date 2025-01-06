@@ -1,3 +1,4 @@
+@section('title', 'Dashboard')
 <x-app-layout>
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
@@ -13,18 +14,18 @@
             <div class="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
 
                 <!-- Filter button -->
-                <x-dropdown-filter align="right" />
+                <!-- <x-dropdown-filter align="right" /> -->
 
                 <!-- Datepicker built with flatpickr -->
                 <x-datepicker />
 
                 <!-- Add view button -->
-                <button class="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">
+                <!-- <button class="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">
                     <svg class="fill-current shrink-0 xs:hidden" width="16" height="16" viewBox="0 0 16 16">
                         <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                     </svg>
                     <span class="max-xs:sr-only">Add View</span>
-                </button>
+                </button> -->
                 
             </div>
 
@@ -34,10 +35,14 @@
         <div class="grid grid-cols-12 gap-6">
 
             <!-- Line chart (Acme Plus) -->
-            <x-dashboard.dashboard-card-01 :dataFeed="$dataFeed" />
+            @if (Auth::user()->hasPermission('read_dashboard_user_card'))
+                <x-dashboard.dashboard-card-01 :activeUsers="$activeUsers" :userPI="$userPI" />
+            @endif
 
             <!-- Line chart (Acme Advanced) -->
-            <x-dashboard.dashboard-card-02 :dataFeed="$dataFeed" />
+            @if (Auth::user()->hasPermission('read_dashboard_revenue_card'))
+                <x-dashboard.dashboard-card-02 :revenue="$revenue" :revenuePI="$revenuePI" />
+            @endif
 
             <!-- Line chart (Acme Professional) -->
             <x-dashboard.dashboard-card-03 :dataFeed="$dataFeed" />
