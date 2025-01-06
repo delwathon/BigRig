@@ -28,6 +28,15 @@ class DatabaseSeeder extends Seeder
             CampaignSeeder::class,
             MarketerSeeder::class,
             CampaignMarketerSeeder::class,
+            TrainingObjectiveSeeder::class,
+            SettingsSeeder::class,
+            FaqsSeeder::class,
+            FounderSeeder::class,
+            ServicesSeeder::class,
+            ClientsSeeder::class,
+            AchievementsSeeder::class,
+            RolesAndPermissionsSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

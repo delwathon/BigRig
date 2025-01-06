@@ -1376,6 +1376,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'unicodeveloper/laravel-paystack' => array(
+            'pretty_version' => '1.2.0',
+            'version' => '1.2.0.0',
+            'reference' => '4d540e081f63f8ceca42ded5668da8ec93a3a084',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../unicodeveloper/laravel-paystack',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'vlucas/phpdotenv' => array(
             'pretty_version' => 'v5.6.1',
             'version' => '5.6.1.0',

@@ -6,19 +6,21 @@
                 <!-- Image + name -->
                 <header>                
                     <div class="flex mb-2">
-                        <a class="relative inline-flex items-start mr-5" href="#0">
+                        <a class="relative inline-flex items-start mr-5" href="{{ route('user-profile') }}">
                             <div class="absolute top-0 right-0 -mr-2 bg-white dark:bg-gray-700 rounded-full shadow" aria-hidden="true">
-                                <svg class="w-8 h-8 fill-current text-yellow-500" viewBox="0 0 32 32">
-                                    <path d="M21 14.077a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 010 1.5 1.5 1.5 0 00-1.5 1.5.75.75 0 01-.75.75zM14 24.077a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z" />
-                                </svg>
+                                @if ($user->hasVerifiedEmail())
+                                    <svg class="w-8 h-8 fill-current text-yellow-500" viewBox="0 0 32 32">
+                                        <path d="M21 14.077a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 010 1.5 1.5 1.5 0 00-1.5 1.5.75.75 0 01-.75.75zM14 24.077a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z" />
+                                    </svg>
+                                @endif
                             </div>
-                            <img class="rounded-full" src="{{ asset('images/' . $member->image) }}" width="64" height="64" alt="{{ $member->name }}" />
+                            <img class="rounded-full h-16" src="{{ Storage::url($user->profile_photo_path) }}" width="64" height="64" alt="{{ $user->firstName }}" />
                         </a>
                         <div class="mt-1 pr-1">
-                            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="#0">
-                                <h2 class="text-xl leading-snug justify-center font-semibold">{{ $member->name }}</h2>
+                            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="{{ route('user-profile') }}">
+                                <h2 class="text-xl leading-snug justify-center font-semibold">{{ $user->firstName }} {{ $user->middleName }} {{ $user->lastName }}</h2>
                             </a>
-                            <div class="flex items-center"><span class="text-sm font-medium text-gray-400 dark:text-gray-500 -mt-0.5 mr-1">-&gt;</span> <span>{{ $member->location }}</span></div>
+                            <div class="flex items-center"><span class="text-sm font-medium text-gray-400 dark:text-gray-500 -mt-0.5 mr-1">-&gt;</span> <span>{{ $user->mobileNumber }}</span></div>
                         </div>
                     </div>
                 </header>
@@ -52,14 +54,21 @@
                         x-cloak                
                     >
                         <ul>
+                            {{-- <li>
+                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Edit Profile</a>
+                            </li> --}}
                             <li>
-                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
+                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="$store.editModal.open({
+                                    id: {{ $user->id }},
+                                    name: '{{ $user->firstName }}'
+                                })" 
+                                aria-controls="edit-modal" @focus="open = true" @focusout="open = false">Make Admin</a>
                             </li>
                             <li>
-                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
+                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Make Instructor</a>
                             </li>
                             <li>
-                                <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
+                                <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Deactivate</a>
                             </li>
                         </ul>
                     </div>
@@ -67,7 +76,7 @@
             </div>
             <!-- Bio -->
             <div class="mt-2">
-                <div class="text-sm">{{ $member->content }}</div>
+                <div class="text-sm">{{ $user->content }}</div>
             </div>
         </div>
         <!-- Card footer -->
@@ -78,10 +87,10 @@
                         <svg class="fill-current shrink-0 mr-2" width="16" height="16" viewBox="0 0 16 16">
                             <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z" />
                         </svg>
-                        <span>Send Email</span>
+                        <span>Send Message</span>
                     </div>
                 </a>
-                <a class="block flex-1 text-center text-sm text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200 font-medium px-3 py-4 group" href="{{ route('account') }}">
+                <a class="block flex-1 text-center text-sm text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200 font-medium px-3 py-4 group" href="javascript:void(0)">
                     <div class="flex items-center justify-center">
                         <svg class="fill-current text-gray-400 dark:text-gray-600 group-hover:text-gray-500 shrink-0 mr-2" width="16" height="16" viewBox="0 0 16 16">
                             <path d="M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z" />

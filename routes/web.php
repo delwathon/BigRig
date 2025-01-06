@@ -4,12 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +29,66 @@ use App\Http\Controllers\CampaignController;
 |
 */
 
-Route::redirect('/', 'login');
+Route::redirect('/', 'home');
+Route::get('/home', [WebsiteController::class, 'home'])->name('home');
+Route::get('/about-us', [WebsiteController::class, 'about'])->name('about-us');
+Route::get('/courses', [WebsiteController::class, 'about'])->name('courses');
+Route::get('/faq', [WebsiteController::class, 'about'])->name('faq');
+Route::get('/contact', [WebsiteController::class, 'about'])->name('contact');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/checkout/pay', [CheckoutController::class, 'index'])->name('checkout.pay');
+    Route::post('/pay', [CheckoutController::class, 'redirectToPaystack'])->name('payment');
+    Route::get('/payment/callback', [CheckoutController::class, 'handleGatewayCallback'])->name('payment.callback');
+    // Route::post('/pay', [CheckoutController::class, 'redirectToMonicredit'])->name('payment');
+    // Route::get('/payment/callback', [CheckoutController::class, 'handleMonicreditCallback'])->name('payment.callback');
 
     // Route for the getting the data feed
     Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/community/user-tiles', [UserController::class, 'indexTiles'])->name('users');
+    Route::get('/user-profile', [UserController::class, 'userProfile'])->name('user-profile');
+    Route::post('/make-admin', [UserController::class, 'makeAdmin'])->name('make.admin');
+    Route::get('/finance/transactions', [TransactionController::class, 'index01'])->name('transactions');
+    Route::get('/finance/transaction-details', [TransactionController::class, 'index02'])->name('transaction-details');
+    Route::get('/settings/site_information', [SettingsController::class, 'siteInformationIndex'])->name('site_settings');
+    Route::put('/settings/site_information/update', [SettingsController::class, 'siteInformationUpdate'])->name('site_settings.update');
+    Route::get('/settings/about-company', [SettingsController::class, 'aboutCompanyIndex'])->name('about-company');
+    Route::put('/settings/about-company/update', [SettingsController::class, 'aboutCompanyUpdate'])->name('about-company.update');
+    Route::get('/settings/objectives', [SettingsController::class, 'trainingObjectiveIndex'])->name('objectives');
+    Route::post('/settings/objectives/store', [SettingsController::class, 'trainingObjectiveStore'])->name('objective.store');
+    Route::put('/settings/objectives/update', [SettingsController::class, 'trainingObjectiveUpdate'])->name('objective.update');
+    Route::get('/settings/objectives/destroy/{id}', [SettingsController::class, 'trainingObjectiveDestroy'])->name('objective.destroy');
+    Route::get('/settings/faqs', [SettingsController::class, 'faqsIndex'])->name('faqs');
+    Route::post('/settings/faqs/store', [SettingsController::class, 'faqsStore'])->name('faqs.store');
+    Route::put('/settings/faqs/update', [SettingsController::class, 'faqsUpdate'])->name('faqs.update');
+    Route::get('/settings/faqs/destroy/{id}', [SettingsController::class, 'faqsDestroy'])->name('faqs.destroy');
+    Route::get('/settings/sliders', [SettingsController::class, 'slidersIndex'])->name('sliders');
+    Route::post('/settings/sliders/store', [SettingsController::class, 'slidersStore'])->name('sliders.store');
+    Route::get('/settings/sliders/destroy/{id}', [SettingsController::class, 'slidersDestroy'])->name('sliders.destroy');
+    Route::get('/settings/founder', [SettingsController::class, 'founderIndex'])->name('founder');
+    Route::put('/settings/founder/update', [SettingsController::class, 'founderUpdate'])->name('founder.update');
+    Route::get('/settings/custom-services', [SettingsController::class, 'customServicesIndex'])->name('custom-services');
+    Route::post('/settings/custom-service/store', [SettingsController::class, 'customServicesStore'])->name('custom-service.store');
+    Route::put('/settings/custom-service/update', [SettingsController::class, 'customServicesUpdate'])->name('custom-service.update');
+    Route::get('/settings/custom-service/destroy/{id}', [SettingsController::class, 'customServicesDestroy'])->name('custom-service.destroy');
+    Route::get('/settings/clients', [SettingsController::class, 'clientsIndex'])->name('clients');
+    Route::post('/settings/client/store', [SettingsController::class, 'clientsStore'])->name('client.store');
+    Route::get('/settings/client/destroy/{id}', [SettingsController::class, 'clientsDestroy'])->name('client.destroy');
+    Route::get('/settings/achievements', [SettingsController::class, 'achievementsIndex'])->name('achievements');
+    Route::post('/settings/achievement/store', [SettingsController::class, 'achievementsStore'])->name('achievement.store');
+    Route::put('/settings/achievement/update', [SettingsController::class, 'achievementsUpdate'])->name('achievement.update');
+    Route::get('/settings/achievement/destroy/{id}', [SettingsController::class, 'achievementsDestroy'])->name('achievement.destroy');
+    Route::get('/user-roles', [RoleController::class, 'Index'])->name('user-roles');
+    Route::get('/user-permissions/{roleId}', [PermissionController::class, 'Index'])->name('user-permissions');
+    Route::post('/user-permissions/store', [PermissionController::class, 'permissionStore'])->name('permission.store');
+    Route::post('/update-role-permission', [PermissionController::class, 'permissionUpdate'])->name('update-role-permission');
+    Route::get('/chats', [ChatController::class, 'chatIndex'])->name('chats');
+
+
+
     Route::get('/dashboard/analytics', [DashboardController::class, 'analytics'])->name('analytics');
     Route::get('/dashboard/fintech', [DashboardController::class, 'fintech'])->name('fintech');
     Route::get('/ecommerce/customers', [CustomerController::class, 'index'])->name('customers');
@@ -59,9 +118,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns');
     Route::get('/community/users-tabs', [MemberController::class, 'indexTabs'])->name('users-tabs');
     Route::get('/community/users-tiles', [MemberController::class, 'indexTiles'])->name('users-tiles');
-    Route::get('/community/profile', function () {
-        return view('pages/community/profile');
-    })->name('profile');
+    // Route::get('/community/profile', function () {
+    //     return view('pages/community/profile');
+    // })->name('profile');
     Route::get('/community/feed', function () {
         return view('pages/community/feed');
     })->name('feed');     
@@ -104,9 +163,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/calendar', function () {
         return view('pages/calendar');
     })->name('calendar'); 
-    Route::get('/settings/account', function () {
-        return view('pages/settings/account');
-    })->name('account');  
     Route::get('/settings/notifications', function () {
         return view('pages/settings/notifications');
     })->name('notifications');  
@@ -128,9 +184,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/utility/roadmap', function () {
         return view('pages/utility/roadmap');
     })->name('roadmap');  
-    Route::get('/utility/faqs', function () {
-        return view('pages/utility/faqs');
-    })->name('faqs');  
+    // Route::get('/utility/faqs', function () {
+    //     return view('pages/utility/faqs');
+    // })->name('faqs');  
     Route::get('/utility/empty-state', function () {
         return view('pages/utility/empty-state');
     })->name('empty-state');  
@@ -188,6 +244,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/component/icons', function () {
         return view('pages/component/icons-page');
     })->name('icons-page');
+
     Route::fallback(function() {
         return view('pages/utility/404');
     });    

@@ -21,13 +21,13 @@
                             >
                                 <img class="w-8 h-8 rounded-full mr-2" src="{{ asset('images/channel-01.png') }}" width="32" height="32" alt="Group 01" />
                                 <div class="truncate">
-                                    <span class="font-semibold text-gray-800 dark:text-gray-100">#Marketing</span>
+                                    <span class="font-semibold text-gray-800 dark:text-gray-100">Chats</span>
                                 </div>
-                                <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-400 dark:text-gray-500" viewBox="0 0 12 12">
+                                {{-- <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-400 dark:text-gray-500" viewBox="0 0 12 12">
                                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                                </svg>
+                                </svg> --}}
                             </button>
-                            <div
+                            {{-- <div
                                 class="origin-top-right z-10 absolute top-full left-0 min-w-60 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 py-1.5 rounded-lg shadow-lg overflow-hidden mt-1"                
                                 @click.outside="open = false"
                                 @keydown.escape.window="open = false"
@@ -75,7 +75,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- Edit button -->
                         <button class="p-1.5 shrink-0 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 shadow-sm ml-2">
@@ -103,12 +103,13 @@
                 <div class="mt-4">
                     <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-3">Direct messages</div>
                     <ul class="mb-6">
+                        @foreach ($users as $user)
                         <li class="-mx-2">
                             <button class="flex items-center justify-between w-full p-2 rounded-lg bg-[linear-gradient(135deg,var(--tw-gradient-stops))] from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]" @click="msgSidebarOpen = false; $refs.contentarea.scrollTop = 99999999;">
                                 <div class="flex items-center truncate">
-                                    <img class="w-8 h-8 rounded-full mr-2" src="{{ asset('images/user-32-01.jpg') }}" width="32" height="32" alt="User 01" />
+                                    <img class="w-8 h-8 rounded-full mr-2" src="{{ Storage::url($user->profile_photo_path) }}" width="32" height="32" alt="User 01" />
                                     <div class="truncate">
-                                        <span class="text-sm font-medium text-gray-800 dark:text-gray-100">Dominik Lamakani</span>
+                                        <span class="text-sm font-medium text-gray-800 dark:text-gray-100">{{ $user->firstName }} {{ $user->lastName }}</span>
                                     </div>
                                 </div>
                                 <div class="flex items-center ml-2">
@@ -116,6 +117,7 @@
                                 </div>
                             </button>
                         </li>
+                        @endforeach
                         <li class="-mx-2">
                             <button class="flex items-center justify-between w-full p-2 rounded" @click="msgSidebarOpen = false; $refs.contentarea.scrollTop = 99999999;">
                                 <div class="flex items-center truncate">

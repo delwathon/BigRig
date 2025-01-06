@@ -30,7 +30,7 @@
 
                 <!-- Avatar -->
                 <div class="inline-flex -ml-1 -mt-1 mb-4 sm:mb-0">
-                    <img class="rounded-full border-4 border-white dark:border-gray-900" src="{{ asset('images/user-128-01.jpg') }}" width="128" height="128" alt="Avatar" />
+                    <img class="rounded-full w-40 h-40 border-4 border-white dark:border-gray-900" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="128" height="128" alt="{{ Auth::user()->firstName }}" />
                 </div>
     
                 <!-- Actions -->
@@ -42,11 +42,11 @@
                             <circle cx="14" cy="2" r="2" />
                         </svg>
                     </button>
-                    <button class="p-1.5 shrink-0 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 shadow-sm">
+                    <a href="{{ route('chats') }}" class="p-1.5 shrink-0 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 shadow-sm">
                         <svg class="fill-current text-violet-500" width="16" height="16" viewBox="0 0 16 16">
                             <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7Zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8Z" />
                         </svg>
-                    </button>
+                    </a>
                     <button class="btn-sm bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">
                         <svg class="fill-current shrink-0" width="11" height="8" viewBox="0 0 11 8">
                             <path d="m.457 4.516.969-.99 2.516 2.481L9.266.702l.985.99-6.309 6.284z" />
@@ -63,10 +63,12 @@
         <header class="text-center sm:text-left mb-6">
             <!-- Name -->
             <div class="inline-flex items-start mb-2">
-                <h1 class="text-2xl text-gray-800 dark:text-gray-100 font-bold">Carolyn McNeail</h1>
+                <h1 class="text-2xl text-gray-800 dark:text-gray-100 font-bold">{{ Auth::user()->firstName }} {{ Auth::user()->middleName }} {{ Auth::user()->lastName }}</h1>
+                @if (Auth::user()->hasVerifiedEmail())
                 <svg class="fill-current shrink-0 text-yellow-500 ml-2" width="16" height="16" viewBox="0 0 16 16">
                     <path d="M13 6a.75.75 0 0 1-.75-.75 1.5 1.5 0 0 0-1.5-1.5.75.75 0 1 1 0-1.5 1.5 1.5 0 0 0 1.5-1.5.75.75 0 1 1 1.5 0 1.5 1.5 0 0 0 1.5 1.5.75.75 0 1 1 0 1.5 1.5 1.5 0 0 0-1.5 1.5A.75.75 0 0 1 13 6ZM6 16a1 1 0 0 1-1-1 4 4 0 0 0-4-4 1 1 0 0 1 0-2 4 4 0 0 0 4-4 1 1 0 1 1 2 0 4 4 0 0 0 4 4 1 1 0 0 1 0 2 4 4 0 0 0-4 4 1 1 0 0 1-1 1Z" />
                 </svg>
+                @endif
             </div>
             <!-- Bio -->
             <div class="text-sm mb-3">Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.</div>
@@ -76,13 +78,13 @@
                     <svg class="fill-current shrink-0 text-gray-400 dark:text-gray-500" width="16" height="16" viewBox="0 0 16 16">
                         <path d="M8 8.992a2 2 0 1 1-.002-3.998A2 2 0 0 1 8 8.992Zm-.7 6.694c-.1-.1-4.2-3.696-4.2-3.796C1.7 10.69 1 8.892 1 6.994 1 3.097 4.1 0 8 0s7 3.097 7 6.994c0 1.898-.7 3.697-2.1 4.996-.1.1-4.1 3.696-4.2 3.796-.4.3-1 .3-1.4-.1Zm-2.7-4.995L8 13.688l3.4-2.997c1-1 1.6-2.198 1.6-3.597 0-2.798-2.2-4.996-5-4.996S3 4.196 3 6.994c0 1.399.6 2.698 1.6 3.697 0-.1 0-.1 0 0Z" />
                     </svg>
-                    <span class="text-sm font-medium whitespace-nowrap text-gray-500 dark:text-gray-400 ml-2">Milan, IT</span>
+                    <span class="text-sm font-medium whitespace-nowrap text-gray-500 dark:text-gray-400 ml-2">Oyo, Nigeria</span>
                 </div>
                 <div class="flex items-center">
                     <svg class="fill-current shrink-0 text-gray-400 dark:text-gray-500" width="16" height="16" viewBox="0 0 16 16">
                         <path d="M11 0c1.3 0 2.6.5 3.5 1.5 1 .9 1.5 2.2 1.5 3.5 0 1.3-.5 2.6-1.4 3.5l-1.2 1.2c-.2.2-.5.3-.7.3-.2 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l1.1-1.2c.6-.5.9-1.3.9-2.1s-.3-1.6-.9-2.2C12 1.7 10 1.7 8.9 2.8L7.7 4c-.4.4-1 .4-1.4 0-.4-.4-.4-1 0-1.4l1.2-1.1C8.4.5 9.7 0 11 0ZM8.3 12c.4-.4 1-.5 1.4-.1.4.4.4 1 0 1.4l-1.2 1.2C7.6 15.5 6.3 16 5 16c-1.3 0-2.6-.5-3.5-1.5C.5 13.6 0 12.3 0 11c0-1.3.5-2.6 1.5-3.5l1.1-1.2c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4L2.9 8.9c-.6.5-.9 1.3-.9 2.1s.3 1.6.9 2.2c1.1 1.1 3.1 1.1 4.2 0L8.3 12Zm1.1-6.8c.4-.4 1-.4 1.4 0 .4.4.4 1 0 1.4l-4.2 4.2c-.2.2-.5.3-.7.3-.2 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l4.2-4.2Z" />
                     </svg>
-                    <a class="text-sm font-medium whitespace-nowrap text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 ml-2" href="#0">carolinmcneail.com</a>
+                    <a class="text-sm font-medium whitespace-nowrap text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 ml-2" href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}</a>
                 </div>
             </div>
         </header>
@@ -113,8 +115,8 @@
                 <div>
                     <h2 class="text-gray-800 dark:text-gray-100 font-semibold mb-2">About Me</h2>
                     <div class="text-sm space-y-2">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <p>Consectetur adipiscing elit, sed do eiusmod tempor magna aliqua.</p>
+                        <p>As a passionate fashion designer, I thrive on turning creative visions into reality. With a keen eye for detail and a love for aesthetics, I specialize in crafting unique designs that blend contemporary trends with timeless elegance. My journey in fashion began with a deep appreciation for self-expression through style, and over the years, I have cultivated skills in fabric selection, pattern creation, and innovative design techniques. Whether designing bespoke pieces or ready-to-wear collections, I aim to create garments that empower individuals and celebrate their unique identities.</p>
+                        <p>Beyond the design studio, I am deeply intrigued by the idea of breaking boundaries and challenging stereotypes, which has fueled my keen interest in learning how to drive a truck as a woman. For me, this pursuit represents empowerment and resilience, values I strive to reflect in both my personal life and professional creations. Learning to navigate a traditionally male-dominated field is a challenge I embrace with enthusiasm, drawing parallels between mastering a truck and navigating the dynamic, ever-evolving world of fashion design.</p>
                     </div>
                 </div>
     
@@ -296,24 +298,28 @@
             <!-- Sidebar -->
             <aside class="xl:min-w-56 xl:w-56 space-y-3">
                 <div class="text-sm">
-                    <h3 class="font-medium text-gray-800 dark:text-gray-100">Title</h3>
-                    <div>Senior Product Designer</div>
+                    <h3 class="font-medium text-gray-800 dark:text-gray-100">Profession</h3>
+                    <div>Fashion Designer</div>
                 </div>
                 <div class="text-sm">
-                    <h3 class="font-medium text-gray-800 dark:text-gray-100">Location</h3>
-                    <div>Milan, IT - Remote</div>
+                    <h3 class="font-medium text-gray-800 dark:text-gray-100">Address</h3>
+                    <div>Plot 10, Ajani Layout, GilGal, Bashorun, Ibadan, Nigeria</div>
                 </div>
                 <div class="text-sm">
                     <h3 class="font-medium text-gray-800 dark:text-gray-100">Email</h3>
-                    <div>carolinmcneail@acme.com</div>
+                    <div>{{ Auth::user()->email}}</div>
+                </div>
+                <div class="text-sm">
+                    <h3 class="font-medium text-gray-800 dark:text-gray-100">Mobile Number</h3>
+                    <div>{{ Auth::user()->mobileNumber}}</div>
                 </div>
                 <div class="text-sm">
                     <h3 class="font-medium text-gray-800 dark:text-gray-100">Birthdate</h3>
                     <div>4 April, 1987</div>
                 </div>
                 <div class="text-sm">
-                    <h3 class="font-medium text-gray-800 dark:text-gray-100">Joined Acme</h3>
-                    <div>7 April, 2017</div>
+                    <h3 class="font-medium text-gray-800 dark:text-gray-100">Joined BigRig</h3>
+                    <div>{{ Auth::user()->updated_at->format('d M, Y') }}</div>
                 </div>
             </aside>
 
