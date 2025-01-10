@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                     <!-- Right side -->
-                                    <div class="flex items-center space-x-4 pl-10 md:pl-0">
+                                    <!-- <div class="flex items-center space-x-4 pl-10 md:pl-0">
                                         <div class="text-sm text-gray-500 dark:text-gray-400 italic whitespace-nowrap">Jan 7</div>
                                         <div class="text-xs inline-flex font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2.5 py-1">New</div>
                                         <button class="text-gray-300 dark:text-gray-600 hover:text-gray-400 dark:hover:text-gray-500">
@@ -73,7 +73,7 @@
                                                 <path d="M2 0C.9 0 0 .9 0 2v14l6-3 6 3V2c0-1.1-.9-2-2-2H2Z" />
                                             </svg>
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         @endforeach

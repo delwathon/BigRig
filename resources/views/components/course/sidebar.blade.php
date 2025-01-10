@@ -1,111 +1,97 @@
-<div class="grow">
-
-    <!-- Panel body -->
-    <div class="p-6 space-y-6">
-
-        <!-- Plans -->
-        <section>
-            <div class="mb-8">
-                <h2 class="text-2xl text-gray-800 dark:text-gray-100 font-bold mb-4">Courses</h2>
-                <!-- <div class="text-sm">This workspace’s Basic Plan is set to <strong class="font-medium">$34</strong> per month and will renew on <strong class="font-medium">July 9, 2024</strong>.</div> -->
+<div class="space-y-8">
+    <!-- Alert -->
+    <div class="relative bg-[linear-gradient(135deg,var(--tw-gradient-stops))] from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04] rounded-lg p-5">
+        <div class="absolute bottom-0 -mb-3">
+            <svg width="44" height="42" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="ill-b">
+                        <stop stop-color="#B7ACFF" offset="0%" />
+                        <stop stop-color="#9C8CFF" offset="100%" />
+                    </linearGradient>
+                    <linearGradient x1="50%" y1="24.537%" x2="50%" y2="100%" id="ill-c">
+                        <stop stop-color="#4634B1" offset="0%" />
+                        <stop stop-color="#4634B1" stop-opacity="0" offset="100%" />
+                    </linearGradient>
+                    <path id="ill-a" d="m20 0 20 40-20-6.25L0 40z" />
+                </defs>
+                <g transform="scale(-1 1) rotate(-51 -11.267 67.017)" fill="none" fill-rule="evenodd">
+                    <mask id="ill-d" fill="#fff">
+                        <use xlink:href="#ill-a" />
+                    </mask>
+                    <use fill="url(#ill-b)" xlink:href="#ill-a" />
+                    <path fill="url(#ill-c)" mask="url(#ill-d)" d="M20.586-7.913h25v47.5h-25z" />
+                </g>
+            </svg>
+        </div>
+        <div class="relative">
+            <div class="text-sm font-medium text-gray-800 dark:text-violet-200 mb-2">Remember to keep track of your courses.</div>
+            <div class="text-right">
+                <a class="text-sm font-medium text-violet-500 hover:text-violet-600" href="javascript:void(0)" @click="$store.createModal.open()" aria-controls="create-modal">Create New Course -&gt;</a>
             </div>
-
-            <!-- Pricing -->
-            <div x-data="{ annual: true }">
-                <!-- Toggle switch -->
-                <div class="flex items-center space-x-3 mb-6">
-                <div class="text-sm text-gray-500 font-medium">Part Payment <span class="text-red-500">(+10%)</span></div>
-                    <div class="form-switch">
-                        <input type="checkbox" id="toggle" class="sr-only" x-model="annual" />
-                        <label class="bg-gray-400 dark:bg-gray-700" for="toggle">
-                            <span class="bg-white shadow-sm" aria-hidden="true"></span>
-                            <span class="sr-only">Pay annually</span>
-                        </label>
-                    </div>
-                    <div class="text-sm text-gray-500 font-medium">Full Payment</div>
-                </div>
-                <!-- Pricing tabs -->
-                <div class="grid grid-cols-12 gap-6">
-                    <!-- Tab 1 -->
-                    @foreach ($objectives as $objective)
-                        <div class="relative col-span-full xl:col-span-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 shadow-sm rounded-b-lg flex flex-col justify-between">
-                            <div>
-                                <!-- Top Section -->
-                                <div class="absolute top-0 left-0 right-0 h-0.5 bg-green-500" aria-hidden="true"></div>
-                                <div class="px-5 pt-5 pb-2 border-b border-gray-200 dark:border-gray-700/60">
-                                    <header class="flex items-center mb-2">
-                                        <div class="w-6 h-6 rounded-full shrink-0 bg-green-500 mr-3">
-                                            <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
-                                                <path d="M12 17a.833.833 0 01-.833-.833 3.333 3.333 0 00-3.334-3.334.833.833 0 110-1.666 3.333 3.333 0 003.334-3.334.833.833 0 111.666 0 3.333 3.333 0 003.334 3.334.833.833 0 110 1.666 3.333 3.333 0 00-3.334 3.334c0 .46-.373.833-.833.833z" />
-                                            </svg>
-                                        </div>
-                                        <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold">{{ $objective->objective }}</h3>
-                                    </header>
-                                    <div class="w-full mb-2">
-                                        <img class="w-full h-40" src="{{ Storage::url($objective->image_url) }}" width="80" height="80" alt="{{ $objective->objective }}" />
-                                    </div>
-                                    <!-- Price -->
-                                    <div class="text-gray-800 dark:text-gray-100 font-bold mb-4">
-                                        <span class="text-2xl">$</span>
-                                        <span class="text-3xl" 
-                                            x-text="annual ? '{{ $objective->price }}' : '{{ $objective->price + ($objective->price * 0.1) }}'">
-                                            {{ $objective->price }}
-                                        </span>
-                                        <span class="text-gray-500 font-medium text-sm"></span>
-                                    </div>
+        </div>
+    </div>
+    <!-- White box -->
+    <div class="bg-white dark:bg-gray-800 shadow-sm rounded-xl p-5 min-w-60">
+        <div class="grid md:grid-cols-2 xl:grid-cols-1 gap-6">
+            <!-- Group 1 -->
+            <div>
+                <h2 class="text-gray-800 dark:text-gray-100 font-semibold mb-2">Course List</h2>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                    <ul class="space-y-3">
+                        @foreach($objectives as $objective)
+                        <!-- Item -->
+                        <li class="sm:flex sm:items-center sm:justify-between border-b border-gray-200 dark:border-gray-700/60 p-2">
+                            <div class="sm:grow flex items-center text-sm">
+                                <!-- Icon -->
+                                <div class="w-12 h-12 shrink-0 my-2 mr-3">
+                                    <img class="w-full h-12" src="{{ Storage::url($objective->image_url) }}" width="20" height="20" alt="{{ $objective->objective }}" />
                                 </div>
-                                <div class="px-5 pt-4">
-                                    <div class="text-xs text-gray-800 dark:text-gray-100 font-semibold uppercase mb-4">{{ $objective->duration }} weeks training period</div>
-                                    <!-- List -->
-                                    <ul>
-                                        @foreach(explode(',', $objective->requirement) as $requirement)
-                                            <li class="flex items-center py-1">
-                                                <svg class="w-3 h-3 shrink-0 fill-current text-green-500 mr-2" viewBox="0 0 12 12">
-                                                    <path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 00.28 6.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 1.28z" />
-                                                </svg>
-                                                <div class="text-sm">{{ trim($requirement) }}</div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                <!-- Position -->
+                                <a href="{{ route('course-details', ['id' => $objective->id]) }}">
+                                    <div class="font-medium text-gray-800 dark:text-gray-100">{{ $objective->objective }}</div>
+                                    <div class="flex flex-nowrap items-center space-x-2 whitespace-nowrap">
+                                        <div>Duration: {{ $objective->duration }} weeks</div>
+                                        <div class="text-gray-400 dark:text-gray-600">|</div>
+                                        <div>Cost: ${{ $objective->price }}</div>
+                                        <div class="text-gray-400 dark:text-gray-600">|</div>
+                                        <div>Status: Active</div>
+                                    </div>
+                                </a>
                             </div>
-                            <!-- Bottom Buttons -->
-                            <div class="px-5 pt-4 pb-5 mt-auto">
-                                <div class="flex gap-2">
-                                    <button 
-                                        class="btn border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300 w-1/2" 
-                                        @click="$store.editModal.open({
+                            <!-- Tags -->
+                            <div class="sm:ml-2 mt-2 sm:mt-0">
+                                <div class="flex items-center space-x-2">
+                                    <!-- Edit Button -->
+                                    <button type="button"  @click="$store.editModal.open({
                                             id: {{ $objective->id }},
                                             objective: '{{ $objective->objective }}',
                                             price: {{ $objective->price }},
                                             duration: {{ $objective->duration }},
                                             requirements: '{{ $objective->requirement }}'
                                         })" 
-                                        aria-controls="edit-modal">
-                                        Edit
+                                        aria-controls="edit-modal" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600">
+                                        <svg class="fill-current text-gray-400 dark:text-gray-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
+                                            <path d="M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z" />
+                                        </svg>
                                     </button>
-                                    <button class="btn border-red-200 dark:border-red-700/60 hover:border-red-300 dark:hover:border-red-600 text-red-800 dark:text-red-300 w-1/2" @click="$store.deleteModal.open({{ $objective->id }})" aria-controls="delete-modal">
-                                        Delete
+
+                                    <!-- Delete Button -->
+                                    <button type="button" @click="$store.deleteModal.open({{ $objective->id }})" aria-controls="delete-modal" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600" aria-controls="delete-modal">
+                                        <svg class="fill-current text-red-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
+                                            <path d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z" />
+                                        </svg>
                                     </button>
                                 </div>
                             </div>
-                        </div>                    
-                    @endforeach
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <!-- Contact Sales -->
-        <section>
-            <div class="px-5 py-3 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04] rounded-lg text-center xl:text-left xl:flex xl:flex-wrap xl:justify-between xl:items-center">
-                <div class="text-gray-800 dark:text-gray-100 font-semibold mb-2 xl:mb-0">Missing on an objective?</div>
-                <button class="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" @click="$store.createModal.open()" aria-controls="create-modal">Add New</button>
-            </div>
-        </section>
-        
+        </div>
     </div>
-
 </div>
+
 
 <!-- Create Objective Modal -->
 <div class="m-1.5">

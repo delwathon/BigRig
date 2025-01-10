@@ -10,6 +10,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
@@ -86,6 +87,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/user-permissions/store', [PermissionController::class, 'permissionStore'])->name('permission.store');
     Route::post('/update-role-permission', [PermissionController::class, 'permissionUpdate'])->name('update-role-permission');
     Route::get('/chats', [ChatController::class, 'chatIndex'])->name('chats');
+    Route::get('/course/management', [CourseController::class, 'index'])->name('course-management');
+    Route::get('/course/details/{id}', [CourseController::class, 'show'])->name('course-details');
 
 
 
