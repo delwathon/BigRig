@@ -1,3 +1,4 @@
+@section('title', 'Course Management')
 <x-app-layout>
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
@@ -19,7 +20,7 @@
 
             <!-- Job list -->
             <div class="w-1/2 space-y-2">
-                <x-course.sidebar :objectives="$objectives"/>
+                <x-course.courses :objectives="$objectives"/>
             </div>
 
             <div class="w-1/2">
@@ -30,7 +31,7 @@
                 </div>
 
                 <div class="w-full space-y-2">
-                    <x-course.list />
+                    <x-course.lessons />
                 </div>
 
                 <!-- Pagination -->
