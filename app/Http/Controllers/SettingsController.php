@@ -586,7 +586,7 @@ class SettingsController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'id' => 'required|exists:faqs,id',
+            'id' => 'required|exists:achievements,id',
             'year' => 'required|numeric|min:1900|max:' . date('Y'),
             'title' => 'required|string|max:255',
             'description' => 'required|string',

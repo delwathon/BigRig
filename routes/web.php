@@ -89,6 +89,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/chats', [ChatController::class, 'chatIndex'])->name('chats');
     Route::get('/course/management', [CourseController::class, 'index'])->name('course-management');
     Route::get('/course/details/{id}', [CourseController::class, 'show'])->name('course-details');
+    Route::put('/course/details/update', [CourseController::class, 'updateCourseDetails'])->name('course-details.update');
+    Route::post('/course/material/store', [CourseController::class, 'uploadCourseMaterials'])->name('upload-course-materials');
+    Route::get('/course/material/download/{id}', [CourseController::class, 'downloadMaterial'])->name('materials.download');
+    Route::get('/course/material/destroy/{id}', [CourseController::class, 'materialDestroy'])->name('material.delete');
+    Route::post('/course/curriculum/store', [CourseController::class, 'curriculumStore'])->name('curriculum.store');
+    Route::get('/course/curriculum/destroy/{id}', [CourseController::class, 'curriculumDestroy'])->name('curriculum.destroy');
 
 
 

@@ -20,6 +20,8 @@ class CreateTrainingObjectiveTable extends Migration
             $table->decimal('price', 8, 2); // Price of the training, e.g., 99.99
             $table->integer('duration'); // Duration of the training in hours
             $table->string('image_url')->nullable(); // Path or filename for the attachment (nullable)
+            $table->text('course_details')->nullable();
+            $table->text('learning_objective')->nullable();
             $table->timestamps(); // Created and updated timestamp columns
         });
     }

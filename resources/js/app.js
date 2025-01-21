@@ -10,6 +10,9 @@ import { Chart } from 'chart.js';
 // Import flatpickr
 import flatpickr from 'flatpickr';
 
+import Dropzone from "dropzone";
+Dropzone.autoDiscover = false;
+
 // import component from './components/component';
 import dashboardCard01 from './components/dashboard-card-01';
 import dashboardCard02 from './components/dashboard-card-02';
@@ -132,6 +135,28 @@ document.addEventListener('DOMContentLoaded', () => {
       instance.element.value = dateStr.replace('to', '-');
     },
   });
+
+  flatpickr('.datetimepicker', {
+    enableTime: true,           // Enable time selection
+    time_24hr: false,           // Set to true for 24-hour format
+    dateFormat: 'M j, Y h:i K', // Display format (12-hour format with AM/PM)
+    defaultDate: null,          // Do not pre-fill any date
+    static: true,               // Static positioning for the calendar
+    monthSelectorType: 'static',
+    prevArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
+    nextArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
+    onReady: (selectedDates, dateStr, instance) => {
+      const customClass = instance.element.getAttribute('data-class');
+      if (customClass) {
+        instance.calendarContainer.classList.add(customClass);
+      }
+    },
+    onChange: (selectedDates, dateStr, instance) => {
+      instance.element.value = dateStr; // Update the input value with the selected date and time
+    },
+  });
+  
+  
   // Charts
   dashboardCard01();
   dashboardCard02();
@@ -160,3 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
   fintechCard13();
   fintechCard14();
 });
+
+// const dropzone = new Dropzone("#dropzone", {
+//   url: "/upload",
+//   method: "post",
+//   headers: {
+//       "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+//   },
+//   maxFiles: 10,
+//   maxFilesize: 10, // In MB
+//   acceptedFiles: "image/*,application/pdf,application/docx", // Adjust as needed
+// });

@@ -33,19 +33,22 @@
         
         <!-- Cards -->
         <div class="grid grid-cols-12 gap-6">
+            <div class="flex flex-col col-span-full sm:col-span-12 xl:col-span-4 gap-6">
+                <!-- Line chart (Acme Plus) -->
+                @if (Auth::user()->hasPermission('read_dashboard_user_card'))
+                    <x-dashboard.dashboard-card-01 :activeUsers="$activeUsers" :userPI="$userPI" />
+                @endif
 
-            <!-- Line chart (Acme Plus) -->
-            @if (Auth::user()->hasPermission('read_dashboard_user_card'))
-                <x-dashboard.dashboard-card-01 :activeUsers="$activeUsers" :userPI="$userPI" />
-            @endif
+                <!-- Line chart (Acme Advanced) -->
+                @if (Auth::user()->hasPermission('read_dashboard_revenue_card'))
+                    <x-dashboard.dashboard-card-02 :revenue="$revenue" :revenuePI="$revenuePI" />
+                @endif
 
-            <!-- Line chart (Acme Advanced) -->
-            @if (Auth::user()->hasPermission('read_dashboard_revenue_card'))
-                <x-dashboard.dashboard-card-02 :revenue="$revenue" :revenuePI="$revenuePI" />
-            @endif
+                <!-- Line chart (Acme Professional) -->
+                <x-dashboard.dashboard-card-03 :dataFeed="$dataFeed" />
+            </div>
 
-            <!-- Line chart (Acme Professional) -->
-            <x-dashboard.dashboard-card-03 :dataFeed="$dataFeed" />
+            <x-dashboard.calendar />
 
             <!-- Bar chart (Direct vs Indirect) -->
             <x-dashboard.dashboard-card-04 />
