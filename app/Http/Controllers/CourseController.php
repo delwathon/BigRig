@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Job;
+use Carbon\Carbon;
 use App\Models\TrainingObjective;
+use App\Models\TrainingSchedule;
 use App\Models\Curriculum;
 use App\Models\CourseMaterial;
 
@@ -15,9 +16,15 @@ class CourseController extends Controller
     {
         // Retrieve all training objectives in a specific order (e.g., by `id`)
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
+        $schedules = TrainingSchedule::with(['instructor', 'objective', 'curriculum'])
+            ->whereBetween('schedule_date', [
+                Carbon::now()->startOfWeek(),  // Start of the week (Sunday)
+                Carbon::now()->endOfWeek()     // End of the week (Saturday)
+            ])
+            ->orderBy('schedule_date', 'asc')
+            ->get();
 
-        $jobs = Job::paginate(10);
-        return view('pages/course/index', compact('objectives', 'jobs'));  
+        return view('pages/course/index', compact('objectives', 'schedules'));  
     }
 
     public function show($id)

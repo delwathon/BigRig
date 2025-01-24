@@ -1,10 +1,9 @@
--- 
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 06, 2025 at 03:41 PM
+-- Generation Time: Jan 24, 2025 at 09:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -196,6 +195,57 @@ INSERT INTO `clients` (`id`, `name`, `logo`, `type`, `created_at`, `updated_at`)
 (32, 'Beyond 5 Star Driving School', NULL, 'partner', '2024-12-10 05:16:14', '2024-12-10 05:16:14'),
 (34, 'Delwathon IT Solutions', 'clients/Oi9OTzcCbswTR6u1DS2KOjSEOV9pQf9dEDXFmco3.png', 'client', '2024-12-10 05:29:45', '2024-12-10 05:29:45'),
 (35, 'RealCrown Technologies', 'clients/6GGzlwwyyEWftxlc86EwLBTm6dCFkneXBvnq7y6u.png', 'client', '2024-12-10 05:32:18', '2024-12-10 05:32:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_materials`
+--
+
+CREATE TABLE `course_materials` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `objective_id` bigint(20) UNSIGNED NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_url` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `course_materials`
+--
+
+INSERT INTO `course_materials` (`id`, `objective_id`, `file_name`, `file_url`, `created_at`, `updated_at`) VALUES
+(5, 1, 'Driving Techniques.pdf', 'course_materials/y7FBjBzhZiGv7fAees2J3LfsTOdIpG6pUELnRwaO.pdf', '2025-01-21 13:52:59', '2025-01-21 13:52:59'),
+(6, 1, 'Download and install primavera P6 Professional for windows.pdf', 'course_materials/P20xodqbTmaN1bR1EfnEDTUoHnZqYIASxFKKzg1C.pdf', '2025-01-21 13:52:59', '2025-01-21 13:52:59'),
+(7, 1, 'MPNG Lead acid battery REQUEST FORM.pdf', 'course_materials/qNNGIwozWF5ICym7GHDXl0MJczeDEhBkIIrOSFDf.pdf', '2025-01-23 13:43:12', '2025-01-23 13:43:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `curriculum`
+--
+
+CREATE TABLE `curriculum` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `objective_id` bigint(20) UNSIGNED NOT NULL,
+  `topic` varchar(255) NOT NULL,
+  `summary` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `curriculum`
+--
+
+INSERT INTO `curriculum` (`id`, `objective_id`, `topic`, `summary`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Introduction to Commercial Trucking', 'Overview of the trucking industry, career opportunities, and job responsibilities.', '2025-01-19 16:29:42', '2025-01-19 16:29:42'),
+(2, 1, 'Commercial Driver\'s License (CDL) Preparation', 'Study materials and practice for passing written and driving exams.', '2025-01-19 16:30:00', '2025-01-19 16:30:00'),
+(3, 1, 'Vehicle Systems and Maintenance', 'Study materials and practice for passing written and driving exams.', '2025-01-19 16:30:34', '2025-01-19 16:30:34'),
+(4, 4, 'Defensive Driving Techniques', 'Strategies for safe driving in different traffic and weather condition.', '2025-01-19 16:30:51', '2025-01-19 16:30:51'),
+(5, 1, 'Logbook and Hours-of-Service Regulations', 'Learning to track driving hours and comply with federal laws.', '2025-01-19 16:31:08', '2025-01-19 16:31:08'),
+(6, 1, 'Backing and Parking Maneuvers', 'Practice with precision driving and parking in tight spaces.', '2025-01-19 16:31:29', '2025-01-19 16:31:29');
 
 -- --------------------------------------------------------
 
@@ -1210,6 +1260,32 @@ INSERT INTO `founder` (`id`, `founder_name`, `signature`, `speech_title`, `speec
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `instructors`
+--
+
+CREATE TABLE `instructors` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `middle_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `instructors`
+--
+
+INSERT INTO `instructors` (`id`, `first_name`, `middle_name`, `last_name`, `created_at`, `updated_at`) VALUES
+(1, 'Rilwan', '', 'Adelaja\r\n', NULL, NULL),
+(2, 'Omowumi', '', 'Oladepo', NULL, NULL),
+(3, 'Abiodun', '', 'Afuwape', NULL, NULL),
+(4, 'Ayodeji', '', 'Ayeni', NULL, NULL),
+(5, 'Pauline', '', 'Isogun', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `invoices`
 --
 
@@ -1428,7 +1504,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (27, '2024_12_10_113731_create_achievements_table', 5),
 (28, '2024_12_18_041151_create_roles_table', 6),
 (29, '2024_12_18_041307_create_permissions_table', 6),
-(30, '2024_12_18_041352_create_role_permission_table', 6);
+(30, '2024_12_18_041352_create_role_permission_table', 6),
+(31, '2025_01_19_170931_create_curriculum_table', 7),
+(32, '2025_01_21_125717_create_course_materials_table', 8),
+(33, '2025_01_24_125330_create_instructor_table', 9),
+(34, '2025_01_24_130627_create_instructors_table', 10);
 
 -- --------------------------------------------------------
 
@@ -1509,7 +1589,15 @@ INSERT INTO `permissions` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (6, 'update_user_accounts', '2024-12-22 11:37:04', '2024-12-22 11:37:04'),
 (7, 'delete_user_accounts', '2024-12-22 11:37:04', '2024-12-22 11:37:04'),
 (8, 'read_dashboard_user_card', '2024-12-22 11:56:35', '2024-12-22 11:56:35'),
-(9, 'read_dashboard_revenue_card', '2024-12-22 11:57:44', '2024-12-22 11:57:44');
+(9, 'read_dashboard_revenue_card', '2024-12-22 11:57:44', '2024-12-22 11:57:44'),
+(10, 'create_course_management', '2025-01-19 14:44:21', '2025-01-19 14:44:21'),
+(11, 'read_course_management', '2025-01-19 14:44:21', '2025-01-19 14:44:21'),
+(12, 'update_course_management', '2025-01-19 14:44:21', '2025-01-19 14:44:21'),
+(13, 'delete_course_management', '2025-01-19 14:44:21', '2025-01-19 14:44:21'),
+(14, 'create_training_schedule', '2025-01-23 10:36:36', '2025-01-23 10:36:36'),
+(15, 'read_training_schedule', '2025-01-23 10:36:36', '2025-01-23 10:36:36'),
+(16, 'update_training_schedule', '2025-01-23 10:36:36', '2025-01-23 10:36:36'),
+(17, 'delete_training_schedule', '2025-01-23 10:36:36', '2025-01-23 10:36:36');
 
 -- --------------------------------------------------------
 
@@ -1581,7 +1669,15 @@ INSERT INTO `role_permission` (`id`, `role_id`, `permission_id`, `created_at`, `
 (6, 1, 6, '2024-12-22 11:37:04', '2024-12-22 11:37:04'),
 (7, 1, 7, '2024-12-22 11:37:04', '2024-12-22 11:37:04'),
 (8, 1, 8, '2024-12-22 11:56:35', '2024-12-22 11:56:35'),
-(9, 1, 9, '2024-12-22 11:57:44', '2024-12-22 11:57:44');
+(9, 1, 9, '2024-12-22 11:57:44', '2024-12-22 11:57:44'),
+(10, 1, 10, '2025-01-19 14:44:21', '2025-01-19 14:44:21'),
+(11, 1, 11, '2025-01-19 14:44:21', '2025-01-19 14:44:21'),
+(12, 1, 12, '2025-01-19 14:44:21', '2025-01-19 14:44:21'),
+(13, 1, 13, '2025-01-19 14:44:21', '2025-01-19 14:44:21'),
+(14, 1, 14, '2025-01-23 10:36:36', '2025-01-23 10:36:36'),
+(15, 1, 15, '2025-01-23 10:36:36', '2025-01-23 10:36:36'),
+(16, 1, 16, '2025-01-23 10:36:36', '2025-01-23 10:36:36'),
+(17, 1, 17, '2025-01-23 10:36:36', '2025-01-23 10:36:36');
 
 -- --------------------------------------------------------
 
@@ -1631,9 +1727,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('fCnIWFPWxLBRTWRf4PAJoWeOQP4BDSvsl570ctPD', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMERoUWphTE5pTFdNZDVZSnlvcGs2TnhZTE12M3JXcFVuMWk4Q1E5aCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jb21tdW5pdHkvdXNlci10aWxlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1734962696),
-('kmAsL7wL7pPIgLbFnerJnjCbPHHWXyxYxSP0Dm63', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQ1A0N1BCZ3B5RExzaEN3Mmd1eXREZ2NqS2NFYWdERWIzd012TVJVSSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3VzZXItcm9sZXMiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3VzZXItcHJvZmlsZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1735070980),
-('XoqhSYxcaMxl1kT755mTqsNNH9rSpd8yxOk0Fe7O', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZmFVWUlnN1owazBIelZYV1d0eDBIc1Z3VWl2aHVyWjlMQ1FqY0NKUyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3VzZXItcHJvZmlsZSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1735114938);
+('4OJmaUfBRlqQ14qjusoAbNJC8jNKPAhyxNhN5zfJ', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiN3dCajl6YTBxMmtJTzRqTmgxRU1ZTmQ0dkdzNkRIbTZldXplOTA4cCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQ3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvanNvbi1kYXRhLWZlZWQ/ZGF0YXR5cGU9OSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1737749688),
+('pNls14ri2mOs0eCb5dceeyTokqsNl3xXV6HWekKg', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNkxQU1hnYUU1RnRtYWJoOW9qZnVtSmdoYTJNek9VbnhhaVpUOUxWRSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozOToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3RyYWluaW5nLXNjaGVkdWxlIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9qc29uLWRhdGEtZmVlZD9kYXRhdHlwZT05Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMiQ0dnladFFPVE5uRmpNOE5oaUhJMkguM3p0YUgyZUMyNGYzL0twYkt6TXNWSUd2QlREbEpmLiI7fQ==', 1737737401);
 
 -- --------------------------------------------------------
 
@@ -1741,6 +1836,8 @@ CREATE TABLE `training_objectives` (
   `requirement` text NOT NULL,
   `price` decimal(8,2) NOT NULL,
   `duration` int(11) NOT NULL,
+  `course_details` text DEFAULT NULL,
+  `learning_objectives` text DEFAULT NULL,
   `image_url` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1750,11 +1847,42 @@ CREATE TABLE `training_objectives` (
 -- Dumping data for table `training_objectives`
 --
 
-INSERT INTO `training_objectives` (`id`, `objective`, `requirement`, `price`, `duration`, `image_url`, `created_at`, `updated_at`) VALUES
-(1, 'Truck Driving', 'You must possess a valid drivers license, have a minimum of 6 months of regular driving experience, and be free from any physical disabilities that could affect driving.', 449.99, 14, 'objectives/Z8T1a7mmfeEspyUAT3QYDeEVjJMkX4FQS984i4nc.jpg', '2024-12-08 13:18:20', '2024-12-10 05:59:31'),
-(2, 'Forklift Driving', 'You must possess a valid drivers license, have a minimum of 3 months of regular driving experience, and be free from any physical disabilities that could affect driving.', 349.99, 12, 'objectives/NpkpNLMBE1I7ApLw1t6fDmlTxXYWaOm7OCTUcW4i.png', '2024-12-08 13:18:20', '2024-12-10 05:59:22'),
-(3, 'Bus/BRT Driving', 'You must have a minimum of 6 months of regular driving experience.', 249.99, 10, 'objectives/BslpLNbTtZSR3uRhIn89UKFwkgeC8Xd2vQWYsci7.jpg', '2024-12-08 13:18:20', '2024-12-10 05:59:11'),
-(4, 'Conventional Vehicle Driving', 'No requirement needed for enrolment.', 149.99, 8, 'objectives/kH2yfvAVQcdm5wDUh71ZedBdzGVb8R2oXhItT55R.png', '2024-12-08 13:18:20', '2024-12-10 06:05:32');
+INSERT INTO `training_objectives` (`id`, `objective`, `requirement`, `price`, `duration`, `course_details`, `learning_objectives`, `image_url`, `created_at`, `updated_at`) VALUES
+(1, 'Truck Driving', 'You must possess a valid drivers license, have a minimum of 6 months of regular driving experience, and be free from any physical disabilities that could affect driving.', 449.99, 14, 'The Professional Truck Driving Training Program is designed to equip students with the knowledge, skills, and hands-on experience needed to excel as professional truck drivers. This course provides in-depth training on truck operation, safety procedures, road regulations, and job preparation, ensuring students are prepared for a successful career in the trucking industry.', 'Understand the fundamentals of truck operations and mechanics.; Gain comprehensive knowledge of road safety and traffic regulations.; Master defensive driving techniques and accident prevention.; Acquire skills in cargo handling, securing, and load balancing.; Learn essential maintenance and inspection practices for trucks.; Prepare for the Commercial Driver’s License (CDL) exam.', 'objectives/Z8T1a7mmfeEspyUAT3QYDeEVjJMkX4FQS984i4nc.jpg', '2024-12-08 13:18:20', '2024-12-10 05:59:31'),
+(2, 'Forklift Driving', 'You must possess a valid drivers license, have a minimum of 3 months of regular driving experience, and be free from any physical disabilities that could affect driving.', 349.99, 12, '', '', 'objectives/NpkpNLMBE1I7ApLw1t6fDmlTxXYWaOm7OCTUcW4i.png', '2024-12-08 13:18:20', '2024-12-10 05:59:22'),
+(3, 'Bus/BRT Driving', 'You must have a minimum of 6 months of regular driving experience.', 249.99, 10, '', '', 'objectives/BslpLNbTtZSR3uRhIn89UKFwkgeC8Xd2vQWYsci7.jpg', '2024-12-08 13:18:20', '2024-12-10 05:59:11'),
+(4, 'Conventional Vehicle Driving', 'No requirement needed for enrolment.', 149.99, 8, '', '', 'objectives/kH2yfvAVQcdm5wDUh71ZedBdzGVb8R2oXhItT55R.png', '2024-12-08 13:18:20', '2024-12-10 06:05:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training_schedules`
+--
+
+CREATE TABLE `training_schedules` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `instructor_id` bigint(20) UNSIGNED NOT NULL,
+  `objective_id` bigint(20) UNSIGNED NOT NULL,
+  `curriculum_id` bigint(20) UNSIGNED NOT NULL,
+  `schedule_date` date NOT NULL,
+  `time_start` time NOT NULL,
+  `time_stop` time NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `training_schedules`
+--
+
+INSERT INTO `training_schedules` (`id`, `instructor_id`, `objective_id`, `curriculum_id`, `schedule_date`, `time_start`, `time_stop`, `created_at`, `updated_at`) VALUES
+(1, 1, 4, 4, '2025-01-31', '10:00:00', '12:00:00', '2025-01-24 12:36:23', '2025-01-24 12:36:23'),
+(2, 1, 4, 4, '2025-01-24', '10:00:00', '12:00:00', '2025-01-24 12:39:40', '2025-01-24 12:39:40'),
+(3, 2, 1, 2, '2025-02-06', '10:00:00', '12:00:00', '2025-01-24 13:21:34', '2025-01-24 13:21:34'),
+(4, 5, 1, 3, '2025-02-10', '10:00:00', '12:00:00', '2025-01-24 13:21:34', '2025-01-24 13:21:34'),
+(5, 3, 1, 5, '2025-02-13', '08:00:00', '11:30:00', '2025-01-24 13:48:20', '2025-01-24 13:48:20'),
+(6, 4, 1, 6, '2025-02-18', '12:00:00', '15:00:00', '2025-01-24 13:50:13', '2025-01-24 13:50:13'),
+(7, 5, 1, 1, '2025-02-03', '09:30:00', '12:30:00', '2025-01-24 13:50:13', '2025-01-24 13:50:13');
 
 -- --------------------------------------------------------
 
@@ -1823,7 +1951,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstName`, `middleName`, `lastName`, `gender`, `mobileNumber`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `role_id`, `profile_photo_path`, `user_visibility`, `created_at`, `updated_at`) VALUES
-(1, 'Rilwan', '', 'Adelaja', 'Male', '+234 814 468 2898', 'admin@bigrigdrivingschool.ng', '2024-12-13 04:37:10', '$2y$12$4vyZtQOTNnFjM8NhiHI2H.3ztaH2eC24f3/KpbKzMsVIGvBTDlJf.', NULL, NULL, NULL, NULL, NULL, 1, 'profile-photos/lwj9SQxN1NPlRtm5Jn9mOD8dsesdXRY7cCELDlLb.jpg', 1, '2024-12-08 13:21:23', '2024-12-13 06:14:18'),
+(1, 'Rilwan', '', 'Adelaja', 'Male', '+234 814 468 2898', 'admin@bigrigdrivingschool.ng', '2024-12-13 04:37:10', '$2y$12$4vyZtQOTNnFjM8NhiHI2H.3ztaH2eC24f3/KpbKzMsVIGvBTDlJf.', NULL, NULL, NULL, NULL, NULL, 1, 'profile-photos/1Os5LLDzdWCgRRkSrBjqdmm3YP5fAH0uMvA74Qx7.jpg', 1, '2024-12-08 13:21:23', '2025-01-23 13:52:14'),
 (2, 'Precious', NULL, 'Adesoji', 'Female', '08136773856', 'preckylyndy@gmail.com', '2024-12-13 05:47:53', '$2y$12$AQc4gZ68nl/znlRKXSdBtehrxyyI9VwRhN2iPEO8KTkgiz.VijZfq', NULL, NULL, NULL, NULL, NULL, 2, 'profile-photos/LtNjyBGrBK2jGBvbLnV5IXrmC9nKYQY0oPnz5vtR.jpg', 1, '2024-12-12 05:27:58', '2024-12-18 04:15:41'),
 (3, 'Remilekun', NULL, 'Adeyemo', 'Female', '07019898522', 'remi@leefakino.com', NULL, '$2y$12$DuFphvlKKyHzqzzb8TA9oukEZYQQDXEeCqhEt6RzE7VWSdWwxwjTG', NULL, NULL, NULL, NULL, NULL, 2, 'users/avatar.png', 1, '2024-12-13 05:56:13', '2024-12-13 05:56:57'),
 (4, 'Wahab', NULL, 'Gbadegeshin', 'Male', '08155923643', 'youngadelaja@gmail.com', NULL, '$2y$12$0ZzGKjRtWhtDIbU3LefPO.uAlJDZLblP7g8gtqmlGxRdn3i2l0tbO', NULL, NULL, NULL, NULL, NULL, 2, 'users/avatar.png', 1, '2024-12-13 05:59:07', '2024-12-13 05:59:29');
@@ -1863,6 +1991,20 @@ ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `course_materials`
+--
+ALTER TABLE `course_materials`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `course_materials_objective_id_foreign` (`objective_id`);
+
+--
+-- Indexes for table `curriculum`
+--
+ALTER TABLE `curriculum`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `curriculum_objective_id_foreign` (`objective_id`);
+
+--
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
@@ -1891,6 +2033,12 @@ ALTER TABLE `faqs`
 -- Indexes for table `founder`
 --
 ALTER TABLE `founder`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `instructors`
+--
+ALTER TABLE `instructors`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2012,6 +2160,12 @@ ALTER TABLE `training_objectives`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `training_schedules`
+--
+ALTER TABLE `training_schedules`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
@@ -2057,7 +2211,19 @@ ALTER TABLE `campaign_marketer`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `course_materials`
+--
+ALTER TABLE `course_materials`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `curriculum`
+--
+ALTER TABLE `curriculum`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -2088,6 +2254,12 @@ ALTER TABLE `faqs`
 --
 ALTER TABLE `founder`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `instructors`
+--
+ALTER TABLE `instructors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `invoices`
@@ -2123,7 +2295,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -2135,7 +2307,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2153,7 +2325,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `role_permission`
 --
 ALTER TABLE `role_permission`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `services`
@@ -2171,7 +2343,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subscriptions`
@@ -2183,7 +2355,13 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `training_objectives`
 --
 ALTER TABLE `training_objectives`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `training_schedules`
+--
+ALTER TABLE `training_schedules`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `transactions`
@@ -2200,6 +2378,18 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `course_materials`
+--
+ALTER TABLE `course_materials`
+  ADD CONSTRAINT `course_materials_objective_id_foreign` FOREIGN KEY (`objective_id`) REFERENCES `training_objectives` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `curriculum`
+--
+ALTER TABLE `curriculum`
+  ADD CONSTRAINT `curriculum_objective_id_foreign` FOREIGN KEY (`objective_id`) REFERENCES `training_objectives` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `medicals`

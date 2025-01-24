@@ -48,7 +48,7 @@
                 <x-dashboard.dashboard-card-03 :dataFeed="$dataFeed" />
             </div>
 
-            <x-dashboard.calendar />
+            <x-dashboard.calendar :schedules="$schedules" />
 
             <!-- Bar chart (Direct vs Indirect) -->
             <x-dashboard.dashboard-card-04 />

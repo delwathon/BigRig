@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Curriculum;
 
 class TrainingObjective extends Model
 {
@@ -23,5 +24,10 @@ class TrainingObjective extends Model
     ];
 
     protected $table = 'training_objectives';
+
+    public function curriculum()
+    {
+        return $this->hasMany(Curriculum::class, 'objective_id');
+    }
     
 }

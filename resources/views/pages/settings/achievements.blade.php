@@ -28,3 +28,55 @@
         </div>
     </div>
 </x-app-layout>
+
+
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('createModal', {
+            modalOpen: false,
+            open() {
+                this.modalOpen = true;
+            },
+            close() {
+                this.modalOpen = false;
+            },
+        });
+
+        Alpine.store('editModal', {
+            modalOpen: false,
+            data: {
+                id: null,
+                title: '',
+                year: '',
+                description: ''
+            },
+            open(data) {
+                this.data = { ...data };
+                this.modalOpen = true;
+            },
+            close() {
+                this.modalOpen = false;
+                this.data = {
+                    id: null,
+                    title: '',
+                    year: '',
+                    description: ''
+                };
+            },
+        });
+
+        Alpine.store('deleteModal', {
+            modalOpen: false,
+            achievementId: null, // Track the ID of the objective to delete
+            open(id) {
+                this.achievementId = id;
+                this.modalOpen = true;
+            },
+            close() {
+                this.modalOpen = false;
+                this.achievementId = null;
+            }
+        });
+    });
+</script>

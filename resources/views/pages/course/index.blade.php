@@ -27,16 +27,11 @@
 
                 <!-- Jobs header -->
                 <div class="flex justify-between items-center mb-4">
-                    <div class="text-sm text-gray-500 dark:text-gray-400 italic">Upcoming Lessons</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400 italic">This Week Schedule</div>
                 </div>
 
                 <div class="w-full space-y-2">
-                    <x-course.lessons />
-                </div>
-
-                <!-- Pagination -->
-                <div class="mt-6">
-                    {{$jobs->links()}}
+                    <x-course.schedules :schedules="$schedules" />
                 </div>
 
             </div>
@@ -45,3 +40,55 @@
 
     </div>
 </x-app-layout>
+<script>
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('createModal', {
+            modalOpen: false,
+            open() {
+                this.modalOpen = true;
+            },
+            close() {
+                this.modalOpen = false;
+            },
+        });
+
+        Alpine.store('editModal', {
+            modalOpen: false,
+            data: {
+                id: null,
+                objective: '',
+                price: '',
+                duration: '',
+                requirements: ''
+            },
+            open(data) {
+                this.data = { ...data };
+                this.modalOpen = true;
+            },
+            close() {
+                this.modalOpen = false;
+                this.data = {
+                    id: null,
+                    objective: '',
+                    price: '',
+                    duration: '',
+                    requirements: ''
+                };
+            },
+        });
+
+        Alpine.store('deleteModal', {
+            modalOpen: false,
+            objectiveId: null, // Track the ID of the objective to delete
+            open(id) {
+                this.objectiveId = id;
+                this.modalOpen = true;
+            },
+            close() {
+                this.modalOpen = false;
+                this.objectiveId = null;
+            }
+        });
+    });
+</script>

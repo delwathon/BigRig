@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\DataFeed;
 use App\Models\User;
 use App\Models\Subscription;
+use App\Models\TrainingObjective;
+use App\Models\TrainingSchedule;
+use App\Models\Curriculum;
+use App\Models\Instructors;
 
 class DashboardController extends Controller
 {
@@ -65,7 +69,9 @@ class DashboardController extends Controller
             $revenuePI = (($revenueToday - $revenueYesterday) / $revenueYesterday) * 100;
         }
 
-        return view('pages/dashboard/dashboard', compact('dataFeed', 'activeUsers', 'userPI', 'revenue', 'revenuePI'));
+        $schedules = TrainingSchedule::with(['instructor', 'objective', 'curriculum'])->orderBy('schedule_date', 'asc')->paginate(10);
+
+        return view('pages/dashboard/dashboard', compact('dataFeed', 'activeUsers', 'userPI', 'revenue', 'revenuePI', 'schedules'));
     }
 
     /**

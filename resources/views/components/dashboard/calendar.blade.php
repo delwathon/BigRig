@@ -44,56 +44,6 @@
 
     </div>
 
-    {{-- <!-- Filters and view buttons -->
-    <div class="sm:flex sm:justify-between sm:items-center mb-4">
-
-        <!-- Filters  -->
-        <div class="mb-4 sm:mb-0 mr-2">
-            <ul class="flex flex-wrap items-center -m-1">
-                <li class="m-1">
-                    <button class="btn-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-500 dark:text-gray-400">
-                        <div class="w-1 h-3.5 bg-sky-500 shrink-0"></div>
-                        <span class="ml-1.5">Acme Inc.</span>
-                    </button>
-                </li>
-                <li class="m-1">
-                    <button class="btn-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-500 dark:text-gray-400">
-                        <div class="w-1 h-3.5 bg-green-500 shrink-0"></div>
-                        <span class="ml-1.5">Life & Family</span>
-                    </button>
-                </li>
-                <li class="m-1">
-                    <button class="btn-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-500 dark:text-gray-400">
-                        <div class="w-1 h-3.5 bg-violet-500 shrink-0"></div>
-                        <span class="ml-1.5">Reservations</span>
-                    </button>
-                </li>
-                <li class="m-1">
-                    <button class="btn-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-500 dark:text-gray-400">
-                        <div class="w-1 h-3.5 bg-red-500 shrink-0"></div>
-                        <span class="ml-1.5">Events</span>
-                    </button>
-                </li>
-                <li class="m-1">
-                    <button class="btn-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-500 dark:text-gray-400">
-                        <div class="w-1 h-3.5 bg-yellow-500 shrink-0"></div>
-                        <span class="ml-1.5">Misc</span>
-                    </button>
-                </li>
-                <li class="m-1">
-                    <button class="btn-sm bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-violet-500">+Add New</button>
-                </li>
-            </ul>
-        </div>
-
-        <!-- View buttons (requires custom integration) -->
-        <div class="flex flex-nowrap -space-x-px">
-            <button class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 text-violet-500 rounded-none first:rounded-l-lg last:rounded-r-lg">Month</button>
-            <button class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:bg-gray-50 dark:hover:bg-gray-900 text-gray-600 dark:text-gray-300 rounded-none first:rounded-l-lg last:rounded-r-lg">Week</button>
-            <button class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:bg-gray-50 dark:hover:bg-gray-900 text-gray-600 dark:text-gray-300 rounded-none first:rounded-l-lg last:rounded-r-lg">Day</button>
-        </div>
-    </div> --}}
-
     <!-- Calendar table -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden" x-cloak>
 
@@ -132,7 +82,7 @@
                         <!-- Events -->
                         <div class="grow flex flex-col relative p-0.5 sm:p-1.5 overflow-hidden">
                             <template x-for="event in getEvents(day)">	
-                                <button class="relative w-full text-left mb-1">
+                                <a href="{{ route('schedule') }}" class="relative w-full text-left mb-1" :title="event.eventName">
                                     <div
                                         class="px-2 py-0.5 rounded-lg overflow-hidden"
                                         :class="{
@@ -159,7 +109,7 @@
                                             </template>
                                         </div> 
                                     </div>
-                                </button>
+                                </a>
                             </template>
                             <div class="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-white dark:from-gray-800 to-transparent pointer-events-none" aria-hidden="true"></div>
                         </div>
@@ -204,159 +154,14 @@
             monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             events: [
-                // Previous month
+                @foreach ($schedules as $schedule)
                 {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 8, 3),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 8, 7),
-                    eventName: '⛱️ Relax for 2 at Marienbad',
-                    eventColor: 'indigo'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 12, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 12, 11),
-                    eventName: 'Team Catch-up',
+                    eventStart: new Date({{ \Carbon\Carbon::parse($schedule->schedule_date)->format('Y') }}, {{ \Carbon\Carbon::parse($schedule->schedule_date)->format('m') }} - 1, {{ \Carbon\Carbon::parse($schedule->schedule_date)->format('d') }}, {{ \Carbon\Carbon::parse($schedule->time_start)->format('H') }}, {{ \Carbon\Carbon::parse($schedule->time_start)->format('i') }}),
+                    eventEnd: new Date({{ \Carbon\Carbon::parse($schedule->schedule_date)->format('Y') }}, {{ \Carbon\Carbon::parse($schedule->schedule_date)->format('m') }} - 1, {{ \Carbon\Carbon::parse($schedule->schedule_date)->format('d') }}, {{ \Carbon\Carbon::parse($schedule->time_stop)->format('H') }}, {{ \Carbon\Carbon::parse($schedule->time_stop)->format('i') }}),
+                    eventName: '{{ ($schedule->curriculum->topic) }}',
                     eventColor: 'sky'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 18, 2),
-                    eventEnd: '',
-                    eventName: '✍️ New Project (2)',
-                    eventColor: 'yellow'
-                },                    
-                // Current month
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 11),
-                    eventName: 'Meeting w/ Patrick Lin',
-                    eventColor: 'sky'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 1, 19),
-                    eventEnd: '',
-                    eventName: 'Reservation at La Ginestre',
-                    eventColor: 'indigo'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 3, 9),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 3, 10),
-                    eventName: '✍️ New Project',
-                    eventColor: 'yellow'
-                }, 
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 7, 21),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 7, 22),
-                    eventName: '⚽ 2024 - Semi-final',
-                    eventColor: 'red'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 11),
-                    eventName: 'Meeting w/Carolyn',
-                    eventColor: 'sky'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 13),
-                    eventEnd: '',
-                    eventName: 'Pick up Marta at school',
-                    eventColor: 'green'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 14),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 15),
-                    eventName: 'Meeting w/ Patrick Lin',
-                    eventColor: 'green'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 9, 19),
-                    eventEnd: '',
-                    eventName: 'Reservation at La Ginestre',
-                    eventColor: 'indigo'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 11),
-                    eventName: '⛱️ Relax for 2 at Marienbad',
-                    eventColor: 'indigo'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 11, 19),
-                    eventEnd: '',
-                    eventName: '⚽ 2024 - Semi-final',
-                    eventColor: 'red'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 11),
-                    eventName: 'Team Catch-up',
-                    eventColor: 'sky'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 2),
-                    eventEnd: '',
-                    eventName: 'Pick up Marta at school',
-                    eventColor: 'green'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 3),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 21, 7),
-                    eventName: '✍️ New Project (2)',
-                    eventColor: 'yellow'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 11),
-                    eventName: 'Team Catch-up',
-                    eventColor: 'sky'
-                },                     
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 22, 19),
-                    eventEnd: '',
-                    eventName: '⚽ 2024 - Semi-final',
-                    eventColor: 'red'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 23, 0),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 23, 23),
-                    eventName: 'You stay at Meridiana B&B',
-                    eventColor: 'indigo'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 25, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 25, 11),
-                    eventName: 'Meeting w/ Kylie Joh',
-                    eventColor: 'sky'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth(), 29, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 29, 11),
-                    eventName: 'Call Request ->',
-                    eventColor: 'sky'
-                },
-                // Next month
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 2, 3),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 2, 7),
-                    eventName: '✍️ New Project (2)',
-                    eventColor: 'yellow'
-                },                    
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 14, 10),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth(), 14, 11),
-                    eventName: 'Team Catch-up',
-                    eventColor: 'sky'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 25, 2),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 25, 3),
-                    eventName: 'Pick up Marta at school',
-                    eventColor: 'green'
-                },
-                {
-                    eventStart: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 27, 21),
-                    eventEnd: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 27, 22),
-                    eventName: '⚽ 2024 - Semi-final',
-                    eventColor: 'red'
-                },                    
+                },                   
+                @endforeach
             ],
 
             initCalendar() {
