@@ -8,69 +8,91 @@
             <form action="{{ route('schedule.create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
+                <section>
+                    <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
+                        <div class="sm:w-1/3">
+                            <label class="block text-sm font-medium mb-1" for="site_name">Batch <span class="text-red-500">*</span></label>
+                            <select id="country" name="instructor_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                                <option>-Select-</option>
+                                @foreach ($batches as $batch)
+                                    <option value="{{ $batch->id }}">{{ $batch->batch_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="sm:w-2/3">
+                            <label class="block text-sm font-medium mb-1" for="site_name">Attendees <span class="text-xs">(Select multiple)</span><span class="text-red-500">*</span></label>
+                            <select id="country" name="student_ids[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium" multiple>
+                                {{-- <option>-Select-</option> --}}
+                                @foreach ($instructors as $instructor)
+                                    <option value="{{ $instructor->id }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </section>
                 <section id="schedule-container">
                     <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-                    <div class="sm:w-1/6">
-                        <label class="block text-sm font-medium mb-1" for="site_name">Instructor <span class="text-red-500">*</span></label>
-                        <select id="country" name="instructor_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
-                            <option>-Select-</option>
-                            @foreach ($instructors as $instructor)
-                                <option value="{{ $instructor->id }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="sm:w-1/6">
-                        <label class="block text-sm font-medium mb-1" for="site_tagline">Course <span class="text-red-500">*</span></label>
-                        <select id="course_0" name="objective_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
-                            <option value="">-Select-</option>
-                            @foreach ($objectives as $objective)
-                                <option value="{{ $objective->id }}">{{ $objective->objective }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="sm:w-1/6">
-                        <label class="block text-sm font-medium mb-1" for="site_tagline">Topic <span class="text-red-500">*</span></label>
-                        <select id="topic_0" name="curriculum_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
-                            <option value="">-Select Course First-</option>
-                            <!-- Topics will be loaded here based on the selected course -->
-                        </select>
-                    </div>
-                    <div class="sm:w-1/6">
-                        <label class="block text-sm font-medium mb-1" for="site_name">Date <span class="text-red-500">*</span></label>
-                        <div class="relative">
-                            <input class="datepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="schedule_date[]" placeholder="Select date" data-class="flatpickr-right" />
-                            <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                                <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                                <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                                <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                                </svg>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_name">Instructor <span class="text-red-500">*</span></label>
+                            <select id="country" name="instructor_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                                <option>-Select-</option>
+                                @foreach ($instructors as $instructor)
+                                    <option value="{{ $instructor->id }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_tagline">Course <span class="text-red-500">*</span></label>
+                            <select id="course_0" name="objective_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                                <option value="">-Select-</option>
+                                @foreach ($objectives as $objective)
+                                    <option value="{{ $objective->id }}">{{ $objective->objective }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_tagline">Topic <span class="text-red-500">*</span></label>
+                            <select id="topic_0" name="curriculum_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                                <option value="">-Select Course First-</option>
+                                <!-- Topics will be loaded here based on the selected course -->
+                            </select>
+                        </div>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_name">Date <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <input class="datepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="schedule_date[]" placeholder="Select date" data-class="flatpickr-right" />
+                                <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
+                                    <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
+                                    <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
+                                    <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="sm:w-1/6">
-                        <label class="block text-sm font-medium mb-1" for="site_tagline">Time Start <span class="text-red-500">*</span></label>
-                        <div class="relative w-full">
-                            <input class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="time_start[]" placeholder="Select start time" data-class="flatpickr-right" />
-                            <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                                <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                                <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                                <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                                </svg>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_tagline">Time Start <span class="text-red-500">*</span></label>
+                            <div class="relative w-full">
+                                <input class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="time_start[]" placeholder="Select start time" data-class="flatpickr-right" />
+                                <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
+                                    <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
+                                    <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
+                                    <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="sm:w-1/6">
-                        <label class="block text-sm font-medium mb-1" for="site_tagline">Time Stop <span class="text-red-500">*</span></label>
-                        <div class="relative">
-                            <input class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="time_stop[]" placeholder="Select stop time" data-class="flatpickr-right" />
-                            <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                                <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                                <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                                <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                                </svg>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_tagline">Time Stop <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <input class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="time_stop[]" placeholder="Select stop time" data-class="flatpickr-right" />
+                                <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
+                                    <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
+                                    <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
+                                    <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </section>
                 <div class="text-right p-5">
@@ -84,7 +106,7 @@
 
     <!-- White box -->
     <div class="bg-white dark:bg-gray-800 shadow-sm rounded-xl p-5 min-w-60">
-        <div class="grid md:grid-cols-2 xl:grid-cols-1 gap-6">
+        <div class="grid md:grid-cols-1 xl:grid-cols-1 gap-6">
             <!-- Group 1 -->
             <div>
                 <h2 class="text-gray-800 dark:text-gray-100 font-semibold mb-2 border-b border-gray-200 dark:border-gray-700/60 pb-2">Scheduled Classes</h2>

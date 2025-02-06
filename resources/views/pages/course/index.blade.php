@@ -19,11 +19,11 @@
         <div class="flex flex-col space-y-10 sm:flex-row sm:space-x-6 sm:space-y-0 md:flex-col md:space-x-0 md:space-y-10 xl:flex-row xl:space-x-6 xl:space-y-0 mt-9">
 
             <!-- Job list -->
-            <div class="w-1/2 space-y-2">
+            <div class="sm:w-full md:w-full lg:w-1/2 xl:w-1/2 space-y-2">
                 <x-course.courses :objectives="$objectives"/>
             </div>
 
-            <div class="w-1/2">
+            <div class="sm:w-full md:w-full lg:w-1/2 xl:w-1/2">
 
                 <!-- Jobs header -->
                 <div class="flex justify-between items-center mb-4">

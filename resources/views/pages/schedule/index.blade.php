@@ -20,7 +20,7 @@
 
             <!-- Job list -->
             <div class="w-full space-y-2">
-                <x-schedule.index :objectives="$objectives" :instructors="$instructors" :schedules="$schedules"/>
+                <x-schedule.index :objectives="$objectives" :instructors="$instructors" :schedules="$schedules" :batches="$batches"/>
             </div>
 
         </div>

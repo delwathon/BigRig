@@ -94,7 +94,7 @@
                 </div>
 
                 <!-- Notification for Dark Theme (bottom left) -->
-                <div class="fixed bottom-4 left-4 z-50 inline-flex min-w-80 px-4 py-2 rounded-lg text-sm bg-green-100 text-gray-700 hidden dark:block">
+                <div class="fixed bottom-4 left-4 z-50 inline-flex min-w-80 px-4 py-2 rounded-lg text-sm bg-green-100 text-gray-700 dark:block">
                     <div class="flex w-full justify-between items-start">
                         <div class="flex">
                             <svg class="shrink-0 fill-current text-green-500 mt-[3px] mr-3" width="16" height="16" viewBox="0 0 16 16">

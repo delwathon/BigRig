@@ -82,7 +82,7 @@
         <!-- Card footer -->
         <div>
             <div class="flex divide-x divide-gray-100 dark:divide-gray-700/60">
-                <a class="block flex-1 text-center text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 font-medium px-3 py-4" href="{{ route('messages') }}">
+                <a class="block flex-1 text-center text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 font-medium px-3 py-4" href="{{ route('chats') }}">
                     <div class="flex items-center justify-center">
                         <svg class="fill-current shrink-0 mr-2" width="16" height="16" viewBox="0 0 16 16">
                             <path d="M8 0C3.6 0 0 3.1 0 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L8.9 12H8c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z" />

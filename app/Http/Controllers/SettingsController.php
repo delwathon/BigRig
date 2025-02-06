@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 use App\Models\Settings;
 use App\Models\TrainingObjective;
 use App\Models\Faqs;
@@ -14,6 +15,7 @@ use App\Models\Services;
 use App\Models\Clients;
 use App\Models\AboutCompany;
 use App\Models\Achievements;
+use App\Models\EnrolmentBatches;
 
 class SettingsController extends Controller
 {    
@@ -612,6 +614,39 @@ class SettingsController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Achievement updated successfully!');
+    }
+
+    public function enrolmentBatchIndex()
+    {
+        $batches = EnrolmentBatches::orderBy('id', 'asc')->simplePaginate(8);
+        
+        return view('pages/settings/enrolment-batch', compact('batches'));
+    }
+
+    public function enrolmentBatchStore(Request $request)
+    {
+        $request->validate([
+            'batch_name' => 'required|string|max:255',
+            'commencement_date' => 'required|date',
+        ]);
+        
+        $formattedDate = Carbon::createFromFormat('M d, Y', $request->input('commencement_date'))->format('Y-m-d');
+
+        EnrolmentBatches::create([
+            'batch_name' => $request->input('batch_name'),
+            'c_date' => $formattedDate,
+        ]);
+                    
+
+        return redirect()->back()->with('success', 'Enrolment batch created successfully.');
+    }
+
+    public function enrolmentBatchDestroy($id)
+    {
+        $enrolment_batch = EnrolmentBatches::findOrFail($id);
+        $enrolment_batch->delete();
+
+        return redirect()->back()->with('success', 'Enrolment batch deleted successfully.');
     }
 
 }

@@ -32,7 +32,7 @@
     </div>
     <!-- White box -->
     <div class="bg-white dark:bg-gray-800 shadow-sm rounded-xl p-5 min-w-60">
-        <div class="grid md:grid-cols-2 xl:grid-cols-1 gap-6">
+        <div class="grid md:grid-cols-1 xl:grid-cols-1 gap-6">
             <!-- Group 1 -->
             <div>
                 <h2 class="text-gray-800 dark:text-gray-100 font-semibold mb-2">Course List</h2>
@@ -53,8 +53,6 @@
                                         <div>Duration: {{ $objective->duration }} weeks</div>
                                         <div class="text-gray-400 dark:text-gray-600">|</div>
                                         <div>Cost: ${{ $objective->price }}</div>
-                                        <div class="text-gray-400 dark:text-gray-600">|</div>
-                                        <div>Status: Active</div>
                                     </div>
                                 </a>
                             </div>

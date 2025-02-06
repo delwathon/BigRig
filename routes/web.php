@@ -79,6 +79,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/settings/clients', [SettingsController::class, 'clientsIndex'])->name('clients');
     Route::post('/settings/client/store', [SettingsController::class, 'clientsStore'])->name('client.store');
     Route::get('/settings/client/destroy/{id}', [SettingsController::class, 'clientsDestroy'])->name('client.destroy');
+    Route::get('/settings/enrolment_batch', [SettingsController::class, 'enrolmentBatchIndex'])->name('enrolment-batches');
+    Route::post('/settings/enrolment_batch/store', [SettingsController::class, 'enrolmentBatchStore'])->name('enrolment-batch.store');
+    Route::get('/settings/enrolment_batch/destroy/{id}', [SettingsController::class, 'enrolmentBatchDestroy'])->name('enrolment-batch.destroy');
     Route::get('/settings/achievements', [SettingsController::class, 'achievementsIndex'])->name('achievements');
     Route::post('/settings/achievement/store', [SettingsController::class, 'achievementsStore'])->name('achievement.store');
     Route::put('/settings/achievement/update', [SettingsController::class, 'achievementsUpdate'])->name('achievement.update');

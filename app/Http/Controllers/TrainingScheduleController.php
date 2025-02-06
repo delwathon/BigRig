@@ -8,6 +8,7 @@ use App\Models\TrainingObjective;
 use App\Models\TrainingSchedule;
 use App\Models\Curriculum;
 use App\Models\Instructors;
+use App\Models\EnrolmentBatches;
 
 class TrainingScheduleController extends Controller
 {
@@ -20,9 +21,10 @@ class TrainingScheduleController extends Controller
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
         $instructors = Instructors::orderBy('id', 'asc')->get();
         $schedules = TrainingSchedule::with(['instructor', 'objective', 'curriculum'])->orderBy('schedule_date', 'asc')->paginate(10);
+        $batches = EnrolmentBatches::orderBy('id', 'asc')->get();
         // $schedules = TrainingSchedule::paginate(10);
 
-        return view('pages/schedule/index', compact('objectives', 'instructors', 'schedules'));  
+        return view('pages/schedule/index', compact('objectives', 'instructors', 'schedules', 'batches'));  
     }
 
     public function getTopics($id)
