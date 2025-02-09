@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 24, 2025 at 09:15 PM
+-- Generation Time: Feb 09, 2025 at 01:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -1177,6 +1177,28 @@ INSERT INTO `datafeeds` (`id`, `label`, `data`, `dataset_name`, `data_type`, `cr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `enrolment_batches`
+--
+
+CREATE TABLE `enrolment_batches` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `batch_name` varchar(255) NOT NULL,
+  `c_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `enrolment_batches`
+--
+
+INSERT INTO `enrolment_batches` (`id`, `batch_name`, `c_date`, `created_at`, `updated_at`) VALUES
+(2, '2025 Batch A', '2025-02-03', '2025-01-30 05:49:55', '2025-01-30 05:49:55'),
+(3, '2025 Batch B', '2025-05-05', '2025-01-30 05:50:28', '2025-01-30 05:50:28');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -1508,7 +1530,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2025_01_19_170931_create_curriculum_table', 7),
 (32, '2025_01_21_125717_create_course_materials_table', 8),
 (33, '2025_01_24_125330_create_instructor_table', 9),
-(34, '2025_01_24_130627_create_instructors_table', 10);
+(34, '2025_01_24_130627_create_instructors_table', 10),
+(35, '2025_01_30_034123_create_enrolment_batches_table', 11);
 
 -- --------------------------------------------------------
 
@@ -1727,8 +1750,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('4OJmaUfBRlqQ14qjusoAbNJC8jNKPAhyxNhN5zfJ', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiN3dCajl6YTBxMmtJTzRqTmgxRU1ZTmQ0dkdzNkRIbTZldXplOTA4cCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQ3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvanNvbi1kYXRhLWZlZWQ/ZGF0YXR5cGU9OSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1737749688),
-('pNls14ri2mOs0eCb5dceeyTokqsNl3xXV6HWekKg', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNkxQU1hnYUU1RnRtYWJoOW9qZnVtSmdoYTJNek9VbnhhaVpUOUxWRSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozOToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3RyYWluaW5nLXNjaGVkdWxlIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9qc29uLWRhdGEtZmVlZD9kYXRhdHlwZT05Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMiQ0dnladFFPVE5uRmpNOE5oaUhJMkguM3p0YUgyZUMyNGYzL0twYkt6TXNWSUd2QlREbEpmLiI7fQ==', 1737737401);
+('WNZ56f3r5fPCSKedgsl9pLwuo1zR8GXbNufxcTGg', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoidlRkT2ZvdGw3ZUJMQ2JveUhuR09VWTFWVnpiemdzSkJyQ3BGcTF3WCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3VzZXItcHJvZmlsZSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM5OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvdHJhaW5pbmctc2NoZWR1bGUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1738220953),
+('XNKzCTWBnIjmeCMt4v1SJUOOux0KaDyWEN43Q2dN', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWGFBUVdvc3BTZVNwS01xSVREN0lwUmtORGNVTEpGeks5V1oyOW9tVSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozOToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3RyYWluaW5nLXNjaGVkdWxlIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1738256064),
+('ypz1RZ0kWcv55br59PF3NQlZDkiDLr0UiVhudwmd', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNVN2ZmR0NGowaDU2VTk5bFVReXI2b0hGR3FTWlBCTkM2YmkxT2xHMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1738304804);
 
 -- --------------------------------------------------------
 
@@ -2017,6 +2041,12 @@ ALTER TABLE `datafeeds`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `enrolment_batches`
+--
+ALTER TABLE `enrolment_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -2238,6 +2268,12 @@ ALTER TABLE `datafeeds`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=866;
 
 --
+-- AUTO_INCREMENT for table `enrolment_batches`
+--
+ALTER TABLE `enrolment_batches`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -2295,7 +2331,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `orders`
