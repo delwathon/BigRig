@@ -87,6 +87,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/settings/achievement/update', [SettingsController::class, 'achievementsUpdate'])->name('achievement.update');
     Route::get('/settings/achievement/destroy/{id}', [SettingsController::class, 'achievementsDestroy'])->name('achievement.destroy');
     Route::get('/user-roles', [RoleController::class, 'Index'])->name('user-roles');
+    Route::post('/user-roles/store', [RoleController::class, 'roleStore'])->name('user-roles.store');
+    Route::get('/user-roles/destroy/{id}', [RoleController::class, 'roleDestroy'])->name('user-roles.destroy');
     Route::get('/user-permissions/{roleId}', [PermissionController::class, 'Index'])->name('user-permissions');
     Route::post('/user-permissions/store', [PermissionController::class, 'permissionStore'])->name('permission.store');
     Route::post('/update-role-permission', [PermissionController::class, 'permissionUpdate'])->name('update-role-permission');
