@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
         // Get the number of active users
         $activeUsers = User::where('user_visibility', 1)
-            ->where('role_id', 2)
+            ->where('role_id', 11)
             ->count();
 
         // Get the number of users created today

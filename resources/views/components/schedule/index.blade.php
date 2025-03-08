@@ -23,8 +23,8 @@
                             <label class="block text-sm font-medium mb-1" for="site_name">Attendees <span class="text-xs">(Select multiple)</span><span class="text-red-500">*</span></label>
                             <select id="country" name="student_ids[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium" multiple>
                                 {{-- <option>-Select-</option> --}}
-                                @foreach ($instructors as $instructor)
-                                    <option value="{{ $instructor->id }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</option>
+                                @foreach ($students as $student)
+                                    <option value="{{ $student->id }}">{{ $student->firstName }} {{ $student->lastName }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -37,7 +37,7 @@
                             <select id="country" name="instructor_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
                                 <option>-Select-</option>
                                 @foreach ($instructors as $instructor)
-                                    <option value="{{ $instructor->id }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</option>
+                                    <option value="{{ $instructor->id }}">{{ $instructor->firstName }} {{ $instructor->lastName }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -149,7 +149,7 @@
                                         </td>
                                         <td class="p-2">
                                             <div class="flex items-center">
-                                                <div class="text-gray-800 dark:text-gray-100">{{ $schedule->instructor->first_name }} {{ $schedule->instructor->last_name }}</div>
+                                                <div class="text-gray-800 dark:text-gray-100">{{ $schedule->instructor->firstName }} {{ $schedule->instructor->lastName }}</div>
                                             </div>
                                         </td>
                                         <td class="p-2">

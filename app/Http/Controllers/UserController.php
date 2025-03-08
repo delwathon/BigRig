@@ -32,9 +32,15 @@ class UserController extends Controller
             return redirect('/checkout/pay');
         }
 
-        $users = User::where('user_visibility', 1)
-                ->where('role_id', 2)
+        if (Auth::user()->hasPermission('read_revoked_user')) {
+            $users = User::where('role_id', 11)
                 ->paginate(9);
+        } else {
+            $users = User::where('user_visibility', 1)
+                ->where('role_id', 11)
+                ->paginate(9);
+        }
+        
         return view('pages/community/users-tiles', compact('users'));
     }
 

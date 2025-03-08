@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\TrainingObjective;
 use App\Models\Curriculum;
-use App\Models\Instructors;
+use App\Models\User;
 
 class TrainingSchedule extends Model
 {
@@ -30,7 +30,7 @@ class TrainingSchedule extends Model
 
     public function instructor()
     {
-        return $this->belongsTo(Instructors::class);
+        return $this->belongsTo(User::class);
     }
 
     public function objective()

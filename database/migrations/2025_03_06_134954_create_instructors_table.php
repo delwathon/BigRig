@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('instructors', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->json('role_id'); // Store multiple role IDs as JSON
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
-        });
+        });        
     }
 
     /**

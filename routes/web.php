@@ -19,6 +19,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\TrainingScheduleController;
+use App\Http\Controllers\InstructorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +105,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/training-schedule', [TrainingScheduleController::class, 'index'])->name('schedule');
     Route::get('/getTopics/{id}', [TrainingScheduleController::class, 'getTopics']);
     Route::post('/training-schedule/create', [TrainingScheduleController::class, 'create'])->name('schedule.create');
+    Route::get('/instructors', [InstructorController::class, 'index'])->name('instructors');
+    Route::post('/instructor/store', [InstructorController::class, 'store'])->name('instructor.store');
 
 
 
