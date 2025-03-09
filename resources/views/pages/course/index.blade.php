@@ -41,7 +41,6 @@
     </div>
 </x-app-layout>
 <script>
-
     document.addEventListener('alpine:init', () => {
         Alpine.store('createModal', {
             modalOpen: false,

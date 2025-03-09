@@ -27,6 +27,7 @@ class User extends Authenticatable
         'mobileNumber',
         'email',
         'password',
+        'role_id',
         'profile_photo_path',
         'user_visibility',
     ];

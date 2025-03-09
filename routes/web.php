@@ -107,6 +107,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/training-schedule/create', [TrainingScheduleController::class, 'create'])->name('schedule.create');
     Route::get('/instructors', [InstructorController::class, 'index'])->name('instructors');
     Route::post('/instructor/store', [InstructorController::class, 'store'])->name('instructor.store');
+    Route::get('/instructor/deactivate/{id}', [InstructorController::class, 'deactivate'])->name('instructor.deactivate');
 
 
 

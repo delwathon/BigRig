@@ -50,3 +50,26 @@
 
     </div>
 </x-app-layout>
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('deactivateModal', {
+            modalOpen: false,
+            data: {
+                id: null,
+                user_visibility: null
+            },
+            open(data) {
+                this.data = { ...data };
+                this.modalOpen = true;
+            },
+            close() {
+                this.modalOpen = false;
+                this.data = { // FIX: Correct object assignment
+                    id: null,
+                    user_visibility: null
+                };
+            },
+        });
+    });
+</script>
