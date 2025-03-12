@@ -17,23 +17,23 @@ class InstructorController extends Controller
     {
         if (Auth::user()->hasPermission('read_revoked_user')) {
             $instructors = User::with('role')
-                        ->where('role_id', '!=', 11) // Exclude role_id = 11
+                        ->where('role_id', '!=', 10) // Exclude role_id = 10
                         ->orderBy('firstName', 'asc')
                         ->paginate(10);
         } else {
             $instructors = User::with('role')
                         ->where('user_visibility', 1)
-                        ->where('role_id', '!=', 11) // Exclude role_id = 11
+                        ->where('role_id', '!=', 10) // Exclude role_id = 10
                         ->orderBy('firstName', 'asc')
                         ->paginate(10);
         }
 
                     // User::where('user_visibility', 1)
-                    // ->whereNotIn('role_id', [11, 12, 13]) // Excludes role_id = 11, 12, 13
+                    // ->whereNotIn('role_id', [10, 12, 13]) // Excludes role_id = 10, 12, 13
                     // ->paginate(10);
                 
         $instructors_count = $instructors->count();
-        $roles = Role::where('id', '!=', 11)->orderBy('role_name', 'asc')->get();
+        $roles = Role::where('id', '!=', 10)->orderBy('role_name', 'asc')->get();
         return view('pages/instructor/index', compact('instructors', 'instructors_count', 'roles'));
     }
 

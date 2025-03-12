@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Settings;
+use App\Models\EnrolmentBatches;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,7 +22,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('*', function ($view) {
-            $view->with('settings', Settings::first());
+            $view->with([
+                'settings' => Settings::first(),
+                'activeBatch' => EnrolmentBatches::where('active_batch', true)->first()
+            ]);
         });
     }
 }

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('enrolment_batch_id')->nullable()->constrained('enrolment_batches')->onDelete('set null');
             $table->string('firstName');
             $table->string('middleName')->nullable();
             $table->string('lastName');
@@ -23,11 +24,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
-            $table->foreignId('role_id')->nullable()->constrained('roles')->onDelete('set null');
+            $table->foreignId('role_id')->nullable()->constrained('roles')->onDelete('set null'); // ✅ FIXED
             $table->string('profile_photo_path', 2048)->nullable();
             $table->boolean('user_visibility')->default(false);
             $table->timestamps();
-        });
+        });        
     }
 
     /**

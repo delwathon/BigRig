@@ -20,11 +20,11 @@ class TrainingScheduleController extends Controller
         // Retrieve all training objectives in a specific order (e.g., by `id`)
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
         $instructors = User::where('user_visibility', 1)
-                    ->where('role_id', '!=', 11) // Exclude role_id = 11
+                    ->where('role_id', '!=', 10) // Exclude role_id = 10
                     ->orderBy('firstName', 'asc')
                     ->get();
         $students = User::where('user_visibility', 1)
-                    ->where('role_id', 11)
+                    ->where('role_id', 10)
                     ->orderBy('firstName', 'asc')
                     ->get();
         $schedules = TrainingSchedule::with(['instructor', 'objective', 'curriculum'])->orderBy('schedule_date', 'asc')->paginate(10);

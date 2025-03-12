@@ -47,10 +47,10 @@
         </header>
         <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-1">Verified Students</div>
         <div class="flex items-start">
-            <div class="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">{{ $activeUsers }}</div>
+            <div class="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">{{ $activeStudents }}</div>
             {{-- <div class="text-sm font-medium px-1.5 rounded-full 
-                {{ $userPI >= 0 ? 'text-green-700 bg-green-500/20' : 'text-red-700 bg-red-500/20' }}">
-                {{ number_format($userPI, 0) }}%
+                {{ $studentPI >= 0 ? 'text-green-700 bg-green-500/20' : 'text-red-700 bg-red-500/20' }}">
+                {{ number_format($studentPI, 0) }}%
             </div> --}}
         </div>
     </div>

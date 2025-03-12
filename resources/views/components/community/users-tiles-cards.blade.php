@@ -57,7 +57,7 @@
                             {{-- <li>
                                 <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Edit Profile</a>
                             </li> --}}
-                            <li>
+                            {{-- <li>
                                 <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="$store.editModal.open({
                                     id: {{ $user->id }},
                                     name: '{{ $user->firstName }}'
@@ -66,7 +66,7 @@
                             </li>
                             <li>
                                 <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Make Instructor</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Deactivate</a>
                             </li>

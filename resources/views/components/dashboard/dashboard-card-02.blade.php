@@ -45,7 +45,7 @@
                 </div>
             </div>
         </header>
-        <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-1">This Month</div>
+        <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-1">All-Time</div>
         <div class="flex items-start">
             <div class="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">${{ number_format($revenue, 2) }}</div>
             {{-- <div class="text-sm font-medium px-1.5 rounded-full 

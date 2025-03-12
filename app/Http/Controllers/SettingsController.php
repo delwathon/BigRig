@@ -649,4 +649,16 @@ class SettingsController extends Controller
         return redirect()->back()->with('success', 'Enrolment batch deleted successfully.');
     }
 
+    public function setActiveBatch($id)
+    {
+        // Set all other rows to false first
+        EnrolmentBatches::where('active_batch', true)->update(['active_batch' => false]);
+
+        // Activate only the selected batch
+        $batch = EnrolmentBatches::findOrFail($id);
+        $batch->update(['active_batch' => true]);
+
+        return redirect()->back()->with('success', 'Batch update successful!');
+    }
+
 }

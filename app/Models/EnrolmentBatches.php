@@ -16,6 +16,7 @@ class EnrolmentBatches extends Model
      */
     protected $fillable = [
         'batch_name',
+        'active_batch',
         'c_date',
     ];
 

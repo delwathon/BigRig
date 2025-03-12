@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('instructors', function (Blueprint $table) {
+        Schema::create('enrolment_batches', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('last_name');
-            $table->json('role_id'); // Store multiple role IDs as JSON
-            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('batch_name');
+            $table->date('c_date');
+            $table->bool('active_batch')->default(false);;
             $table->timestamps();
-        });        
+        });
     }
 
     /**
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('instructors');
+        Schema::dropIfExists('enrolment_batches');
     }
 };

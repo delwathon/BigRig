@@ -10,9 +10,10 @@ class UserSeeder extends Seeder
 {
     protected $data = [
         [
-            'firstName' => 'Super',
+            'firstName' => 'Adekola',
+            'enrolment_batch_id' => null,
             'middleName' => null,
-            'lastName' => 'Admin',
+            'lastName' => 'Adedapo',
             'gender' => 'Male',
             'mobileNumber' => '+1 (913) 705-0526',
             'email' => 'admin@bigrigdrivingschool.ng',

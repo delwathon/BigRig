@@ -36,43 +36,27 @@
             <div class="flex flex-col col-span-full sm:col-span-12 xl:col-span-4 gap-6">
                 <!-- Line chart (Acme Plus) -->
                 @if (Auth::user()->hasPermission('read_dashboard_user_card'))
-                    <x-dashboard.dashboard-card-01 :activeUsers="$activeUsers" :userPI="$userPI" />
+                    <x-dashboard.dashboard-card-01 :activeStudents="$activeStudents" :studentPI="$studentPI" />
+                @endif
+
+                <!-- Line chart (Acme Plus) -->
+                @if (Auth::user()->hasPermission('read_dashboard_instructor_card'))
+                    <x-dashboard.dashboard-card-03 :instructors="$instructors" />
                 @endif
 
                 <!-- Line chart (Acme Advanced) -->
                 @if (Auth::user()->hasPermission('read_dashboard_revenue_card'))
                     <x-dashboard.dashboard-card-02 :revenue="$revenue" :revenuePI="$revenuePI" />
                 @endif
-
-                <!-- Line chart (Acme Professional) -->
-                <x-dashboard.dashboard-card-03 :dataFeed="$dataFeed" />
             </div>
 
             <x-dashboard.calendar :schedules="$schedules" />
-
-            <!-- Bar chart (Direct vs Indirect) -->
-            <x-dashboard.dashboard-card-04 />
-
-            <!-- Line chart (Real Time Value) -->
-            <x-dashboard.dashboard-card-05 />
-
-            <!-- Doughnut chart (Top Countries) -->
-            <x-dashboard.dashboard-card-06 />
-
-            <!-- Table (Top Channels) -->
-            <x-dashboard.dashboard-card-07 />
-
-            <!-- Line chart (Sales Over Time)  -->
-            <x-dashboard.dashboard-card-08 />
-
-            <!-- Stacked bar chart (Sales VS Refunds) -->
-            <x-dashboard.dashboard-card-09 />
 
             <!-- Card (Recent Activity) -->
             <x-dashboard.dashboard-card-10 />
             
             <!-- Card (Income/Expenses) -->
-            <x-dashboard.dashboard-card-11 />
+            <x-dashboard.dashboard-card-11 :subscriptions="$subscriptions" />
 
         </div>
 

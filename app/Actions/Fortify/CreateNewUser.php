@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Medical;
 use App\Models\Subscription;
 use App\Models\TrainingObjective;
+use App\Models\EnrolmentBatches;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -75,8 +76,11 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
+        $activeBatch = EnrolmentBatches::where('active_batch', true)->first();
+
         // Create the user
         $user = User::create([
+            'enrolment_batch_id' => $activeBatch->id,
             'firstName' => $input['firstName'],
             'middleName' => $input['middleName'] ?? null,
             'lastName' => $input['lastName'],
@@ -85,7 +89,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'profile_photo_path' => 'users/avatar.png',
-            'role_id' => 11,
+            'role_id' => 10,
             'user_visibility' => 0,
         ]);
 

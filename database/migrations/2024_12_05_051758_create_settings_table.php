@@ -22,9 +22,9 @@ class CreateSettingsTable extends Migration
             $table->string('secondary_email')->nullable();
             $table->string('business_contact');
             $table->string('secondary_contact')->nullable();
-            $table->string('dark_theme_logo');
-            $table->string('light_theme_logo');
-            $table->string('favicon');
+            $table->string('dark_theme_logo')->nullable();
+            $table->string('light_theme_logo')->nullable();
+            $table->string('favicon')->nullable();
             $table->string('facebook_handle')->nullable();
             $table->string('twitter_handle')->nullable();
             $table->string('instagram_handle')->nullable();

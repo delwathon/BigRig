@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('training_schedules', function (Blueprint $table) {
             $table->id();
             $table->foreignId('instructor_id')
-                  ->constrained('instructors')
+                  ->constrained('users')
                   ->onDelete('cascade');
             $table->foreignId('objective_id')
-                  ->constrained('traning_objectives')
+                  ->constrained('training_objectives')
                   ->onDelete('cascade');
             $table->foreignId('curriculum_id')
                   ->constrained('curriculum')

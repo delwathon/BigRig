@@ -35,9 +35,9 @@ use App\Http\Controllers\InstructorController;
 Route::redirect('/', 'home');
 Route::get('/home', [WebsiteController::class, 'home'])->name('home');
 Route::get('/about-us', [WebsiteController::class, 'about'])->name('about-us');
-Route::get('/courses', [WebsiteController::class, 'about'])->name('courses');
-Route::get('/faq', [WebsiteController::class, 'about'])->name('faq');
-Route::get('/contact', [WebsiteController::class, 'about'])->name('contact');
+Route::get('/courses', [WebsiteController::class, 'courses'])->name('courses');
+Route::get('/faq', [WebsiteController::class, 'faq'])->name('faq');
+Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -54,8 +54,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/community/user-tiles', [UserController::class, 'indexTiles'])->name('users');
     Route::get('/user-profile', [UserController::class, 'userProfile'])->name('user-profile');
     Route::post('/make-admin', [UserController::class, 'makeAdmin'])->name('make.admin');
-    Route::get('/finance/transactions', [TransactionController::class, 'index01'])->name('transactions');
-    Route::get('/finance/transaction-details', [TransactionController::class, 'index02'])->name('transaction-details');
+    Route::get('/payments', [TransactionController::class, 'index'])->name('payments');
     Route::get('/settings/site_information', [SettingsController::class, 'siteInformationIndex'])->name('site_settings');
     Route::put('/settings/site_information/update', [SettingsController::class, 'siteInformationUpdate'])->name('site_settings.update');
     Route::get('/settings/about-company', [SettingsController::class, 'aboutCompanyIndex'])->name('about-company');
@@ -83,6 +82,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/settings/enrolment_batch', [SettingsController::class, 'enrolmentBatchIndex'])->name('enrolment-batches');
     Route::post('/settings/enrolment_batch/store', [SettingsController::class, 'enrolmentBatchStore'])->name('enrolment-batch.store');
     Route::get('/settings/enrolment_batch/destroy/{id}', [SettingsController::class, 'enrolmentBatchDestroy'])->name('enrolment-batch.destroy');
+    Route::get('/settings/enrolment_batch/set-active-batch/{id}', [SettingsController::class, 'setActiveBatch'])->name('enrolment-batch.update');
     Route::get('/settings/achievements', [SettingsController::class, 'achievementsIndex'])->name('achievements');
     Route::post('/settings/achievement/store', [SettingsController::class, 'achievementsStore'])->name('achievement.store');
     Route::put('/settings/achievement/update', [SettingsController::class, 'achievementsUpdate'])->name('achievement.update');
@@ -117,6 +117,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/ecommerce/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/ecommerce/orders', [OrderController::class, 'index'])->name('orders');
     Route::get('/ecommerce/invoices', [InvoiceController::class, 'index'])->name('invoices');
+    // Route::get('/finance/transactions', [TransactionController::class, 'index01'])->name('transactions');
+    // Route::get('/finance/transaction-details', [TransactionController::class, 'index02'])->name('transaction-details');
     Route::get('/ecommerce/shop', function () {
         return view('pages/ecommerce/shop');
     })->name('shop');    
@@ -162,8 +164,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/finance/cards', function () {
         return view('pages/finance/credit-cards');
     })->name('credit-cards');
-    Route::get('/finance/transactions', [TransactionController::class, 'index01'])->name('transactions');
-    Route::get('/finance/transaction-details', [TransactionController::class, 'index02'])->name('transaction-details');
+    // Route::get('/finance/transactions', [TransactionController::class, 'index01'])->name('transactions');
+    // Route::get('/finance/transaction-details', [TransactionController::class, 'index02'])->name('transaction-details');
     Route::get('/job/job-listing', [JobController::class, 'index'])->name('job-listing');
     Route::get('/job/job-post', function () {
         return view('pages/job/job-post');

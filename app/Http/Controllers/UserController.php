@@ -33,11 +33,11 @@ class UserController extends Controller
         }
 
         if (Auth::user()->hasPermission('read_revoked_user')) {
-            $users = User::where('role_id', 11)
+            $users = User::where('role_id', 10)
                 ->paginate(9);
         } else {
             $users = User::where('user_visibility', 1)
-                ->where('role_id', 11)
+                ->where('role_id', 10)
                 ->paginate(9);
         }
         

@@ -22,6 +22,7 @@ class SettingsSeeder extends Seeder
             'secondary_contact' => null,
             'dark_theme_logo' => 'logo-dark.png',
             'light_theme_logo' => 'logo-light.png',
+            'favicon' => null,
             'facebook_handle' => null,
             'twitter_handle' => null,
             'instagram_handle' => 'https://www.instagram.com/bigrig_truckdrivingschool/',

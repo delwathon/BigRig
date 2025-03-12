@@ -7,10 +7,10 @@
             <!-- Logo -->
             <a class="block" href="{{ route('login') }}" @click.prevent="$root.submit();">
                 <!-- Light Theme Logo -->
-                <img class="block dark:hidden" src="{{ asset('assets/images/logo-light.png') }}" alt="Light Logo" />
+                <img class="block dark:hidden h-32 w-32" src="{{ Storage::url($settings->light_theme_logo) }}" alt="Light Logo" />
 
                 <!-- Dark Theme Logo -->
-                <img class="hidden dark:block" src="{{ asset('assets/images/logo-dark.png') }}" alt="Dark Logo" />
+                <img class="hidden dark:block h-32 w-32" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Logo" />
             </a>
             <div class="text-sm">
                 Have an account? <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="{{ route('login') }}" @click.prevent="$root.submit();">Sign In</a>
@@ -42,7 +42,7 @@
                             <!-- Card header -->
                             <div class="text-center mb-6">
                                 <div class="mb-2">
-                                    <img class="-mt-8 inline-flex rounded-full" src="{{asset('users/'.Auth::user()->profile_photo_path)}}" width="64" height="64" alt="User" />
+                                    <img class="-mt-8 inline-flex rounded-full" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="64" height="64" alt="User" />
                                 </div>
                                 <h1 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-semibold mb-2">
                                     {{ Auth::user()->firstName }} {{ Auth::user()->middleName }} {{ Auth::user()->lastName }}

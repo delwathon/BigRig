@@ -42,7 +42,7 @@
     >
         <div class="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200 dark:border-gray-700/60">
             <div class="font-medium text-gray-800 dark:text-gray-100">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400 italic">Administrator</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 italic">{{ Auth::user()->role->role_name }}</div>
         </div>
         <ul>
             <li>

@@ -12,6 +12,7 @@ use App\Models\TrainingObjective;
 use App\Models\TrainingSchedule;
 use App\Models\Curriculum;
 use App\Models\Instructors;
+use App\Models\Subscriptions;
 
 class DashboardController extends Controller
 {
@@ -31,22 +32,27 @@ class DashboardController extends Controller
         $dataFeed = new DataFeed();
 
         // Get the number of active users
-        $activeUsers = User::where('user_visibility', 1)
-            ->where('role_id', 11)
+        $activeStudents = User::where('user_visibility', 1)
+            ->where('role_id', 10)
+            ->count();
+        
+        // Get the number of active users
+        $instructors = User::where('user_visibility', 1)
+            ->where('role_id', '!=', 10)
             ->count();
 
         // Get the number of users created today
         $today = Carbon::today();
-        $usersToday = User::whereDate('updated_at', $today)->count();
+        $studentsToday = User::whereDate('updated_at', $today)->count();
 
         // Get the number of users created yesterday
         $yesterday = Carbon::yesterday();
-        $usersYesterday = User::whereDate('updated_at', $yesterday)->count();
+        $studentsYesterday = User::whereDate('updated_at', $yesterday)->count();
 
         // Calculate the percentage increase between yesterday and today for users
-        $userPI = 0;
-        if ($usersYesterday > 0) {
-            $userPI = (($usersToday - $usersYesterday) / $usersYesterday) * 100;
+        $studentPI = 0;
+        if ($studentsYesterday > 0) {
+            $studentPI = (($studentsToday - $studentsYesterday) / $studentsYesterday) * 100;
         }
         
         // Get all revenue
@@ -71,7 +77,9 @@ class DashboardController extends Controller
 
         $schedules = TrainingSchedule::with(['instructor', 'objective', 'curriculum'])->orderBy('schedule_date', 'asc')->paginate(10);
 
-        return view('pages/dashboard/dashboard', compact('dataFeed', 'activeUsers', 'userPI', 'revenue', 'revenuePI', 'schedules'));
+        $subscriptions = Subscription::with('user')->whereDate('updated_at', $today)->orderBy('updated_at', 'desc')->get();
+
+        return view('pages/dashboard/dashboard', compact('instructors', 'activeStudents', 'studentPI', 'revenue', 'revenuePI', 'schedules', 'subscriptions'));
     }
 
     /**

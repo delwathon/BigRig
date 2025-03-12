@@ -76,7 +76,7 @@
                                 <div class="text-left">{{ $instructor->role->role_name ?? 'No Role' }}</div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                <div class="text-center">{{ $instructor->mobileNumber }}</div>
+                                <div class="text-left">{{ $instructor->mobileNumber }}</div>
                             </td>
                             {{-- <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                 <div class="text-left font-medium text-sky-600">{{ $instructor->last_order }}</div>
