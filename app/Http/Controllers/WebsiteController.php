@@ -11,6 +11,7 @@ use App\Models\Clients;
 use App\Models\AboutCompany;
 use App\Models\TrainingObjective;
 use App\Models\Achievements;
+use App\Models\Faqs;
 
 class WebsiteController extends Controller
 {
@@ -50,8 +51,9 @@ class WebsiteController extends Controller
     {
         $site = Settings::first();
         $about = AboutCompany::first();
+        $faqs = Faqs::orderBy('id', 'asc')->get();
 
-        return view('faq', compact('site', 'about'));
+        return view('faq', compact('site', 'about', 'faqs'));
     }
 
     public function contact()
