@@ -11,7 +11,7 @@
         "laravel/jetstream": "^5.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.4",
+        "livewire/livewire": "^3.6",
         "unicodeveloper/laravel-paystack": "^1.2"
     },
     "require-dev": {

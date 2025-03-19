@@ -10,7 +10,7 @@
                 @method('POST')
                 <section>
                     <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-                        <div class="sm:w-1/3">
+                        <div class="sm:w-1/6">
                             <label class="block text-sm font-medium mb-1" for="site_name">Batch <span class="text-red-500">*</span></label>
                             <select id="country" name="instructor_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
                                 <option>-Select-</option>
@@ -19,19 +19,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="sm:w-2/3">
-                            <label class="block text-sm font-medium mb-1" for="site_name">Attendees <span class="text-xs">(Select multiple)</span><span class="text-red-500">*</span></label>
-                            <select id="country" name="student_ids[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium" multiple>
-                                {{-- <option>-Select-</option> --}}
-                                @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->firstName }} {{ $student->lastName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </section>
-                <section id="schedule-container">
-                    <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                         <div class="sm:w-1/6">
                             <label class="block text-sm font-medium mb-1" for="site_name">Instructor <span class="text-red-500">*</span></label>
                             <select id="country" name="instructor_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
@@ -57,6 +44,18 @@
                                 <!-- Topics will be loaded here based on the selected course -->
                             </select>
                         </div>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_tagline">No. of Days <span class="text-red-500">*</span></label>
+                            <input type="number" name="lectureDays" value="1" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                        </div>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_tagline">No. of Students <span class="text-red-500">*</span></label>
+                            <input type="number" readonly name="totalStudents" value="0" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                        </div>
+                    </div>
+                </section>
+                <section id="schedule-container">
+                    <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                         <div class="sm:w-1/6">
                             <label class="block text-sm font-medium mb-1" for="site_name">Date <span class="text-red-500">*</span></label>
                             <div class="relative">
@@ -92,6 +91,10 @@
                                     </svg>
                                 </div>
                             </div>
+                        </div>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="site_tagline">No. of Students <span class="text-red-500">*</span></label>
+                            <input type="number" readonly name="totalStudents" value="0" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
                         </div>
                     </div>
                 </section>

@@ -17,7 +17,7 @@
     <div class="max-w-sm mx-auto w-full px-4 py-8">
         <h1 class="text-3xl text-gray-800 dark:text-gray-100 font-bold mb-6">{{ __('Verify your Email') }}</h1>
         <div>
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another by clicking on the resend button below.') }}
         </div>
 
         @if (session('status') == 'verification-link-sent')

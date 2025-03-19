@@ -6,16 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\Permission;
 use App\Models\RolePermission;
+use App\Models\TrainingObjective;
 
 class PermissionController extends Controller
 {
     public function index($roleId)
     {
+        $courses = TrainingObjective::orderBy('price', 'asc')->get();
         $rawPermissions = Permission::orderBy('name', 'asc')->get();
         $rolePermissions = RolePermission::where('role_id', $roleId)
             ->pluck('permission_id')
             ->toArray();
-        $roleName = Role::find($roleId)->name;
+        $roleName = Role::find($roleId)->role_name;
 
         $groupedPermissions = [];
         foreach ($rawPermissions as $permission) {
@@ -39,7 +41,7 @@ class PermissionController extends Controller
 
         $permissions = array_values($groupedPermissions); // Reset keys for iteration
 
-        return view('pages/roles/permissions', compact('permissions', 'roleId', 'roleName'));
+        return view('pages/roles/permissions', compact('permissions', 'roleId', 'roleName', 'courses'));
     }
 
     public function permissionStore(Request $request)

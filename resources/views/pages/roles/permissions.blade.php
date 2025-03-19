@@ -8,7 +8,10 @@
 
             <!-- Left: Title -->
             <div class="mb-4 sm:mb-0">
-                <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Permissions</h1>
+                <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">{{ $roleName }} Permissions</h1>
+                <a href="javascript:void(0)" @click="$store.editModal.open()" class="text-md md:text-sm text-violet-500 dark:text-violet-200 font-bold">
+                    Click here to update the courses users with this role can take.
+                </a>
             </div>
 
             <!-- Right: Actions -->
@@ -49,60 +52,61 @@
         
                 <!-- Table -->
                 <div class="overflow-x-auto">
-                    <table class="table-auto w-full dark:text-gray-300">
-                        <!-- Table header -->
-                        <thead class="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/20 border-t border-b border-gray-100 dark:border-gray-700/60">
-                            <tr>
-                                <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Permission</div>
-                                </th>
-                                <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-center">Create</div>
-                                </th>
-                                <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-center">Read</div>
-                                </th>
-                                <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-center">Update</div>
-                                </th>
-                                <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                    <div class="font-semibold text-center">Delete</div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <!-- Table body -->
-                        <tbody class="text-sm divide-y divide-gray-100 dark:divide-gray-700/60">
-                            @foreach ($permissions as $permission)
-                                <tr>
-                                    <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                        <div class="text-left">{{ ucwords($permission['name']) }}</div>
-                                    </td>
-                                    @foreach (['create', 'read', 'update', 'delete'] as $action)
-                                        <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
-                                            @php
-                                                $actionPermission = collect($permission['actions'])->firstWhere('action', $action);
-                                            @endphp
-                                            @if ($actionPermission)
-                                                <div class="flex items-center">
-                                                    <label class="inline-flex">
-                                                        <span class="sr-only">Select</span>
-                                                        <input
-                                                            class="table-item form-checkbox"
-                                                            type="checkbox"
-                                                            value="{{ $actionPermission['id'] . '_' . $action }}"
-                                                            name="permissions[]"
-                                                            {{ $actionPermission['checked'] ? 'checked' : '' }}
-                                                        />
-                                                    </label>
-                                                </div>
-                                            @endif
-                                        </td>
-                                    @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>                        
-                    </table>
-                    {{-- @livewire('manage-role-permissions', ['roleId' => $roleId]) --}}
+                    @livewire('manage-role-permissions', ['roleId' => $roleId])
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Edit Role Course Modal -->
+        <div class="m-1.5">
+            <!-- Modal backdrop -->
+            <div
+                class="fixed inset-0 bg-gray-900 bg-opacity-30 z-50 transition-opacity"
+                x-show="$store.editModal.modalOpen"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-out duration-100"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                aria-hidden="true"
+                x-cloak
+            ></div>
+
+            <!-- Modal dialog -->
+            <div
+                id="edit-modal"
+                class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center px-4 sm:px-6"
+                role="dialog"
+                aria-modal="true"
+                x-show="$store.editModal.modalOpen"
+                x-transition:enter="transition ease-in-out duration-200"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in-out duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 translate-y-4"
+                x-cloak
+            >
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full"
+                @click.stop> <!-- Prevent clicks inside the modal from closing it -->
+                    <!-- Modal header -->
+                    <div class="px-5 py-3 border-b border-gray-200 dark:border-gray-700/60">
+                        <div class="flex justify-between items-center">
+                            <div class="font-semibold text-gray-800 dark:text-gray-100">Role Course</div>
+                            <button class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400" @click="$store.editModal.close()">
+                                <div class="sr-only">Close</div>
+                                <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16">
+                                    <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Modal content -->
+                    @livewire('manage-role-courses', ['roleId' => $roleId])
+
                 </div>
             </div>
         </div>
@@ -153,6 +157,21 @@
                     })
                     .catch(error => console.error('Error:', error));
             });
+        });
+    });
+</script>
+
+<script>
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('editModal', {
+            modalOpen: false,
+            open(data) {
+                this.modalOpen = true;
+            },
+            close() {
+                this.modalOpen = false;
+            },
         });
     });
 </script>

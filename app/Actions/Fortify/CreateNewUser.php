@@ -130,7 +130,7 @@ class CreateNewUser implements CreatesNewUsers
         Subscription::create([
             'user_id' => $user->id,
             'payment_reference' => null,
-            'objectives' => json_encode($input['selected_objective']),
+            'objectives' => json_encode(array_map('intval', $input['selected_objective'])),
             'subtotal' => $subtotal, // Store the subtotal
             'tax' => $tax,           // Store the tax amount
             'total_amount' => $totalAmount, // Store the total amount (subtotal + tax)

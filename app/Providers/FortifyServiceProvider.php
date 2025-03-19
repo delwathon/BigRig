@@ -32,11 +32,13 @@ class FortifyServiceProvider extends ServiceProvider
                 $user = Auth::user();
 
                 // Check subscription payment status
-                $subscription = Subscription::where('user_id', $user->id)->first();
+                $subscription = Subscription::where('user_id', $user->id)->latest()->first();
 
-                if ($subscription && $subscription->payment_status === 'pending') {
-                    // Redirect to checkout/pay if payment is still pending
+                if ($subscription && $subscription->payment_status !== 'completed') {
+                    // Redirect to checkout/pay if payment is still pending or failed
                     return redirect('/checkout/pay');
+                } else if (!$user->hasVerifiedEmail()) {
+                    return redirect('/email/verify');
                 }
 
                 // Otherwise, redirect to dashboard

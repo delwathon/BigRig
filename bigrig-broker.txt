@@ -1,0 +1,19 @@
+bigrig
+
+Thinking of starting a transport brokage system (intermediary between company and carrier)
+Goal: Limit the access of the carrier having to deal directly with the company
+
+Firstly, create a load board: a platform where truck owners can come to signup
+It will contain information like:
+    - Do you have a load to ship or you want to receive a shipment
+    - To Ship:
+        - Weight of the load
+        - How many pallet
+        - Description of the load
+        - What is the origin
+        - What is the destination
+        - What is the mileage
+        - What is the total cost of shipment
+        - Shipper ID Number: This will auto fill Shipper details
+        - What is the proposed shipping rate
+        - 

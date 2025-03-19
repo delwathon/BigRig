@@ -12,9 +12,9 @@
                 <!-- Dark Theme Logo -->
                 <img class="hidden dark:block h-32 w-32" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Logo" />
             </a>
-            <div class="text-sm">
+            {{-- <div class="text-sm">
                 Have an account? <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="{{ route('login') }}" @click.prevent="$root.submit();">Sign In</a>
-            </div>
+            </div> --}}
             <x-validation-errors class="mt-4" />  
         </div>
     </div>

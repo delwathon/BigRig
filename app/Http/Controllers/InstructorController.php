@@ -18,7 +18,7 @@ class InstructorController extends Controller
         if (Auth::user()->hasPermission('read_revoked_user')) {
             $instructors = User::with('role')
                         ->where('role_id', '!=', 10) // Exclude role_id = 10
-                        ->orderBy('firstName', 'asc')
+                        ->orderBy('role_id', 'asc')
                         ->paginate(10);
         } else {
             $instructors = User::with('role')

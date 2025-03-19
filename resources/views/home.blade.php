@@ -281,7 +281,7 @@
                     @php
                         $maxPrice = $objectives->max('price');
                     @endphp
-                    <div class="col-lg-3 col-md-6 col-sm-12 pricing-block">
+                    <div class="col-lg-4 col-md-6 mb-5 col-sm-12 pricing-block">
                         <div class="pricing-block-one @if($objective->price == $maxPrice) active-block @endif wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="pricing-table">
                                 <div class="table-header">

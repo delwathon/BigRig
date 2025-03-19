@@ -64,7 +64,7 @@
                                     <div class="text-gray-400 dark:text-gray-600">·</div>
                                     <!-- Price -->
                                     <div>
-                                        <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">$450.00</div>
+                                        <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">$35.00</div>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                     <div class="text-gray-400 dark:text-gray-600">·</div>
                                     <!-- Price -->
                                     <div>
-                                        <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">$350.00</div>
+                                        <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">$30.00</div>
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                                     <div class="text-gray-400 dark:text-gray-600">·</div>
                                     <!-- Price -->
                                     <div>
-                                        <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">$250.00</div>
+                                        <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">$25.00</div>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@
                                     <div class="text-gray-400 dark:text-gray-600">·</div>
                                     <!-- Price -->
                                     <div>
-                                        <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">$150.00</div>
+                                        <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">$20.00</div>
                                     </div>
                                 </div>
                             </div>

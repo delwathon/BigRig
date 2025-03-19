@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\TrainingObjective;
+use Illuminate\Support\Arr;
 
 class Subscription extends Model
 {
@@ -17,11 +18,13 @@ class Subscription extends Model
      */
     protected $fillable = [
         'user_id',
+        'payment_reference',
         'objectives',
         'subtotal',
         'tax',
         'total_amount',
         'payment_status',
+        'payment_method',
     ];
 
     /**
@@ -42,19 +45,40 @@ class Subscription extends Model
     }
 
     // Define the relationship method to get the objectives by decoding JSON
+    // public function getObjectivesAttribute()
+    // {
+    //     // Decode the JSON stored in the 'objectives' column
+    //     $objectiveIds = json_decode($this->attributes['objectives'], true);
+
+    //     // If json_decode results in a stringified array, decode it again
+    //     if (is_string($objectiveIds)) {
+    //         $objectiveIds = json_decode($objectiveIds, true);
+    //     }
+
+    //     // Ensure that $objectiveIds is an array
+    //     if (!is_array($objectiveIds)) {
+    //         $objectiveIds = [];
+    //     }
+
+    //     // Return the related objectives from the training_objectives table
+    //     return TrainingObjective::whereIn('id', $objectiveIds)->get();
+    // }
+
     public function getObjectivesAttribute()
     {
         // Decode the JSON stored in the 'objectives' column
         $objectiveIds = json_decode($this->attributes['objectives'], true);
 
-        // If json_decode results in a stringified array, decode it again
+        // If decoding results in another JSON string, decode it again
         if (is_string($objectiveIds)) {
             $objectiveIds = json_decode($objectiveIds, true);
         }
 
-        // Ensure that $objectiveIds is an array
+        // Ensure $objectiveIds is a simple array and flatten it if necessary
         if (!is_array($objectiveIds)) {
             $objectiveIds = [];
+        } else {
+            $objectiveIds = Arr::flatten($objectiveIds); // Flattens any nested arrays
         }
 
         // Return the related objectives from the training_objectives table
