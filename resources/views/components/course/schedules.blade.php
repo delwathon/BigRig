@@ -8,14 +8,14 @@
                     <div class="flex items-start space-x-3 md:space-x-4">
                         <div>
                             <a class="inline-flex font-semibold text-gray-800 dark:text-gray-100" href="{{ route('schedule') }}">
-                                Lesson {{ $loop->index + 1 }}: {{ $schedule->curriculum->topic }}
+                                Lesson {{ $loop->index + 1 }}: {{ $schedule->topic->topic }}
                             </a>
                             <div class="text-sm"></div>
                         </div>
                     </div>
                     <!-- Right side -->
                     <div class="flex items-center space-x-4 pl-10 md:pl-0">
-                        <div class="text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-yellow-500/20 text-yellow-700">{{ $schedule->objective->objective }}</div>
+                        <div class="text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-yellow-500/20 text-yellow-700">{{ $schedule->course->objective }}</div>
                         <div class="text-sm text-gray-500 dark:text-gray-400 italic whitespace-nowrap">{{ \Carbon\Carbon::parse($schedule->schedule_date)->format('M d,') }} {{ \Carbon\Carbon::parse($schedule->time_start)->format('h:i A') }}</div>
                     </div>
                 </div>

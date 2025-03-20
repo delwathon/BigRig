@@ -51,13 +51,13 @@
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-full">
                         <label class="block text-sm font-medium mb-1" for="company_history">About The Company / History of The Company <span class="text-red-500">*</span></label>
-                        <textarea id="feedback" class="form-textarea w-full focus:border-gray-300" rows="8" placeholder="Tell your visitors more about the company" name="company_history" required>{{ $about->company_history }}</textarea>
+                        <textarea name="company_history" class="form-textarea w-full px-2 py-1" id="editor" rows="10" cols="80">{!! $about->company_history !!}</textarea>
                     </div>
                 </div>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-full">
                         <label class="block text-sm font-medium mb-1" for="mission_statement">Mission Statement <span class="text-red-500">*</span></label>
-                        <textarea id="feedback" class="form-textarea w-full focus:border-gray-300" rows="6" placeholder="Company's mission statement" name="mission_statement" required>{{ $about->mission_statement }}</textarea>
+                        <textarea name="mission_statement" class="form-textarea w-full px-2 py-1" id="editor1" rows="10" cols="80">{!! $about->mission_statement !!}</textarea>
                     </div>
                 </div>
             </section>

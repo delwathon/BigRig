@@ -10,9 +10,6 @@
                 <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Training Schedule Management</h1>
             </div>
         
-            <!-- Post a job button -->
-            <!-- <button class="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">Post A Job</button> -->
-        
         </div>
 
         <!-- Page content -->
@@ -32,184 +29,253 @@
 </x-app-layout>
 
 
-
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('deleteModal', {
-            modalOpen: false,
-            objectiveId: null, // Track the ID of the objective to delete
-            open(id) {
-                this.objectiveId = id;
-                this.modalOpen = true;
-            },
-            close() {
-                this.modalOpen = false;
-                this.objectiveId = null;
-            }
-        });
-    });
-
-    let rowCounter = 0;
-
-    function addNewRow() {
-        const scheduleContainer = document.getElementById('schedule-container');
-
-        const newRow = document.createElement('div');
-        newRow.className = 'sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5';
-        newRow.setAttribute('data-row-id', rowCounter);
-
-        newRow.innerHTML = `
-            <div class="sm:w-1/6">
-                <label class="block text-sm font-medium mb-1" for="instructor_${rowCounter}">Instructor <span class="text-red-500">*</span></label>
-                <select class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium" name="instructor_id[]">
-                    <option>-Select-</option>
-                    @foreach ($instructors as $instructor)
-                        <option value="{{ $instructor->id }}">{{ $instructor->first_name }} {{ $instructor->last_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="sm:w-1/6">
-                <label class="block text-sm font-medium mb-1" for="course_${rowCounter}">Course <span class="text-red-500">*</span></label>
-                <select id="course_${rowCounter}" name="objective_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
-                    <option value="">-Select-</option>
-                    @foreach ($objectives as $objective)
-                        <option value="{{ $objective->id }}">{{ $objective->objective }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="sm:w-1/6">
-                <label class="block text-sm font-medium mb-1" for="topic_${rowCounter}">Topic <span class="text-red-500">*</span></label>
-                <select id="topic_${rowCounter}" name="curriculum_id[]"  class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
-                    <option value="">-Select Course First-</option>
-                </select>
-            </div>
-            <div class="sm:w-1/6">
-                <label class="block text-sm font-medium mb-1" for="date_${rowCounter}">Date <span class="text-red-500">*</span></label>
-                <div class="relative">
-                    <input name="schedule_date[]" class="datepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" placeholder="Select date" data-class="flatpickr-right" />
-                    <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                        <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                        <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                        <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="sm:w-1/6">
-                <label class="block text-sm font-medium mb-1" for="time_start_${rowCounter}">Start Time <span class="text-red-500">*</span></label>
-                <div class="relative">
-                    <input name="time_start[]" class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" placeholder="Select start time" data-class="flatpickr-right" />
-                    <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                        <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                        <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                        <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="sm:w-1/6">
-                <label class="block text-sm font-medium mb-1" for="time_stop_${rowCounter}">Time Stop <span class="text-red-500">*</span></label>
-                <div class="flex items-center">
-                    <div class="relative">
-                        <input name="time_stop[]" class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-[12.5rem]" placeholder="Select stop time" data-class="flatpickr-right" />
-                        <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                            <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                            <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                            <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <button type="button" onclick="removeRow(${rowCounter})" class="text-red-500 hover:text-red-600 ml-1 rounded-full">
-                        <span class="sr-only">Remove Row</span>
-                        <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
-                            <path d="M13 15h2v6h-2zM17 15h2v6h-2z" />
-                            <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        `;
-
-        scheduleContainer.appendChild(newRow);
-
-        // Re-initialize flatpickr for the new date and time pickers
-        flatpickr('.datepicker', { 
-            enableTime: false,           // Enable time selection
-            time_24hr: false,           // Set to true for 24-hour format
-            dateFormat: 'M j, Y',       // Display format (12-hour format with AM/PM)
-            defaultDate: null,          // Do not pre-fill any date
-            static: true,               // Static positioning for the calendar
-            monthSelectorType: 'static',
-            prevArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
-            nextArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
-            onReady: (selectedDates, dateStr, instance) => {
-            const customClass = instance.element.getAttribute('data-class');
-            if (customClass) {
-                instance.calendarContainer.classList.add(customClass);
-            }
-            },
-            onChange: (selectedDates, dateStr, instance) => {
-            instance.element.value = dateStr; // Update the input value with the selected date and time
-            }, 
-        });
-
-        flatpickr('.timepicker', { 
-            enableTime: true,           // Enable time selection
-            noCalendar: true,           // Disable date selection
-            time_24hr: false,           // Set to true for 24-hour format
-            dateFormat: 'h:i K',        // Display format (12-hour format with AM/PM)
-            defaultDate: null,          // Do not pre-fill any date
-            static: true,               // Static positioning for the calendar
-            monthSelectorType: 'static',
-            prevArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
-            nextArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
-            onReady: (selectedDates, dateStr, instance) => {
-            const customClass = instance.element.getAttribute('data-class');
-            if (customClass) {
-                instance.calendarContainer.classList.add(customClass);
-            }
-            },
-            onChange: (selectedDates, dateStr, instance) => {
-            instance.element.value = dateStr; // Update the input value with the selected time
-            },
-        });
-
-        rowCounter++;
-    }
-
-    function removeRow(rowId) {
-        const rowToRemove = document.querySelector(`[data-row-id='${rowId}']`);
-        if (rowToRemove) {
-            rowToRemove.remove();
-        }
-    }
-
-</script>
-
-
 <!-- Make sure jQuery is included -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
     document.addEventListener("change", function (event) {
-        if (event.target.matches('select[id^="course_"]')) {
-            const courseId = event.target.value;
-            const topicSelect = event.target.closest('div').nextElementSibling.querySelector('select');
+        const target = event.target;
+
+        // Find the closest row containing the selects and input
+        const parentDiv = target.closest('div').parentElement;
+        if (!parentDiv) return; // Prevent errors if the element is not found
+
+        const batchSelect = parentDiv.querySelector('select[id^="batch_"]');
+        const courseSelect = parentDiv.querySelector('select[id^="course_"]');
+        const topicSelect = parentDiv.querySelector('select[id^="topic_"]');
+        const instructorSelect = parentDiv.querySelector('select[id^="instructor_"]');
+        const totalStudentsInput = parentDiv.querySelector('input[id^="total_student_"]');
+
+        if (!batchSelect || !courseSelect || !instructorSelect || !totalStudentsInput) {
+            console.error("Missing required elements.");
+            return;
+        }
+
+        const batchId = batchSelect.value;
+        const courseId = courseSelect.value;
+        const instructorId = instructorSelect.value;
+
+        console.log("Batch ID:", batchId, "Course ID:", courseId, "Instructor ID:", instructorId);
+
+        // Fetch Topics if a valid Course is selected
+        if (target.matches('select[id^="course_"]')) {
             if (courseId) {
                 fetch(`/getTopics/${courseId}`)
                     .then(response => response.json())
                     .then(data => {
+                        console.log("Topics fetched:", data);
                         topicSelect.innerHTML = `<option value="">-Select-</option>`;
                         data.forEach(topic => {
                             topicSelect.innerHTML += `<option value="${topic.id}">${topic.topic}</option>`;
                         });
+
+                        document.getElementById("lecture_days_0").value = 0;
+                        document.getElementById("total_student_0").value = 0;
+                        document.getElementById("schedule-container").innerHTML = "";
                     })
-                    .catch(error => console.error('Error fetching topics:', error));
+                    .catch(error => console.error("Error fetching topics:", error));
             } else {
                 topicSelect.innerHTML = `<option value="">-Select Course First-</option>`;
+            }
+        }
+
+        // Fetch Instructors when both Batch and Course are selected
+        if (target.matches('select[id^="batch_"]') || target.matches('select[id^="course_"]')) {
+            if (batchId && courseId) {
+                fetch(`/getInstructors/${courseId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Instructors fetched:", data);
+                        instructorSelect.innerHTML = `<option value="">-Select-</option>`;
+                        data.forEach(instructor => {
+                            instructorSelect.innerHTML += `<option value="${instructor.id}">${instructor.firstName} ${instructor.lastName}</option>`;
+                        });
+
+                        document.getElementById("lecture_days_0").value = 0;
+                        document.getElementById("total_student_0").value = 0;
+                        document.getElementById("schedule-container").innerHTML = "";
+                    })
+                    .catch(error => console.error("Error fetching instructors:", error));
+            } else {
+                instructorSelect.innerHTML = `<option value="">-Select Batch & Course First-</option>`;
+            }
+        }
+
+        // Fetch Students when an Instructor is selected
+        if (target.matches('select[id^="instructor_"]')) {
+            if (batchId && instructorId) {
+                fetch(`/getInstructorStudents/${batchId}/${instructorId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Students fetched:", data);
+
+                        totalStudentsInput.value = data.length; // Update student count
+
+                        document.getElementById("lecture_days_0").value = 0;
+                        document.getElementById("schedule-container").innerHTML = "";
+
+                        // Limit to 3 names per row
+                        const formattedNames = data
+                            .map(student => `${student.firstName} ${student.lastName}`)
+                            .reduce((acc, name, index) => {
+                                if (index % 3 === 0) acc.push([]); // Start a new row every 3 names
+                                acc[acc.length - 1].push(name);
+                                return acc;
+                            }, [])
+                            .map(row => row.join(', ')) // Join names with commas within each row
+                            .join('\n'); // Separate rows with new lines
+
+                        // Set title attribute
+                        totalStudentsInput.setAttribute('title', formattedNames || "No students assigned.");
+                    })
+                    .catch(error => console.error("Error fetching students:", error));
+            } else {
+                console.warn("Batch ID or Instructor ID missing.");
+                totalStudentsInput.value = 0; // Reset count
+                totalStudentsInput.setAttribute('title', ""); // Clear title
             }
         }
     });
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const daysInput = document.getElementById("lecture_days_0");
+        const studentsInput = document.getElementById("total_student_0");
+        const scheduleContainer = document.getElementById("schedule-container");
 
+        // Function to update max days based on total students
+        function updateMaxDays() {
+            const totalStudents = parseInt(studentsInput.value, 10) || 1;
+            daysInput.max = totalStudents;
+
+            // If the current value exceeds max, correct it
+            if (parseInt(daysInput.value, 10) > totalStudents) {
+                daysInput.value = totalStudents;
+            }
+        }
+
+        // Observe changes in total students
+        const observer = new MutationObserver(updateMaxDays);
+        observer.observe(studentsInput, { attributes: true, childList: true, subtree: true, characterData: true });
+
+        // Listen for user input on lecture_days_0
+        daysInput.addEventListener("input", function () {
+            let totalStudents = parseInt(studentsInput.value, 10);
+            let numDays = parseInt(this.value, 10) || 1;
+
+            // Immediately reset if value exceeds the total students
+            if (numDays > totalStudents) {
+                numDays = totalStudents;
+                this.value = totalStudents;
+            }
+
+            scheduleContainer.innerHTML = "";
+
+            let studentsPerDay = Math.floor(totalStudents / numDays);
+            let remainder = totalStudents % numDays;
+
+            for (let i = 0; i < numDays; i++) {
+                let assignedStudents = studentsPerDay + (remainder > 0 ? 1 : 0);
+                remainder--;
+
+                const newSection = document.createElement("div");
+                newSection.className = "schedule-entry sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5";
+                newSection.innerHTML = `
+                    <div class="sm:w-1/6 relative">
+                        <label class="block text-sm font-medium mb-1">Date <span class="text-red-500">*</span></label>
+                        <input class="datepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="schedule_date[]" placeholder="Select date" />
+                        <div class="absolute inset-y-0 left-2 flex items-center pointer-events-none">
+                            ${calendarSVG()}
+                        </div>
+                    </div>
+                    <div class="sm:w-1/6 relative">
+                        <label class="block text-sm font-medium mb-1">Time Start <span class="text-red-500">*</span></label>
+                        <input class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="time_start[]" placeholder="Select start time" />
+                        <div class="absolute inset-y-0 left-2 flex items-center pointer-events-none">
+                            ${clockSVG()}
+                        </div>
+                    </div>
+                    <div class="sm:w-1/6 relative">
+                        <label class="block text-sm font-medium mb-1">Time Stop <span class="text-red-500">*</span></label>
+                        <input class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="time_stop[]" placeholder="Select stop time" />
+                        <div class="absolute inset-y-0 left-2 flex items-center pointer-events-none">
+                            ${clockSVG()}
+                        </div>
+                    </div>
+                    <div class="sm:w-1/6 relative">
+                        <label class="block text-sm font-medium mb-1">Distributed Students <span class="text-red-500">*</span></label>
+                        <input type="number" readonly name="distributed_students[]" value="${assignedStudents}" title="This row contains ${assignedStudents} students" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                    </div>
+                `;
+                scheduleContainer.appendChild(newSection);
+            }
+
+            // Initialize Flatpickr for new elements
+            initFlatpickr();
+        });
+
+        // Function to initialize Flatpickr
+        function initFlatpickr() {
+            flatpickr('.datepicker', {
+                enableTime: false,
+                dateFormat: 'M j, Y',
+                static: true,
+                prevArrow: prevNextArrowSVG(),
+                nextArrow: prevNextArrowSVG(),
+                onReady: updateCalendarStyle,
+                onChange: updateInputValue
+            });
+
+            flatpickr('.timepicker', {
+                enableTime: true,
+                noCalendar: true,
+                time_24hr: false,
+                dateFormat: 'h:i K',
+                static: true,
+                prevArrow: prevNextArrowSVG(),
+                nextArrow: prevNextArrowSVG(),
+                onReady: updateCalendarStyle,
+                onChange: updateInputValue
+            });
+        }
+
+        function updateCalendarStyle(selectedDates, dateStr, instance) {
+            const customClass = instance.element.getAttribute('data-class');
+            if (customClass) {
+                instance.calendarContainer.classList.add(customClass);
+            }
+        }
+
+        function updateInputValue(selectedDates, dateStr, instance) {
+            instance.element.value = dateStr;
+        }
+
+        function prevNextArrowSVG() {
+            return `<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11">
+                        <path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" />
+                    </svg>`;
+        }
+
+        function clockSVG() {
+            return `<svg class="fill-current text-gray-400 dark:text-gray-500 ml-1 mt-6" width="16" height="16" viewBox="0 0 16 16">
+                        <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
+                        <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
+                    </svg>`;
+        }
+
+        function calendarSVG() {
+            return `<svg class="fill-current text-gray-400 dark:text-gray-500 ml-1 mt-6" width="16" height="16" viewBox="0 0 16 16">
+                        <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
+                        <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
+                    </svg>`;
+        }
+
+        // Initial Setup
+        updateMaxDays();
+        initFlatpickr();
+    });
+</script>
+
+
+    

@@ -158,7 +158,7 @@
                 {
                     eventStart: new Date({{ \Carbon\Carbon::parse($schedule->schedule_date)->format('Y') }}, {{ \Carbon\Carbon::parse($schedule->schedule_date)->format('m') }} - 1, {{ \Carbon\Carbon::parse($schedule->schedule_date)->format('d') }}, {{ \Carbon\Carbon::parse($schedule->time_start)->format('H') }}, {{ \Carbon\Carbon::parse($schedule->time_start)->format('i') }}),
                     eventEnd: new Date({{ \Carbon\Carbon::parse($schedule->schedule_date)->format('Y') }}, {{ \Carbon\Carbon::parse($schedule->schedule_date)->format('m') }} - 1, {{ \Carbon\Carbon::parse($schedule->schedule_date)->format('d') }}, {{ \Carbon\Carbon::parse($schedule->time_stop)->format('H') }}, {{ \Carbon\Carbon::parse($schedule->time_stop)->format('i') }}),
-                    eventName: '{{ ($schedule->curriculum->topic) }}',
+                    eventName: '{{ ($schedule->topic->topic) }}',
                     eventColor: 'sky'
                 },                   
                 @endforeach

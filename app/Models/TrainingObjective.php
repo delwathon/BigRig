@@ -21,6 +21,7 @@ class TrainingObjective extends Model
         'duration',
         'requirement',
         'image_url',
+        'course_details',
     ];
 
     protected $table = 'training_objectives';

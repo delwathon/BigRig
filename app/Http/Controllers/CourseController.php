@@ -16,7 +16,7 @@ class CourseController extends Controller
     {
         // Retrieve all training objectives in a specific order (e.g., by `id`)
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
-        $schedules = TrainingSchedule::with(['instructor', 'objective', 'curriculum'])
+        $schedules = TrainingSchedule::with(['instructor', 'course', 'topic'])
             ->whereBetween('schedule_date', [
                 Carbon::now()->startOfWeek(),  // Start of the week (Sunday)
                 Carbon::now()->endOfWeek()     // End of the week (Saturday)
@@ -41,16 +41,14 @@ class CourseController extends Controller
         // Validate the request data
         $request->validate([
             'id' => 'required|exists:training_objectives,id',
-            'course_details' => 'string',
-            'learning_objectives' => 'string'
+            'course_details' => 'required|string',
         ]);
 
         $objective = TrainingObjective::findOrFail($request->id);
 
         // Update other fields
         $objective->update([
-            'course_details' => $request->input('course_details'),
-            'learning_objectives' => $request->input('learning_objectives'),
+            'course_details' => addslashes($request->input('course_details')),
         ]);
 
         return redirect()->back()->with('success', 'Course updated successfully!');

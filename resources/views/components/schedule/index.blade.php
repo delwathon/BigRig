@@ -11,26 +11,19 @@
                 <section>
                     <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                         <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_name">Batch <span class="text-red-500">*</span></label>
-                            <select id="country" name="instructor_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                            <label class="block text-sm font-medium mb-1" for="batch_id">Batch <span class="text-red-500">*</span></label>
+                            <select id="batch_0" name="batch_id" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
                                 <option>-Select-</option>
                                 @foreach ($batches as $batch)
-                                    <option value="{{ $batch->id }}">{{ $batch->batch_name }}</option>
+                                    <option value="{{ $batch->id }}" {{ $batch->active_batch ? 'selected' : '' }}>
+                                        {{ $batch->batch_name }}
+                                    </option>                                
                                 @endforeach
                             </select>
                         </div>
                         <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_name">Instructor <span class="text-red-500">*</span></label>
-                            <select id="country" name="instructor_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
-                                <option>-Select-</option>
-                                @foreach ($instructors as $instructor)
-                                    <option value="{{ $instructor->id }}">{{ $instructor->firstName }} {{ $instructor->lastName }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_tagline">Course <span class="text-red-500">*</span></label>
-                            <select id="course_0" name="objective_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                            <label class="block text-sm font-medium mb-1" for="course_id">Course <span class="text-red-500">*</span></label>
+                            <select id="course_0" name="course_id" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
                                 <option value="">-Select-</option>
                                 @foreach ($objectives as $objective)
                                     <option value="{{ $objective->id }}">{{ $objective->objective }}</option>
@@ -38,68 +31,33 @@
                             </select>
                         </div>
                         <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_tagline">Topic <span class="text-red-500">*</span></label>
-                            <select id="topic_0" name="curriculum_id[]" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                            <label class="block text-sm font-medium mb-1" for="instructor_id">Instructor <span class="text-red-500">*</span></label>
+                            <select id="instructor_0" name="instructor_id" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                                <option>-Select Batch & Course First-</option>
+                            </select>
+                        </div>
+                        <div class="sm:w-1/6">
+                            <label class="block text-sm font-medium mb-1" for="topic_id">Topic <span class="text-red-500">*</span></label>
+                            <select id="topic_0" name="topic_id" class="form-select w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
                                 <option value="">-Select Course First-</option>
                                 <!-- Topics will be loaded here based on the selected course -->
                             </select>
                         </div>
                         <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_tagline">No. of Days <span class="text-red-500">*</span></label>
-                            <input type="number" name="lectureDays" value="1" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                            <label class="block text-sm font-medium mb-1" for="lectureDays_id">No. of Days <span class="text-red-500">*</span></label>
+                            <input id="lecture_days_0" type="number" min="1" name="lectureDays_id" value="0" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
                         </div>
                         <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_tagline">No. of Students <span class="text-red-500">*</span></label>
-                            <input type="number" readonly name="totalStudents" value="0" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
+                            <label class="block text-sm font-medium mb-1" for="totalStudents">No. of Students <span class="text-red-500">*</span></label>
+                            <input id="total_student_0" type="number" readonly name="totalStudents" value="0" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
                         </div>
                     </div>
                 </section>
                 <section id="schedule-container">
-                    <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-                        <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_name">Date <span class="text-red-500">*</span></label>
-                            <div class="relative">
-                                <input class="datepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="schedule_date[]" placeholder="Select date" data-class="flatpickr-right" />
-                                <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                                    <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                                    <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                                    <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_tagline">Time Start <span class="text-red-500">*</span></label>
-                            <div class="relative w-full">
-                                <input class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="time_start[]" placeholder="Select start time" data-class="flatpickr-right" />
-                                <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                                    <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                                    <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                                    <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_tagline">Time Stop <span class="text-red-500">*</span></label>
-                            <div class="relative">
-                                <input class="timepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-full" name="time_stop[]" placeholder="Select stop time" data-class="flatpickr-right" />
-                                <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                                    <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                                    <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                                    <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sm:w-1/6">
-                            <label class="block text-sm font-medium mb-1" for="site_tagline">No. of Students <span class="text-red-500">*</span></label>
-                            <input type="number" readonly name="totalStudents" value="0" class="form-input w-full dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium">
-                        </div>
-                    </div>
+
                 </section>
                 <div class="text-right p-5">
-                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600" href="javascript:void(0)" onclick="addNewRow()">Add New Row -&gt;</a>
+                    {{-- <a class="text-sm font-medium text-violet-500 hover:text-violet-600" href="javascript:void(0)" onclick="addNewRow()">Add New Row -&gt;</a> --}}
                     <button type="submit" class="btn-sm bg-purple-500 hover:bg-purple-600 text-white">Submit</a>
                 </div>
             </form>
@@ -136,6 +94,9 @@
                                         <div class="font-semibold text-left">Schedule Date &amp; Time</div>
                                     </th>
                                     <th class="p-2">
+                                        <div class="font-semibold text-left">Assigned Students</div>
+                                    </th>
+                                    <th class="p-2">
                                         <div class="font-semibold text-center">Action</div>
                                     </th>
                                 </tr>
@@ -156,10 +117,10 @@
                                             </div>
                                         </td>
                                         <td class="p-2">
-                                            <div class="text-left">{{ $schedule->objective->objective }}</div>
+                                            <div class="text-left">{{ $schedule->course->objective }}</div>
                                         </td>
                                         <td class="p-2">
-                                            <div class="text-left">{{ $schedule->curriculum->topic }}</div>
+                                            <div class="text-left">{{ $schedule->topic->topic }}</div>
                                         </td>
                                         <td class="p-2">
                                             <div class="text-left">
@@ -176,6 +137,12 @@
                                                 </div>
                                             </div>                                      
                                         </td>
+                                        <td class="p-2">
+                                            <div class="text-left" title="{{ $schedule->studentNames }}">
+                                                {{ count(json_decode($schedule->students)) }}
+                                            </div>
+                                        </td>
+                                        
                                         <td class="p-2">
                                             <div class="flex items-center space-x-4 pl-10 md:pl-0">
                                                 <button type="button" class="text-red-500 hover:text-red-600 rounded-full">

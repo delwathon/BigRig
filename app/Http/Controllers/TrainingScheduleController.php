@@ -9,6 +9,8 @@ use App\Models\TrainingSchedule;
 use App\Models\Curriculum;
 use App\Models\User;
 use App\Models\EnrolmentBatches;
+use App\Models\RoleCourse;
+use App\Models\StudentInstructorDistribution;
 
 class TrainingScheduleController extends Controller
 {
@@ -17,7 +19,7 @@ class TrainingScheduleController extends Controller
      */
     public function index()
     {
-        // Retrieve all training objectives in a specific order (e.g., by `id`)
+        // Retrieve training objectives, instructors, students, and batches
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
         $instructors = User::where('user_visibility', 1)
                     ->where('role_id', '!=', 10) // Exclude role_id = 10
@@ -27,9 +29,25 @@ class TrainingScheduleController extends Controller
                     ->where('role_id', 10)
                     ->orderBy('firstName', 'asc')
                     ->get();
-        $schedules = TrainingSchedule::with(['instructor', 'objective', 'curriculum'])->orderBy('schedule_date', 'asc')->paginate(10);
         $batches = EnrolmentBatches::orderBy('id', 'asc')->get();
-        // $schedules = TrainingSchedule::paginate(10);
+
+        // Retrieve schedules with relationships
+        $schedules = TrainingSchedule::with(['instructor', 'course', 'topic'])
+            ->orderBy('schedule_date', 'asc')
+            ->paginate(10);
+
+        // Attach student names to each schedule
+        $schedules->transform(function ($schedule) {
+            $studentIds = json_decode($schedule->students, true); // Decode JSON array of student IDs
+
+            // Fetch student names
+            $schedule->studentNames = User::whereIn('id', $studentIds)
+                ->get(['firstName', 'lastName'])
+                ->map(fn($s) => $s->firstName . ' ' . $s->lastName)
+                ->implode("\n"); // Convert array to newline-separated string
+
+            return $schedule;
+        });
 
         return view('pages/schedule/index', compact('objectives', 'instructors', 'students', 'schedules', 'batches'));  
     }
@@ -43,66 +61,125 @@ class TrainingScheduleController extends Controller
         return response()->json($topics);
     }
 
+    public function getInstructors($course_id)
+    {
+        // Fetch all role_ids from RoleCourse where course_id matches the given course_id
+        $roleIds = RoleCourse::where('course_id', $course_id)
+        ->pluck('role_id');
+
+        // Fetch all users where their role_id is in the list of roleIds
+        $instructors = User::whereIn('role_id', $roleIds)->orderBy('firstName', 'asc')->get(['id', 'firstName', 'lastName']);
+
+        // Return the instructors as JSON
+        return response()->json($instructors);
+    }
+
+    public function getInstructorStudents($batch_id, $instructor_id)
+    {
+        // Fetch all student_ids from StudentInstructorDistribution
+        $studentIds = StudentInstructorDistribution::where('instructor_id', $instructor_id)
+                        ->where('enrolment_batch_id', $batch_id)
+                        ->pluck('student_id');
+
+        // Fetch students only if student IDs exist
+        $students = $studentIds->isNotEmpty() 
+            ? User::whereIn('id', $studentIds)->orderBy('id', 'asc')->get(['id', 'firstName', 'lastName']) 
+            : collect(); // Return an empty collection if no students found
+
+        return response()->json($students);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
     {
         $request->validate([
-            'instructor_id.*' => 'required|exists:users,id',
-            'objective_id.*' => 'required|exists:training_objectives,id',
-            'curriculum_id.*' => 'required|exists:curriculum,id',
-            'schedule_date.*' => 'required|date',
+            'batch_id' => 'required|exists:enrolment_batches,id',
+            'course_id' => 'required|exists:training_objectives,id',
+            'instructor_id' => 'required|exists:users,id',
+            'topic_id' => 'required|exists:curriculum,id',
             // 'time_start.*' => 'required|date_format:h:i A',
             // 'time_stop.*' => 'required|date_format:h:i A|after:time_start.*',
         ]);
 
-        $instructors = $request->input('instructor_id');
-        $courses = $request->input('objective_id');
-        $topics = $request->input('curriculum_id');
-        $dates = $request->input('schedule_date');
-        $timeStarts = $request->input('time_start');
-        $timeStops = $request->input('time_stop');
+        $batchID = $request->input('batch_id');
+        $courseID = $request->input('course_id');
+        $instructorID = $request->input('instructor_id');
+        $topicID = $request->input('topic_id');
+        $scheduleDate = $request->input('schedule_date');
+        $timeStart = $request->input('time_start');
+        $timeStop = $request->input('time_stop');
+        $studentNo = $request->input('distributed_students');
+
 
         // Validate each schedule for conflicts
-        for ($i = 0; $i < count($courses); $i++) {
-            $formattedDate = Carbon::createFromFormat('M d, Y', $dates[$i])->format('Y-m-d');
-            $formattedTimeStart = Carbon::createFromFormat('h:i A', $timeStarts[$i])->format('H:i');
-            $formattedTimeStop = Carbon::createFromFormat('h:i A', $timeStops[$i])->format('H:i');
+        for ($i = 0; $i < count($scheduleDate); $i++) {
+            $formattedDate = Carbon::createFromFormat('M d, Y', $scheduleDate[$i])->format('Y-m-d');
+            $formattedTimeStart = Carbon::createFromFormat('h:i A', $timeStart[$i])->format('H:i');
+            $formattedTimeStop = Carbon::createFromFormat('h:i A', $timeStop[$i])->format('H:i');
 
             // Check for existing schedule conflict
-            $existingSchedule = TrainingSchedule::where('instructor_id', $instructors[$i])
-                ->where('schedule_date', $formattedDate)
-                ->where(function ($query) use ($formattedTimeStart, $formattedTimeStop) {
-                    $query->whereBetween('time_start', [$formattedTimeStart, $formattedTimeStop])
-                        ->orWhereBetween('time_stop', [$formattedTimeStart, $formattedTimeStop])
-                        ->orWhere(function ($query) use ($formattedTimeStart, $formattedTimeStop) {
-                            $query->where('time_start', '<=', $formattedTimeStart)
-                                    ->where('time_stop', '>=', $formattedTimeStop);
-                        });
+            $existingSchedule = TrainingSchedule::where('instructor_id', $instructorID)
+            ->where('schedule_date', $formattedDate)
+            ->where(function ($query) use ($formattedTimeStart, $formattedTimeStop) {
+                $query->where(function ($q) use ($formattedTimeStart, $formattedTimeStop) {
+                    $q->whereBetween('time_start', [$formattedTimeStart, $formattedTimeStop])
+                    ->orWhereBetween('time_stop', [$formattedTimeStart, $formattedTimeStop]);
                 })
-                ->exists();
+                ->orWhere(function ($q) use ($formattedTimeStart, $formattedTimeStop) {
+                    $q->where('time_start', '<', $formattedTimeStart) // Use < instead of <=
+                    ->where('time_stop', '>', $formattedTimeStop); // Use > instead of >=
+                });
+            })
+            ->where('time_stop', '!=', $formattedTimeStart) // Exclude exact end-to-start matches
+            ->where('time_start', '!=', $formattedTimeStop) // Exclude exact start-to-end matches
+            ->first(); 
+
 
             if ($existingSchedule) {
-                return redirect()->back()->withErrors([
-                    'error' => "Instructor ID {$instructors[$i]} already has a schedule conflict on {$dates[$i]} from {$timeStarts[$i]} to {$timeStops[$i]}."
-                ]);
+                $instructor = User::where('id', $instructorID)->first(['firstName', 'lastName']);
+                $existingSchedule_formattedDate = Carbon::createFromFormat('Y-m-d', $existingSchedule->schedule_date)->format('M d, Y');
+                $existingSchedule_formattedTimeStart = Carbon::createFromFormat('H:i:s', $existingSchedule->time_start)->format('h:i A');
+                $existingSchedule_formattedTimeStop = Carbon::createFromFormat('H:i:s', $existingSchedule->time_stop)->format('h:i A');
+
+                if ($instructor) {
+                    return redirect()->back()->withErrors([
+                        'error' => "{$instructor->firstName} {$instructor->lastName} already has a schedule for {$existingSchedule_formattedDate} from {$existingSchedule_formattedTimeStart} to {$existingSchedule_formattedTimeStop}."
+                    ]);
+                }
             }
         }
 
+        $studentIds = StudentInstructorDistribution::where('instructor_id', $instructorID)
+                ->where('enrolment_batch_id', $batchID)
+                ->pluck('student_id')
+                ->toArray(); // Convert collection to an array
+
+        $students = $studentIds ? User::whereIn('id', $studentIds)->orderBy('id', 'asc')->pluck('id')->toArray() : [];
+
+        $studentIndex = 0; // Track the index for student allocation
+
         // Save the schedules if no conflicts are found
-        for ($i = 0; $i < count($courses); $i++) {
-            $formattedDate = Carbon::createFromFormat('M d, Y', $dates[$i])->format('Y-m-d');
-            $formattedTimeStart = Carbon::createFromFormat('h:i A', $timeStarts[$i])->format('H:i');
-            $formattedTimeStop = Carbon::createFromFormat('h:i A', $timeStops[$i])->format('H:i');
-            
+        for ($i = 0; $i < count($scheduleDate); $i++) {
+            $formattedDate = Carbon::createFromFormat('M d, Y', $scheduleDate[$i])->format('Y-m-d');
+            $formattedTimeStart = Carbon::createFromFormat('h:i A', $timeStart[$i])->format('H:i:s');
+            $formattedTimeStop = Carbon::createFromFormat('h:i A', $timeStop[$i])->format('H:i:s');
+
+            // Extract the required number of students
+            $numStudents = $studentNo[$i]; // Number of students needed in this loop
+            $assignedStudents = array_slice($students, $studentIndex, $numStudents); // Slice students
+            $studentIndex += $numStudents; // Move the pointer forward
+
             TrainingSchedule::create([
-                'instructor_id' => $instructors[$i],
-                'objective_id' => $courses[$i],
-                'curriculum_id' => $topics[$i],
+                'batch_id' => $batchID,
+                'course_id' => $courseID,
+                'instructor_id' => $instructorID,
+                'topic_id' => $topicID,
                 'schedule_date' => $formattedDate,
                 'time_start' => $formattedTimeStart,
                 'time_stop' => $formattedTimeStop,
+                'students' => json_encode($assignedStudents), // Store as JSON array
             ]);
         }
 

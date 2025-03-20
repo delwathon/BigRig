@@ -104,6 +104,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/course/curriculum/destroy/{id}', [CourseController::class, 'curriculumDestroy'])->name('curriculum.destroy');
     Route::get('/training-schedule', [TrainingScheduleController::class, 'index'])->name('schedule');
     Route::get('/getTopics/{id}', [TrainingScheduleController::class, 'getTopics']);
+    Route::get('/getInstructors/{course_id}', [TrainingScheduleController::class, 'getInstructors']);
+    Route::get('/getInstructorStudents/{batch_id}/{instructor_id}', [TrainingScheduleController::class, 'getInstructorStudents']);
     Route::post('/training-schedule/create', [TrainingScheduleController::class, 'create'])->name('schedule.create');
     Route::get('/instructors', [InstructorController::class, 'index'])->name('instructors');
     Route::post('/instructor/store', [InstructorController::class, 'store'])->name('instructor.store');

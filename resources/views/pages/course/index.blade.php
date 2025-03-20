@@ -64,6 +64,13 @@
             open(data) {
                 this.data = { ...data };
                 this.modalOpen = true;
+
+                // Wait for modal to open, then set CKEditor content
+                setTimeout(() => {
+                    if (CKEDITOR.instances.editor1) {
+                        CKEDITOR.instances.editor1.setData(this.data.requirements);
+                    }
+                }, 300);
             },
             close() {
                 this.modalOpen = false;
@@ -74,6 +81,11 @@
                     duration: '',
                     requirements: ''
                 };
+
+                // Clear CKEditor content when closing modal
+                if (CKEDITOR.instances.editor1) {
+                    CKEDITOR.instances.editor1.setData('');
+                }
             },
         });
 
@@ -88,6 +100,20 @@
                 this.modalOpen = false;
                 this.objectiveId = null;
             }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Sync CKEditor content with Alpine store
+        CKEDITOR.instances.editor1.on("change", function () {
+            Alpine.store("editModal").data.requirements = this.getData();
+        });
+
+        CKEDITOR.instances.editor1.on("input", function () {
+            Alpine.store("editModal").data.requirements = this.getData();
         });
     });
 </script>

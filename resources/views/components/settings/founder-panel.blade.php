@@ -20,14 +20,14 @@
                 </div>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-full">
-                        <label class="block text-sm font-medium mb-1" for="speech_title">Title <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium mb-1" for="speech_title">Welcome Title <span class="text-red-500">*</span></label>
                         <textarea id="feedback" class="form-textarea w-full focus:border-gray-300" rows="4" placeholder="Speech Title" name="speech_title">{{ $founder->speech_title }}</textarea>
                     </div>
                 </div>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-full">
-                        <label class="block text-sm font-medium mb-1" for="speech_content">Speech Content <span class="text-red-500">*</span></label>
-                        <textarea id="feedback" class="form-textarea w-full focus:border-gray-300" rows="8" placeholder="Welcome message" name="speech_content">{{ $founder->speech_content }}</textarea>
+                        <label class="block text-sm font-medium mb-1" for="speech_content">Welcome Message <span class="text-red-500">*</span></label>
+                        <textarea name="speech_content" class="form-textarea w-full px-2 py-1" id="editor" rows="10" cols="80">{!! $founder->speech_content !!}</textarea>
                     </div>
                 </div>
             </section>
@@ -61,25 +61,22 @@
             <section>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-1/3">
-                        <label class="block text-sm font-medium mb-1" for="founder_picture">Founder's Picture</label>
+                        <label class="block text-sm font-medium mb-1" for="founder_picture">Welcome Picture Right</label>
                         <div class="mr-4">
                             <input id="picture" class="form-input w-full px-2 py-1" type="file" name="founder_picture" />
                         </div>
-                        <!-- <button class="btn-sm dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300">Change</button> -->
                     </div>
                     <div class="sm:w-1/3">
-                        <label class="block text-sm font-medium mb-1" for="secondary_picture">Complementing Picture</label>
+                        <label class="block text-sm font-medium mb-1" for="secondary_picture">Welcome Picture Left</label>
                         <div class="mr-4">
                             <input id="picture" class="form-input w-full px-2 py-1" type="file" name="secondary_picture" />
                         </div>
-                        <!-- <button class="btn-sm dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300">Change</button> -->
                     </div>
                     <div class="sm:w-1/3">
                         <label class="block text-sm font-medium mb-1" for="signature">Signature</label>
                         <div class="mr-4">
                             <input id="picture" class="form-input w-full px-2 py-1" type="file" name="signature" />
                         </div>
-                        <!-- <button class="btn-sm dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300">Change</button> -->
                     </div>
                 </div>
             </section>

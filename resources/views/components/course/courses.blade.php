@@ -62,10 +62,10 @@
                                     <!-- Edit Button -->
                                     <button type="button"  @click="$store.editModal.open({
                                             id: {{ $objective->id }},
-                                            objective: '{{ $objective->objective }}',
+                                            objective: `{{ $objective->objective }}`,
                                             price: {{ $objective->price }},
                                             duration: {{ $objective->duration }},
-                                            requirements: '{{ $objective->requirement }}'
+                                            requirements: `{!! $objective->requirement !!}`
                                         })" 
                                         aria-controls="edit-modal" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600">
                                         <svg class="fill-current text-gray-400 dark:text-gray-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
@@ -122,9 +122,7 @@
         x-transition:leave-end="opacity-0 translate-y-4"
         x-cloak
     >
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" 
-             @click.outside="$store.createModal.close()" 
-             @keydown.escape.window="$store.createModal.close()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.stop>
             <!-- Modal header -->
             <div class="px-5 py-3 border-b border-gray-200 dark:border-gray-700/60">
                 <div class="flex justify-between items-center">
@@ -161,8 +159,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1" for="requirements">Requirements <span class="text-red-500">*</span></label>
-                            <textarea id="requirements" class="form-textarea w-full px-2 py-1" rows="4" name="requirements" required></textarea>
-                            <span class="text-xs">Separate requirements with commas (,).</span>
+                            <textarea name="requirements" class="form-textarea w-full px-2 py-1" id="editor" rows="10" cols="80"></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1" for="image_url">Picture Upload <span class="text-red-500">*</span></label>
@@ -215,9 +212,7 @@
         x-transition:leave-end="opacity-0 translate-y-4"
         x-cloak
     >
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" 
-             @click.outside="$store.editModal.close()" 
-             @keydown.escape.window="$store.editModal.close()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.stop>
             <!-- Modal header -->
             <div class="px-5 py-3 border-b border-gray-200 dark:border-gray-700/60">
                 <div class="flex justify-between items-center">
@@ -256,8 +251,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1" for="requirements">Requirements <span class="text-red-500">*</span></label>
-                            <textarea id="requirements" class="form-textarea w-full px-2 py-1" rows="4" name="requirements" x-model="$store.editModal.data.requirements" required></textarea>
-                            <span class="text-xs">Separate requirements with commas (,).</span>
+                            <textarea name="requirements" class="form-textarea w-full px-2 py-1" id="editor1" rows="10" cols="80"></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1" for="image_url">Picture Upload</label>
@@ -310,7 +304,7 @@
         x-transition:leave-end="opacity-0 translate-y-4"
         x-cloak
     >
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.outside="$store.deleteModal.close()" @keydown.escape.window="$store.deleteModal.close()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.stop>
             <div class="p-5 flex space-x-4">
                 <!-- Icon -->
                 <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-gray-100 dark:bg-gray-700">

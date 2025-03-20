@@ -38,6 +38,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet" />
 
+        <style>
+            .cke_notifications_area {
+                display: none !important;
+            }
+        </style>
+        
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -257,6 +264,15 @@
 
         @livewireScriptConfig
     </body>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    
+    <script>
+        CKEDITOR.replace( 'editor' );
+        CKEDITOR.replace( 'editor1' );
+    </script> 
 
     <script>
         document.addEventListener('alpine:init', () => {

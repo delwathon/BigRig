@@ -55,18 +55,10 @@
                             <header class="flex justify-between items-start mb-2">
                                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Course Requirement(s)</h2>
                             </header>
-                            <div class="items-start">
-                                <p class="pb-4">The following are required to participate in the {{ strtolower($objective->objective) }} course</p>
-                                <ul>
-                                    @foreach(explode(',', $objective->requirement) as $requirement)
-                                        <li class="flex items-center pl-4">
-                                            <svg class="w-3 h-3 shrink-0 fill-current text-green-500 mr-2" viewBox="0 0 12 12">
-                                                <path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 00.28 6.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 1.28z" />
-                                            </svg>
-                                            <div class="text-sm">{{ ucfirst(trim($requirement)) }}</div>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                            <div class="items-start">                              
+                                <div class="course-details space-y-6">
+                                    {!! $objective->requirement !!}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,29 +83,8 @@
                     <header class="pb-2 flex items-center">
                         <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Course Details</h2>
                     </header>
-                    <div class="space-y-6">
-                        <p>{{ $objective->course_details }}</p>
-                    </div>
-                </div>
-
-                <hr class="my-6 border-t border-gray-100 dark:border-gray-700/60" />
-
-                <!-- About You -->
-                <div>
-                    <header class="pb-2 flex items-center">
-                        <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Learning Objectives</h2>
-                    </header>
-                    <div class="space-y-6">
-                        <ul>
-                            @foreach(explode(';', $objective->learning_objectives) as $learning_objective)
-                                <li class="flex items-center pl-2 mb-1">
-                                    <svg class="w-3 h-3 shrink-0 fill-current text-green-500 mr-2" viewBox="0 0 12 12">
-                                        <path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 00.28 6.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 1.28z" />
-                                    </svg>
-                                    <div class="text-md">{{ ucfirst(trim($learning_objective)) }}</div>
-                                </li>
-                            @endforeach
-                        </ul>
+                    <div class="course-details space-y-6">
+                        {!! $objective->course_details !!}
                     </div>
                 </div>
 
@@ -232,8 +203,8 @@
                     </div>
                     @if (Auth::user()->hasPermission('update_course_management'))
                     <div class="space-y-2">
-                        <button class="btn w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" @click="$store.updateCourseDetails.open({id: {{ $objective->id }}, course_details: '{{ $objective->course_details }}', learning_objectives: '{{ $objective->learning_objectives }}'})" aria-controls="course-details-modal">Update Course Details -&gt;</button>
-                    </div>
+                        <button class="btn w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" @click="$store.updateCourseDetails.open({id: {{ $objective->id }}})" aria-controls="course-details-modal">Update Course Details -&gt;</button>
+                    </div>                    
                     @endif
                 </div>
 
@@ -245,31 +216,18 @@
                             @csrf
                                 <div>
                                     <div class="space-y-4">
-                                        <!-- Card Number -->
+                                        <!-- New curriculm topic -->
                                         <div>
                                             <label class="block text-sm font-medium mb-1" for="card-nr">Topic <span class="text-red-500">*</span></label>
                                             <input type="hidden" name="objective_id" value="{{ $objective->id }}" required>
                                             <input id="card-nr" class="form-input w-full" type="text" name="topic" placeholder="Introduction to Commercial Trucking" required/>
                                         </div>
 
-                                        <!-- Name on Card -->
+                                        <!-- New Curriculum Summary -->
                                         <div>
                                             <label class="block text-sm font-medium mb-1" for="card-name">Summary <span class="text-red-500">*</span></label>
                                             <textarea id="feedback" class="form-textarea w-full focus:border-gray-300" name="summary" rows="4" placeholder="Overview of the trucking industry, career opportunities, and job responsibilities." required></textarea>
                                         </div>
-
-                                        {{-- <div>
-                                            <label class="block text-sm font-medium mb-1" for="card-country">Schedule Date &amp; Time <span class="text-red-500">*</span></label>
-                                            <div class="relative">
-                                                <input class="datetimepicker form-input pl-9 dark:bg-gray-800 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 font-medium w-[15.5rem]" placeholder="Select date" data-class="flatpickr-right" />
-                                                <div class="absolute inset-0 right-auto flex items-center pointer-events-none">
-                                                    <svg class="fill-current text-gray-400 dark:text-gray-500 ml-3" width="16" height="16" viewBox="0 0 16 16">
-                                                        <path d="M5 4a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z" />
-                                                        <path d="M4 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4ZM2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Z" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                 </div>
 
@@ -320,7 +278,7 @@
             x-transition:leave-end="opacity-0 translate-y-4"
             x-cloak
         >
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.outside="$store.updateCourseDetails.modalOpen = false" @keydown.escape.window="$store.updateCourseDetails.modalOpen = false">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-4xl w-full max-h-4xl" @click.stop>
                 <form method="POST" action="{{ route('course-details.update') }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -328,7 +286,7 @@
                     <div class="px-5 py-3 border-b border-gray-200 dark:border-gray-700/60">
                         <div class="flex justify-between items-center">
                             <div class="font-semibold text-gray-800 dark:text-gray-100">{{ $objective->objective }} Course Details</div>
-                            <button class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400" @click="$store.updateCourseDetails.modalOpen = false">
+                            <button type="button" class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400" @click="$store.updateCourseDetails.modalOpen = false">
                                 <div class="sr-only">Close</div>
                                 <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16">
                                     <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z" />
@@ -340,14 +298,9 @@
                     <div class="px-5 py-4">
                         <div class="space-y-3">
                             <input type="hidden" x-model="$store.updateCourseDetails.data.id" name="id">
-                            <div>
+                            <div>                                
                                 <label class="block text-sm font-bold mb-1" for="feedback">Give the details of the course</label>
-                                <textarea id="feedback" class="form-textarea w-full px-2 py-1" rows="10" name="course_details" x-model="$store.updateCourseDetails.data.course_details" required></textarea>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold mb-0" for="feedback">What are the learning objectives for this course</label>
-                                <span class="text-red-500 text-xs">Separate requirements with semicolon (;)</span>
-                                <textarea id="feedback" class="form-textarea w-full px-2 py-1" rows="10" name="learning_objectives" x-model="$store.updateCourseDetails.data.learning_objectives" required></textarea>
+                                <textarea name="course_details" class="form-textarea w-full px-2 py-1" id="editor" rows="50" cols="80">{!! $objective->course_details !!}</textarea>
                             </div>
                         </div>
                     </div>
@@ -609,7 +562,17 @@
     <!-- End -->
 </x-app-layout>
 
-
+<script>
+    $(document).ready(function () {
+        $(".course-details li").each(function () {
+            $(this).addClass("flex items-center pl-5 mb-1 text-sm").prepend(`
+                <svg class="w-3 h-3 shrink-0 fill-current text-green-500 mr-2" viewBox="0 0 12 12">
+                    <path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 00.28 6.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 1.28z" />
+                </svg>
+            `);
+        });
+    });
+</script>
 
 <script>
     document.addEventListener('alpine:init', () => {
@@ -634,8 +597,6 @@
             modalOpen: false,
             data: {
                 id: '',
-                course_details: '',
-                learning_objectives: ''
             },
             open(data) {
                 this.data = { ...data };
@@ -645,8 +606,6 @@
                 this.modalOpen = false;
                 this.data = {
                     id: '',
-                    course_details: '',
-                    learning_objectives: ''
                 };
             },
         });

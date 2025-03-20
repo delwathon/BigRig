@@ -27,7 +27,7 @@
                             <a class="inline-flex mb-2" href="{{ route('meetups-post') }}">
                                 <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100">{{ $achievement->title }}</h3>
                             </a>
-                            <div class="text-sm">{{ $achievement->description }}</div>
+                            <div class="text-sm">{!! $achievement->description !!}</div>
                         </div>
                         <!-- Footer -->
                         <div class="flex justify-between items-center mt-3">
@@ -98,9 +98,7 @@
         x-transition:leave-end="opacity-0 translate-y-4"
         x-cloak
     >
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" 
-             @click.outside="$store.createModal.close()" 
-             @keydown.escape.window="$store.createModal.close()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.stop>
             <!-- Modal header -->
             <div class="px-5 py-3 border-b border-gray-200 dark:border-gray-700/60">
                 <div class="flex justify-between items-center">
@@ -127,7 +125,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1" for="description">Details of Achievement <span class="text-red-500">*</span></label>
-                            <textarea id="description" class="form-textarea w-full px-2 py-1" rows="10" name="description" required></textarea>
+                            <textarea name="description" class="form-textarea w-full px-2 py-1" id="editor" rows="10" cols="80"></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1" for="year">Achievement Year <span class="text-red-500">*</span></label>
@@ -184,9 +182,7 @@
         x-transition:leave-end="opacity-0 translate-y-4"
         x-cloak
     >
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" 
-             @click.outside="$store.editModal.close()" 
-             @keydown.escape.window="$store.editModal.close()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.stop>
             <!-- Modal header -->
             <div class="px-5 py-3 border-b border-gray-200 dark:border-gray-700/60">
                 <div class="flex justify-between items-center">
@@ -215,7 +211,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1" for="description">Details of Achievement <span class="text-red-500">*</span></label>
-                            <textarea id="description" class="form-textarea w-full px-2 py-1" rows="10" name="description" x-model="$store.editModal.data.description" required></textarea>
+                            <textarea name="description" class="form-textarea w-full px-2 py-1" id="editor1" rows="10" cols="80"></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1" for="year">Achievement Year <span class="text-red-500">*</span></label>
@@ -272,7 +268,7 @@
         x-transition:leave-end="opacity-0 translate-y-4"
         x-cloak
     >
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.outside="$store.deleteModal.close()" @keydown.escape.window="$store.deleteModal.close()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.stop>
             <div class="p-5 flex space-x-4">
                 <!-- Icon -->
                 <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-gray-100 dark:bg-gray-700">

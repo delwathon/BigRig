@@ -27,13 +27,13 @@
                             <!-- Table header -->
                             <thead class="text-xs uppercase text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700 dark:bg-opacity-50 rounded-sm">
                                 <tr>
-                                    <th class="p-2 whitespace-nowrap">
+                                    <th class="p-2">
                                         <div class="font-semibold text-left">Image</div>
                                     </th>
-                                    <th class="p-2 whitespace-nowrap">
+                                    <th class="p-2">
                                         <div class="font-semibold text-left">Brief Description</div>
                                     </th>
-                                    <th class="p-2 whitespace-nowrap">
+                                    <th class="p-2">
                                         <div class="font-semibold text-center">Actions</div>
                                     </th>
                                 </tr>
@@ -43,7 +43,7 @@
                                 <!-- Row -->
                                 @foreach ($services as $service)
                                     <tr>
-                                        <td class="p-2 whitespace-nowrap">
+                                        <td class="p-2">
                                             <div class="flex items-center">
                                                 <div class="shrink-0 rounded-full mr-2 sm:mr-3 bg-violet-500">
                                                     <img class="rounded-sm border-2 border-white dark:border-gray-800 box-content" src="{{ Storage::url($service->service_picture) }}" width="60" height="40" alt="User 01" />
@@ -51,10 +51,10 @@
                                                 <div class="font-medium text-gray-800 dark:text-gray-100">{{ $service->service_name }}</div>
                                             </div>
                                         </td>
-                                        <td class="p-2 whitespace-nowrap">
+                                        <td class="p-2">
                                             {{ $service->service_description }}
                                         </td>
-                                        <td class="p-2 whitespace-nowrap">
+                                        <td class="p-2">
                                             <div class="flex items-center gap-1">
                                                 <!-- Edit Button -->
                                                 <button type="button" @click="$store.editModal.open({ id: {{ $service->id }}, service_name: '{{ $service->service_name }}', service_description: '{{ $service->service_description }}'})" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600">

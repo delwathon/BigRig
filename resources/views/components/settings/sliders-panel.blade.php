@@ -66,7 +66,7 @@
         x-transition:leave-end="opacity-0 translate-y-4"
         x-cloak
     >
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.outside="$store.deleteModal.close()" @keydown.escape.window="$store.deleteModal.close()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-auto max-w-lg w-full max-h-full" @click.stop>
             <div class="p-5 flex space-x-4">
                 <!-- Icon -->
                 <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-gray-100 dark:bg-gray-700">

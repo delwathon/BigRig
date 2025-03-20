@@ -18,9 +18,11 @@ class TrainingSchedule extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'batch_id',
         'instructor_id',
-        'objective_id',
-        'curriculum_id',
+        'course_id',
+        'topic_id',
+        'students',
         'schedule_date',
         'time_start',
         'time_stop'
@@ -33,12 +35,12 @@ class TrainingSchedule extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function objective()
+    public function course()
     {
         return $this->belongsTo(TrainingObjective::class);
     }
 
-    public function curriculum()
+    public function topic()
     {
         return $this->belongsTo(Curriculum::class);
     }

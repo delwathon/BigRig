@@ -13,18 +13,31 @@ return new class extends Migration
     {
         Schema::create('training_schedules', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('batch_id')
+                  ->constrained('enrolment_batches', 'id')
+                  ->onDelete('cascade');
+
             $table->foreignId('instructor_id')
-                  ->constrained('users')
+                  ->constrained('users', 'id')
                   ->onDelete('cascade');
-            $table->foreignId('objective_id')
-                  ->constrained('training_objectives')
+
+            $table->foreignId('course_id')
+                  ->constrained('training_objectives', 'id')
                   ->onDelete('cascade');
-            $table->foreignId('curriculum_id')
-                  ->constrained('curriculum')
+
+            $table->foreignId('topic_id')
+                  ->constrained('curriculum', 'id')
                   ->onDelete('cascade');
+
+            $table->json('students');
+
             $table->date('schedule_date');
+
             $table->time('time_start');
+
             $table->time('time_stop');
+
             $table->timestamps();
         });
     }

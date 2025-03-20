@@ -75,7 +75,7 @@ class DashboardController extends Controller
             $revenuePI = (($revenueToday - $revenueYesterday) / $revenueYesterday) * 100;
         }
 
-        $schedules = TrainingSchedule::with(['instructor', 'objective', 'curriculum'])->orderBy('schedule_date', 'asc')->paginate(10);
+        $schedules = TrainingSchedule::with(['instructor', 'course', 'topic'])->orderBy('schedule_date', 'asc')->paginate(10);
 
         $subscriptions = Subscription::with('user')->whereDate('updated_at', $today)->orderBy('updated_at', 'desc')->get();
 
