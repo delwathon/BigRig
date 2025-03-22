@@ -24,3 +24,5 @@ To Do
 - Landing page varieties
 - Blog - Premium
 - Fix Course listing on registration page
+- API fetch exchange rate
+- 

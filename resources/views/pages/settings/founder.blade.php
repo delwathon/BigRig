@@ -29,7 +29,7 @@
                                 <h2 class="text-2xl text-gray-800 dark:text-gray-100 font-bold mb-6">Founder's Picture</h2>
                                     <div>
                                         <div class="space-y-4">
-                                            <img class="rounded-sm h-56" src="{{ Storage::url($founder->founder_picture) }}" width="200" height="142" alt="Product 01" />
+                                            <img class="rounded-sm h-56" src="{{ optional($founder)->founder_picture ? Storage::url($founder->founder_picture) : '' }}" width="200" height="142" alt="Product 01" />
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                 <h2 class="text-2xl text-gray-800 dark:text-gray-100 font-bold mb-6">Complementing Picture</h2>
                                     <div>
                                         <div class="space-y-4">
-                                            <img class="rounded-sm h-56" src="{{ Storage::url($founder->secondary_picture) }}" width="200" height="142" alt="Product 01" />
+                                            <img class="rounded-sm h-56" src="{{ optional($founder)->secondary_picture ? Storage::url($founder->secondary_picture) : '' }}" width="200" height="142" alt="Product 01" />
                                         </div>
                                     </div>
                                 </div>

@@ -11,23 +11,23 @@
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-1/2">
                         <label class="block text-sm font-medium mb-1" for="founder_name">Founder's Full Name  <span class="text-red-500">*</span></label>
-                        <input id="name" class="form-input w-full" type="text" value="{{ $founder->founder_name }}" name="founder_name"/>
+                        <input id="name" class="form-input w-full" type="text" value="{{ optional($founder)->founder_name }}" name="founder_name"/>
                     </div>
                     <div class="sm:w-1/2 flex ml-auto">
                         <label class="block text-sm font-medium mb-1" for="">Signature</label>
-                        <img class="rounded-sm h-12 mt-5" src="{{ Storage::url($founder->signature) }}" width="200" height="142" alt="Founder Signature" />
+                        <img class="rounded-sm h-12 mt-5" src="{{ optional($founder)->signature ? Storage::url($founder->signature) : '' }}" width="200" height="142" alt="Founder Signature" />
                     </div>
                 </div>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-full">
                         <label class="block text-sm font-medium mb-1" for="speech_title">Welcome Title <span class="text-red-500">*</span></label>
-                        <textarea id="feedback" class="form-textarea w-full focus:border-gray-300" rows="4" placeholder="Speech Title" name="speech_title">{{ $founder->speech_title }}</textarea>
+                        <textarea id="feedback" class="form-textarea w-full focus:border-gray-300" rows="4" placeholder="Speech Title" name="speech_title">{{ optional($founder)->speech_title }}</textarea>
                     </div>
                 </div>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-full">
                         <label class="block text-sm font-medium mb-1" for="speech_content">Welcome Message <span class="text-red-500">*</span></label>
-                        <textarea name="speech_content" class="form-textarea w-full px-2 py-1" id="editor" rows="10" cols="80">{!! $founder->speech_content !!}</textarea>
+                        <textarea name="speech_content" class="form-textarea w-full px-2 py-1" id="editor" rows="10" cols="80">{!! optional($founder)->speech_content !!}</textarea>
                     </div>
                 </div>
             </section>
@@ -38,21 +38,21 @@
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-1/2">
                         <label class="block text-sm font-medium mb-1" for="facebook_handle">Facebook</label>
-                        <input id="name" class="form-input w-full" type="text" value="{{ $founder->facebook_handle }}" name="facebook_handle"/>
+                        <input id="name" class="form-input w-full" type="text" value="{{ optional($founder)->facebook_handle }}" name="facebook_handle"/>
                     </div>
                     <div class="sm:w-1/2">
                         <label class="block text-sm font-medium mb-1" for="twitter_handle">Twitter</label>
-                        <input id="business-id" class="form-input w-full" type="text" value="{{ $founder->twitter_handle }}" name="twitter_handle"/>
+                        <input id="business-id" class="form-input w-full" type="text" value="{{ optional($founder)->twitter_handle }}" name="twitter_handle"/>
                     </div>
                 </div>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-1/2">
                         <label class="block text-sm font-medium mb-1" for="linkedin_handle">LinkedIn</label>
-                        <input id="name" class="form-input w-full" type="text" value="{{ $founder->linkedin_handle }}" name="linkedin_handle"/>
+                        <input id="name" class="form-input w-full" type="text" value="{{ optional($founder)->linkedin_handle }}" name="linkedin_handle"/>
                     </div>
                     <div class="sm:w-1/2">
                         <label class="block text-sm font-medium mb-1" for="instagram_handle">Instagram</label>
-                        <input id="name" class="form-input w-full" type="text" value="{{ $founder->instagram_handle }}" name="instagram_handle"/>
+                        <input id="name" class="form-input w-full" type="text" value="{{ optional($founder)->instagram_handle }}" name="instagram_handle"/>
                     </div>
                 </div>
             </section>
@@ -82,7 +82,7 @@
             </section>
 
             <section>
-                <div class="flex items-center" x-data="{ checked: {{ $founder->show_founder ? 'true' : 'false' }} }">
+                <div class="flex items-center" x-data="{ checked: {{ optional($founder)->show_founder ? 'true' : 'false' }} }">
                     <div class="form-switch">
                         <input type="hidden" name="show_founder" value="0"> <!-- Ensures false is sent when unchecked -->
                         <input type="checkbox" name="show_founder" id="switch-1" class="sr-only" x-model="checked" value="1" />

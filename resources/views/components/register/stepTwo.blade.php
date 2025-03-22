@@ -290,8 +290,7 @@
         <div class="flex-1">
             <x-label for="gender">{{ __('Are you currently taking any prescribed medications?') }} <span class="text-red-500">*</span></x-label>
             <div class="flex flex-wrap items-center -m-3">
-
-                <div class="m-3">
+                <div class="m-3 w-full">
                     <textarea id="prescribed_meds" name="prescribed_medication" :value="old('prescribed_medication')" class="form-textarea w-full focus:border-gray-300" rows="4" placeholder="If so, please provide more details about the medications you're using. Else, type 'NIL'"></textarea>
                 </div>
             </div>
@@ -302,8 +301,7 @@
         <div class="flex-1">
             <x-label for="gender">{{ __('Have you ever failed a drug test?') }} <span class="text-red-500">*</span></x-label>
             <div class="flex flex-wrap items-center -m-3">
-
-                <div class="m-3">
+                <div class="m-3 w-full">
                     <textarea id="drug_test" name="failed_drug_test" :value="old('failed_drug_test')" class="form-textarea w-full focus:border-gray-300" rows="4" placeholder="If so, please provide more details about the medications you're using. Else, type 'NIL'"></textarea>
                 </div>
             </div>

@@ -1,3 +1,8 @@
+@php
+    use App\Models\TrainingObjective;
+    $courses = TrainingObjective::all();
+@endphp
+
 @section('title', 'Register')
 <x-authentication-layout>
     <div class="flex-1">
@@ -43,7 +48,7 @@
                     </div>
 
                     <div x-show="stepThree" x-cloak>
-                        <x-register.stepThree />
+                        <x-register.stepThree :courses="$courses"/>
 
                         <div class="flex items-center justify-between mt-6">
                             <a class="text-sm underline hover:no-underline" href="javascript:void(0)" @click.prevent="stepOne = false; stepTwo = true; stepThree = false">&lt;- Back</a>
