@@ -372,7 +372,7 @@
                         >
                             <ul>
                                 <li>
-                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <div class="flex items-center justify-between">
                                             <div class="grow flex items-center truncate">
                                                 <img class="w-7 h-7 rounded-full mr-2" src="{{ asset('images/channel-01.png') }}" width="28" height="28" alt="Channel 01" />
@@ -385,7 +385,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <div class="flex items-center justify-between">
                                             <div class="grow flex items-center truncate">
                                                 <img class="w-7 h-7 rounded-full mr-2" src="{{ asset('images/channel-02.png') }}" width="28" height="28" alt="Channel 02" />
@@ -395,7 +395,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <div class="flex items-center justify-between">
                                             <div class="grow flex items-center truncate">
                                                 <img class="w-7 h-7 rounded-full mr-2" src="{{ asset('images/channel-03.png') }}" width="28" height="28" alt="Channel 03" />
@@ -445,19 +445,19 @@
                             <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase pt-1.5 pb-2 px-4">Notifications</div>
                             <ul>
                                 <li class="border-b border-gray-200 dark:border-gray-700/60 last:border-0">
-                                    <a class="block py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-700/20" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="block py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-700/20" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <span class="block text-sm mb-2">📣 <span class="font-medium text-gray-800 dark:text-gray-100">Edit your information in a swipe</span> Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</span>
                                         <span class="block text-xs font-medium text-gray-400 dark:text-gray-500">Feb 12, 2024</span>
                                     </a>
                                 </li>
                                 <li class="border-b border-gray-200 dark:border-gray-700/60 last:border-0">
-                                    <a class="block py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-700/20" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="block py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-700/20" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <span class="block text-sm mb-2">📣 <span class="font-medium text-gray-800 dark:text-gray-100">Edit your information in a swipe</span> Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</span>
                                         <span class="block text-xs font-medium text-gray-400 dark:text-gray-500">Feb 9, 2024</span>
                                     </a>
                                 </li>
                                 <li class="border-b border-gray-200 dark:border-gray-700/60 last:border-0">
-                                    <a class="block py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-700/20" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="block py-2 px-4 hover:bg-gray-50 dark:hover:bg-gray-700/20" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <span class="block text-sm mb-2">🚀<span class="font-medium text-gray-800 dark:text-gray-100">Say goodbye to paper receipts!</span> Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</span>
                                         <span class="block text-xs font-medium text-gray-400 dark:text-gray-500">Jan 24, 2024</span>
                                     </a>
@@ -501,7 +501,7 @@
                             <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase pt-1.5 pb-2 px-3">Need help?</div>
                             <ul>
                                 <li>
-                                    <a class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <svg class="w-3 h-3 fill-current text-violet-500 shrink-0 mr-2" viewBox="0 0 12 12">
                                             <rect y="3" width="12" height="9" rx="1" />
                                             <path d="M2 0h8v2H2z" />
@@ -510,7 +510,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <svg class="w-3 h-3 fill-current text-violet-500 shrink-0 mr-2" viewBox="0 0 12 12">
                                             <path d="M10.5 0h-9A1.5 1.5 0 000 1.5v9A1.5 1.5 0 001.5 12h9a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0010.5 0zM10 7L8.207 5.207l-3 3-1.414-1.414 3-3L5 2h5v5z" />
                                         </svg>
@@ -518,7 +518,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                    <a class="font-medium text-sm text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 flex items-center py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                         <svg class="w-3 h-3 fill-current text-violet-500 shrink-0 mr-2" viewBox="0 0 12 12">
                                             <path d="M11.854.146a.5.5 0 00-.525-.116l-11 4a.5.5 0 00-.015.934l4.8 1.921 1.921 4.8A.5.5 0 007.5 12h.008a.5.5 0 00.462-.329l4-11a.5.5 0 00-.116-.525z" />
                                         </svg>
@@ -565,13 +565,13 @@
                         >
                             <ul>
                                 <li>
-                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
+                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
                                 </li>
                                 <li>
-                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
+                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
                                 </li>
                                 <li>
-                                    <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
+                                    <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
                                 </li>
                             </ul>
                         </div>

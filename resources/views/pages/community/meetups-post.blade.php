@@ -25,10 +25,10 @@
                 <div class="space-y-3 sm:flex sm:items-center sm:justify-between sm:space-y-0 mb-6">
                     <!-- Author -->
                     <div class="flex items-center sm:mr-4">
-                        <a class="block mr-2 shrink-0" href="#0">
+                        <a class="block mr-2 shrink-0" href="javascript:void(0)">
                             <img class="rounded-full" src="{{ asset('images/user-32-07.jpg') }}" width="32" height="32" alt="User 04" />
                         </a>
-                        <div class="text-sm whitespace-nowrap">Hosted by <a class="font-semibold text-gray-800 dark:text-gray-100" href="#0">Monica Fishkin</a></div>
+                        <div class="text-sm whitespace-nowrap">Hosted by <a class="font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">Monica Fishkin</a></div>
                     </div>
                     <!-- Right side -->
                     <div class="flex flex-wrap items-center sm:justify-end space-x-2">
@@ -62,13 +62,13 @@
                 <div>
                     <h2 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-2">Photos (3)</h2>
                     <div class="grid grid-cols-3 gap-4 my-6">
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="w-full rounded-sm" src="{{ asset('images/meetup-photo-01.jpg') }}" width="203" height="152" alt="Meetup photo 01" />
                         </a>
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="w-full rounded-sm" src="{{ asset('images/meetup-photo-02.jpg') }}" width="203" height="152" alt="Meetup photo 02" />
                         </a>
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="w-full rounded-sm" src="{{ asset('images/meetup-photo-03.jpg') }}" width="203" height="152" alt="Meetup photo 03" />
                         </a>
                     </div>
@@ -82,7 +82,7 @@
                     <ul class="space-y-5 my-6">
                         <!-- Comment -->
                         <li class="flex items-start">
-                            <a class="block mr-3 shrink-0" href="#0">
+                            <a class="block mr-3 shrink-0" href="javascript:void(0)">
                                 <img class="rounded-full" src="{{ asset('images/user-32-07.jpg') }}" width="32" height="32" alt="User 07" />
                             </a>
                             <div class="grow">
@@ -92,7 +92,7 @@
                         </li>
                         <!-- Comment -->
                         <li class="flex items-start">
-                            <a class="block mr-3 shrink-0" href="#0">
+                            <a class="block mr-3 shrink-0" href="javascript:void(0)">
                                 <img class="rounded-full" src="{{ asset('images/user-32-08.jpg') }}" width="32" height="32" alt="User 08" />
                             </a>
                             <div class="grow">
@@ -102,7 +102,7 @@
                         </li>
                         <!-- Comment -->
                         <li class="flex items-start">
-                            <a class="block mr-3 shrink-0" href="#0">
+                            <a class="block mr-3 shrink-0" href="javascript:void(0)">
                                 <img class="rounded-full" src="{{ asset('images/user-32-02.jpg') }}" width="32" height="32" alt="User 02" />
                             </a>
                             <div class="grow">
@@ -122,7 +122,7 @@
                         <!-- Related item -->
                         <article class="flex bg-white dark:bg-gray-800 shadow-sm rounded-xl overflow-hidden">
                             <!-- Image -->
-                            <a class="relative block w-24 sm:w-56 lg:sidebar-expanded:w-20 xl:sidebar-expanded:w-56 shrink-0" href="#0">
+                            <a class="relative block w-24 sm:w-56 lg:sidebar-expanded:w-20 xl:sidebar-expanded:w-56 shrink-0" href="javascript:void(0)">
                                 <img class="absolute object-cover object-center w-full h-full" src="{{ asset('images/meetups-thumb-02.jpg') }}" width="220" height="236" alt="Meetup 02" />
                                 <!-- Like button -->
                                 <button class="absolute top-0 right-0 mt-4 mr-4">
@@ -138,7 +138,7 @@
                             <div class="grow p-5 flex flex-col">
                                 <div class="grow">
                                     <div class="text-sm font-semibold text-violet-500 uppercase mb-2">Mon 27 Dec, 2024</div>
-                                    <a class="inline-flex mb-2" href="#0">
+                                    <a class="inline-flex mb-2" href="javascript:void(0)">
                                         <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100">New York & New Jersey Virtual Retreat 2024</h3>
                                     </a>
                                     <div class="text-sm">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts.</div>
@@ -194,7 +194,7 @@
                 <div class="bg-white dark:bg-gray-800 p-5 shadow-sm rounded-xl lg:w-72 xl:w-80">
                     <div class="flex justify-between space-x-1 mb-5">
                         <div class="text-sm text-gray-800 dark:text-gray-100 font-semibold">Attendees (127)</div>
-                        <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">View All</a>
+                        <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">View All</a>
                     </div>
                     <ul class="space-y-3">
                         <li>
@@ -284,7 +284,7 @@
                 <div class="bg-white dark:bg-gray-800 p-5 shadow-sm rounded-xl lg:w-72 xl:w-80">
                     <div class="flex justify-between space-x-1 mb-5">
                         <div class="text-sm text-gray-800 dark:text-gray-100 font-semibold">Invite Friends</div>
-                        <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">View All</a>
+                        <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">View All</a>
                     </div>
                     <ul class="space-y-3">
                         <li>

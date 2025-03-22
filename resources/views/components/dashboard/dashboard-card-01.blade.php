@@ -36,10 +36,10 @@
                             <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="{{ route('users') }}" @click="open = false" @focus="open = true" @focusout="open = false">View</a>
                         </li>
                         <!-- <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
+                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
                         </li> -->
                     </ul>
                 </div>

@@ -10,7 +10,7 @@
                 </svg>
             </li>
             <li class="flex items-center">
-                <a class="text-gray-500 dark:text-gray-400 hover:text-violet-500 dark:hover:text-violet-500" href="#0">Discussion</a>
+                <a class="text-gray-500 dark:text-gray-400 hover:text-violet-500 dark:hover:text-violet-500" href="javascript:void(0)">Discussion</a>
             </li>
         </ul>
     </div>
@@ -32,7 +32,7 @@
         <!-- Meta -->
         <div class="flex flex-wrap text-sm">
             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">katemerlu</a>
+                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">katemerlu</a>
             </div>
             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
                 <span class="text-gray-500">2h</span>
@@ -87,16 +87,16 @@
                         <!-- Comment footer -->
                         <div class="flex flex-wrap text-xs">
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="block mr-2" href="#0">
+                                <a class="block mr-2" href="javascript:void(0)">
                                     <img class="rounded-full" src="{{ asset('images/user-28-02.jpg') }}" width="24" height="24" alt="User 02" />
                                 </a>
-                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">ekuplu89</a>
+                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">ekuplu89</a>
                             </div>
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Reply</a>
+                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Reply</a>
                             </div>
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Share</a>
+                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Share</a>
                             </div>
                         </div>
                     </div>
@@ -120,21 +120,21 @@
                             <div>
                                 <!-- Comment text -->
                                 <div class="grow text-sm text-gray-800 dark:text-gray-100 space-y-2 mb-2">
-                                    <p>That's great advice, <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">@ekuplu89</a> 👏</p>
+                                    <p>That's great advice, <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">@ekuplu89</a> 👏</p>
                                 </div>
                                 <!-- Comment footer -->
                                 <div class="flex flex-wrap text-xs">
                                     <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                        <a class="block mr-2" href="#0">
+                                        <a class="block mr-2" href="javascript:void(0)">
                                             <img class="rounded-full" src="{{ asset('images/user-28-05.jpg') }}" width="24" height="24" alt="User 05" />
                                         </a>
-                                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">ellielong</a>
+                                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">ellielong</a>
                                     </div>
                                     <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                        <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Reply</a>
+                                        <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Reply</a>
                                     </div>
                                     <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                        <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Share</a>
+                                        <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Share</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,16 +164,16 @@
                         <!-- Comment footer -->
                         <div class="flex flex-wrap text-xs">
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="block mr-2" href="#0">
+                                <a class="block mr-2" href="javascript:void(0)">
                                     <img class="rounded-full" src="{{ asset('images/user-28-01.jpg') }}" width="24" height="24" alt="User 01" />
                                 </a>
-                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">markcuttik</a>
+                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">markcuttik</a>
                             </div>
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Reply</a>
+                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Reply</a>
                             </div>
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Share</a>
+                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Share</a>
                             </div>
                         </div>
                     </div>
@@ -201,16 +201,16 @@
                         <!-- Comment footer -->
                         <div class="flex flex-wrap text-xs">
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="block mr-2" href="#0">
+                                <a class="block mr-2" href="javascript:void(0)">
                                     <img class="rounded-full" src="{{ asset('images/user-28-09.jpg') }}" width="24" height="24" alt="User 09" />
                                 </a>
-                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">davidp1</a>
+                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">davidp1</a>
                             </div>
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Reply</a>
+                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Reply</a>
                             </div>
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Share</a>
+                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Share</a>
                             </div>
                         </div>
                     </div>
@@ -239,16 +239,16 @@
                                 <!-- Comment footer -->
                                 <div class="flex flex-wrap text-xs">
                                     <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                        <a class="block mr-2" href="#0">
+                                        <a class="block mr-2" href="javascript:void(0)">
                                             <img class="rounded-full" src="{{ asset('images/user-28-05.jpg') }}" width="24" height="24" alt="User 05" />
                                         </a>
-                                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">ellielong</a>
+                                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">ellielong</a>
                                     </div>
                                     <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                        <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Reply</a>
+                                        <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Reply</a>
                                     </div>
                                     <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                        <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Share</a>
+                                        <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Share</a>
                                     </div>
                                 </div>
                             </div>
@@ -277,16 +277,16 @@
                                         <!-- Comment footer -->
                                         <div class="flex flex-wrap text-xs">
                                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                                <a class="block mr-2" href="#0">
+                                                <a class="block mr-2" href="javascript:void(0)">
                                                     <img class="rounded-full" src="{{ asset('images/user-28-09.jpg') }}" width="24" height="24" alt="User 09" />
                                                 </a>
-                                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">davidp1</a>
+                                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">davidp1</a>
                                             </div>
                                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Reply</a>
+                                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Reply</a>
                                             </div>
                                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Share</a>
+                                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Share</a>
                                             </div>
                                         </div>
                                     </div>
@@ -318,16 +318,16 @@
                         <!-- Comment footer -->
                         <div class="flex flex-wrap text-xs">
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="block mr-2" href="#0">
+                                <a class="block mr-2" href="javascript:void(0)">
                                     <img class="rounded-full" src="{{ asset('images/user-28-10.jpg') }}" width="24" height="24" alt="User 10" />
                                 </a>
-                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">patrick2</a>
+                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">patrick2</a>
                             </div>
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Reply</a>
+                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Reply</a>
                             </div>
                             <div class="flex items-center after:block after:content-['·'] last:after:content-[''] after:text-sm after:text-gray-400 dark:after:text-gray-600 after:px-2">
-                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="#0">Share</a>
+                                <a class="font-medium text-gray-500 hover:text-gray-600 dark:hover:text-gray-400" href="javascript:void(0)">Share</a>
                             </div>
                         </div>
                     </div>

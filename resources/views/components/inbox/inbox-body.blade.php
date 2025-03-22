@@ -166,7 +166,7 @@
                 <div class="text-sm text-gray-800 dark:text-gray-100 mt-4 space-y-2" x-show="open" x-cloak>
                     <p>Hey Acme 👋</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <span class="underline">nostrud exercitation ullamco</span> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <p>Consectetur adipiscing elit, sed do eiusmod <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">tempor magna</a> aliqua? Check below:</p>
+                    <p>Consectetur adipiscing elit, sed do eiusmod <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">tempor magna</a> aliqua? Check below:</p>
                     <p>
                         <img src="{{ asset('images/inbox-image.jpg') }}" width="320" height="190" alt="Inbox image" />
                     </p>

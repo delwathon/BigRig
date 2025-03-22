@@ -23,6 +23,7 @@ class CreateFounderTable extends Migration
             $table->string('instagram_handle')->nullable();
             $table->string('founder_picture');
             $table->string('secondary_picture');
+            $table->boolean('show_founder')->default(false);
             $table->timestamps();
         });
     }

@@ -34,16 +34,16 @@
                                 <div class="flex flex-nowrap items-center space-x-2 mb-6">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-05.jpg') }}" width="28" height="28" alt="User 05" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-08.jpg') }}" width="28" height="28" alt="User 08" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-09.jpg') }}" width="28" height="28" alt="User 09" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-06.jpg') }}" width="28" height="28" alt="User 06" />
                                         </a>
                                     </div>
@@ -122,13 +122,13 @@
                                 <div class="flex flex-nowrap items-center space-x-2 mb-6">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-03.jpg') }}" width="28" height="28" alt="User 03" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-05.jpg') }}" width="28" height="28" alt="User 05" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-01.jpg') }}" width="28" height="28" alt="User 01" />
                                         </a>
                                     </div>
@@ -207,13 +207,13 @@
                                 <div class="flex flex-nowrap items-center space-x-2 mb-6">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-06.jpg') }}" width="28" height="28" alt="User 03" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-05.jpg') }}" width="28" height="28" alt="User 05" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-09.jpg') }}" width="28" height="28" alt="User 01" />
                                         </a>
                                     </div>
@@ -266,10 +266,10 @@
                                 <div class="flex flex-nowrap items-center space-x-2 mb-6">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-06.jpg') }}" width="28" height="28" alt="User 03" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-02.jpg') }}" width="28" height="28" alt="User 02" />
                                         </a>
                                     </div>

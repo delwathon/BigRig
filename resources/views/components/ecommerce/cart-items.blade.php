@@ -1,11 +1,11 @@
 <ul>
     <!-- Cart item -->
     <li class="sm:flex items-center py-6 border-b border-gray-200 dark:border-gray-700/60">
-        <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="#0">
+        <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="javascript:void(0)">
             <img class="rounded-sm" src="{{ asset('images/related-product-01.jpg') }}" width="200" height="142" alt="Product 01" />
         </a>
         <div class="grow">
-            <a href="#0">
+            <a href="javascript:void(0)">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">The Complete Front-End Development Course!</h3>
             </a>
             <div class="text-sm mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</div>
@@ -63,11 +63,11 @@
     </li>
     <!-- Cart item -->
     <li class="sm:flex items-center py-6 border-b border-gray-200 dark:border-gray-700/60">
-        <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="#0">
+        <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="javascript:void(0)">
             <img class="rounded-sm" src="{{ asset('images/related-product-02.jpg') }}" width="200" height="142" alt="Product 02" />
         </a>
         <div class="grow">
-            <a href="#0">
+            <a href="javascript:void(0)">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">Web Development Ultimate Course 2024</h3>
             </a>
             <div class="text-sm mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</div>
@@ -125,11 +125,11 @@
     </li>
     <!-- Cart item -->
     <li class="sm:flex items-center py-6 border-b border-gray-200 dark:border-gray-700/60">
-        <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="#0">
+        <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="javascript:void(0)">
             <img class="rounded-sm" src="{{ asset('images/related-product-03.jpg') }}" width="200" height="142" alt="Product 03" />
         </a>
         <div class="grow">
-            <a href="#0">
+            <a href="javascript:void(0)">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">Full-Stack JavaScript Course!</h3>
             </a>
             <div class="text-sm mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</div>
@@ -188,5 +188,5 @@
 </ul>
 
 <div class="mt-6 text-center lg:text-left">
-    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">&lt;- Back To Shopping</a>
+    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">&lt;- Back To Shopping</a>
 </div>

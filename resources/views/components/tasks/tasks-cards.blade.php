@@ -23,17 +23,17 @@
                     <h2 class="font-semibold text-gray-800 dark:text-gray-100 mb-1">Managing teams (book)</h2>
                     <!-- Content -->
                     <div>
-                        <div class="text-sm">#7764 created by <a class="font-medium text-gray-800 hover:underline" href="#0">markus-james</a></div>
+                        <div class="text-sm">#7764 created by <a class="font-medium text-gray-800 hover:underline" href="javascript:void(0)">markus-james</a></div>
                     </div>
                 </div>
                 <!-- Footer -->
                 <div class="flex items-center justify-between">
                     <!-- Left side -->
                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-07.jpg') }}"" width="28" height="28" alt="User 07" />
                         </a>
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-11.jpg') }}"" width="28" height="28" alt="User 11" />
                         </a>
                     </div>
@@ -121,10 +121,10 @@
                 <div class="flex items-center justify-between">
                     <!-- Left side -->
                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-03.jpg') }}"" width="28" height="28" alt="User 03" />
                         </a>
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-10.jpg') }}"" width="28" height="28" alt="User 10" />
                         </a>
                     </div>
@@ -179,7 +179,7 @@
                 <div class="flex items-center justify-between">
                     <!-- Left side -->
                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-06.jpg') }}"" width="28" height="28" alt="User 06" />
                         </a>
                     </div>
@@ -239,10 +239,10 @@
                 <div class="flex items-center justify-between">
                     <!-- Left side -->
                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-05.jpg') }}"" width="28" height="28" alt="User 05" />
                         </a>
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-02.jpg') }}"" width="28" height="28" alt="User 02" />
                         </a>
                     </div>
@@ -295,17 +295,17 @@
                     <h2 class="font-semibold text-gray-800 dark:text-gray-100 mb-1">Design new diagrams</h2>
                     <!-- Content -->
                     <div>
-                        <div class="text-sm">#7896 created by <a class="font-medium text-gray-800 hover:underline" href="#0">jerzy-wierzy</a></div>
+                        <div class="text-sm">#7896 created by <a class="font-medium text-gray-800 hover:underline" href="javascript:void(0)">jerzy-wierzy</a></div>
                     </div>
                 </div>
                 <!-- Footer -->
                 <div class="flex items-center justify-between">
                     <!-- Left side -->
                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-12.jpg') }}"" width="28" height="28" alt="User 12" />
                         </a>
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-02.jpg') }}"" width="28" height="28" alt="User 02" />
                         </a>
                     </div>
@@ -340,7 +340,7 @@
                 <div class="flex items-center justify-between">
                     <!-- Left side -->
                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-08.jpg') }}"" width="28" height="28" alt="User 08" />
                         </a>
                     </div>
@@ -406,12 +406,12 @@
                     <!-- Title -->
                     <div class="flex items-center mb-2">
                         <div class="flex shrink-0 -space-x-3 -ml-px mr-2">
-                            <a class="block" href="#0">
+                            <a class="block" href="javascript:void(0)">
                                 <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-12.jpg') }}"" width="28" height="28" alt="User 12" />
                             </a>
                         </div>
                         <div class="grow">
-                            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="#0">
+                            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="javascript:void(0)">
                                 <h2 class="font-semibold text-gray-800 dark:text-gray-100">Adrian Przetocki</h2>
                             </a>
                             <div class="text-xs font-medium text-gray-500">11:51 AM Jan 12</div>
@@ -419,7 +419,7 @@
                     </div>
                     <!-- Content -->
                     <div>
-                        <div class="text-sm">Publishing industries for previewing layouts and visual <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">#family</a> 🔥</div>
+                        <div class="text-sm">Publishing industries for previewing layouts and visual <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">#family</a> 🔥</div>
                         <img class="w-full mt-3" src="{{ asset('images/task-image-02.jpg') }}"" width="259" height="142" alt="Task 02" />
                     </div>
                 </div>
@@ -454,12 +454,12 @@
                     <!-- Title -->
                     <div class="flex items-center mb-2">
                         <div class="flex shrink-0 -space-x-3 -ml-px mr-2">
-                            <a class="block" href="#0">
+                            <a class="block" href="javascript:void(0)">
                                 <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-28-12.jpg') }}"" width="28" height="28" alt="User 12" />
                             </a>
                         </div>
                         <div class="grow">
-                            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="#0">
+                            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="javascript:void(0)">
                                 <h2 class="font-semibold text-gray-800 dark:text-gray-100">Adrian Przetocki</h2>
                             </a>
                             <div class="text-xs font-medium text-gray-500">11:51 AM Jan 12</div>
@@ -467,7 +467,7 @@
                     </div>
                     <!-- Content -->
                     <div>
-                        <div class="text-sm">Dedicated form for a category of users that will perform actions? <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">#viewall</a></div>
+                        <div class="text-sm">Dedicated form for a category of users that will perform actions? <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">#viewall</a></div>
                     </div>
                 </div>
                 <!-- Footer -->

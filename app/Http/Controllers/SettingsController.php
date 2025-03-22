@@ -44,6 +44,7 @@ class SettingsController extends Controller
             'favicon' => 'nullable|mimes:jpg,png,jpeg,ico|max:1024', // Remove 'image'
             'site_name' => 'required|string|max:255',
             'site_tagline' => 'nullable|string',
+            'commence_year' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
             'site_description' => 'required|string',
             'site_keywords' => 'required|string',
             'headquarters' => 'required|string',
@@ -51,12 +52,17 @@ class SettingsController extends Controller
             'secondary_email' => 'nullable|email',
             'business_contact' => 'required|string|max:17',
             'secondary_contact' => 'nullable|string|max:17',
+            'whatsapp_support' => 'nullable|string|max:17',
+            'telegram_support' => 'nullable|string|max:17',
             'facebook_handle' => 'nullable|string',
             'twitter_handle' => 'nullable|string',
             'instagram_handle' => 'nullable|string',
             'youtube_handle' => 'nullable|string',
             'tiktok_handle' => 'nullable|string',
             'linkedin_handle' => 'nullable|string',
+            'show_whatsapp_support' => 'sometimes|boolean',
+            'show_telegram_support' => 'sometimes|boolean',
+            'show_preloader' => 'sometimes|boolean'
         ]);
 
         $settings = Settings::first(); // Assuming only one settings record exists
@@ -97,6 +103,7 @@ class SettingsController extends Controller
         // Update other fields
         $settings->site_name = $request->input('site_name');
         $settings->site_tagline = $request->input('site_tagline');
+        $settings->commence_year = $request->input('commence_year');
         $settings->site_description = $request->input('site_description');
         $settings->site_keywords = $request->input('site_keywords');
         $settings->headquarters = $request->input('headquarters');
@@ -104,12 +111,17 @@ class SettingsController extends Controller
         $settings->secondary_email = $request->input('secondary_email');
         $settings->business_contact = $request->input('business_contact');
         $settings->secondary_contact = $request->input('secondary_contact');
+        $settings->whatsapp_support = $request->input('whatsapp_support');
+        $settings->telegram_support = $request->input('telegram_support');
         $settings->facebook_handle = $request->input('facebook_handle');
         $settings->twitter_handle = $request->input('twitter_handle');
         $settings->instagram_handle = $request->input('instagram_handle');
         $settings->youtube_handle = $request->input('youtube_handle');
         $settings->tiktok_handle = $request->input('tiktok_handle');
         $settings->linkedin_handle = $request->input('linkedin_handle');
+        $settings->show_whatsapp_support = $request->input('show_whatsapp_support');
+        $settings->show_telegram_support = $request->input('show_telegram_support');
+        $settings->show_preloader = $request->input('show_preloader');
         // Update other fields as needed
 
         $settings->save();
@@ -188,21 +200,46 @@ class SettingsController extends Controller
             'objective' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'duration' => 'required|integer|min:1',
+            'theory_session' => 'required|integer|min:1',
+            'practical_session' => 'required|integer|min:1',
+            'examination' => 'required|string',
             'requirements' => 'required|string',
+            'video_url' => 'nullable|url',
             'image_url' => 'required|image|mimes:jpg,png,jpeg|max:2048', // Max file size 2MB
+            'video_thumbnail_url' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Max file size 2MB
+        ],
+        [
+            'image_url.image' => 'Display Picture: The uploaded file must be an image.',
+            'image_url.mimes' => 'Display Picture: Only JPG and PNG file types are allowed.',
+            'image_url.max' => 'Display Picture: The image size must not exceed 2 MB.',
+            'video_thumbnail_url.image' => 'Video Thumbnail: The uploaded file must be an image.',
+            'video_thumbnail_url.mimes' => 'Video Thumbnail: Only JPG and PNG file types are allowed.',
+            'video_thumbnail_url.max' => 'Video Thumbnail: The image size must not exceed 2 MB.',
         ]);
 
         // Handle image_url upload
+        $filePath = null;
         if ($request->hasFile('image_url')) {
-            $filePath = $request->file('image_url')->store('objectives', 'public');
+            $filePath = $request->file('image_url')->store('courses', 'public');
+        }
+
+        // Handle video_thumbnail_url upload
+        $filePath2 = null;
+        if ($request->hasFile('video_thumbnail_url')) {
+            $filePath2 = $request->file('video_thumbnail_url')->store('courses', 'public');
         }
 
         TrainingObjective::create([
             'objective' => $request->input('objective'),
-            'price' => $request->input('price'),
             'duration' => $request->input('duration'),
+            'theory_session' => $request->input('theory_session'),
+            'practical_session' => $request->input('practical_session'),
+            'examination' => $request->input('examination'),
+            'price' => $request->input('price'),
             'requirement' => $request->input('requirements'),
             'image_url' => $filePath,
+            'video_thumbnail_url' => $filePath2, // This will now be null if no file is uploaded
+            'video_url' => $request->input('video_url'),
         ]);            
 
         return redirect()->back()->with('success', 'Objective created successfully.');
@@ -216,13 +253,21 @@ class SettingsController extends Controller
                 'objective' => 'required|string|max:255',
                 'price' => 'required|numeric|min:0',
                 'duration' => 'required|integer|min:1',
+                'theory_session' => 'required|integer|min:1',
+                'practical_session' => 'required|integer|min:1',
+                'examination' => 'required|string',
                 'requirements' => 'required|string',
+                'video_url' => 'nullable|url',
                 'image_url' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Optional
+                'video_thumbnail_url' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Optional
             ],
             [
-                'image_url.image' => 'The uploaded file must be an image.',
-                'image_url.mimes' => 'Only JPG and PNG file types are allowed.',
-                'image_url.max' => 'The image size must not exceed 2 MB.',
+                'image_url.image' => 'Display Picture: The uploaded file must be an image.',
+                'image_url.mimes' => 'Display Picture: Only JPG and PNG file types are allowed.',
+                'image_url.max' => 'Display Picture: The image size must not exceed 2 MB.',
+                'video_thumbnail_url.image' => 'Video Thumbnail: The uploaded file must be an image.',
+                'video_thumbnail_url.mimes' => 'Video Thumbnail: Only JPG and PNG file types are allowed.',
+                'video_thumbnail_url.max' => 'Video Thumbnail: The image size must not exceed 2 MB.',
             ]
         );
 
@@ -232,14 +277,29 @@ class SettingsController extends Controller
         $objective->objective = $request->input('objective');
         $objective->price = $request->input('price');
         $objective->duration = $request->input('duration');
+        $objective->theory_session = $request->input('theory_session');
+        $objective->practical_session = $request->input('practical_session');
+        $objective->examination = $request->input('examination');
         $objective->requirement = $request->input('requirements');
+        $objective->video_url = $request->input('video_url');
 
         // Handle image upload
         if ($request->hasFile('image_url')) {
             $oldImagePath = $objective->image_url;
-            $filePath = $request->file('image_url')->store('objectives', 'public');
+            $filePath = $request->file('image_url')->store('courses', 'public');
 
             $objective->image_url = $filePath;
+
+            if ($oldImagePath && Storage::disk('public')->exists($oldImagePath)) {
+                Storage::disk('public')->delete($oldImagePath);
+            }
+        }
+
+        if ($request->hasFile('video_thumbnail_url')) {
+            $oldImagePath = $objective->video_thumbnail_url;
+            $filePath = $request->file('video_thumbnail_url')->store('courses', 'public');
+
+            $objective->video_thumbnail_url = $filePath;
 
             if ($oldImagePath && Storage::disk('public')->exists($oldImagePath)) {
                 Storage::disk('public')->delete($oldImagePath);
@@ -255,10 +315,15 @@ class SettingsController extends Controller
     {
         $objective = TrainingObjective::findOrFail($id);
         $filePath = $objective->image_url;
+        $filePath2 = $objective->video_thumbnail_url;
         $objective->delete();
 
         if ($filePath && Storage::disk('public')->exists($filePath)) {
             Storage::disk('public')->delete($filePath);
+        }
+
+        if ($filePath2 && Storage::disk('public')->exists($filePath2)) {
+            Storage::disk('public')->delete($filePath2);
         }
 
         return redirect()->back()->with('success', 'Objective deleted successfully.');
@@ -373,6 +438,7 @@ class SettingsController extends Controller
             'twitter_handle' => 'nullable|string',
             'linkedin_handle' => 'nullable|string',
             'instagram_handle' => 'nullable|string',
+            'show_founder' => 'sometimes|boolean'
         ]);
 
         $founder = Founder::first(); // Assuming only one settings record exists
@@ -418,6 +484,7 @@ class SettingsController extends Controller
         $founder->twitter_handle = $request->input('twitter_handle');
         $founder->linkedin_handle = $request->input('linkedin_handle');
         $founder->instagram_handle = $request->input('instagram_handle');
+        $founder->show_founder = $request->input('show_founder');
         // Update other fields as needed
 
         $founder->save();

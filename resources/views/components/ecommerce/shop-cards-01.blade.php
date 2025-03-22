@@ -86,7 +86,7 @@
             </div>
             <!-- Card footer -->
             <div>
-                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Buy Now</a>
+                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Buy Now</a>
             </div>
         </div>
     </div>
@@ -180,7 +180,7 @@
             </div>
             <!-- Card footer -->
             <div>
-                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Buy Now</a>
+                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Buy Now</a>
             </div>
         </div>
     </div>
@@ -274,7 +274,7 @@
             </div>
             <!-- Card footer -->
             <div>
-                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Buy Now</a>
+                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Buy Now</a>
             </div>
         </div>
     </div>
@@ -368,7 +368,7 @@
             </div>
             <!-- Card footer -->
             <div>
-                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Buy Now</a>
+                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Buy Now</a>
             </div>
         </div>
     </div>

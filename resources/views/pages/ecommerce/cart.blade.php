@@ -57,7 +57,7 @@
                     <div class="mb-4">
                         <button class="btn w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">Buy Now - $253.00</button>
                     </div>
-                    <div class="text-xs text-gray-500 italic text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <a class="underline hover:no-underline" href="#0">Terms</a>.</div>
+                    <div class="text-xs text-gray-500 italic text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <a class="underline hover:no-underline" href="javascript:void(0)">Terms</a>.</div>
                 </div>
             </div>
 

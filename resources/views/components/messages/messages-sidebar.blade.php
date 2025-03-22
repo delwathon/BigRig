@@ -42,7 +42,7 @@
                             >
                                 <ul>
                                     <li>
-                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                             <div class="flex items-center justify-between">
                                                 <div class="grow flex items-center truncate">
                                                     <img class="w-7 h-7 rounded-full mr-2" src="{{ asset('images/channel-01.png') }}" width="28" height="28" alt="Channel 01" />
@@ -55,7 +55,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                             <div class="flex items-center justify-between">
                                                 <div class="grow flex items-center truncate">
                                                     <img class="w-7 h-7 rounded-full mr-2" src="{{ asset('images/channel-02.png') }}" width="28" height="28" alt="Channel 02" />
@@ -65,7 +65,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">
+                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 block py-1.5 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">
                                             <div class="flex items-center justify-between">
                                                 <div class="grow flex items-center truncate">
                                                     <img class="w-7 h-7 rounded-full mr-2" src="{{ asset('images/channel-03.png') }}" width="28" height="28" alt="Channel 03" />
@@ -107,7 +107,7 @@
                         <li class="-mx-2">
                             <button class="flex items-center justify-between w-full p-2 rounded-lg bg-[linear-gradient(135deg,var(--tw-gradient-stops))] from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]" @click="msgSidebarOpen = false; $refs.contentarea.scrollTop = 99999999;">
                                 <div class="flex items-center truncate">
-                                    <img class="w-8 h-8 rounded-full mr-2" src="{{ Storage::url($user->profile_photo_path) }}" width="32" height="32" alt="User 01" />
+                                    <img class="w-8 h-8 rounded-full mr-2" src="{{ $user->profile_photo_path ? Storage::url($user->profile_photo_path) : Storage::url('users/avatar.png') }}" width="32" height="32" alt="User 01" />
                                     <div class="truncate">
                                         <span class="text-sm font-medium text-gray-800 dark:text-gray-100">{{ $user->firstName }} {{ $user->lastName }}</span>
                                     </div>

@@ -36,6 +36,8 @@ Route::redirect('/', 'home');
 Route::get('/home', [WebsiteController::class, 'home'])->name('home');
 Route::get('/about-us', [WebsiteController::class, 'about'])->name('about-us');
 Route::get('/courses', [WebsiteController::class, 'courses'])->name('courses');
+Route::get('/course-information/{name}', [WebsiteController::class, 'course_details'])->name('course');
+Route::get('/our-instructors', [WebsiteController::class, 'instructors'])->name('our-instructors');
 Route::get('/faq', [WebsiteController::class, 'faq'])->name('faq');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 

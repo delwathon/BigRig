@@ -42,7 +42,7 @@
                             <!-- Card header -->
                             <div class="text-center mb-6">
                                 <div class="mb-2">
-                                    <img class="-mt-8 inline-flex rounded-full" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="64" height="64" alt="User" />
+                                    <img class="-mt-8 inline-flex rounded-full" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : Storage::url('users/avatar.png') }}" width="64" height="64" alt="User" />
                                 </div>
                                 <h1 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-semibold mb-2">
                                     {{ Auth::user()->firstName }} {{ Auth::user()->middleName }} {{ Auth::user()->lastName }}

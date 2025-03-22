@@ -68,6 +68,6 @@
                 </table>
             </div>
         </div>
-        <div class="text-right px-5 pb-4"><a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Real-Time Report -&gt;</a></div>
+        <div class="text-right px-5 pb-4"><a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Real-Time Report -&gt;</a></div>
     </div>
 </div>

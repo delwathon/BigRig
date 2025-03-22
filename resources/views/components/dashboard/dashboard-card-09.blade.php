@@ -9,7 +9,7 @@
         >
             <button
                 class="block"
-                href="#0"
+                href="javascript:void(0)"
                 aria-haspopup="true"
                 :aria-expanded="open"
                 @focus="open = true"

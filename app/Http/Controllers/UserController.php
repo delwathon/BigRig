@@ -36,7 +36,7 @@ class UserController extends Controller
             $users = User::where('role_id', 10)
                 ->paginate(9);
         } else {
-            $users = User::where('user_visibility', 1)
+            $users = User::where('user_active', 1)
                 ->where('role_id', 10)
                 ->paginate(9);
         }

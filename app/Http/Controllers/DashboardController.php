@@ -32,12 +32,12 @@ class DashboardController extends Controller
         $dataFeed = new DataFeed();
 
         // Get the number of active users
-        $activeStudents = User::where('user_visibility', 1)
+        $activeStudents = User::where('user_active', 1)
             ->where('role_id', 10)
             ->count();
         
         // Get the number of active users
-        $instructors = User::where('user_visibility', 1)
+        $instructors = User::where('user_active', 1)
             ->where('role_id', '!=', 10)
             ->count();
 

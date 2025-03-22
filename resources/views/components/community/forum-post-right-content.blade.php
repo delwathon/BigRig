@@ -38,33 +38,33 @@
                     <ul class="space-y-3">
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">I built and sold 2 small SaaS products and quit my job in the last two years — AMA</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">I built and sold 2 small SaaS products and quit my job in the last two years — AMA</a>
                             </div>
-                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">markusj</a> · 2d · 312 comments</div>
+                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">markusj</a> · 2d · 312 comments</div>
                         </li>
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Besides Product Hunt, where else should I promote my new project? 🤔</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Besides Product Hunt, where else should I promote my new project? 🤔</a>
                             </div>
-                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">katemerlu</a> · 2h · 7 comments</div>
+                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">katemerlu</a> · 2h · 7 comments</div>
                         </li>
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Which are the main channels you use to drive traffic to your website? 📈</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Which are the main channels you use to drive traffic to your website? 📈</a>
                             </div>
-                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">sophiestar</a> · 3d · 66 comments</div>
+                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">sophiestar</a> · 3d · 66 comments</div>
                         </li>
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Failed for the past 12 years as a tech entrepreneur. My key takeaways.</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Failed for the past 12 years as a tech entrepreneur. My key takeaways.</a>
                             </div>
-                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">ekuplu89</a> · 4h · 14 comments</div>
+                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">ekuplu89</a> · 4h · 14 comments</div>
                         </li>
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">How to build a following on Twitter as a founder - A guide to growing your audience 🚀</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">How to build a following on Twitter as a founder - A guide to growing your audience 🚀</a>
                             </div>
-                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">molliehacks</a> · 3d · 32 comments</div>
+                            <div class="text-xs text-gray-500"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">molliehacks</a> · 3d · 32 comments</div>
                         </li>
                     </ul>
                     <div class="mt-4">

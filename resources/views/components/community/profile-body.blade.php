@@ -30,7 +30,7 @@
 
                 <!-- Avatar -->
                 <div class="inline-flex -ml-1 -mt-1 mb-4 sm:mb-0">
-                    <img class="rounded-full w-40 h-40 border-4 border-white dark:border-gray-900" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="128" height="128" alt="{{ Auth::user()->firstName }}" />
+                    <img class="rounded-full w-40 h-40 border-4 border-white dark:border-gray-900" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : Storage::url('users/avatar.png') }}" width="128" height="128" alt="{{ Auth::user()->firstName }}" />
                 </div>
     
                 <!-- Actions -->
@@ -94,13 +94,13 @@
             <div class="absolute bottom-0 w-full h-px bg-gray-200 dark:bg-gray-700/60" aria-hidden="true"></div>
             <ul class="relative text-sm font-medium flex flex-nowrap -mx-4 sm:-mx-6 lg:-mx-8 overflow-x-scroll no-scrollbar">
                 <li class="mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-                    <a class="block pb-3 text-violet-500 whitespace-nowrap border-b-2 border-violet-500" href="#0">General</a>
+                    <a class="block pb-3 text-violet-500 whitespace-nowrap border-b-2 border-violet-500" href="javascript:void(0)">General</a>
                 </li>
                 <li class="mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-                    <a class="block pb-3 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="#0">Connections</a>
+                    <a class="block pb-3 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="javascript:void(0)">Connections</a>
                 </li>
                 <li class="mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-                    <a class="block pb-3 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="#0">Contributions</a>
+                    <a class="block pb-3 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="javascript:void(0)">Contributions</a>
                 </li>
             </ul>
         </div>
@@ -150,7 +150,7 @@
                                 </div>
                                 <!-- Link -->
                                 <div>
-                                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">View -&gt;</a>
+                                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">View -&gt;</a>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
                                 </div>
                                 <!-- Link -->
                                 <div>
-                                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">View -&gt;</a>
+                                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">View -&gt;</a>
                                 </div>
                             </div>
                         </div>

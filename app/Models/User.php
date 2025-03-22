@@ -30,7 +30,8 @@ class User extends Authenticatable
         'password',
         'role_id',
         'profile_photo_path',
-        'user_visibility',
+        'user_active',
+        'website_visibility'
     ];
 
     /**

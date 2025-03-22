@@ -142,7 +142,7 @@
         </div>
 
         <div class="text-center border-t border-gray-100 dark:border-gray-700/60 px-2">
-            <a class="block text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 pt-4 pb-1" href="#0">View All -&gt;</a>
+            <a class="block text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400 pt-4 pb-1" href="javascript:void(0)">View All -&gt;</a>
         </div>
 
     </div>

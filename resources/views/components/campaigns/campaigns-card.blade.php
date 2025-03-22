@@ -48,7 +48,7 @@
             </div>
         </header>
         <div class="grow mt-2">
-            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white mb-1" href="#0">
+            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white mb-1" href="javascript:void(0)">
                 <h2 class="text-xl leading-snug font-semibold">{{ $campaign->title }}</h2>
             </a>
             <div class="text-sm">{{ $campaign->content }}</div>
@@ -60,7 +60,7 @@
                     <div class="text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 {{ $status_color }}">{{ $campaign->type }}</div>
                 </div>
                 <div>
-                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">View -&gt;</a>
+                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">View -&gt;</a>
                 </div>
             </div>
         </footer>

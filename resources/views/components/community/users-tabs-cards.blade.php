@@ -34,13 +34,13 @@
                     >
                         <ul>
                             <li>
-                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
+                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
                             </li>
                             <li>
-                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
+                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
                             </li>
                             <li>
-                                <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
+                                <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
                             </li>
                         </ul>
                     </div>
@@ -49,7 +49,7 @@
             <!-- Image + name -->
             <header>                
                 <div class="flex justify-center mb-2">
-                    <a class="relative inline-flex items-start" href="#0">
+                    <a class="relative inline-flex items-start" href="javascript:void(0)">
                         <div class="absolute top-0 right-0 -mr-2 bg-white dark:bg-gray-700 rounded-full shadow" aria-hidden="true">
                             <svg class="w-8 h-8 fill-current text-yellow-500" viewBox="0 0 32 32">
                                 <path d="M21 14.077a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 010 1.5 1.5 1.5 0 00-1.5 1.5.75.75 0 01-.75.75zM14 24.077a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z" />
@@ -59,7 +59,7 @@
                     </a>
                 </div>
                 <div class="text-center">
-                    <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="#0">
+                    <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="javascript:void(0)">
                         <h2 class="text-xl leading-snug justify-center font-semibold">{{ $member->name }}</h2>
                     </a>
                 </div>

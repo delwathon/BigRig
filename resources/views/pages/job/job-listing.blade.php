@@ -72,10 +72,10 @@
                             >
                                 <ul>
                                     <li>
-                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex items-center py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Oldest</a>
+                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex items-center py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Oldest</a>
                                     </li>
                                     <li>
-                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex items-center py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Featured</a>
+                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex items-center py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Featured</a>
                                     </li>
                                 </ul>
                             </div>

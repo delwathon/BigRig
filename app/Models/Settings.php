@@ -17,12 +17,15 @@ class Settings extends Model
     protected $fillable = [
         'business_name',
         'business_slogan',
+        'commence_year',
         'business_description',
         'keywords',
         'business_email',
         'secondary_email',
         'business_contact',
         'secondary_contact',
+        'whatsapp_support',
+        'telegram_support',
         'dark_theme_logo',
         'light_theme_logo',
         'instagram_handle',
@@ -30,5 +33,8 @@ class Settings extends Model
         'youtube_handle',
         'tiktok_handle',
         'linkedin_handle',
+        'show_whatsapp_support',
+        'show_telegram_support',
+        'show_preloader',
     ];
 }

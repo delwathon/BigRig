@@ -109,7 +109,7 @@ class CheckoutController extends Controller
                         'payment_method' => 'Paystack',
                     ]);
 
-                    $user->update(['user_visibility' => true]);
+                    $user->update(['user_active' => true]);
                     $this->assignCoursesToStudent($user, $subscription->objectives);
                 }
 
@@ -125,7 +125,7 @@ class CheckoutController extends Controller
                         'payment_method' => 'Paystack',
                     ]);
 
-                    $user->update(['user_visibility' => true]);
+                    $user->update(['user_active' => true]);
                     $this->assignCoursesToStudent($user, $newSubscription->objectives);
                 }
 
@@ -151,7 +151,7 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            $user->update(['user_visibility' => false]);
+            $user->update(['user_active' => false]);
             return redirect('/payment/failed')->with('error', 'An error occurred during payment verification.');
         }
     }

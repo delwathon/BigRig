@@ -20,7 +20,7 @@
             <div class="grow">
                 <!-- Header -->
                 <header class="mb-4">
-                    <a class="text-xs text-green-500 hover:text-green-600 font-semibold uppercase tracking-widest mb-1" href="#0">Funding</a>
+                    <a class="text-xs text-green-500 hover:text-green-600 font-semibold uppercase tracking-widest mb-1" href="javascript:void(0)">Funding</a>
                     <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">SwiftNight Home Plus</h3>
                     <div class="text-sm">Lorem ipsum is placeholder text commonly used.</div>
                 </header>
@@ -39,7 +39,7 @@
             </div>
             <!-- Card footer -->
             <div>
-                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Back It</a>
+                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Back It</a>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
             <div class="grow">
                 <!-- Header -->
                 <header class="mb-4">
-                    <a class="text-xs text-green-500 hover:text-green-600 font-semibold uppercase tracking-widest mb-1" href="#0">Funding</a>
+                    <a class="text-xs text-green-500 hover:text-green-600 font-semibold uppercase tracking-widest mb-1" href="javascript:void(0)">Funding</a>
                     <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">SwiftNight Home Plus</h3>
                     <div class="text-sm">Lorem ipsum is placeholder text commonly used.</div>
                 </header>
@@ -86,7 +86,7 @@
             </div>
             <!-- Card footer -->
             <div>
-                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Back It</a>
+                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Back It</a>
             </div>
         </div>
     </div>
@@ -114,7 +114,7 @@
             <div class="grow">
                 <!-- Header -->
                 <header class="mb-4">
-                    <a class="text-xs text-green-500 hover:text-green-600 font-semibold uppercase tracking-widest mb-1" href="#0">Funding</a>
+                    <a class="text-xs text-green-500 hover:text-green-600 font-semibold uppercase tracking-widest mb-1" href="javascript:void(0)">Funding</a>
                     <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">SwiftNight Home Plus</h3>
                     <div class="text-sm">Lorem ipsum is placeholder text commonly used.</div>
                 </header>
@@ -133,7 +133,7 @@
             </div>
             <!-- Card footer -->
             <div>
-                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Back It</a>
+                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Back It</a>
             </div>
         </div>
     </div>
@@ -161,7 +161,7 @@
             <div class="grow">
                 <!-- Header -->
                 <header class="mb-4">
-                    <a class="text-xs text-green-500 hover:text-green-600 font-semibold uppercase tracking-widest mb-1" href="#0">Funding</a>
+                    <a class="text-xs text-green-500 hover:text-green-600 font-semibold uppercase tracking-widest mb-1" href="javascript:void(0)">Funding</a>
                     <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">SwiftNight Home Plus</h3>
                     <div class="text-sm">Lorem ipsum is placeholder text commonly used.</div>
                 </header>
@@ -180,7 +180,7 @@
             </div>
             <!-- Card footer -->
             <div>
-                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Back It</a>
+                <a class="btn-sm w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Back It</a>
             </div>
         </div>
     </div>

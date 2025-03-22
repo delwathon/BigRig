@@ -47,13 +47,16 @@
     <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
 
     @yield('head') <!-- Optional section for additional styles/scripts -->
 </head>
 <body>
 
     <!-- Include preloader and search popup -->
-    @include('partials.preloader')
+    @if ($settings->show_preloader)
+        @include('partials.preloader')
+    @endif
 
     <!-- Include sidebar -->
     @include('partials.sidebar')

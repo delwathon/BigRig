@@ -54,10 +54,10 @@
                                 <h2 class="text-2xl text-gray-800 dark:text-gray-100 font-bold mb-3">Released version 2.0</h2>
                                 <div class="flex flex-nowrap items-center space-x-2 mb-4">
                                     <div class="flex items-center">
-                                        <a class="block mr-2 shrink-0" href="#0">
+                                        <a class="block mr-2 shrink-0" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-07.jpg') }}" width="32" height="32" alt="User 04" />
                                         </a>
-                                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100" href="#0">
+                                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">
                                             Simona Lürwer
                                         </a>
                                     </div>
@@ -85,10 +85,10 @@
                                 <h2 class="text-2xl text-gray-800 dark:text-gray-100 font-bold mb-3">Feature Name is now public 🎉</h2>
                                 <div class="flex flex-nowrap items-center space-x-2 mb-4">
                                     <div class="flex items-center">
-                                        <a class="block mr-2 shrink-0" href="#0">
+                                        <a class="block mr-2 shrink-0" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-02.jpg') }}" width="32" height="32" alt="User 04" />
                                         </a>
-                                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100" href="#0">
+                                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">
                                             Danielle Cohen
                                         </a>
                                     </div>
@@ -116,10 +116,10 @@
                                 <h2 class="text-2xl text-gray-800 dark:text-gray-100 font-bold mb-3">Bugs fixed, issues, and more</h2>
                                 <div class="flex flex-nowrap items-center space-x-2 mb-4">
                                     <div class="flex items-center">
-                                        <a class="block mr-2 shrink-0" href="#0">
+                                        <a class="block mr-2 shrink-0" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-01.jpg') }}" width="32" height="32" alt="User 04" />
                                         </a>
-                                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100" href="#0">
+                                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">
                                             Patrick Kumar
                                         </a>
                                     </div>
@@ -153,10 +153,10 @@
                                 <h2 class="text-2xl text-gray-800 dark:text-gray-100 font-bold mb-3">Thanks, everyone 🙌</h2>
                                 <div class="flex flex-nowrap items-center space-x-2 mb-4">
                                     <div class="flex items-center">
-                                        <a class="block mr-2 shrink-0" href="#0">
+                                        <a class="block mr-2 shrink-0" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-02.jpg') }}" width="32" height="32" alt="User 04" />
                                         </a>
-                                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100" href="#0">
+                                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">
                                             Danielle Cohen
                                         </a>
                                     </div>

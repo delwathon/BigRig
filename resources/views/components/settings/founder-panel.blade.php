@@ -80,6 +80,20 @@
                     </div>
                 </div>
             </section>
+
+            <section>
+                <div class="flex items-center" x-data="{ checked: {{ $founder->show_founder ? 'true' : 'false' }} }">
+                    <div class="form-switch">
+                        <input type="hidden" name="show_founder" value="0"> <!-- Ensures false is sent when unchecked -->
+                        <input type="checkbox" name="show_founder" id="switch-1" class="sr-only" x-model="checked" value="1" />
+                        <label class="bg-gray-400 dark:bg-gray-700" for="switch-1">
+                            <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                            <span class="sr-only">Founder Details</span>
+                        </label>
+                    </div>
+                    <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Hide founder' : 'Show founder'"></div>
+                </div>
+            </section>
         </div>
 
         <!-- Panel footer -->

@@ -22,13 +22,13 @@ class InstructorController extends Controller
                         ->paginate(10);
         } else {
             $instructors = User::with('role')
-                        ->where('user_visibility', 1)
+                        ->where('user_active', 1)
                         ->where('role_id', '!=', 10) // Exclude role_id = 10
                         ->orderBy('firstName', 'asc')
                         ->paginate(10);
         }
 
-                    // User::where('user_visibility', 1)
+                    // User::where('user_active', 1)
                     // ->whereNotIn('role_id', [10, 12, 13]) // Excludes role_id = 10, 12, 13
                     // ->paginate(10);
                 
@@ -79,9 +79,9 @@ class InstructorController extends Controller
             'mobileNumber' => $request->input('mobileNumber'),
             'email' => $request->input('email'),
             'password' => Hash::make('12345678'),
-            'profile_photo_path' => $filePath ?? 'users/avatar.png',
+            'profile_photo_path' => $filePath ?? null,
             'role_id' => $userRole,
-            'user_visibility' => 1,
+            'user_active' => 1,
         ]);            
 
         return redirect()->back()->with('success', 'Instructor created successfully.');
@@ -125,7 +125,8 @@ class InstructorController extends Controller
 
         // Toggle user visibility (0 → 1, 1 → 0)
         $instructor->update([
-            'user_visibility' => !$instructor->user_visibility
+            'user_active' => !$instructor->user_active,
+            'website_visibility' => false
         ]);
 
         return redirect()->back()->with('success', 'Instructor account status updated successfully!');

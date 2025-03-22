@@ -17,7 +17,7 @@
                     <!-- Right -->
                     <div class="text-sm text-gray-600 dark:text-gray-400 ml-4">
                         <span class="mr-3">Mastercard ending 9282</span>
-                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Edit</a>
+                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Edit</a>
                     </div>
                 </li>
                 <li class="md:flex md:justify-between md:items-center py-3 border-b border-gray-200 dark:border-gray-700/60">
@@ -26,7 +26,7 @@
                     <!-- Right -->
                     <div class="text-sm text-gray-600 dark:text-gray-400 ml-4">
                         <span class="mr-3">Annually</span>
-                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Edit</a>
+                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Edit</a>
                     </div>
                 </li>
                 <li class="md:flex md:justify-between md:items-center py-3 border-b border-gray-200 dark:border-gray-700/60">
@@ -35,7 +35,7 @@
                     <!-- Right -->
                     <div class="text-sm text-gray-600 dark:text-gray-400 ml-4">
                         <span class="mr-3">UK849700927</span>
-                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Edit</a>
+                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Edit</a>
                     </div>
                 </li>
                 <li class="md:flex md:justify-between md:items-center py-3 border-b border-gray-200 dark:border-gray-700/60">
@@ -44,7 +44,7 @@
                     <!-- Right -->
                     <div class="text-sm text-gray-600 dark:text-gray-400 ml-4">
                         <span class="mr-3">34 Savoy Street, London, UK, 24E8X</span>
-                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Edit</a>
+                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Edit</a>
                     </div>
                 </li>
                 <li class="md:flex md:justify-between md:items-center py-3 border-b border-gray-200 dark:border-gray-700/60">
@@ -53,7 +53,7 @@
                     <!-- Right -->
                     <div class="text-sm text-gray-600 dark:text-gray-400 ml-4">
                         <span class="mr-3">hello@cruip.com</span>
-                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Edit</a>
+                        <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Edit</a>
                     </div>
                 </li>
             </ul>
@@ -96,9 +96,9 @@
                         </td>
                         <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
                             <div class="text-right flex items-center md:justify-end">
-                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">HTML</a>
+                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">HTML</a>
                                 <span class="block w-px h-4 bg-gray-200 dark:bg-gray-700 mx-2" aria-hidden="true"></span>
-                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">PDF</a>
+                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">PDF</a>
                             </div>
                         </td>
                     </tr>
@@ -115,9 +115,9 @@
                         </td>
                         <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
                             <div class="text-right flex items-center md:justify-end">
-                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">HTML</a>
+                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">HTML</a>
                                 <span class="block w-px h-4 bg-gray-200 dark:bg-gray-700 mx-2" aria-hidden="true"></span>
-                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">PDF</a>
+                                <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">PDF</a>
                             </div>
                         </td>
                     </tr>

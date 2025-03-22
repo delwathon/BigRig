@@ -8,7 +8,7 @@
             <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Merchandise</h3>
         </div>
         <div>
-            <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Explore -&gt;</a>
+            <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Explore -&gt;</a>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
             <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Audiobooks</h3>
         </div>
         <div>
-            <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Explore -&gt;</a>
+            <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Explore -&gt;</a>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
             <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Design & Tech</h3>
         </div>
         <div>
-            <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Explore -&gt;</a>
+            <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Explore -&gt;</a>
         </div>
     </div>
 </div>
@@ -53,7 +53,7 @@
             <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Apps & Software</h3>
         </div>
         <div>
-            <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Explore -&gt;</a>
+            <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Explore -&gt;</a>
         </div>
     </div>
 </div>

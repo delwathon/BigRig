@@ -1965,7 +1965,7 @@ CREATE TABLE `users` (
   `current_team_id` bigint(20) UNSIGNED DEFAULT NULL,
   `role_id` bigint(20) UNSIGNED DEFAULT NULL,
   `profile_photo_path` varchar(2048) DEFAULT NULL,
-  `user_visibility` tinyint(1) NOT NULL DEFAULT 0,
+  `user_active` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1974,7 +1974,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstName`, `middleName`, `lastName`, `gender`, `mobileNumber`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `role_id`, `profile_photo_path`, `user_visibility`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id`, `firstName`, `middleName`, `lastName`, `gender`, `mobileNumber`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `role_id`, `profile_photo_path`, `user_active`, `created_at`, `updated_at`) VALUES
 (1, 'Rilwan', '', 'Adelaja', 'Male', '+234 814 468 2898', 'admin@bigrigdrivingschool.ng', '2024-12-13 04:37:10', '$2y$12$4vyZtQOTNnFjM8NhiHI2H.3ztaH2eC24f3/KpbKzMsVIGvBTDlJf.', NULL, NULL, NULL, NULL, NULL, 1, 'profile-photos/1Os5LLDzdWCgRRkSrBjqdmm3YP5fAH0uMvA74Qx7.jpg', 1, '2024-12-08 13:21:23', '2025-01-23 13:52:14'),
 (2, 'Precious', NULL, 'Adesoji', 'Female', '08136773856', 'preckylyndy@gmail.com', '2024-12-13 05:47:53', '$2y$12$AQc4gZ68nl/znlRKXSdBtehrxyyI9VwRhN2iPEO8KTkgiz.VijZfq', NULL, NULL, NULL, NULL, NULL, 2, 'profile-photos/LtNjyBGrBK2jGBvbLnV5IXrmC9nKYQY0oPnz5vtR.jpg', 1, '2024-12-12 05:27:58', '2024-12-18 04:15:41'),
 (3, 'Remilekun', NULL, 'Adeyemo', 'Female', '07019898522', 'remi@leefakino.com', NULL, '$2y$12$DuFphvlKKyHzqzzb8TA9oukEZYQQDXEeCqhEt6RzE7VWSdWwxwjTG', NULL, NULL, NULL, NULL, NULL, 2, 'users/avatar.png', 1, '2024-12-13 05:56:13', '2024-12-13 05:56:57'),

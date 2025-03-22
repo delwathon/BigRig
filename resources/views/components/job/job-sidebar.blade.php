@@ -26,7 +26,7 @@
         <div class="relative">
             <div class="text-sm font-medium text-gray-800 dark:text-violet-200 mb-2">Remember to keep track of your job research.</div>
             <div class="text-right">
-                <a class="text-sm font-medium text-violet-500 hover:text-violet-600" href="#0">Create Alert -&gt;</a>
+                <a class="text-sm font-medium text-violet-500 hover:text-violet-600" href="javascript:void(0)">Create Alert -&gt;</a>
             </div>
         </div>
     </div>

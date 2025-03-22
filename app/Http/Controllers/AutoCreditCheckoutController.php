@@ -76,7 +76,7 @@ class CheckoutController extends Controller
                 $subscription->payment_method = 'Monicredit';
                 $subscription->save();
 
-                $user->update(['user_visibility' => true]);
+                $user->update(['user_active' => true]);
 
                 return redirect('/dashboard')->with('success', 'Payment successful!');
             }

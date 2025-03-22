@@ -17,11 +17,16 @@ class TrainingObjective extends Model
      */
     protected $fillable = [
         'objective',
-        'price',
         'duration',
+        'theory_session',
+        'practical_session',
+        'examination',
+        'price',
+        'course_details',
         'requirement',
         'image_url',
-        'course_details',
+        'video_thumbnail_url',
+        'video_url',
     ];
 
     protected $table = 'training_objectives';

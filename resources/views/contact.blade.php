@@ -32,24 +32,29 @@
                                 <div class="single-item">
                                     <div class="icon-box"><img src="{{asset('assets/images/icons/icon-53.png')}}" alt=""></div>
                                     <h4>We are Here</h4>
-                                    <p>No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.</p>
+                                    <p>{{ $settings->headquarters }}</p>
                                 </div>
                                 <div class="single-item">
                                     <div class="icon-box"><img src="{{asset('assets/images/icons/icon-54.png')}}" alt=""></div>
                                     <h4>Quick Contact</h4>
-                                    <p><a href="tel:+1 (913) 705-0526">+1 (913) 705-0526</a><br /><a href="mailto:info@bigrigdrivingschool.ng">info@bigrigdrivingschool.ng</a></p>
+                                    <p><a href="tel:{{ $settings->business_contact }}">{{ $settings->business_contact }}</a><br /><a href="mailto:info@bigrigdrivingschool.ng">{{ $settings->business_email }}</a></p>
                                 </div>
                                 <div class="single-item">
                                     <div class="icon-box"><img src="{{asset('assets/images/icons/icon-55.png')}}" alt=""></div>
                                     <h4>Off.Hours</h4>
-                                    <p>Monday - Saturday: 9am to 6.30pm <br />Sunday: Holiday</p>
+                                    <p>Monday - Saturday: 9am to 6pm <br />Sunday: Holiday</p>
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="https://www.instagram.com/bigrig_truckdrivingschool/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                @foreach (['facebook' => 'facebook-f', 'twitter' => 'twitter', 'youtube' => 'youtube', 'linkedin' => 'linkedin-in', 'instagram' => 'instagram'] as $platform => $icon)
+                                    @if (!empty($settings->{$platform . '_handle'}))
+                                        <li>
+                                            <a href="{{ $settings->{$platform . '_handle'} }}" target="_blank">
+                                                <i class="fab fa-{{ $icon }}"></i>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -59,7 +64,7 @@
                                 <h2>Send your enquiry</h2>
                                 <p>Complete the enquiry form & we will be in touch as soon as possible.</p>
                             </div>
-                            <form method="post" action="#" id="contact-form"> 
+                            <form method="post" action="" id="contact-form"> 
                                 <div class="row clearfix">
                                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                         <input type="text" name="username" placeholder="Your Name" required="">
@@ -73,30 +78,29 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                         <div class="select-box">
                                             <select class="wide">
-                                                <option data-display="I am parent looking course for my teen">I am parent looking course for my teen</option>
-                                                <option value="1">Driving Course</option>
-                                                <option value="2">Driving License</option>
-                                                <option value="3">Insurance</option>
-                                                <option value="4">Road Safety Guide</option>
+                                               <option data-display="I am parent looking course for my teen">I am parent looking course for my teen</option>
+                                               @foreach ($objectives as $course)
+                                                <option value="{{ $course->id }}">{{ $course->objective }}</option>
+                                               @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    {{-- <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                         <div class="select-box">
                                             <select class="wide">
-                                                <option data-display="Extended Driving Course">Extended Driving Course</option>
-                                                <option value="1">Driving Course</option>
-                                                <option value="2">Driving License</option>
-                                                <option value="3">Insurance</option>
-                                                <option value="4">Road Safety Guide</option>
+                                               <option data-display="Extended Driving Course">Extended Driving Course</option>
+                                               <option value="1">Driving Course</option>
+                                               <option value="2">Driving License</option>
+                                               <option value="3">Insurance</option>
+                                               <option value="4">Road Safety Guide</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                         <textarea name="message" placeholder="Message"></textarea>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                        <button type="submit" class="theme-btn" name="submit-form">Read More</button>
+                                        <button type="submit" class="theme-btn" name="submit-form">SEND</button>
                                     </div>
                                 </div>
                             </form>
@@ -133,11 +137,11 @@
                             <div class="lower-content">
                                 <div class="single-item">
                                     <h6>Location</h6>
-                                    <p>No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.</p>
+                                    <p>{{ $settings->headquarters }}</p>
                                 </div>
                                 <div class="single-item">
                                     <h6>Contact</h6>
-                                    <p><a href="tel:+1 (913) 705-0526">+1 (913) 705-0526</a><br /><a href="mailto:info@bigrigdrivingschool.ng">info@bigrigdrivingschool.ng</a></p>
+                                    <p><a href="tel:{{ $settings->business_contact }}">{{ $settings->business_contact }}</a><br /><a href="mailto:{{ $settings->business_email }}">{{ $settings->business_email }}</a></p>
                                 </div>
                             </div>
                         </div>
@@ -151,11 +155,11 @@
                             <div class="lower-content">
                                 <div class="single-item">
                                     <h6>Location</h6>
-                                    <p>No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.</p>
+                                    <p>{{ $settings->headquarters }}</p>
                                 </div>
                                 <div class="single-item">
                                     <h6>Contact</h6>
-                                    <p><a href="tel:+1 (913) 705-0526">+1 (913) 705-0526</a><br /><a href="mailto:info@bigrigdrivingschool.ng">info@bigrigdrivingschool.ng</a></p>
+                                    <p><a href="tel:{{ $settings->business_contact }}">{{ $settings->business_contact }}</a><br /><a href="mailto:{{ $settings->business_email }}">{{ $settings->business_email }}</a></p>
                                 </div>
                             </div>
                         </div>
@@ -169,11 +173,11 @@
                             <div class="lower-content">
                                 <div class="single-item">
                                     <h6>Location</h6>
-                                    <p>No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.</p>
+                                    <p>{{ $settings->headquarters }}</p>
                                 </div>
                                 <div class="single-item">
                                     <h6>Contact</h6>
-                                    <p><a href="tel:+1 (913) 705-0526">+1 (913) 705-0526</a><br /><a href="mailto:info@bigrigdrivingschool.ng">info@bigrigdrivingschool.ng</a></p>
+                                    <p><a href="tel:{{ $settings->business_contact }}">{{ $settings->business_contact }}</a><br /><a href="mailto:{{ $settings->business_email }}">{{ $settings->business_email }}</a></p>
                                 </div>
                             </div>
                         </div>

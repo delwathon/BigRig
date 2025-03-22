@@ -17,17 +17,17 @@
             <!-- Right side -->
             <ul class="shrink-0 flex flex-wrap justify-end md:justify-start -space-x-3 -ml-px">
                 <li>
-                    <a class="block" href="#0">
+                    <a class="block" href="javascript:void(0)">
                         <img class="w-9 h-9 rounded-full" src="{{ asset('images/company-icon-06.svg') }}" width="36" height="36" alt="Account 01" />
                     </a>
                 </li>
                 <li>
-                    <a class="block" href="#0">
+                    <a class="block" href="javascript:void(0)">
                         <img class="w-9 h-9 rounded-full" src="{{ asset('images/company-icon-02.svg') }}" width="36" height="36" alt="Account 02" />
                     </a>
                 </li>
                 <li>
-                    <a class="block" href="#0">
+                    <a class="block" href="javascript:void(0)">
                         <img class="w-9 h-9 rounded-full" src="{{ asset('images/company-icon-03.svg') }}" width="36" height="36" alt="Account 03" />
                     </a>
                 </li>

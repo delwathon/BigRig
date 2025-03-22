@@ -15,6 +15,7 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('site_name');
             $table->string('site_tagline')->nullable();
+            $table->year('commence_year')->nullable();
             $table->text('site_description');
             $table->text('site_keywords');
             $table->text('headquarters');
@@ -22,6 +23,8 @@ class CreateSettingsTable extends Migration
             $table->string('secondary_email')->nullable();
             $table->string('business_contact');
             $table->string('secondary_contact')->nullable();
+            $table->string('whatsapp_support')->nullable();
+            $table->string('telegram_support')->nullable();
             $table->string('dark_theme_logo')->nullable();
             $table->string('light_theme_logo')->nullable();
             $table->string('favicon')->nullable();
@@ -31,6 +34,9 @@ class CreateSettingsTable extends Migration
             $table->string('youtube_handle')->nullable();
             $table->string('tiktok_handle')->nullable();
             $table->string('linkedin_handle')->nullable();
+            $table->boolean('show_whatsapp_support')->default(false);
+            $table->boolean('show_telegram_support')->default(false);
+            $table->boolean('show_preloader')->default(false);
             $table->timestamps();
         });
     }

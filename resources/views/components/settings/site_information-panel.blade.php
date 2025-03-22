@@ -38,15 +38,19 @@
 
             <!-- Business Information -->
             <section>
-                <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Site Details</h3>
+                <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Company Details</h3>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-                    <div class="sm:w-1/2">
-                        <label class="block text-sm font-medium mb-1" for="site_name">Site Name <span class="text-red-500">*</span></label>
+                    <div class="sm:w-1/3">
+                        <label class="block text-sm font-medium mb-1" for="site_name">Company Name <span class="text-red-500">*</span></label>
                         <input id="name" class="form-input w-full" type="text" value="{{ $settings->site_name }}" name="site_name"/>
                     </div>
-                    <div class="sm:w-1/2">
-                        <label class="block text-sm font-medium mb-1" for="site_tagline">Site Tagline</label>
+                    <div class="sm:w-1/3">
+                        <label class="block text-sm font-medium mb-1" for="site_tagline">Company Tagline</label>
                         <input id="business-id" class="form-input w-full" type="text" value="{{ $settings->site_tagline }}" name="site_tagline"/>
+                    </div>
+                    <div class="sm:w-1/3">
+                        <label class="block text-sm font-medium mb-1" for="commence_year">Commencement Year</label>
+                        <input id="business-id" class="form-input w-full" type="text" value="{{ $settings->commence_year }}" name="commence_year"/>
                     </div>
                 </div>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
@@ -60,7 +64,7 @@
                         <label class="block text-sm font-medium mb-1" for="site_keywords">Site Keyword(s) <span class="text-red-500">*</span></label>
                         <textarea id="feedback" class="form-textarea w-full focus:border-gray-300" rows="4" placeholder="Site keywords" name="site_keywords">{{ $settings->site_keywords }}</textarea>
                     </div>
-                </div>
+                </div>                
             </section>
 
             <!-- Contact Details -->
@@ -90,6 +94,16 @@
                     <div class="sm:w-1/2">
                         <label class="block text-sm font-medium mb-1" for="secondary_contact">Secondary Phone Number</label>
                         <input id="business-id" class="form-input w-full" type="text" value="{{ $settings->secondary_contact }}" name="secondary_contact"/>
+                    </div>
+                </div>
+                <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
+                    <div class="sm:w-1/2">
+                        <label class="block text-sm font-medium mb-1" for="whatsapp_support">Whatsapp Support Contact<span class="text-red-500">*</span></label>
+                        <input id="name" class="form-input w-full" type="text" value="{{ $settings->whatsapp_support }}" name="whatsapp_support"/>
+                    </div>
+                    <div class="sm:w-1/2">
+                        <label class="block text-sm font-medium mb-1" for="telegram_support">Telegram Support ID</label>
+                        <input id="business-id" class="form-input w-full" type="text" value="{{ $settings->telegram_support }}" name="telegram_support"/>
                     </div>
                 </div>
             </section>
@@ -128,7 +142,52 @@
                     </div>
                 </div>
             </section>
-        </div>
+
+            <section>
+                <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Visibility</h3>
+                
+                <div class="flex items-center gap-6"> <!-- Flex container to align them in a row -->
+                    <!-- WhatsApp Support -->
+                    <div class="flex items-center" x-data="{ checked: {{ $settings->show_whatsapp_support ? 'true' : 'false' }} }">
+                        <div class="form-switch">
+                            <input type="hidden" name="show_whatsapp_support" value="0"> <!-- Ensures false is sent when unchecked -->
+                            <input type="checkbox" name="show_whatsapp_support" id="switch-whatsapp" class="sr-only" x-model="checked" value="1" />
+                            <label class="bg-gray-400 dark:bg-gray-700" for="switch-whatsapp">
+                                <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                                <span class="sr-only">Whatsapp Support Widget</span>
+                            </label>
+                        </div>
+                        <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Hide Whatsapp Support Widget' : 'Show Whatsapp Support Widget'"></div>
+                    </div>
+            
+                    <!-- Telegram Support -->
+                    <div class="flex items-center" x-data="{ checked: {{ $settings->show_telegram_support ? 'true' : 'false' }} }">
+                        <div class="form-switch">
+                            <input type="hidden" name="show_telegram_support" value="0"> <!-- Ensures false is sent when unchecked -->
+                            <input type="checkbox" name="show_telegram_support" id="switch-telegram" class="sr-only" x-model="checked" value="1" />
+                            <label class="bg-gray-400 dark:bg-gray-700" for="switch-telegram">
+                                <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                                <span class="sr-only">Telegram Support Widget</span>
+                            </label>
+                        </div>
+                        <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Hide Telegram Support Widget' : 'Show Telegram Support Widget'"></div>
+                    </div>
+
+                    <!-- Telegram Support -->
+                    <div class="flex items-center" x-data="{ checked: {{ $settings->show_preloader ? 'true' : 'false' }} }">
+                        <div class="form-switch">
+                            <input type="hidden" name="show_preloader" value="0"> <!-- Ensures false is sent when unchecked -->
+                            <input type="checkbox" name="show_preloader" id="switch-preloader" class="sr-only" x-model="checked" value="1" />
+                            <label class="bg-gray-400 dark:bg-gray-700" for="switch-preloader">
+                                <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                                <span class="sr-only">Website Preloader</span>
+                            </label>
+                        </div>
+                        <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Deactivate Preloader' : 'Activate Preloader'"></div>
+                    </div>
+                </div>
+            </section>            
+        </div> 
 
         <!-- Panel footer -->
         <footer>

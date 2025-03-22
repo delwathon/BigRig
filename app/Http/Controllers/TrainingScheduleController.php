@@ -21,11 +21,11 @@ class TrainingScheduleController extends Controller
     {
         // Retrieve training objectives, instructors, students, and batches
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
-        $instructors = User::where('user_visibility', 1)
+        $instructors = User::where('user_active', 1)
                     ->where('role_id', '!=', 10) // Exclude role_id = 10
                     ->orderBy('firstName', 'asc')
                     ->get();
-        $students = User::where('user_visibility', 1)
+        $students = User::where('user_active', 1)
                     ->where('role_id', 10)
                     ->orderBy('firstName', 'asc')
                     ->get();

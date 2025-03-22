@@ -10,16 +10,16 @@
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700/60">
                 <ul class="text-sm font-medium flex flex-nowrap -mx-4 sm:-mx-6 lg:-mx-8 overflow-x-scroll no-scrollbar">
                     <li class="pb-3 mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-                        <a class="text-violet-500 whitespace-nowrap" href="#0">View All</a>
+                        <a class="text-violet-500 whitespace-nowrap" href="javascript:void(0)">View All</a>
                     </li>
                     <li class="pb-3 mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-                        <a class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="#0">Utility</a>
+                        <a class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="javascript:void(0)">Utility</a>
                     </li>
                     <li class="pb-3 mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-                        <a class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="#0">Marketing</a>
+                        <a class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="javascript:void(0)">Marketing</a>
                     </li>
                     <li class="pb-3 mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-                        <a class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="#0">Development</a>
+                        <a class="text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 whitespace-nowrap" href="javascript:void(0)">Development</a>
                     </li>
                 </ul>
             </div>
@@ -314,7 +314,7 @@
                                 <!-- Left side -->
                                 <div class="text-sm text-gray-500 dark:text-gray-400 italic">400+ Apps</div>
                                 <!-- Right side -->
-                                <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Explore -&gt;</a>
+                                <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Explore -&gt;</a>
                             </div>
                         </footer>
                     </div>
@@ -334,7 +334,7 @@
                                 <!-- Left side -->
                                 <div class="text-sm text-gray-500 dark:text-gray-400 italic">320+ Apps</div>
                                 <!-- Right side -->
-                                <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Explore -&gt;</a>
+                                <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Explore -&gt;</a>
                             </div>
                         </footer>
                     </div>
@@ -354,7 +354,7 @@
                                 <!-- Left side -->
                                 <div class="text-sm text-gray-500 dark:text-gray-400 italic">270+ Apps</div>
                                 <!-- Right side -->
-                                <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Explore -&gt;</a>
+                                <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Explore -&gt;</a>
                             </div>
                         </footer>
                     </div>

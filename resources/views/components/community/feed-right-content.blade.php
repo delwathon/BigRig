@@ -153,31 +153,31 @@
                     <ul class="space-y-3">
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Tracking your website traffic on launch day 📈</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Tracking your website traffic on launch day 📈</a>
                             </div>
                             <div class="text-xs text-gray-500">248 comments</div>
                         </li>
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Freemium model questions</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Freemium model questions</a>
                             </div>
                             <div class="text-xs text-gray-500">47 comments</div>
                         </li>
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Slack and Community</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Slack and Community</a>
                             </div>
                             <div class="text-xs text-gray-500">24 comments</div>
                         </li>
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Who owns user onboarding in your company?</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Who owns user onboarding in your company?</a>
                             </div>
                             <div class="text-xs text-gray-500">17 comments</div>
                         </li>
                         <li>
                             <div class="text-sm mb-1">
-                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Questions from a very confused Web3 startup founder 🤔</a>
+                                <a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Questions from a very confused Web3 startup founder 🤔</a>
                             </div>
                             <div class="text-xs text-gray-500">9 comments</div>
                         </li>

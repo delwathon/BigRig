@@ -28,7 +28,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -104,7 +104,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -189,7 +189,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -265,7 +265,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -341,7 +341,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -426,7 +426,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -502,7 +502,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -578,7 +578,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -654,7 +654,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -741,7 +741,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -817,7 +817,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>
@@ -893,7 +893,7 @@
             <!-- Card body -->
             <div class="grow">
                 <header class="mb-2">
-                    <a href="#0">
+                    <a href="javascript:void(0)">
                         <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">Form Builder CP</h3>
                     </a>
                     <div class="text-sm">Lorem ipsum dolor sit amet adipiscing elit, sed do eiusmod.</div>

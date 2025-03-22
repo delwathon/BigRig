@@ -17,13 +17,13 @@
 
                     <!-- Avatars -->
                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-gray-100 dark:border-gray-900 box-content" src="{{ asset('images/user-32-08.jpg') }}"" width="32" height="32" alt="User 08" />
                         </a>
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-gray-100 dark:border-gray-900 box-content" src="{{ asset('images/user-32-07.jpg') }}"" width="32" height="32" alt="User 07" />
                         </a>
-                        <a class="block" href="#0">
+                        <a class="block" href="javascript:void(0)">
                             <img class="rounded-full border-2 border-gray-100 dark:border-gray-900 box-content" src="{{ asset('images/user-32-05.jpg') }}"" width="32" height="32" alt="User 05" />
                         </a>
                         <button class="flex justify-center items-center w-9 h-9 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-violet-500 shadow-sm transition ml-2">
@@ -73,10 +73,10 @@
                                 <div class="flex items-center justify-end space-x-3">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-07.jpg') }}"" width="24" height="24" alt="User 07" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-05.jpg') }}"" width="24" height="24" alt="User 05" />
                                         </a>
                                     </div>
@@ -175,10 +175,10 @@
                                 <div class="flex items-center justify-end space-x-3">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-08.jpg') }}"" width="24" height="24" alt="User 08" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-07.jpg') }}"" width="24" height="24" alt="User 07" />
                                         </a>
                                     </div>
@@ -252,7 +252,7 @@
                                 <div class="flex items-center justify-end space-x-3">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-05.jpg') }}"" width="24" height="24" alt="User 05" />
                                         </a>
                                     </div>
@@ -337,7 +337,7 @@
                                 <div class="flex items-center justify-end space-x-3">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-07.jpg') }}"" width="24" height="24" alt="User 07" />
                                         </a>
                                     </div>
@@ -391,7 +391,7 @@
                                 <div class="flex items-center justify-end space-x-3">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-08.jpg') }}"" width="24" height="24" alt="User 08" />
                                         </a>
                                     </div>
@@ -436,10 +436,10 @@
                                 <div class="flex items-center justify-end space-x-3">
                                     <!-- Avatars -->
                                     <div class="flex shrink-0 -space-x-3 -ml-px">
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-08.jpg') }}"" width="24" height="24" alt="User 08" />
                                         </a>
-                                        <a class="block" href="#0">
+                                        <a class="block" href="javascript:void(0)">
                                             <img class="rounded-full border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-07.jpg') }}"" width="24" height="24" alt="User 07" />
                                         </a>
                                     </div>

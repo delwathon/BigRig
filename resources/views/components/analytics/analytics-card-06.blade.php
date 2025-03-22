@@ -80,7 +80,7 @@
             </div>
             <!-- Card footer -->
             <div class="text-center pt-4 pb-1 border-t border-gray-100 dark:border-gray-700/60">
-                <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Page Report -&gt;</a>
+                <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Page Report -&gt;</a>
             </div>
         </div>
     </div>

@@ -88,9 +88,9 @@ class CreateNewUser implements CreatesNewUsers
             'mobileNumber' => $input['mobileNumber'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'profile_photo_path' => 'users/avatar.png',
+            'profile_photo_path' => null,
             'role_id' => 10,
-            'user_visibility' => 0,
+            'user_active' => 0,
         ]);
 
         // Store medical details

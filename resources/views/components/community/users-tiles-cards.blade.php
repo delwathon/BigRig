@@ -14,7 +14,7 @@
                                     </svg>
                                 @endif
                             </div>
-                            <img class="rounded-full h-16" src="{{ Storage::url($user->profile_photo_path) }}" width="64" height="64" alt="{{ $user->firstName }}" />
+                            <img class="rounded-full h-16" src="{{ $user->profile_photo_path ? Storage::url($user->profile_photo_path) : Storage::url('users/avatar.png') }}" width="64" height="64" alt="{{ $user->firstName }}" />
                         </a>
                         <div class="mt-1 pr-1">
                             <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="{{ route('user-profile') }}">
@@ -54,19 +54,6 @@
                         x-cloak                
                     >
                         <ul>
-                            {{-- <li>
-                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Edit Profile</a>
-                            </li> --}}
-                            {{-- <li>
-                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="$store.editModal.open({
-                                    id: {{ $user->id }},
-                                    name: '{{ $user->firstName }}'
-                                })" 
-                                aria-controls="edit-modal" @focus="open = true" @focusout="open = false">Make Admin</a>
-                            </li>
-                            <li>
-                                <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Make Instructor</a>
-                            </li> --}}
                             <li>
                                 <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Deactivate</a>
                             </li>

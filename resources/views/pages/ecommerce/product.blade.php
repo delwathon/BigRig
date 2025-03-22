@@ -7,7 +7,7 @@
             <!-- Content -->
             <div>
                 <div class="mb-3">
-                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">&lt;- Back To Listing</a>
+                    <a class="text-sm font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">&lt;- Back To Listing</a>
                 </div>
                 <header class="mb-4">
                     <!-- Title -->
@@ -19,10 +19,10 @@
                 <div class="space-y-3 sm:flex sm:items-center sm:justify-between sm:space-y-0 mb-6">
                     <!-- Author -->
                     <div class="flex items-center sm:mr-4">
-                        <a class="block mr-2 shrink-0" href="#0">
+                        <a class="block mr-2 shrink-0" href="javascript:void(0)">
                             <img class="rounded-full" src="{{ asset('images/user-32-07.jpg') }}" width="32" height="32" alt="User 04" />
                         </a>
-                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100 whitespace-nowrap" href="#0">
+                        <a class="block text-sm font-semibold text-gray-800 dark:text-gray-100 whitespace-nowrap" href="javascript:void(0)">
                             Simona Lürwer
                         </a>
                     </div>
@@ -310,11 +310,11 @@
                     <ul class="space-y-8 sm:space-y-5 my-6">
                         <!-- Related item -->
                         <li class="sm:flex items-center">
-                            <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="#0">
+                            <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="javascript:void(0)">
                                 <img class="rounded-sm" src="{{ asset('images/related-product-01.jpg') }}" width="200" height="142" alt="Product 01" />
                             </a>
                             <div class="grow">
-                                <a href="#0">
+                                <a href="javascript:void(0)">
                                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">The Complete Front-End Development Course!</h3>
                                 </a>
                                 <div class="text-sm mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</div>
@@ -368,11 +368,11 @@
                         </li>
                         <!-- Related item -->
                         <li class="sm:flex items-center">
-                            <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="#0">
+                            <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="javascript:void(0)">
                                 <img class="rounded-sm" src="{{ asset('images/related-product-02.jpg') }}" width="200" height="142" alt="Product 02" />
                             </a>
                             <div class="grow">
-                                <a href="#0">
+                                <a href="javascript:void(0)">
                                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">Web Development Ultimate Course 2024</h3>
                                 </a>
                                 <div class="text-sm mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</div>
@@ -426,11 +426,11 @@
                         </li>
                         <!-- Related item -->
                         <li class="sm:flex items-center">
-                            <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="#0">
+                            <a class="block mb-4 sm:mb-0 mr-5 md:w-32 xl:w-auto shrink-0" href="javascript:void(0)">
                                 <img class="rounded-sm" src="{{ asset('images/related-product-03.jpg') }}" width="200" height="142" alt="Product 03" />
                             </a>
                             <div class="grow">
-                                <a href="#0">
+                                <a href="javascript:void(0)">
                                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">Full-Stack JavaScript Course!</h3>
                                 </a>
                                 <div class="text-sm mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</div>
@@ -527,9 +527,9 @@
                         </li>
                     </ul>
                     <div class="mb-4">
-                        <button class="btn w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="#0">Buy Now - $69.00</button>
+                        <button class="btn w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white" href="javascript:void(0)">Buy Now - $69.00</button>
                     </div>
-                    <div class="text-xs text-gray-500 italic text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <a class="underline hover:no-underline" href="#0">Terms</a>.</div>
+                    <div class="text-xs text-gray-500 italic text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <a class="underline hover:no-underline" href="javascript:void(0)">Terms</a>.</div>
                 </div>
             </div>
 

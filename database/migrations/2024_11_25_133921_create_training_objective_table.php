@@ -14,14 +14,19 @@ class CreateTrainingObjectiveTable extends Migration
     public function up()
     {
         Schema::create('training_objectives', function (Blueprint $table) {
-            $table->id(); // Auto-incrementing primary key (id)
-            $table->string('objective'); // Name of the training objective
-            $table->text('requirement'); // Description or requirement for the objective
-            $table->decimal('price', 8, 2); // Price of the training, e.g., 99.99
-            $table->integer('duration'); // Duration of the training in hours
-            $table->string('image_url')->nullable(); // Path or filename for the attachment (nullable)
+            $table->id();
+            $table->string('objective');
+            $table->integer('duration');
+            $table->integer('theory_session')->nullable();
+            $table->integer('practical_session')->nullable();
+            $table->string('examination')->nullable();
+            $table->decimal('price', 8, 2);
             $table->text('course_details')->nullable();
-            $table->timestamps(); // Created and updated timestamp columns
+            $table->text('requirement');
+            $table->string('image_url')->nullable();
+            $table->string('video_thumbnail_url')->nullable();
+            $table->string('video_url')->nullable();
+            $table->timestamps();
         });
     }
 

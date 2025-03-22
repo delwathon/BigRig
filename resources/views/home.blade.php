@@ -53,57 +53,78 @@
     <section class="about-section">
         <div class="auto-container">
             <div class="row clearfix">
-                <div class="col-lg-8 col-md-12 col-sm-12 big-column">
+                <!-- Determine column width dynamically -->
+                <div class="{{ $founder->show_founder ? 'col-lg-8' : 'col-lg-12' }} col-md-12 col-sm-12 big-column">
                     <div class="inner-box">
                         <div class="title-text">
                             <h2>{{ $founder->speech_title }}</h2>
                         </div>
                         <div class="row clearfix">
-                            <div class="col-lg-6 col-md-6 col-sm-12 image-column">
+                            <!-- Image Column -->
+                            <div class="{{ $founder->show_founder ? 'col-lg-6' : 'col-lg-4' }} col-md-6 col-sm-12 image-column">
                                 <div class="image-box">
-                                    <figure class="image"><img src="{{ Storage::url($founder->secondary_picture) }}" alt=""></figure>
+                                    <figure class="image">
+                                        <img src="{{ Storage::url($founder->secondary_picture) }}" alt="">
+                                    </figure>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 content-column">
+    
+                            <!-- Content Column -->
+                            <div class="{{ $founder->show_founder ? 'col-lg-6' : 'col-lg-8' }} col-md-6 col-sm-12 content-column">
                                 <div class="content-box">
                                     <h6>Since</h6>
-                                    <h2>2024</h2>
+                                    <h2>{{ $settings->commence_year }}</h2>
                                     <div class="text">
-                                        <p>{{ $founder->speech_content }}</p>
+                                        <p>{!! $founder->speech_content !!}</p>
                                     </div>
-                                    <div class="inner">
-                                        <figure class="signature"><img src="{{ Storage::url($founder->signature) }}" alt=""></figure>
-                                        <div class="author">
-                                            <h4>{{ $founder->founder_name }}</h4>
-                                            <span class="designation">Founder</span>
+    
+                                    @if ($founder->show_founder)
+                                        <!-- Founder Details -->
+                                        <div class="inner">
+                                            <figure class="signature">
+                                                <img src="{{ Storage::url($founder->signature) }}" alt="">
+                                            </figure>
+                                            <div class="author">
+                                                <h4>{{ $founder->founder_name }}</h4>
+                                                <span class="designation">Founder</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- <div class="btn-box">
-                                        <a href="{{route('about-us')}}" class="theme-btn btn-two">Read More</a>
-                                    </div> -->
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 small-column">
-                    <div class="image-box">
-                        <div class="shape" style="background-image: url({{asset('assets/images/shape/shape-11.png')}});"></div>
-                        <figure class="image"><img src="{{ Storage::url($founder->founder_picture) }}" alt=""></figure>
-                        <div class="social-links">
-                            <h6>Follow Me On</h6>
-                            <ul class="social-list clearfix">
-                                <li><a href="{{ $founder->facebook_handle }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="{{ $founder->twitter_handle }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="{{ $founder->linkedin_handle }}" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="{{ $founder->instagram_handle }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
+    
+                @if ($founder->show_founder)
+                    <!-- Founder Image & Social Links -->
+                    <div class="col-lg-4 col-md-12 col-sm-12 small-column">
+                        <div class="image-box">
+                            <div class="shape" style="background-image: url({{ asset('assets/images/shape/shape-11.png') }});"></div>
+                            <figure class="image">
+                                <img src="{{ Storage::url($founder->founder_picture) }}" alt="">
+                            </figure>
+                            <div class="social-links">
+                                <h6>Follow Me On</h6>
+                                <ul class="social-list clearfix">
+                                    @foreach (['facebook' => 'facebook-f', 'twitter' => 'twitter', 'linkedin' => 'linkedin-in', 'instagram' => 'instagram'] as $platform => $icon)
+                                        @if (!empty($founder->{$platform . '_handle'}))
+                                            <li>
+                                                <a href="{{ $founder->{$platform . '_handle'} }}" target="_blank">
+                                                    <i class="fab fa-{{ $icon }}"></i>
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </section>
+    
     <!-- about-section end -->
 
 

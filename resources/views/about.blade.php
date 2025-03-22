@@ -49,9 +49,10 @@
                             </div>
                             <div class="inner">
                                 <div class="text">
-                                    <p>{{ $about->company_history }}</p>
+                                    {!! $about->company_history !!}
                                 </div>
                                 <ul class="link-box clearfix">
+                                    <li><a href="javascript:void(0)">Brief History</a></li>
                                     <li><a href="javascript:void(0)">Our Statements</a></li>
                                 </ul>
                             </div>
@@ -232,84 +233,44 @@
     <section class="team-section alternat-2">
         <div class="auto-container">
             <div class="sec-title centred">
-                <h2>Meet our expert trainers</h2>
+                <h2>Meet The Team</h2>
             </div>
             <div class="row clearfix">
-                <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                    <div class="team-block-one">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <ul class="social-links clearfix">
-                                    <li><a href="{{ $founder->facebook_handle }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="{{ $founder->twitter_handle }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="{{ $founder->linkedin_handle }}" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                                <div class="shape">
-                                    <div class="shape-1" style="background-image: url({{asset('assets/images/shape/shape-57.png')}});"></div>
-                                    <div class="shape-2" style="background-image: url({{asset('assets/images/shape/shape-58.png')}});"></div>
-                                    <div class="shape-3" style="background-image: url({{asset('assets/images/shape/shape-76.png')}});"></div>
+                @foreach ($instructors as $instructor)
+                    <div class="col-lg-4 col-md-6 col-sm-12 team-block">
+                        <div class="team-block-one">
+                            <div class="inner-box">
+                                <div class="image-box">
+                                    <ul class="social-links clearfix">
+                                        @foreach (['facebook' => 'facebook-f', 'twitter' => 'twitter', 'linkedin' => 'linkedin-in',] as $platform => $icon)
+                                            @if (!empty($instructor->{$platform . '_handle'}))
+                                                <li>
+                                                    <a href="{{ $instructor->{$platform . '_handle'} }}" target="_blank">
+                                                        <i class="fab fa-{{ $icon }}"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                    <div class="shape">
+                                        <div class="shape-1" style="background-image: url({{asset('assets/images/shape/shape-57.png')}});"></div>
+                                        <div class="shape-2" style="background-image: url({{asset('assets/images/shape/shape-58.png')}});"></div>
+                                        <div class="shape-3" style="background-image: url({{asset('assets/images/shape/shape-76.png')}});"></div>
+                                    </div>
+                                    <span class="text">{{ $settings->site_name }}</span>
+                                    <figure class="image"><img src="{{ $instructor->profile_photo_path ? Storage::url($instructor->profile_photo_path) : Storage::url('users/avatar.png') }}" width="40" height="40" alt="{{ $instructor->firstName }} {{ $instructor->lastName }}"></figure>
                                 </div>
-                                <span class="text">BigRig Truck Driving School</span>
-                                <figure class="image"><img src="{{ Storage::url($founder->founder_picture) }}" alt=""></figure>
-                            </div>
-                            <div class="lower-content">
-                                <h4><a href="{{ route('home')}}">{{ $founder->founder_name }}</a></h4>
-                                <span class="designation">Founder</span>
+                                <div class="lower-content">
+                                    <h4><a href="javascript:void(0)">{{ $instructor->firstName }} {{ $instructor->lastName }}</a></h4>
+                                    <span class="designation">{{ $instructor->role->role_name }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                    <div class="team-block-one">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <ul class="social-links clearfix">
-                                    <li><a href="{{ route('home')}}"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="{{ route('home')}}"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="{{ route('home')}}"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                                <div class="shape">
-                                    <div class="shape-1" style="background-image: url({{asset('assets/images/shape/shape-57.png')}});"></div>
-                                    <div class="shape-2" style="background-image: url({{asset('assets/images/shape/shape-58.png')}});"></div>
-                                    <div class="shape-3" style="background-image: url({{asset('assets/images/shape/shape-76.png')}});"></div>
-                                </div>
-                                <span class="text">BigRig Truck Driving School</span>
-                                <figure class="image"><img src="{{asset('assets/images/team/team-2.jpg')}}" alt=""></figure>
-                            </div>
-                            <div class="lower-content">
-                                <h4><a href="{{ route('home')}}">Oluremi Adejobi</a></h4>
-                                <span class="designation">Instructor</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 team-block">
-                    <div class="team-block-one">
-                        <div class="inner-box">
-                            <div class="image-box">
-                                <ul class="social-links clearfix">
-                                    <li><a href="{{ route('home')}}"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="{{ route('home')}}"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="{{ route('home')}}"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                                <div class="shape">
-                                    <div class="shape-1" style="background-image: url({{asset('assets/images/shape/shape-57.png')}});"></div>
-                                    <div class="shape-2" style="background-image: url({{asset('assets/images/shape/shape-58.png')}});"></div>
-                                    <div class="shape-3" style="background-image: url({{asset('assets/images/shape/shape-76.png')}});"></div>
-                                </div>
-                                <span class="text">BigRig Truck Driving School</span>
-                                <figure class="image"><img src="{{asset('assets/images/team/team-3.jpg')}}" alt=""></figure>
-                            </div>
-                            <div class="lower-content">
-                                <h4><a href="{{ route('home')}}">Olalekan Akinwunmi</a></h4>
-                                <span class="designation">Instructor</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="more-btn">
-                <a href="javascript:void(0)" class="theme-btn btn-five">All Instrutors</a>
+                <a href="{{ route('our-instructors') }}" class="theme-btn btn-five">Meet Our Instrutors</a>
             </div>
         </div>
     </section>

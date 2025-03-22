@@ -7,7 +7,7 @@
     <!-- Content -->
     <div class="relative h-full p-5 flex flex-col justify-end">
         <h3 class="text-lg text-white font-semibold mt-16 mb-0.5">Merchandise</h3>
-        <a class="text-sm font-medium text-violet-400 hover:text-violet-300" href="#0">Explore -&gt;</a>
+        <a class="text-sm font-medium text-violet-400 hover:text-violet-300" href="javascript:void(0)">Explore -&gt;</a>
     </div>
 </div>
 
@@ -20,7 +20,7 @@
     <!-- Content -->
     <div class="relative h-full p-5 flex flex-col justify-end">
         <h3 class="text-lg text-white font-semibold mt-16 mb-0.5">Audiobooks</h3>
-        <a class="text-sm font-medium text-violet-400 hover:text-violet-300" href="#0">Explore -&gt;</a>
+        <a class="text-sm font-medium text-violet-400 hover:text-violet-300" href="javascript:void(0)">Explore -&gt;</a>
     </div>
 </div>
 
@@ -33,7 +33,7 @@
     <!-- Content -->
     <div class="relative h-full p-5 flex flex-col justify-end">
         <h3 class="text-lg text-white font-semibold mt-16 mb-0.5">Design & Tech</h3>
-        <a class="text-sm font-medium text-violet-400 hover:text-violet-300" href="#0">Explore -&gt;</a>
+        <a class="text-sm font-medium text-violet-400 hover:text-violet-300" href="javascript:void(0)">Explore -&gt;</a>
     </div>
 </div>
 
@@ -46,6 +46,6 @@
     <!-- Content -->
     <div class="relative h-full p-5 flex flex-col justify-end">
         <h3 class="text-lg text-white font-semibold mt-16 mb-0.5">Apps & Software</h3>
-        <a class="text-sm font-medium text-violet-400 hover:text-violet-300" href="#0">Explore -&gt;</a>
+        <a class="text-sm font-medium text-violet-400 hover:text-violet-300" href="javascript:void(0)">Explore -&gt;</a>
     </div>
 </div>

@@ -113,11 +113,11 @@
                                 <ul>
                                     <!-- Cart item -->
                                     <li class="flex items-center py-3 border-b border-gray-200 dark:border-gray-700/60">
-                                        <a class="block mr-2 xl:mr-4 shrink-0" href="#0">
+                                        <a class="block mr-2 xl:mr-4 shrink-0" href="javascript:void(0)">
                                             <img class="w-16 xl:w-20" src="{{ asset('images/related-product-01.jpg') }}" width="200" height="142" alt="Product 01" />
                                         </a>
                                         <div class="grow">
-                                            <a href="#0">
+                                            <a href="javascript:void(0)">
                                                 <h4 class="text-sm font-medium text-gray-800 dark:text-gray-100 leading-tight">The Complete Front-End Development Course!</h4>
                                             </a>
                                         </div>
@@ -125,11 +125,11 @@
                                     </li>
                                     <!-- Cart item -->
                                     <li class="flex items-center py-3 border-b border-gray-200 dark:border-gray-700/60">
-                                        <a class="block mr-2 xl:mr-4 shrink-0" href="#0">
+                                        <a class="block mr-2 xl:mr-4 shrink-0" href="javascript:void(0)">
                                             <img class="w-16 xl:w-20" src="{{ asset('images/related-product-02.jpg') }}" width="200" height="142" alt="Product 02" />
                                         </a>
                                         <div class="grow">
-                                            <a href="#0">
+                                            <a href="javascript:void(0)">
                                                 <h4 class="text-sm font-medium text-gray-800 dark:text-gray-100 leading-tight">Web Development Ultimate Course 2024</h4>
                                             </a>
                                         </div>
@@ -137,11 +137,11 @@
                                     </li>
                                     <!-- Cart item -->
                                     <li class="flex items-center py-3 border-b border-gray-200 dark:border-gray-700/60">
-                                        <a class="block mr-2 xl:mr-4 shrink-0" href="#0">
+                                        <a class="block mr-2 xl:mr-4 shrink-0" href="javascript:void(0)">
                                             <img class="w-16 xl:w-20" src="{{ asset('images/related-product-03.jpg') }}" width="200" height="142" alt="Product 03" />
                                         </a>
                                         <div class="grow">
-                                            <a href="#0">
+                                            <a href="javascript:void(0)">
                                                 <h4 class="text-sm font-medium text-gray-800 dark:text-gray-100 leading-tight">Full-Stack JavaScript Course!</h4>
                                             </a>
                                         </div>

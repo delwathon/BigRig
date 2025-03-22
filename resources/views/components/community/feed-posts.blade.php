@@ -7,7 +7,7 @@
             <img class="rounded-full shrink-0" src="{{ asset('images/user-40-03.jpg') }}" width="40" height="40" alt="User 03" />
             <div>
                 <div class="leading-tight">
-                    <a class="text-sm font-semibold text-gray-800 dark:text-gray-100" href="#0">Dominik Lamakani</a>
+                    <a class="text-sm font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">Dominik Lamakani</a>
                 </div>
                 <div class="text-xs text-gray-500">Yesterday at 10:48 AM</div>
             </div>
@@ -44,13 +44,13 @@
                 >
                     <ul>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
+                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
                         </li>
                     </ul>
                 </div>
@@ -98,7 +98,7 @@
             <img class="rounded-full shrink-0" src="{{ asset('images/user-40-06.jpg') }}" width="40" height="40" alt="User 06" />
             <div>
                 <div class="leading-tight">
-                    <a class="text-sm font-semibold text-gray-800 dark:text-gray-100" href="#0">Mark Karimani</a>
+                    <a class="text-sm font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">Mark Karimani</a>
                 </div>
                 <div class="inline-flex items-center">
                     <svg class="w-3 h-3 shrink-0 fill-yellow-500 mr-1" xmlns="http://www.w3.org/2000/svg">
@@ -140,13 +140,13 @@
                 >
                     <ul>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
+                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
                         </li>
                     </ul>
                 </div>
@@ -161,7 +161,7 @@
             <div class="absolute left-0 right-0 bottom-0 p-4 bg-black bg-opacity-25 backdrop-blur-md">
                 <div class="flex items-center justify-between">
                     <div class="text-xs font-medium text-gray-300">togethernature.com</div>
-                    <a class="text-xs font-medium text-violet-400 hover:text-violet-300" href="#0">Learn More -&gt;</a>
+                    <a class="text-xs font-medium text-violet-400 hover:text-violet-300" href="javascript:void(0)">Learn More -&gt;</a>
                 </div>
             </div>
         </div>
@@ -201,7 +201,7 @@
             <img class="rounded-full shrink-0" src="{{ asset('images/user-40-04.jpg') }}" width="40" height="40" alt="User 04" />
             <div>
                 <div class="leading-tight">
-                    <a class="text-sm font-semibold text-gray-800 dark:text-gray-100" href="#0">Erica Spriggs</a>
+                    <a class="text-sm font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">Erica Spriggs</a>
                 </div>
                 <div class="text-xs text-gray-500">Yesterday at 2:34 PM</div>
             </div>
@@ -238,13 +238,13 @@
                 >
                     <ul>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
+                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
                         </li>
                     </ul>
                 </div>
@@ -288,9 +288,9 @@
                     <img class="rounded-full shrink-0" src="{{ asset('images/user-32-04.jpg') }}" width="32" height="32" alt="User 04" />
                     <div>
                         <div class="text-xs text-gray-500">
-                            <a class="font-semibold text-gray-800 dark:text-gray-100" href="#0">Sophie Wenner</a> · 44min
+                            <a class="font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">Sophie Wenner</a> · 44min
                         </div>
-                        <div class="text-sm"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">@EricaSpriggs</a> Reading through and really enjoying "Zero to Sold" by Arvid.</div>
+                        <div class="text-sm"><a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">@EricaSpriggs</a> Reading through and really enjoying "Zero to Sold" by Arvid.</div>
                     </div>
                 </div>
             </li>
@@ -300,7 +300,7 @@
                     <img class="rounded-full shrink-0" src="{{ asset('images/user-32-05.jpg') }}" width="32" height="32" alt="User 05" />
                     <div>
                         <div class="text-xs text-gray-500">
-                            <a class="font-semibold text-gray-800 dark:text-gray-100" href="#0">Kyla Scanlon</a> · 1h
+                            <a class="font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">Kyla Scanlon</a> · 1h
                         </div>
                         <div class="text-sm">Depends on the company you're running, but if I had to choose just one book, it'd be The Personal MBA by Josh Kaufman.</div>
                     </div>
@@ -332,7 +332,7 @@
             <img class="rounded-full shrink-0" src="{{ asset('images/user-40-08.jpg') }}" width="40" height="40" alt="User 08" />
             <div>
                 <div class="leading-tight">
-                    <a class="text-sm font-semibold text-gray-800 dark:text-gray-100" href="#0">Margaret Sullivan</a>
+                    <a class="text-sm font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">Margaret Sullivan</a>
                 </div>
                 <div class="text-xs text-gray-500">Yesterday at 4:56 PM</div>
             </div>
@@ -369,13 +369,13 @@
                 >
                     <ul>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 1</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
+                            <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Option 2</a>
                         </li>
                         <li>
-                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
+                            <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Remove</a>
                         </li>
                     </ul>
                 </div>

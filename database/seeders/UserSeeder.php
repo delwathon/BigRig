@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'current_team_id' => null,
             'role_id' => 1,
             'profile_photo_path' => 'profile-photos/lwj9SQxN1NPlRtm5Jn9mOD8dsesdXRY7cCELDlLb.jpg',
-            'user_visibility' => 1,
+            'user_active' => 1,
         ]       
     ];
 

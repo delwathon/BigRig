@@ -497,7 +497,7 @@
                                     </button>
                                 </div>
                                 <div class="text-right mt-1">
-                                    <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Action -&gt;</a>
+                                    <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Action -&gt;</a>
                                 </div>
                             </div>
                             <!-- End -->
@@ -524,7 +524,7 @@
                                     </button>
                                 </div>
                                 <div class="text-right mt-1">
-                                    <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Action -&gt;</a>
+                                    <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Action -&gt;</a>
                                 </div>
                             </div>
                         </div>                                    
@@ -551,7 +551,7 @@
                                     </button>
                                 </div>
                                 <div class="text-right mt-1">
-                                    <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Action -&gt;</a>
+                                    <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Action -&gt;</a>
                                 </div>
                             </div>
                         </div>                                      
@@ -578,7 +578,7 @@
                                     </button>
                                 </div>
                                 <div class="text-right mt-1">
-                                    <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="#0">Action -&gt;</a>
+                                    <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="javascript:void(0)">Action -&gt;</a>
                                 </div>
                             </div>
                         </div>                                      

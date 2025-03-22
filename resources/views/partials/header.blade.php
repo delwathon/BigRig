@@ -5,19 +5,22 @@
         <div class="top-inner">
             <div class="single-item">
                 <div class="icon"><i class="flaticon-alarm"></i></div>
-                <h6>Training Time:<span>Mor Class 7am to 11am<i class="flaticon-right-arrow"></i></span></h6>
+                <h6>Training Time:<span> varies by instructor, usually between 9:00 AM and 5:00 PM {{--i class="flaticon-right-arrow"></i>--}}</span></h6>
             </div>
             <div class="single-item">
                 <div class="icon"><i class="flaticon-location"></i></div>
                 <h6>We have come closer to you:<span>Nigeria<i class="flaticon-right-arrow"></i></span></h6>
             </div>
             <ul class="share-box clearfix">
-                <li><h6><i class="flaticon-share"></i>Social media:</h6></li>
-                <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="javascript:void(0)"><i class="fab fa-youtube"></i></a></li>
-                <li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a></li>
-                <li><a href="https://www.instagram.com/bigrig_truckdrivingschool/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                @foreach (['facebook' => 'facebook-f', 'twitter' => 'twitter', 'youtube' => 'youtube', 'linkedin' => 'linkedin-in', 'instagram' => 'instagram'] as $platform => $icon)
+                    @if (!empty($settings->{$platform . '_handle'}))
+                        <li>
+                            <a href="{{ $settings->{$platform . '_handle'} }}" target="_blank">
+                                <i class="fab fa-{{ $icon }}"></i>
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </div>
@@ -64,7 +67,7 @@
                 <div class="support-box">
                     <div class="icon"><img src="{{asset('assets/images/icons/icon-1.png')}}" alt=""></div>
                     <h6>Dial to Drive</h6>
-                    <h4><a href="tel:+1 (913) 705-0526">+1 (913) 705-0526</a></h4>
+                    <h4><a href="tel:{{ $settings->business_contact }}">{{ $settings->business_contact }}</a></h4>
                 </div>
             </div>
         </div>
@@ -99,7 +102,7 @@
                 <div class="support-box">
                     <div class="icon"><img src="{{asset('assets/images/icons/icon-1.png')}}" alt=""></div>
                     <h6>Dial to Drive</h6>
-                    <h4><a href="tel:+1 (913) 705-0526">+1 (913) 705-0526</a></h4>
+                    <h4><a href="tel:{{ $settings->business_contact }}">{{ $settings->business_contact }}</a></h4>
                 </div>
             </div>
         </div>
@@ -118,18 +121,22 @@
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
-                <li>No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.</li>
-                <li><a href="tel:+1 (913) 705-0526">+1 (913) 705-0526</a></li>
-                <li><a href="mailto:info@bigrigdrivingschool.ng">info@bigrigdrivingschool.ng</a></li>
+                <li>{{ $settings->headquarters }}</li>
+                <li><a href="tel:{{ $settings->business_contact }}">{{ $settings->business_contact }}</a></li>
+                <li><a href="mailto:{{ $settings->business_email }}">{{ $settings->business_email }}</a></li>
             </ul>
         </div>
         <div class="social-links">
             <ul class="clearfix">
-                <li><a href="javascript:void(0)"><span class="fab fa-twitter"></span></a></li>
-                <li><a href="javascript:void(0)"><span class="fab fa-facebook-square"></span></a></li>
-                <li><a href="javascript:void(0)"><span class="fab fa-pinterest-p"></span></a></li>
-                <li><a href="https://www.instagram.com/bigrig_truckdrivingschool/" target="_blank"><span class="fab fa-instagram"></span></a></li>
-                <li><a href="javascript:void(0)"><span class="fab fa-youtube"></span></a></li>
+                @foreach (['facebook' => 'facebook-square', 'twitter' => 'twitter', 'youtube' => 'youtube', 'linkedin' => 'linkedin-in', 'instagram' => 'instagram'] as $platform => $icon)
+                    @if (!empty($settings->{$platform . '_handle'}))
+                        <li>
+                            <a href="{{ $settings->{$platform . '_handle'} }}" target="_blank">
+                                <i class="fab fa-{{ $icon }}"></i>
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </nav>

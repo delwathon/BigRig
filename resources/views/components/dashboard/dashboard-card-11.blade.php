@@ -18,7 +18,7 @@
                     </div>
                     <div class="grow flex items-center border-b border-gray-100 dark:border-gray-700/60 text-sm py-2">
                         <div class="grow flex justify-between">
-                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Qonto</a> billing</div>
+                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Qonto</a> billing</div>
                             <div class="shrink-0 self-start ml-2">
                                 <span class="font-medium text-gray-800 dark:text-gray-100">-$49.88</span>
                             </div>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="grow flex items-center border-b border-gray-100 dark:border-gray-700/60 text-sm py-2">
                         <div class="grow flex justify-between">
-                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Cruip.com</a> Market Ltd 70 Wilson St London</div>
+                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Cruip.com</a> Market Ltd 70 Wilson St London</div>
                             <div class="shrink-0 self-start ml-2">
                                 <span class="font-medium text-green-600">+249.88</span>
                             </div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="grow flex items-center border-b border-gray-100 dark:border-gray-700/60 text-sm py-2">
                         <div class="grow flex justify-between">
-                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Notion Labs Inc</a></div>
+                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Notion Labs Inc</a></div>
                             <div class="shrink-0 self-start ml-2">
                                 <span class="font-medium text-green-600">+99.99</span>
                             </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="grow flex items-center border-b border-gray-100 dark:border-gray-700/60 text-sm py-2">
                         <div class="grow flex justify-between">
-                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">Market Cap Ltd</a></div>
+                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">Market Cap Ltd</a></div>
                             <div class="shrink-0 self-start ml-2">
                                 <span class="font-medium text-green-600">+1,200.88</span>
                             </div>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="grow flex items-center border-b border-gray-100 dark:border-gray-700/60 text-sm py-2">
                         <div class="grow flex justify-between">
-                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">App.com</a> Market Ltd 70 Wilson St London</div>
+                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">App.com</a> Market Ltd 70 Wilson St London</div>
                             <div class="shrink-0 self-start ml-2">
                                 <span class="font-medium text-gray-800 dark:text-gray-100 line-through">+$99.99</span>
                             </div>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="grow flex items-center text-sm py-2">
                         <div class="grow flex justify-between">
-                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="#0">App.com</a> Market Ltd 70 Wilson St London</div>
+                            <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white" href="javascript:void(0)">App.com</a> Market Ltd 70 Wilson St London</div>
                             <div class="shrink-0 self-start ml-2">
                                 <span class="font-medium text-gray-800 dark:text-gray-100">-$49.88</span>
                             </div>

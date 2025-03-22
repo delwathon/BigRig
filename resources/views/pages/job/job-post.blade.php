@@ -39,13 +39,13 @@
                 <div class="mb-6">
                     <div class="flex flex-wrap items-center -m-1">
                         <div class="m-1">
-                            <a class="btn-xs text-xs border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300 px-2.5 py-1 rounded-full shadow-none" href="#0">Full-time</a>
+                            <a class="btn-xs text-xs border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300 px-2.5 py-1 rounded-full shadow-none" href="javascript:void(0)">Full-time</a>
                         </div>
                         <div class="m-1">
-                            <a class="btn-xs text-xs border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300 px-2.5 py-1 rounded-full shadow-none" href="#0">Senior Engineer</a>
+                            <a class="btn-xs text-xs border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300 px-2.5 py-1 rounded-full shadow-none" href="javascript:void(0)">Senior Engineer</a>
                         </div>
                         <div class="m-1">
-                            <a class="btn-xs text-xs border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300 px-2.5 py-1 rounded-full shadow-none" href="#0">Remote</a>
+                            <a class="btn-xs text-xs border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 text-gray-800 dark:text-gray-300 px-2.5 py-1 rounded-full shadow-none" href="javascript:void(0)">Remote</a>
                         </div>
                     </div>
                 </div>

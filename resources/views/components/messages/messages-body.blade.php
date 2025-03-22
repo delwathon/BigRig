@@ -22,10 +22,10 @@
                 </button>
                 <!-- People list -->
                 <div class="flex -space-x-3 -ml-px">
-                    <a class="block" href="#0">
-                        <img class="rounded-full w-8 h-8 border-2 border-white dark:border-gray-800 box-content" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="32" height="32" alt="User 01" />
+                    <a class="block" href="javascript:void(0)">
+                        <img class="rounded-full w-8 h-8 border-2 border-white dark:border-gray-800 box-content" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : Storage::url('users/avatar.png') }}" width="32" height="32" alt="User 01" />
                     </a>
-                    <a class="block" href="#0">
+                    <a class="block" href="javascript:void(0)">
                         <img class="rounded-full w-8 h-8 border-2 border-white dark:border-gray-800 box-content" src="{{ asset('images/user-32-07.jpg') }}" width="32" height="32" alt="User 04" />
                     </a>
                 </div>
@@ -62,7 +62,7 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full w-8 h-8 mr-4" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="40" height="40" alt="User 02" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : Storage::url('users/avatar.png') }}" width="40" height="40" alt="User 02" />
             <div>
                 <div class="text-sm bg-violet-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent mb-1">
                     Hey Dominik Lamakani 👋<br />
@@ -108,7 +108,7 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full w-8 h-8 mr-4" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="40" height="40" alt="User 02" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : Storage::url('users/avatar.png') }}" width="40" height="40" alt="User 02" />
             <div>
                 <div class="text-sm bg-violet-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent mb-1">
                     Sed euismod nisi porta lorem mollis. Tellus elementum sagittis vitae et leo duis. Viverra justo nec ultrices dui.<br />
@@ -130,10 +130,10 @@
         </div>
         <!-- Chat msg -->
         <div class="flex items-start mb-4 last:mb-0">
-            <img class="rounded-full w-8 h-8 mr-4" src="{{ Storage::url(Auth::user()->profile_photo_path) }}" width="40" height="40" alt="User 02" />
+            <img class="rounded-full w-8 h-8 mr-4" src="{{ Auth::user()->profile_photo_path ? Storage::url(Auth::user()->profile_photo_path) : Storage::url('users/avatar.png') }}" width="40" height="40" alt="User 02" />
             <div>
                 <div class="text-sm bg-violet-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent mb-1">
-                    Can you join <a class="font-medium" href="#0">@dominik</a>? <a class="underline" href="#0">https://meet.google.com/haz-r3gt-idj</a>
+                    Can you join <a class="font-medium" href="javascript:void(0)">@dominik</a>? <a class="underline" href="javascript:void(0)">https://meet.google.com/haz-r3gt-idj</a>
                 </div>
                 <div class="flex items-center justify-between">
                     <div class="text-xs text-gray-500 font-medium">10:15 AM</div>

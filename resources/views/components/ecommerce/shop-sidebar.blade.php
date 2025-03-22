@@ -6,22 +6,22 @@
                 <div class="text-sm text-gray-800 dark:text-gray-100 font-semibold mb-3">Discover</div>
                 <ul class="text-sm font-medium space-y-2">
                     <li>
-                        <a class="text-violet-500" href="#0">View All</a>
+                        <a class="text-violet-500" href="javascript:void(0)">View All</a>
                     </li>
                     <li>
-                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="#0">Apps / Software</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">Apps / Software</a>
                     </li>
                     <li>
-                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="#0">Design / Tech Products</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">Design / Tech Products</a>
                     </li>
                     <li>
-                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="#0">Books & Writing</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">Books & Writing</a>
                     </li>
                     <li>
-                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="#0">Education</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">Education</a>
                     </li>
                     <li>
-                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="#0">Drawing / Painting</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" href="javascript:void(0)">Drawing / Painting</a>
                     </li>
                 </ul>
             </div>
