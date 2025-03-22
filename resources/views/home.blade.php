@@ -54,38 +54,38 @@
         <div class="auto-container">
             <div class="row clearfix">
                 <!-- Determine column width dynamically -->
-                <div class="{{ $founder->show_founder ? 'col-lg-8' : 'col-lg-12' }} col-md-12 col-sm-12 big-column">
+                <div class="{{ optional($founder)->show_founder ? 'col-lg-8' : 'col-lg-12' }} col-md-12 col-sm-12 big-column">
                     <div class="inner-box">
                         <div class="title-text">
-                            <h2>{{ $founder->speech_title }}</h2>
+                            <h2>{{ optional($founder)->speech_title }}</h2>
                         </div>
                         <div class="row clearfix">
                             <!-- Image Column -->
-                            <div class="{{ $founder->show_founder ? 'col-lg-6' : 'col-lg-4' }} col-md-6 col-sm-12 image-column">
+                            <div class="{{ optional($founder)->show_founder ? 'col-lg-6' : 'col-lg-4' }} col-md-6 col-sm-12 image-column">
                                 <div class="image-box">
                                     <figure class="image">
-                                        <img src="{{ Storage::url($founder->secondary_picture) }}" alt="">
+                                        <img src="{{ optional($founder)->secondary_picture ? Storage::url($founder->secondary_picture) : '' }}" alt="">
                                     </figure>
                                 </div>
                             </div>
     
                             <!-- Content Column -->
-                            <div class="{{ $founder->show_founder ? 'col-lg-6' : 'col-lg-8' }} col-md-6 col-sm-12 content-column">
+                            <div class="{{ optional($founder)->show_founder ? 'col-lg-6' : 'col-lg-8' }} col-md-6 col-sm-12 content-column">
                                 <div class="content-box">
                                     <h6>Since</h6>
                                     <h2>{{ $settings->commence_year }}</h2>
                                     <div class="text">
-                                        <p>{!! $founder->speech_content !!}</p>
+                                        <p>{!! optional($founder)->speech_content !!}</p>
                                     </div>
     
-                                    @if ($founder->show_founder)
+                                    @if (optional($founder)->show_founder)
                                         <!-- Founder Details -->
                                         <div class="inner">
                                             <figure class="signature">
-                                                <img src="{{ Storage::url($founder->signature) }}" alt="">
+                                                <img src="{{ optional($founder)->signature ? Storage::url($founder->signature) : '' }}" alt="">
                                             </figure>
                                             <div class="author">
-                                                <h4>{{ $founder->founder_name }}</h4>
+                                                <h4>{{ optional($founder)->founder_name }}</h4>
                                                 <span class="designation">Founder</span>
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
     
-                @if ($founder->show_founder)
+                @if (optional($founder)->show_founder)
                     <!-- Founder Image & Social Links -->
                     <div class="col-lg-4 col-md-12 col-sm-12 small-column">
                         <div class="image-box">
@@ -110,7 +110,7 @@
                                     @foreach (['facebook' => 'facebook-f', 'twitter' => 'twitter', 'linkedin' => 'linkedin-in', 'instagram' => 'instagram'] as $platform => $icon)
                                         @if (!empty($founder->{$platform . '_handle'}))
                                             <li>
-                                                <a href="{{ $founder->{$platform . '_handle'} }}" target="_blank">
+                                                <a href="{{ optional($founder)->{$platform . '_handle'} }}" target="_blank">
                                                     <i class="fab fa-{{ $icon }}"></i>
                                                 </a>
                                             </li>
