@@ -62,7 +62,8 @@ class SettingsController extends Controller
             'linkedin_handle' => 'nullable|string',
             'show_whatsapp_support' => 'sometimes|boolean',
             'show_telegram_support' => 'sometimes|boolean',
-            'show_preloader' => 'sometimes|boolean'
+            'show_preloader' => 'sometimes|boolean',
+            'preferred_landing_page' => 'required|integer|in:1,2'
         ]);
 
         $settings = Settings::first(); // Assuming only one settings record exists
@@ -122,6 +123,7 @@ class SettingsController extends Controller
         $settings->show_whatsapp_support = $request->input('show_whatsapp_support');
         $settings->show_telegram_support = $request->input('show_telegram_support');
         $settings->show_preloader = $request->input('show_preloader');
+        $settings->preferred_landing_page = $request->input('preferred_landing_page');
         // Update other fields as needed
 
         $settings->save();
@@ -441,11 +443,15 @@ class SettingsController extends Controller
             'show_founder' => 'sometimes|boolean'
         ]);
 
-        $founder = Founder::first(); // Assuming only one settings record exists
+        // Retrieve the founder record or create a new one if not found
+        $founder = Founder::first();
+        if (!$founder) {
+            $founder = new Founder();
+        }
 
         // Handle founder_picture upload
         if ($request->hasFile('founder_picture')) {
-            $old_founder_picture = $founder->founder_picture;
+            $old_founder_picture = $founder->founder_picture ?? null;
             $founder_picture_filePath = $request->file('founder_picture')->store('founder', 'public');
             $founder->founder_picture = $founder_picture_filePath;
 
@@ -456,7 +462,7 @@ class SettingsController extends Controller
 
         // Handle secondary_picture upload
         if ($request->hasFile('secondary_picture')) {
-            $old_secondary_picture = $founder->secondary_picture;
+            $old_secondary_picture = $founder->secondary_picture ?? null;
             $secondary_picture_filePath = $request->file('secondary_picture')->store('founder', 'public');
             $founder->secondary_picture = $secondary_picture_filePath;
 
@@ -467,7 +473,7 @@ class SettingsController extends Controller
 
         // Handle signature upload
         if ($request->hasFile('signature')) {
-            $old_signature = $founder->signature;
+            $old_signature = $founder->signature ?? null;
             $signature_filePath = $request->file('signature')->store('founder', 'public');
             $founder->signature = $signature_filePath;
 
@@ -484,8 +490,7 @@ class SettingsController extends Controller
         $founder->twitter_handle = $request->input('twitter_handle');
         $founder->linkedin_handle = $request->input('linkedin_handle');
         $founder->instagram_handle = $request->input('instagram_handle');
-        $founder->show_founder = $request->input('show_founder');
-        // Update other fields as needed
+        $founder->show_founder = $request->input('show_founder', false); // Defaults to false if not provided
 
         $founder->save();
 

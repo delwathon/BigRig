@@ -11,7 +11,7 @@
             <div class="content-box">
                 <h1>Question & Answers</h1>
                 <ul class="bread-crumb clearfix">
-                    <li class=""><a href="{{route('home')}}">Home</a></li>
+                    <li class=""><a href="{{ route('index') }}">Home</a></li>
                     <li>About</li>
                     <li>faq’s</li>
                 </ul>

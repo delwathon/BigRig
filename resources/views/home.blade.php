@@ -22,7 +22,7 @@
                     <div class="curve-text">
                         <div class="icon-box"><img src="{{asset('assets/images/icons/icon-2.png')}}" alt=""></div>
                         <span class="curved-circle">BigRig Truck Driving School – because you all need it –</span>
-                        <h6><a href="javascript:void(0)">Book Now</a></h6>
+                        <h6><a href="{{ route('register') }}">Join Now</a></h6>
                     </div>
                     <div class="outer-container clearfix">
                         <div class="content-inner pull-left">
@@ -148,7 +148,7 @@
                             </div>
                             <div class="lower-content">
                                 <div class="text">
-                                    <h4><a href="javascript:void(0)">{{ $service->service_name }}</a></h4>
+                                    {{-- <h4><a href="javascript:void(0)">{{ $service->service_name }}</a></h4> --}}
                                     <p>{{ $service->service_description }}</p>
                                 </div>
                                 <div class="lower-box">
@@ -156,12 +156,12 @@
                                         <li><i class="flaticon-right-arrow-1"></i></li>
                                         <li><i class="flaticon-right-arrow-1"></i></li>
                                         <li><i class="flaticon-right-arrow-1"></i></li>
-                                        <li><i class="flaticon-right-arrow-1"></i></li>
-                                        <li><i class="flaticon-right-arrow-1"></i></li>
+                                        {{-- <li><i class="flaticon-right-arrow-1"></i></li>
+                                        <li><i class="flaticon-right-arrow-1"></i></li> --}}
                                     </ul>
-                                    <!-- <div class="link">
-                                        <a href="service-details.html"><i class="flaticon-right-arrow-1"></i>Read More</a>
-                                    </div> -->
+                                    <div class="link">
+                                        <a href="javascript:void(0)"><i class="flaticon-right-arrow-1"></i>{{ $service->service_name }}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -263,21 +263,21 @@
                             <div class="arrow-shape" style="background-image: url({{asset('assets/images/shape/shape-20.png')}});"></div>
                             <span class="count-text">01</span>
                             <div class="icon"><img src="{{asset('assets/images/icons/icon-9.png')}}" alt=""></div>
-                            <h4><a href="{{ route('home')}}">Consultation</a></h4>
+                            <h4><a href="{{ route('index') }}">Consultation</a></h4>
                             <p>Meet with our advisors to customize your learning path and address any questions before training begins.</p>
                         </div>
                         <div class="single-item">
                             <div class="arrow-shape-2" style="background-image: url({{asset('assets/images/shape/shape-21.png')}});"></div>
                             <span class="count-text">02</span>
                             <div class="icon"><img src="{{asset('assets/images/icons/icon-10.png')}}" alt=""></div>
-                            <h4><a href="{{ route('home')}}">Buy Your Course</a></h4>
+                            <h4><a href="{{ route('index') }}">Buy Your Course</a></h4>
                             <p>Enroll in your chosen courses and secure your spot on the path to becoming a professional driver.</p>
                         </div>
                         <div class="single-item">
                             <div class="arrow-shape" style="background-image: url({{asset('assets/images/shape/shape-20.png')}});"></div>
                             <span class="count-text">03</span>
                             <div class="icon"><img src="{{asset('assets/images/icons/icon-11.png')}}" alt=""></div>
-                            <h4><a href="{{ route('home')}}">Start Your Training</a></h4>
+                            <h4><a href="{{ route('index') }}">Start Your Training</a></h4>
                             <p>Begin hands-on training with expert instructors to build essential skills for real-world driving success.</p>
                         </div>
                         <div class="btn-box">
@@ -433,7 +433,7 @@
                         </div>
                         <div class="download-box">
                             <div class="icon"><i class="flaticon-download"></i></div>
-                            <h4><a href="{{ route('home')}}">Download Course Content</a></h4>
+                            <h4><a href="{{ route('index') }}">Download Course Content</a></h4>
                             <h5>pdf.4mb</h5>
                         </div>
                     </div>
@@ -488,7 +488,7 @@
                         </div>
                         <div class="review-box">
                             <p>Trust Score 4.5 (Based on 2,500 reviews)</p>
-                            <a href="{{ route('home')}}" class="theme-btn btn-two">all Reviews</a>
+                            <a href="{{ route('index') }}" class="theme-btn btn-two">all Reviews</a>
                         </div>
                     </div>
                 </div>

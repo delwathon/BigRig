@@ -13,7 +13,7 @@
             <div class="content-box">
                 <h1>Our Courses</h1>
                 <ul class="bread-crumb clearfix">
-                    <li class=""><a href="{{ route('home')}}">Home</a></li>
+                    <li class=""><a href="{{ route('index') }}">Home</a></li>
                     <li>Courses</li>
                     <li>Modern</li>
                 </ul>
@@ -86,7 +86,11 @@
                         <div class="inner-box">
                             <div class="image-box">
                                 <div class="price">
-                                    <h2><span class="text">From</span><span class="symble">$</span>{{ $course->price }}</h2>
+                                    @php
+                                        $formattedPrice = number_format($course->price, 2, '.', ',');
+                                        [$whole, $decimal] = explode('.', $formattedPrice);
+                                    @endphp
+                                    <h2><span class="text">From</span><span class="symble">$</span>{!! $whole !!}<sub>.{{ $decimal }}</sub></h2>
                                 </div>
                                 <figure class="image"><img src="{{ Storage::url($course->image_url) }}" alt="{{ $course->objective }}"></figure>
                             </div>

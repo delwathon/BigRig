@@ -6,7 +6,7 @@
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                     <div class="footer-widget logo-widget">
-                        <figure class="logo"><a href="{{route('home')}}"><img class="logo-image" src="{{ Storage::url($site->dark_theme_logo) }}" alt=""></a></figure>
+                        <figure class="logo"><a href="{{ route('index') }}"><img class="logo-image" src="{{ Storage::url($site->dark_theme_logo) }}" alt=""></a></figure>
                         <h4>Teach driving with proper rules & regulations.</h4>
                         <ul class="list clearfix">
                             <li><a href="{{url('/')}}">Branches</a></li>

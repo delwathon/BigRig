@@ -18,12 +18,18 @@
                                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">{{$slider->title }}</h3>
                             </a>
                             <div class="text-sm mb-4">{{ $slider->text }}</div>
-                            <div class="text-sm text-yellow-500 mb-2">Button: <a href="{{ url($slider->button_url) }}" title="{{ $slider->button_url }}">{{ $slider->button_name }}</a></div>
+                            <div class="text-sm text-yellow-500 mb-2">Button: 
+                                <a href="{{ $slider->button_url ? url($slider->button_url) : 'javascript:void(0)' }}" 
+                                   title="{{ $slider->button_url ?? 'No URL Provided' }}">
+                                    {{ $slider->button_name }}
+                                </a>
+                            </div>
                             <!-- Product meta -->
                             <div class="flex flex-wrap justify-between items-center">
                                 <!-- Rating and price -->
                                 <div class="flex flex-wrap items-center space-x-2 mr-2">
                                 </div>
+                                <button class="text-sm text-violet-500 underline hover:no-underline" @click="$store.editModal.open({ id: {{ $slider->id }}, slider_title: '{{ $slider->title }}', slider_text: '{{ $slider->text }}', button_name: '{{ $slider->button_name }}', button_url: '{{ $slider->button_url }}'})" aria-controls="edit-modal">Edit</button>
                                 <button class="text-sm text-red-500 underline hover:no-underline" @click="$store.deleteModal.open({{ $slider->id }})" aria-controls="delete-modal">Remove</button>
                             </div>
                         </div>
@@ -34,6 +40,9 @@
 
     </div>
 </div>
+
+<!-- Edit Slider Modal -->
+@include('components.modals.edit-slider-modal')
 
 <!-- Delete Slider Modal -->
 @include('components.modals.delete-slider-modal')

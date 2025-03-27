@@ -62,12 +62,20 @@
     @include('partials.sidebar')
 
     <!-- Include header and navigation -->
-    @include('partials.header')
+    @if ($settings->preferred_landing_page === 1)
+        @include('partials.header-2')
+    @else
+        @include('partials.header')
+    @endif
 
     @yield('content') <!-- Main content section -->
 
     <!-- Include footer scripts -->
-    @include('partials.scripts')
+    @if ($settings->preferred_landing_page === 1)
+        @include('partials.scripts-2')
+    @else
+        @include('partials.scripts')
+    @endif
 
     @yield('scripts') <!-- Optional section for additional scripts -->
 </body>

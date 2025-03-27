@@ -20,6 +20,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\TrainingScheduleController;
 use App\Http\Controllers\InstructorController;
+use App\Models\Settings;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +33,23 @@ use App\Http\Controllers\InstructorController;
 |
 */
 
-Route::redirect('/', 'home');
-Route::get('/home', [WebsiteController::class, 'home'])->name('home');
+// Retrieve preferred landing page from database
+$settings = Settings::first(); // Adjust this query based on how you store settings
+$preferredLandingPage = $settings->preferred_landing_page ?? 1; // Default to 1 if null
+
+// Dynamically set the redirect route
+// Route::redirect('/', $preferredLandingPage === 1 ? 'index' : 'home');
+
+// Route::get('/index', [WebsiteController::class, 'index'])->name('index');
+// Route::get('/home', [WebsiteController::class, 'home'])->name('home');
+// Assign '/' dynamically to the preferred page
+
+if ($preferredLandingPage === 1) {
+    Route::get('/', [WebsiteController::class, 'index'])->name('index');
+} else {
+    Route::get('/', [WebsiteController::class, 'home'])->name('index');
+}
+
 Route::get('/about-us', [WebsiteController::class, 'about'])->name('about-us');
 Route::get('/courses', [WebsiteController::class, 'courses'])->name('courses');
 Route::get('/course-information/{name}', [WebsiteController::class, 'course_details'])->name('course');

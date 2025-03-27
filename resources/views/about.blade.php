@@ -12,7 +12,7 @@
             <div class="content-box">
                 <h1>{{ $about->banner_title }}</h1>
                 <ul class="bread-crumb clearfix">
-                    <li class=""><a href="{{ route('home')}}">Home</a></li>
+                    <li class=""><a href="{{ route('index') }}">Home</a></li>
                     <li>About Us</li>
                 </ul>
             </div>
@@ -137,7 +137,7 @@
                                     <div class="inner">
                                         <h2>{{ $achievement->year }}</h2>
                                         <h4>{{ $achievement->title }}</h4>
-                                        <p>{{ $achievement->description }}</p>
+                                        <p>{!! $achievement->description !!}</p>
                                     </div>
                                 </div>
                             @endforeach

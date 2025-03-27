@@ -11,18 +11,14 @@ Updates
 
 
 To Do
-- Add whatsapp support ✅
-- Activate or deactivate whatsapp support visibility from backend ✅
-- Wrap all modals and scripts inside the designated folder like already done for courses - for better code readability and optimization ✅
-- On courses page, use udrive to change course listing and add course details page ✅
-- Activate and deactivate preloader ✅
-- For each courses, add a training video url ✅
-- Add course details to website ✅ 
-- Include Theory sessionStorage, Practical sessionStorage, Examination hours to courses ✅
-- Control Displaying Instructors on website from backend ✅
-- Add Instructors page, copy from udrive. Also add show_instructor feature from backend ✅
+- Fixed website settings => slider page at backend returning error on NULL button url ✅
+- 
 - Landing page varieties
 - Blog - Premium
 - Fix Course listing on registration page
 - API fetch exchange rate
-- 
+- Multiple User Role
+- Messaging and forum
+- Job Posting
+- Email Config
+- Paystack Config

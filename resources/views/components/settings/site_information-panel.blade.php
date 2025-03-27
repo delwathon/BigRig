@@ -13,21 +13,21 @@
                 <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Business Logo</h3>
                 <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
                     <div class="sm:w-1/3">
-                        <label class="block text-sm font-medium mb-1" for="dark_theme_logo">Dark Theme Logo <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium mb-1" for="dark_theme_logo">Dark Theme Logo <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">300 x 300 px</span></label>
                         <div class="mr-4">
                             <img class="w-40 h-20" src="{{ Storage::url($settings->dark_theme_logo) }}" width="80" height="80" alt="Dark Theme Logo" name="dark_theme_logo"/>
                             <input id="picture" class="form-input w-full px-2 py-1" type="file" name="dark_theme_logo" />
                         </div>
                     </div>
                     <div class="sm:w-1/3">
-                        <label class="block text-sm font-medium mb-1" for="light_theme_logo">Light Theme Logo <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium mb-1" for="light_theme_logo">Light Theme Logo <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">300 x 300 px</span></label>
                         <div class="mr-4">
                             <img class="w-40 h-20" src="{{ Storage::url($settings->light_theme_logo) }}" width="80" height="80" alt="Light Theme Logo" name="light_theme_logo"/>
                             <input id="picture" class="form-input w-full px-2 py-1" type="file" name="light_theme_logo" />
                         </div>
                     </div>
                     <div class="sm:w-1/3">
-                        <label class="block text-sm font-medium mb-1" for="favicon">Favicon <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium mb-1" for="favicon">Favicon <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">48 x 48 px</span></label>
                         <div class="mr-4">
                             <img class="w-40 h-20" src="{{ Storage::url($settings->favicon) }}" width="80" height="80" alt="Favicon" name="favicon"/>
                             <input id="favicon" class="form-input w-full px-2 py-1" type="file" name="favicon" />
@@ -143,7 +143,7 @@
                 </div>
             </section>
 
-            <section>
+            <section class="border-b pb-5">
                 <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Visibility</h3>
                 
                 <div class="flex items-center gap-6"> <!-- Flex container to align them in a row -->
@@ -186,7 +186,53 @@
                         <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Deactivate Preloader' : 'Activate Preloader'"></div>
                     </div>
                 </div>
+            </section>  
+            
+            <section x-data="{ selected: '{{ $settings->preferred_landing_page }}' }">
+                <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Preferred Landing Page</h3>                
+                <input type="hidden" name="preferred_landing_page" :value="selected"> 
+            
+                <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
+                    
+                    <!-- Landing Page 1 -->
+                    <div class="sm:w-1/3">
+                        <label class="block text-sm font-medium mb-1" for="landing_page_1">Landing Page 1</label>
+                        <div class="flex items-center mb-3">
+                            <div class="text-sm text-gray-400 dark:text-gray-500 italic mr-2" x-text="selected === '1' ? 'Deactivate' : 'Activate'"></div>
+                            <div class="form-switch">
+                                <input type="checkbox" id="switch-landing-page-1" class="sr-only" :checked="selected === '1'" @change="selected = '1'"/>
+                                <label class="bg-gray-400 dark:bg-gray-700" for="switch-landing-page-1">
+                                    <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                                    <span class="sr-only">Landing Page 1</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mr-4">
+                            <img class="w-full h-60" src="{{ Storage::url('landing-page/landing-page-1.png') }}" height="80" alt="Landing Page 1"/>
+                        </div>
+                    </div>
+            
+                    <!-- Landing Page 2 -->
+                    <div class="sm:w-1/3">
+                        <label class="block text-sm font-medium mb-1" for="landing_page_2">Landing Page 2</label>
+                        <div class="flex items-center mb-3">
+                            <div class="text-sm text-gray-400 dark:text-gray-500 italic mr-2" x-text="selected === '2' ? 'Deactivate' : 'Activate'"></div>
+                            <div class="form-switch">
+                                <input type="checkbox" id="switch-landing-page-2" class="sr-only" :checked="selected === '2'" @change="selected = '2'"/>
+                                <label class="bg-gray-400 dark:bg-gray-700" for="switch-landing-page-2">
+                                    <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                                    <span class="sr-only">Landing Page 2</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mr-4">
+                            <img class="w-full h-60" src="{{ Storage::url('landing-page/landing-page-2.png') }}" height="80" alt="Landing Page 2"/>
+                        </div>
+                    </div>
+            
+                </div>
             </section>            
+              
         </div> 
 
         <!-- Panel footer -->

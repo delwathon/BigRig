@@ -33,7 +33,7 @@
                                     <div>
                                         <div class="space-y-4">
                                             <div>
-                                                <label class="block text-sm font-medium mb-1" for="card-nr">Slider Picture <span class="text-red-500">*</span></label>
+                                                <label class="block text-sm font-medium mb-1" for="card-nr">Slider Picture <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">1029 x 631 px</span></label>
                                                 <input id="card-nr" class="form-input w-full" type="file" name="image_url" required />
                                             </div>
                                             <div>

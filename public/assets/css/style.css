@@ -775,6 +775,11 @@ img {
 	height: 150px !important;
 }
 
+.logo-image-2 {
+	width: 140px;
+	height: 110px !important;
+}
+
 .main-header .outer-box .menu-area{
 	position: relative;
 	float: right;
@@ -5715,7 +5720,9 @@ div#mCSB_1_container{
 }
 
 .header-style-two .outer-box .logo-box{
-	padding: 24.5px 0px;
+	/* padding: 24.5px 0px; */
+	padding: 0px;
+    top: -17px;
 }
 
 .header-style-two .main-menu .navigation > li > a{
@@ -5799,7 +5806,7 @@ div#mCSB_1_container{
 }
 
 .theme-btn.btn-four{
-	background: #84acca;
+	background: /* #84acca */ #fee100;
 	color: #fff;
 }
 
@@ -6000,7 +6007,7 @@ div#mCSB_1_container{
 }
 
 .service-style-two .service-block-one .inner-box .image-box .icon-box:before{
-	background: #84acca;
+	background: /* #84acca */ #fee100;
 }
 
 .service-style-two .service-block-one .inner-box .lower-content .text{
@@ -6982,7 +6989,7 @@ div#mCSB_1_container{
 
 .video-section{
 	position: relative;
-	background: #84acca;
+	background: /* #84acca */ #fee100;
 	padding: 140px 0px;
 }
 
@@ -7043,7 +7050,7 @@ div#mCSB_1_container{
 .chooseus-section{
 	position: relative;
 	padding: 115px 0px 90px 0px;
-	background: #84acca;
+	background: /* #84acca */ #fee100;
 }
 
 .chooseus-section .sec-title-two h5,
@@ -7547,7 +7554,7 @@ div#mCSB_1_container{
 	left: 40px;
 	top: 30px;
 	font-size: 60px;
-	color: #84acca;
+	color: /* #84acca */ #fee100;
 }
 
 .testimonial-style-two .testimonial-content .text h4{
@@ -7667,7 +7674,7 @@ div#mCSB_1_container{
 .clients-section{
 	position: relative;
 	padding: 60px 0px 60px 0px;
-	background: #84acca;
+	background: /* #84acca */ #fee100;
 }
 
 .clients-section .inner-box{
@@ -7828,7 +7835,7 @@ div#mCSB_1_container{
 
 .footer-style-two .footer-top{
 	position: relative;
-	padding: 114px 0px 111px 0px;
+	padding: 114px 0px 0px 0px;
 	background: #3d3d3d;
 	border-bottom: none;
 }

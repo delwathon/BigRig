@@ -17,6 +17,28 @@ use App\Models\User;
 
 class WebsiteController extends Controller
 {
+    public function index()
+    {
+        $site = Settings::first();
+        $sliders = Slider::orderBy('id', 'asc')->get();
+        $founder = Founder::first();
+        $services = Services::orderBy('id', 'asc')->get();
+        $clients = Clients::where('type', 'client')->get();
+        $partners = Clients::where('type', 'partner')->get();
+        $about = AboutCompany::first();
+        $objectives = TrainingObjective::orderBy('price', 'asc')->get();
+        $truck = TrainingObjective::where('objective', 'like', '%truck%')->first();
+        // dd($truck);
+        $instructors = User::with('role')
+                        ->where('user_active', 1)
+                        ->where('website_visibility', 1)
+                        ->where('role_id', '!=', 10)
+                        ->take(3)
+                        ->get();
+    
+        return view('index', compact('site', 'sliders', 'founder', 'services', 'clients', 'partners', 'about', 'objectives', 'truck', 'instructors'));
+    }
+
     public function home()
     {
         $site = Settings::first();

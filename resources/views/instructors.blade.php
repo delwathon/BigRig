@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Courses') <!-- Sets the title for the page -->
+@section('title', 'Our Instructors') <!-- Sets the title for the page -->
 
 @section('content')
 

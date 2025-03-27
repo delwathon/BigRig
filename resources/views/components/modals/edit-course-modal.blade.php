@@ -85,12 +85,12 @@
                         </div>
                         <div class="flex gap-4">
                             <div class="sm:w-1/2">
-                                <label class="block text-sm font-medium mb-1" for="image_url">Display Picture</label>
+                                <label class="block text-sm font-medium mb-1" for="image_url">Display Picture <span class="text-yellow-500 text-xs">370 x 250 px</span></label>
                                 <input id="picture" class="form-input w-full px-2 py-1" type="file" name="image_url"  />
                                 <span class="text-xs">.jpg and .png extensions only.</span>
                             </div>
                             <div class="sm:w-1/2">
-                                <label class="block text-sm font-medium mb-1" for="video_thumbnail_url">Video Thumbnail</label>
+                                <label class="block text-sm font-medium mb-1" for="video_thumbnail_url">Video Thumbnail <span class="text-yellow-500 text-xs">1920 x 498 px</span></label>
                                 <input id="picture" class="form-input w-full px-2 py-1" type="file" name="video_thumbnail_url" />
                                 <span class="text-xs">.jpg and .png extensions only.</span>
                             </div>

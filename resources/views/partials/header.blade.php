@@ -1,4 +1,4 @@
-<!-- main header -->
+<!-- main header 1-->
 <header class="main-header">
     <!-- header-top -->
     <div class="header-top">
@@ -29,7 +29,7 @@
         <div class="outer-box clearfix">
             <div class="shape" style="background-image: url({{asset('assets/images/shape/shape-1.png')}});"></div>
             <div class="logo-box">
-                <figure class="logo"><a href="{{route('home')}}"><img class="logo-image" src="{{ Storage::url($site->light_theme_logo) }}" alt=""></a></figure>
+                <figure class="logo"><a href="{{ route('index') }}"><img class="logo-image" src="{{ Storage::url($site->light_theme_logo) }}" alt=""></a></figure>
             </div>
             <div class="menu-area">
                 <!--Mobile Navigation Toggler-->
@@ -41,11 +41,12 @@
                 <nav class="main-menu navbar-expand-md navbar-light">
                     <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                         <ul class="navigation clearfix">
-                        <li class="{{ Request::is('/') ? 'current' : '' }} dropdown"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="{{ Request::is('about-us') ? 'current' : '' }} dropdown"><a href="{{ route('about-us') }}">About</a></li>
-                        <li class="{{ Request::is('courses') ? 'current' : '' }} dropdown"><a href="{{ route('courses') }}">Courses</a></li>
-                        <li class="{{ Request::is('faq') ? 'current' : '' }} dropdown"><a href="{{ route('faq') }}">FAQ'S</a></li>
-                        <li class="{{ Request::is('contact') ? 'current' : '' }} dropdown"><a href="{{ route('contact') }}">Contact</a></li>
+                            <li class="{{ Request::is('/') ? 'current' : '' }} dropdown"><a href="{{ route('index') }}">Home</a></li>
+                            {{-- <li class="{{ Request::is('/home') ? 'current' : '' }} dropdown"><a href="{{ route('home') }}">Home</a></li> --}}
+                            <li class="{{ Request::is('about-us') ? 'current' : '' }} dropdown"><a href="{{ route('about-us') }}">About</a></li>
+                            <li class="{{ Request::is('courses') ? 'current' : '' }} dropdown"><a href="{{ route('courses') }}">Courses</a></li>
+                            <li class="{{ Request::is('faq') ? 'current' : '' }} dropdown"><a href="{{ route('faq') }}">FAQ'S</a></li>
+                            <li class="{{ Request::is('contact') ? 'current' : '' }} dropdown"><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -61,7 +62,7 @@
                         </div>
                     </div>
                     <div class="btn-box">
-                        <a href="{{route('register')}}" class="theme-btn btn-one">Get Started</a>
+                        <a href="{{route('login')}}" class="theme-btn btn-one">Login</a>
                     </div>
                 </div>
                 <div class="support-box">
@@ -78,7 +79,7 @@
         <div class="outer-box">
             <div class="shape" style="background-image: url({{asset('assets/images/shape/shape-1.png')}});"></div>
             <div class="logo-box">
-                <figure class="logo"><a href="{{route('home')}}"><img class="logo-image" src="{{ Storage::url($site->light_theme_logo) }}" alt=""></a></figure>
+                <figure class="logo"><a href="{{ route('index') }}"><img class="logo-image" src="{{ Storage::url($site->light_theme_logo) }}" alt=""></a></figure>
             </div>
             <div class="menu-area clearfix">
                 <nav class="main-menu clearfix">
@@ -116,7 +117,7 @@
     <div class="close-btn"><i class="fas fa-times"></i></div>
     
     <nav class="menu-box">
-        <figure class="logo"><a href="{{route('home')}}"><img class="logo-image" src="{{ Storage::url($site->light_theme_logo) }}" alt=""></a></figure>
+        <figure class="logo"><a href="{{ route('index') }}"><img class="logo-image" src="{{ Storage::url($site->light_theme_logo) }}" alt=""></a></figure>
         <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
         <div class="contact-info">
             <h4>Contact Info</h4>

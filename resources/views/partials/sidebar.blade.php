@@ -14,28 +14,31 @@
                 <div class="sidebar-info-contents">
                     <div class="content-inner">
                         <div class="logo">
-                            <figure class="logo"><a href="{{route('home')}}"><img class="logo-image" src="{{ Storage::url($site->light_theme_logo) }}" alt=""></a></figure>
+                            <figure class="logo"><a href="{{ route('index') }}"><img class="logo-image" src="{{ Storage::url($site->light_theme_logo) }}" alt=""></a></figure>
                         </div>
                         <div class="content-box">
                             <h4>About Us</h4>
-                            <p>At BigRig, we emphasize professionalism, integrity, and personal growth, shaping students into reliable assets for any organization. Our goal is not only to raise the standards in truck driver training but also to empower individuals to make positive, meaningful impacts in their careers and communities.</p>
-                            <p>Our mission is to meet the demand for well-trained drivers while addressing essential safety and efficiency challenges in today’s logistics landscape. Through a comprehensive curriculum and hands-on training, BigRig Truck Driving School has become a respected name in the industry, equipping drivers with the expertise needed for safe driving and complex logistics operations.</p>
+                            {!! $about->mission_statement !!}
                             <a href="{{url('about')}}" class="theme-btn btn-one">About Us</a>
                         </div>
                         <div class="contact-info">
                             <h4>Contact Info</h4>
                             <ul>
-                                <li>No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.</li>
-                                <li><a href="tel:+1 (913) 705-0526">+1 (913) 705-0526</a></li>
-                                <li><a href="mailto:info@bigrigdrivingschool.ng">info@bigrigdrivingschool.ng</a></li>
+                                <li>{{ $settings->headquarters }}</li>
+                                <li><a href="tel:{{ $settings->business_contact }}">{{ $settings->business_contact }}</a></li>
+                                <li><a href="mailto:{{ $settings->business_email }}">{{ $settings->business_email }}</a></li>
                             </ul>
                         </div>
                         <ul class="social-box">
-                            <li class="facebook"><a href="#" class="fab fa-facebook-f"></a></li>
-                            <li class="twitter"><a href="#" class="fab fa-twitter"></a></li>
-                            <li class="linkedin"><a href="#" class="fab fa-linkedin-in"></a></li>
-                            <li class="instagram"><a href="https://www.instagram.com/bigrig_truckdrivingschool/" target="_blank" class="fab fa-instagram"></a></li>
-                            <li class="youtube"><a href="#" class="fab fa-youtube"></a></li>
+                            @foreach (['facebook' => 'facebook-f', 'twitter' => 'twitter', 'youtube' => 'youtube', 'linkedin' => 'linkedin-in', 'instagram' => 'instagram'] as $platform => $icon)
+                                @if (!empty($settings->{$platform . '_handle'}))
+                                    <li>
+                                        <a href="{{ $settings->{$platform . '_handle'} }}" target="_blank">
+                                            <i class="fab fa-{{ $icon }}"></i>
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>

@@ -11,7 +11,7 @@
             <div class="content-box">
                 <h1>Contact Us</h1>
                 <ul class="bread-crumb clearfix">
-                    <li class=""><a href="{{route('home')}}">Home</a></li>
+                    <li class=""><a href="{{ route('index') }}">Home</a></li>
                     <li>Contact</li>
                 </ul>
             </div>

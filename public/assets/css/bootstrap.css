@@ -139,7 +139,7 @@ small {
 sub,
 sup {
   position: relative;
-  font-size: 75%;
+  font-size: 45%;
   line-height: 0;
   vertical-align: baseline;
 }

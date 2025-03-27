@@ -36,5 +36,6 @@ class Settings extends Model
         'show_whatsapp_support',
         'show_telegram_support',
         'show_preloader',
+        'preferred_landing_page',
     ];
 }

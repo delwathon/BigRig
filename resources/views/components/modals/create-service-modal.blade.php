@@ -58,7 +58,7 @@
                             <textarea id="service_description" class="form-textarea w-full px-2 py-1" rows="4" name="service_description" required></textarea>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium mb-1" for="service_picture">Picture Upload <span class="text-red-500">*</span></label>
+                            <label class="block text-sm font-medium mb-1" for="service_picture">Picture Upload <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">370 x 410 px</span></label>
                             <input id="service_picture" class="form-input w-full px-2 py-1" type="file" name="service_picture" required />
                             <span class="text-xs">.jpg and .png extensions only.</span>
                         </div>
