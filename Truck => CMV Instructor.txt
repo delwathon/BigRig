@@ -12,10 +12,21 @@ Updates
 
 To Do
 - Fixed website settings => slider page at backend returning error on NULL button url ✅
-- 
-- Landing page varieties
+- Added a new website landing page ✅
+- Ability to set the default landing page from the admin end ✅
+- Picture upload dimesion added where necessary in the admin end ✅
+- Fixed course listing on registration page ✅
+- Changed default Currency to Naira ✅
+- CRUD options Testimonials in backend ✅
+- Testimonies updated on the frontend to fetch from database and black people pictures used for demo ✅
+- Email Subscription from Frontend
+- Upload Traffic Sign Document from admin end and downloadable in Frontend
+- create necessary emails
+- courses offered on frontend placed beneath the images
+- Edit Slider
+
+
 - Blog - Premium
-- Fix Course listing on registration page
 - API fetch exchange rate
 - Multiple User Role
 - Messaging and forum

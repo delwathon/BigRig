@@ -45,7 +45,7 @@
                                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Course Price</h2>
                             </header>
                             <div class="flex items-start">
-                                <div class="text-2xl font-bold text-gray-800 dark:text-gray-100 mr-2">${{ $objective->price }}</div>
+                                <div class="text-2xl font-bold text-gray-800 dark:text-gray-100 mr-2">₦{{ $objective->price }}</div>
                             </div>
                         </div>
                     </div>

@@ -58,6 +58,6 @@
     <!-- faq-page-section end -->
 
     <!-- Include footer -->
-    @include('partials.footer')
+    {{-- @include('partials.footer') --}}
 
 @endsection

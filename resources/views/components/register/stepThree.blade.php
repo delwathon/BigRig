@@ -64,7 +64,7 @@
                                         <div class="text-gray-400 dark:text-gray-600">·</div>
                                         <!-- Price -->
                                         <div>
-                                            <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">${{ $course->price }}</div>
+                                            <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">₦{{ $course->price }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                 $orderSummaryList.append(`
                     <li class="text-sm w-full flex justify-between py-3 border-b border-gray-200 dark:border-gray-700/60">
                         <div>${item.name}</div>
-                        <div class="font-medium text-gray-800 dark:text-gray-100">$${item.price.toFixed(2)}</div>
+                        <div class="font-medium text-gray-800 dark:text-gray-100">₦${item.price.toFixed(2)}</div>
                     </li>
                 `);
             });
@@ -144,9 +144,9 @@
             const totalDue = (parseFloat(totalPrice) + parseFloat(taxes)).toFixed(2);
 
             // Update totals in the DOM
-            $subtotal.text(`$${totalPrice.toFixed(2)}`);
-            $taxes.text(`$${taxes}`);
-            $totalDue.text(`$${totalDue}`);
+            $subtotal.text(`₦${totalPrice.toFixed(2)}`);
+            $taxes.text(`₦${taxes}`);
+            $totalDue.text(`₦${totalDue}`);
 
             // Update the training duration note
             if (totalDuration > 0) {
@@ -162,7 +162,7 @@
             const isChecked = $checkbox.is(':checked');
             const $label = $checkbox.closest('label');
             const name = $label.find('h3').text().trim();
-            const priceText = $label.find('.inline-flex.text-green-700').text().replace('$', '').trim();
+            const priceText = $label.find('.inline-flex.text-green-700').text().replace('₦', '').trim();
             const durationText = $label.find('.inline-flex.text-yellow-600').text().replace(' Weeks', '').trim();
 
             // Validate data

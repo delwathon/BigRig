@@ -14,6 +14,7 @@ use App\Models\TrainingObjective;
 use App\Models\Achievements;
 use App\Models\Faqs;
 use App\Models\User;
+use App\Models\Testimonials;
 
 class WebsiteController extends Controller
 {
@@ -28,6 +29,7 @@ class WebsiteController extends Controller
         $about = AboutCompany::first();
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
         $truck = TrainingObjective::where('objective', 'like', '%truck%')->first();
+        $testimonials = Testimonials::where('website_visibility', true)->paginate(10);
         // dd($truck);
         $instructors = User::with('role')
                         ->where('user_active', 1)
@@ -36,7 +38,7 @@ class WebsiteController extends Controller
                         ->take(3)
                         ->get();
     
-        return view('index', compact('site', 'sliders', 'founder', 'services', 'clients', 'partners', 'about', 'objectives', 'truck', 'instructors'));
+        return view('index', compact('site', 'sliders', 'founder', 'services', 'clients', 'partners', 'about', 'objectives', 'truck', 'testimonials', 'instructors'));
     }
 
     public function home()
@@ -49,8 +51,9 @@ class WebsiteController extends Controller
         $partners = Clients::where('type', 'partner')->get();
         $about = AboutCompany::first();
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
+        $testimonials = Testimonials::where('website_visibility', true)->paginate(10);
     
-        return view('home', compact('site', 'sliders', 'founder', 'services', 'clients', 'partners', 'about', 'objectives'));
+        return view('home', compact('site', 'sliders', 'founder', 'services', 'clients', 'partners', 'about', 'objectives', 'testimonials'));
     }
 
     public function about()
@@ -96,8 +99,14 @@ class WebsiteController extends Controller
         $site = Settings::first();
         $about = AboutCompany::first();
         $course = TrainingObjective::whereRaw("LOWER(REPLACE(objective, ' ', '-')) = ?", [Str::slug($name)])->firstOrFail();
+        $instructors = User::with('role')
+                        ->where('user_active', 1)
+                        ->where('website_visibility', 1)
+                        ->where('role_id', '!=', 10)
+                        ->take(3)
+                        ->get();
 
-        return view('course-details', compact('site', 'about', 'course'));
+        return view('course-details', compact('site', 'about', 'course', 'instructors'));
     }
 
     public function faq()

@@ -189,6 +189,6 @@
     <!-- location-style-two end -->
 
     <!-- Include footer -->
-    @include('partials.footer')
+    {{-- @include('partials.footer') --}}
 
 @endsection

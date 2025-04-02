@@ -91,7 +91,7 @@
                                 </div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
-                                <div class="text-right font-medium {{$amount_color}}">${{ number_format($transaction->total_amount, 2) }}</div>
+                                <div class="text-right font-medium {{$amount_color}}">₦{{ number_format($transaction->total_amount, 2) }}</div>
                             </td>
                         </tr>
                     @endforeach

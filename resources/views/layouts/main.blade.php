@@ -62,7 +62,7 @@
     @include('partials.sidebar')
 
     <!-- Include header and navigation -->
-    @if ($settings->preferred_landing_page === 1)
+    @if ($settings->preferred_landing_page === 1 && url()->current() === url('/'))
         @include('partials.header-2')
     @else
         @include('partials.header')
@@ -70,8 +70,15 @@
 
     @yield('content') <!-- Main content section -->
 
+    <!-- Include footer -->
+    {{-- @if ($settings->preferred_landing_page === 1 && url()->current() === url('/')) --}}
+        @include('partials.footer-2')
+    {{-- @else
+        @include('partials.footer')
+    @endif --}}
+
     <!-- Include footer scripts -->
-    @if ($settings->preferred_landing_page === 1)
+    @if ($settings->preferred_landing_page === 1 && url()->current() === url('/'))
         @include('partials.scripts-2')
     @else
         @include('partials.scripts')

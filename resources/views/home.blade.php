@@ -209,7 +209,7 @@
                             <form action="#" method="post">
                                 <div class="form-group">
                                     <input type="text" name="phone" placeholder="Phone Num*" required="">
-                                    <button type="submit" class="theme-btn btn-two">Send Request</button>
+                                    <a href="{{ route('register') }}" type="submit" class="theme-btn btn-two">Register Now</a>
                                 </div>
                             </form>
                         </div>
@@ -314,7 +314,7 @@
                                         <span class="popular">popular</span>
                                     @endif
                                     <h2>
-                                        <span class="symble">$</span>{{ $dollars }}
+                                        <span class="symble"></span>₦{{ $dollars }}
                                         <span class="text">.{{ $cents }}</span>
                                         <span class="course">per Course</span>
                                     </h2>                                
@@ -474,7 +474,7 @@
                     <div class="title-inner">
                         <div class="sec-title light">
                             <h2>Reviews & Testimonials</h2>
-                            <p>Denounce with righteous indignation & dislike men who are so beguiled demoralized.</p>
+                            {{-- <p>Denounce with righteous indignation & dislike men who are so beguiled demoralized.</p> --}}
                         </div>
                         <div class="rating-box">
                             <h4>Excellent</h4>
@@ -486,57 +486,44 @@
                                 <li><i class="flaticon-star-half-empty"></i></li>
                             </ul>
                         </div>
-                        <div class="review-box">
+                        {{-- <div class="review-box">
                             <p>Trust Score 4.5 (Based on 2,500 reviews)</p>
                             <a href="{{ route('index') }}" class="theme-btn btn-two">all Reviews</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 testimonial-column">
                     <div class="testimonial-content">
                         <div class="row clearfix">
-                            <div class="col-lg-6 col-md-6 col-sm-12 testimonial-block">
-                                <div class="testimonil-block-one">
-                                    <div class="inner-box">
-                                        <div class="border-box"></div>
-                                        <div class="bg-shape"></div>
-                                        <ul class="rating clearfix">
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                        </ul>
-                                        <h4>This is the Best Driving <br />School in City.</h4>
-                                        <p>Best driving school I’ve ever been to love it the instructors they’re very patient. Professional understanding & help gain my confidence of driving, I recommend to friends.</p>
-                                        <div class="author-box">
-                                            <figure class="author-thumb"><img src="{{asset('assets/images/resource/testimonial-1.jpg')}}" alt=""></figure>
-                                            <h4>Sodiq Opayinka</h4>
+                            @foreach ($testimonials as $testimonial)
+                                <div class="col-lg-6 col-md-6 col-sm-12 testimonial-block">
+                                    <div class="testimonil-block-one">
+                                        <div class="inner-box">
+                                            <div class="border-box"></div>
+                                            <div class="bg-shape"></div>
+                                            <ul class="rating clearfix">
+                                                @for ($i = 1; $i <= floor($testimonial->rating); $i++)
+                                                    <li><i class="flaticon-star"></i></li>
+                                                @endfor
+                                            
+                                                {{-- @if ($testimonial->rating - floor($testimonial->rating) >= 0.5)
+                                                    <li><i class="flaticon-star-half-empty"></i></li>
+                                                @endif
+                                            
+                                                @for ($i = ceil($testimonial->rating); $i < 5; $i++)
+                                                    <li><i class="flaticon-star-empty"></i></li>
+                                                @endfor --}}
+                                            </ul>
+                                            {{-- <h4>This is the Best Driving <br />School in City.</h4> --}}
+                                            <p>{!! $testimonial->testimony !!}</p>
+                                            <div class="author-box">
+                                                <figure class="author-thumb"><img src="{{ $testimonial->image_url ? Storage::url($testimonial->image_url) : Storage::url('users/avatar.png') }}" width="40" height="40" alt="{{ $testimonial->full_name }}"></figure>
+                                                <h4>{{ $testimonial->full_name }}</h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 testimonial-block">
-                                <div class="testimonil-block-one">
-                                    <div class="inner-box">
-                                        <div class="border-box"></div>
-                                        <div class="bg-shape"></div>
-                                        <ul class="rating clearfix">
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                        </ul>
-                                        <h4>Great Experience with <br />BigRig Truck Driving School Team.</h4>
-                                        <p>I could not imagine a driving school look like BigRig Truck Driving School. It is state of art facility with rich contents and outstanding trainers. It was fun learning & I enjoyed the whole experience.</p>
-                                        <div class="author-box">
-                                            <figure class="author-thumb"><img src="{{asset('assets/images/resource/testimonial-2.jpg')}}" alt=""></figure>
-                                            <h4>Ololade Shittu</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -599,6 +586,6 @@
     <!-- newsletter-section end -->
 
     <!-- Include footer -->
-    @include('partials.footer')
+    {{-- @include('partials.footer') --}}
 
 @endsection

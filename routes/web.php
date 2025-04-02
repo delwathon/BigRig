@@ -20,6 +20,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\TrainingScheduleController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\TestimonialsController;
 use App\Models\Settings;
 
 /*
@@ -128,6 +129,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/instructors', [InstructorController::class, 'index'])->name('instructors');
     Route::post('/instructor/store', [InstructorController::class, 'store'])->name('instructor.store');
     Route::get('/instructor/deactivate/{id}', [InstructorController::class, 'deactivate'])->name('instructor.deactivate');
+    Route::get('/testimonials', [TestimonialsController::class, 'index'])->name('testimonials');
+    Route::post('/testimonials/store', [TestimonialsController::class, 'store'])->name('testimonial.store');
+    Route::put('/testimonials/update', [TestimonialsController::class, 'update'])->name('testimonial.update');
+    Route::get('/testimonials/destroy/{id}', [TestimonialsController::class, 'destroy'])->name('testimonial.destroy');
 
 
 

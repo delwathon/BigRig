@@ -52,7 +52,7 @@
                                     <div class="flex flex-nowrap items-center space-x-2 whitespace-nowrap">
                                         <div>Duration: {{ $objective->duration }} weeks</div>
                                         <div class="text-gray-400 dark:text-gray-600">|</div>
-                                        <div>Cost: ${{ $objective->price }}</div>
+                                        <div>Cost: ₦{{ $objective->price }}</div>
                                     </div>
                                 </a>
                             </div>

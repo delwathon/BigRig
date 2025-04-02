@@ -70,7 +70,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $subscription = Subscription::where('user_id', $user->id)->latest()->first();
         $exchange_rate = 1750;
-        $amount = ($subscription->total_amount * $exchange_rate) * 100;
+        $amount = $subscription->total_amount * 100;
 
         $data = [
             'email' => $user->email,

@@ -55,7 +55,7 @@
                                 <input id="name" class="form-input w-full px-2 py-1" type="text" name="objective"  />
                             </div>
                             <div class="sm:w-1/3">
-                                <label class="block text-sm font-medium mb-1" for="price">Course Price ($) <span class="text-red-500">*</span></label>
+                                <label class="block text-sm font-medium mb-1" for="price">Course Price (₦) <span class="text-red-500">*</span></label>
                                 <input id="price" class="form-input w-full px-2 py-1" type="string" name="price"  />
                             </div>
                             <div class="sm:w-1/3">

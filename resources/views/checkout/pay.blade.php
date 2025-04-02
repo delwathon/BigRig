@@ -71,20 +71,20 @@
                                             @foreach ($objectives as $objective)
                                                 <li class="text-sm w-full flex justify-between py-3 border-b border-gray-200 dark:border-gray-700/60">
                                                     <div>{{ $objective->objective }}</div>
-                                                    <div class="font-medium text-gray-800 dark:text-gray-100 subtotal">${{ number_format($objective->price, 2) }}</div>
+                                                    <div class="font-medium text-gray-800 dark:text-gray-100 subtotal">₦{{ number_format($objective->price, 2) }}</div>
                                                 </li>
                                             @endforeach
                                             <li class="text-sm w-full flex justify-between py-3 border-b border-gray-200 dark:border-gray-700/60">
                                                 <div>Subtotal</div>
-                                                <div class="font-medium text-gray-800 dark:text-gray-100 subtotal">${{ number_format($subscription->subtotal, 2) }}</div>
+                                                <div class="font-medium text-gray-800 dark:text-gray-100 subtotal">₦{{ number_format($subscription->subtotal, 2) }}</div>
                                             </li>
                                             <li class="text-sm w-full flex justify-between py-3 border-b border-gray-200 dark:border-gray-700/60">
                                                 <div>Taxes</div>
-                                                <div class="font-medium text-gray-800 dark:text-gray-100 taxes">${{ number_format($subscription->tax, 2) }}</div>
+                                                <div class="font-medium text-gray-800 dark:text-gray-100 taxes">₦{{ number_format($subscription->tax, 2) }}</div>
                                             </li>
                                             <li class="text-sm w-full flex justify-between py-3 border-b border-gray-200 dark:border-gray-700/60">
                                                 <div>Total due (including taxes)</div>
-                                                <div class="font-medium text-green-600 total-due">${{ number_format($subscription->total_amount, 2) }}</div>
+                                                <div class="font-medium text-green-600 total-due">₦{{ number_format($subscription->total_amount, 2) }}</div>
                                             </li>
                                         </ul>
                                     </div>
@@ -95,9 +95,9 @@
                                             Pay ₦{{ number_format($subscription->total_amount * $exchange_rate, 2) }}
                                         </button>
                                         </div>
-                                        <div class="text-center">
+                                        {{-- <div class="text-center">
                                             <a class="text-xs text-gray-500 italic" href="">At an exchange rate of ₦1750/$</a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </form>
                             </div>

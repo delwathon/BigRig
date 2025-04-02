@@ -11,7 +11,7 @@
             @foreach ($sliders as $slider)
                 <div class="slide-item">
                     <div class="image-layer" style="background-image:url({{ asset('assets/images/banner/banner-1.jpg') }})"></div>
-                    <figure class="banner-img"><img src="{{ asset('assets/images/banner/car-1.png') }}" alt=""></figure>
+                    <figure class="banner-img"><img src="{{ asset('assets/images/banner/car-2.png') }}" alt=""></figure>
                     <div class="auto-container">
                         <div class="content-box">
                             <h2>{{ $slider->title }}</h2>
@@ -86,7 +86,7 @@
         <div class="auto-container">
             <div class="sec-title-two">
                 <h5>Courses</h5>
-                <h2>Course to drive with confidence</h2>
+                <h2>Training Offered</h2>
             </div>
             <div class="two-item-carousel owl-carousel owl-theme owl-dots-none">
                 @foreach ($objectives as $course)
@@ -98,7 +98,7 @@
                                         $formattedPrice = number_format($course->price, 2, '.', ',');
                                         [$whole, $decimal] = explode('.', $formattedPrice);
                                     @endphp
-                                    <h2><span class="text">From</span><span class="symble">$</span>{!! $whole !!}<sub>.{{ $decimal }}</sub></h2>
+                                    <h2><span class="text">From</span><span class="symble">₦</span>{!! $whole !!}<sub>.{{ $decimal }}</sub></h2>
                                 </div>
                                 <figure class="image"><img src="{{ Storage::url($course->image_url) }}" alt="{{ $course->objective }}"></figure>
                             </div>
@@ -150,7 +150,7 @@
             <div class="four-item-carousel owl-carousel owl-theme">
                 <div class="car-block-one">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/resource/car-1.jpg') }}" alt=""></figure>
+                        <figure class="image-box"><img src="{{ asset('assets/images/resource/car-2.jpg') }}" alt=""></figure>
                         <div class="content-box">
                             <div class="text">
                                 <h6>Manual</h6>
@@ -234,7 +234,7 @@
                 </div>
                 <div class="car-block-one">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/resource/car-1.jpg') }}" alt=""></figure>
+                        <figure class="image-box"><img src="{{ asset('assets/images/resource/car-2.jpg') }}" alt=""></figure>
                         <div class="content-box">
                             <div class="text">
                                 <h6>Manual</h6>
@@ -318,7 +318,7 @@
                 </div>
                 <div class="car-block-one">
                     <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/resource/car-1.jpg') }}" alt=""></figure>
+                        <figure class="image-box"><img src="{{ asset('assets/images/resource/car-2.jpg') }}" alt=""></figure>
                         <div class="content-box">
                             <div class="text">
                                 <h6>Manual</h6>
@@ -1127,48 +1127,27 @@
                             <h2>Feedback from leaners</h2>
                         </div>
                         <div class="testimonial-inner">
-                            <div class="testimonial-content">
-                                <figure class="thumb-box"><img src="{{ asset('assets/images/resource/testimonial-3.jpg') }}" alt=""></figure>
-                                <div class="inner-box">
-                                    <div class="text">
-                                        <div class="shape-layer"></div>
-                                        <div class="quote-box"><i class="flaticon-quote"></i></div>
-                                        <h4>This is the best Driving School.</h4>
-                                        <p>Best driving school I’ve ever been to love it the instructors they’re very patient.</p>
-                                    </div>
-                                    <div class="author-box">
-                                        <h5>Bret Danielle <span>[Bank Manager, California]</span></h5>
-                                        <ul class="rating clearfix">
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial-content">
-                                <figure class="thumb-box"><img src="{{ asset('assets/images/resource/testimonial-4.jpg') }}" alt=""></figure>
-                                <div class="inner-box">
-                                    <div class="text">
-                                        <div class="shape-layer"></div>
-                                        <div class="quote-box"><i class="flaticon-quote"></i></div>
-                                        <h4>Great Experience with BigRig Truck Driving School.</h4>
-                                        <p>I could not imagine a driving school look like BigRig Truck Driving School. Facility with outstanding trainers.</p>
-                                    </div>
-                                    <div class="author-box">
-                                        <h5>Mia Isabella <span>[Student, New Mexico]</span></h5>
-                                        <ul class="rating clearfix">
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                            <li><i class="flaticon-star"></i></li>
-                                        </ul>
+                            @foreach ($testimonials as $testimonial)
+                                <div class="testimonial-content">
+                                    <figure class="thumb-box"><img src="{{ $testimonial->image_url ? Storage::url($testimonial->image_url) : Storage::url('users/avatar.png') }}" width="60" height="60" alt="{{ $testimonial->full_name }}"></figure>
+                                    <div class="inner-box">
+                                        <div class="text">
+                                            <div class="shape-layer"></div>
+                                            <div class="quote-box"><i class="flaticon-quote"></i></div>
+                                            {{-- <h4>This is the best Driving School.</h4> --}}
+                                            <p>{!! $testimonial->testimony !!}</p>
+                                        </div>
+                                        <div class="author-box">
+                                            <h5>{{ $testimonial->full_name }}</h5>
+                                            <ul class="rating clearfix">
+                                                @for ($i = 1; $i <= floor($testimonial->rating); $i++)
+                                                    <li><i class="flaticon-star"></i></li>
+                                                @endfor
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -1268,6 +1247,6 @@
     <!-- news-style-two end -->
 
     <!-- Include footer -->
-    @include('partials.footer-2')
+    {{-- @include('partials.footer-2') --}}
 
 @endsection
