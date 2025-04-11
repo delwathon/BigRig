@@ -19,16 +19,19 @@ To Do
 - Changed default Currency to Naira ✅
 - CRUD options Testimonials in backend ✅
 - Testimonies updated on the frontend to fetch from database and black people pictures used for demo ✅
-- Email Subscription from Frontend
+- Edit Slider from backend instead of deleting and adding afresh ✅
+- Email Subscription from Frontend ✅
+- courses offered on frontend placed beneath the images ✅
 - Upload Traffic Sign Document from admin end and downloadable in Frontend
-- create necessary emails
-- courses offered on frontend placed beneath the images
-- Edit Slider
+- create necessary emails✅
+- Manually assign student to instructor
+- Edit Instructor
+- Multiple User Role
+- Fix whatsapp support asking to select contact when it was meant to take you straight to support DM
 
 
 - Blog - Premium
 - API fetch exchange rate
-- Multiple User Role
 - Messaging and forum
 - Job Posting
 - Email Config

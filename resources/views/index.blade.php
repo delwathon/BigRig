@@ -11,7 +11,7 @@
             @foreach ($sliders as $slider)
                 <div class="slide-item">
                     <div class="image-layer" style="background-image:url({{ asset('assets/images/banner/banner-1.jpg') }})"></div>
-                    <figure class="banner-img"><img src="{{ asset('assets/images/banner/car-2.png') }}" alt=""></figure>
+                    <figure class="banner-img"><img src="{{ Storage::url($slider->image_url) }}" alt="{{ $slider->title }}"></figure>
                     <div class="auto-container">
                         <div class="content-box">
                             <h2>{{ $slider->title }}</h2>
@@ -35,37 +35,38 @@
     <!-- banner-section end -->
 
     <!-- service-style-two -->
-    <section class="service-style-two">
+    <section class="service-section service-section-2">
+        <div class="shape">
+            <div class="shape-1 float-bob-x" style="background-image: url({{asset('assets/images/shape/shape-12.png')}});"></div>
+            <div class="shape-2 float-bob-x" style="background-image: url({{asset('assets/images/shape/shape-12.png')}});"></div>
+        </div>
         <div class="auto-container">
-            <div class="sec-title-two centred">
-                <h5>Services</h5>
-                <h2>Services customized for you</h2>
+            <div class="sec-title light centred">
+                <h2 class="text-black">Services customized for you</h2>
             </div>
-            <div class="row clearfix">
+            <div class="three-item-carousel owl-carousel owl-theme">
                 @foreach ($services as $service)
-                    <div class="col-lg-4 col-md-6 col-sm-12 service-block">
-                        <div class="service-block-one">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <div class="icon-box"><i class="flaticon-driving-school"></i></div>
-                                    <figure class="image"><img src="{{ Storage::url($service->service_picture) }}" alt=""></figure>
+                    <div class="service-block-one">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <div class="icon-box"><img src="{{asset('assets/images/icons/icon-3.png')}}" alt=""></div>
+                                <figure class="image"><img class="custom-service-image" src="{{ Storage::url($service->service_picture) }}" alt=""></figure>
+                            </div>
+                            <div class="lower-content">
+                                <div class="text">
+                                    {{-- <h4><a href="javascript:void(0)">{{ $service->service_name }}</a></h4> --}}
+                                    <p>{{ $service->service_description }}</p>
                                 </div>
-                                <div class="lower-content">
-                                    <div class="text">
-                                        {{-- <h4><a href="javascript:void(0)">{{ $service->service_name }}</a></h4> --}}
-                                        <p>{{ $service->service_description }}</p>
-                                    </div>
-                                    <div class="lower-box">
-                                        <ul class="arrow-icon clearfix">
-                                            <li><i class="flaticon-right-arrow-1"></i></li>
-                                            <li><i class="flaticon-right-arrow-1"></i></li>
-                                            <li><i class="flaticon-right-arrow-1"></i></li>
-                                            {{-- <li><i class="flaticon-right-arrow-1"></i></li>
-                                            <li><i class="flaticon-right-arrow-1"></i></li> --}}
-                                        </ul>
-                                        <div class="link">
-                                            <a href="javascript:void(0)"><i class="flaticon-right-arrow-1"></i>{{ $service->service_name }}</a>
-                                        </div>
+                                <div class="lower-box">
+                                    <ul class="arrow-icon clearfix">
+                                        <li><i class="flaticon-right-arrow-1"></i></li>
+                                        {{-- <li><i class="flaticon-right-arrow-1"></i></li>
+                                        <li><i class="flaticon-right-arrow-1"></i></li>
+                                        <li><i class="flaticon-right-arrow-1"></i></li>
+                                        <li><i class="flaticon-right-arrow-1"></i></li> --}}
+                                    </ul>
+                                    <div class="link">
+                                        <a href="javascript:void(0)"><i class="flaticon-right-arrow-1"></i>{{ $service->service_name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +103,7 @@
                                 </div>
                                 <figure class="image"><img src="{{ Storage::url($course->image_url) }}" alt="{{ $course->objective }}"></figure>
                             </div>
-                            <div class="content-box">
+                            {{-- <div class="content-box">
                                 <p>Course Overview</p>
                                 <div class="single-box">
                                     <div class="single-item">
@@ -124,13 +125,13 @@
                                 <div class="btn-box">
                                     <a href="{{ route('course', ['name' => Str::slug($course->objective)]) }}">Course Details</a>
                                 </div>  
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="lower-box">
                             <div class="icon-box"><img src="assets/images/icons/icon-41.png" alt=""></div>
                             <div class="icon-box-2"><img src="assets/images/icons/icon-42.png" alt=""></div>
                             <h6>{{ $settings->site_name }}</h6>
-                            <h3><a href="javascript:void(0)">{{ $course->objective }} Training</a></h3>
+                            <h3><a href="{{ route('course', ['name' => Str::slug($course->objective)]) }}">{{ $course->objective }} Training</a></h3>
                         </div>
                     </div>
                 @endforeach

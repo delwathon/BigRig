@@ -4,8 +4,10 @@
             modalOpen: false,
             data: {
                 id: null,
-                service_name: '',
-                service_description: ''
+                slider_title: '',
+                slider_text: '',
+                button_name: '',
+                button_url: ''
             },
             open(data) {
                 this.data = { ...data };
@@ -15,8 +17,10 @@
                 this.modalOpen = false;
                 this.data = {
                     id: null,
-                    service_name: '',
-                    service_description: ''
+                    slider_title: '',
+                    slider_text: '',
+                    button_name: '',
+                    button_url: ''
                 };
             },
         });

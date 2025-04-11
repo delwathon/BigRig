@@ -84,9 +84,15 @@ class CourseController extends Controller
     {
         // Validate the request
         $request->validate([
-            'id' => 'required|exists:training_objectives,id', // Ensure objective_id is valid
-            'files.*' => 'required|file|mimes:pdf,doc,docx|max:10240', // Validate file types and size
-        ]);
+            'id' => 'required|exists:training_objectives,id',
+            'files' => 'required|array|min:1',
+            'files.*' => 'required|file|mimes:pdf,doc,docx|max:10240',
+        ], [
+            'files.required' => 'Please upload at least one file.',
+            'files.*.required' => 'Each file is required.',
+            'files.*.mimes' => 'Only PDF, DOC and DOCX file types are allowed.',
+            'files.*.max' => 'The file size must not exceed 10 MB.',
+        ]);        
 
         $objectiveId = $request->input('id');
         $uploadedFiles = $request->file('files'); // Retrieve the uploaded files

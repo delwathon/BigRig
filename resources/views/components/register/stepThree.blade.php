@@ -48,7 +48,7 @@
                     <label class="flex-1 relative block cursor-pointer">
                         <input type="checkbox" name="selected_objective[]" class="peer sr-only" value="1" {{ is_array(old('selected_objective')) && in_array('1', old('selected_objective')) ? 'checked' : '' }} />
                         <div class="sm:flex h-full px-4 py-6 rounded-lg border-b border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 shadow-sm transition">
-                            <img class="rounded-sm block mb-4 sm:mb-0 mr-5 shrink-0" src="{{ asset('assets/images/service/truck.jpg') }}" width="200" height="142" alt="Product 01" />
+                            <img class="rounded-sm block mb-4 sm:mb-0 mr-5 shrink-0" src="{{ Storage::url($course->image_url) }}" width="200" height="142" alt="{{ $course->objective }}" />
                             <div class="grow">
                                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-1">{{ $course->objective }}</h3>
                                 <div class="text-sm mb-2">{!! $course->requirement !!}</div>

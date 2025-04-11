@@ -15,6 +15,7 @@ use App\Models\Achievements;
 use App\Models\Faqs;
 use App\Models\User;
 use App\Models\Testimonials;
+use App\Models\EmailSubscription;
 
 class WebsiteController extends Controller
 {
@@ -125,5 +126,24 @@ class WebsiteController extends Controller
         $objectives = TrainingObjective::orderBy('id', 'asc')->get();
 
         return view('contact', compact('site', 'about', 'objectives'));
+    }
+
+    public function email_subscription(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        // Check if email already exists
+        if (EmailSubscription::where('email', $request->email)->exists()) {
+            return redirect()->back()->with('info', 'You are already subscribed to our newsletter.');
+        }
+
+        // Store new subscription
+        EmailSubscription::create([
+            'email' => $request->email,
+        ]);
+
+        return redirect()->back()->with('success', 'You have successfully subscribed to our newsletter.');
     }
 }

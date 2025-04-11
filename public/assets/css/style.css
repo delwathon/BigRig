@@ -765,14 +765,14 @@ img {
 }
 
 .slider-image {
-	height: 500px;
+	height: 600px;
 	object-fit: cover;
 	/* width: 100%; */
 }
 
 .logo-image {
-	width: 200px;
-	height: 150px !important;
+	width: 8rem;
+	height: 8rem !important;
 }
 
 .logo-image-2 {
@@ -2505,6 +2505,10 @@ div#mCSB_1_container{
   background: #121113;
 }
 
+.service-section-2 {
+	background: #ffffff !important;
+  }
+
 .service-block-one{
   margin-top: 15px;
 }
@@ -3510,7 +3514,7 @@ div#mCSB_1_container{
 .pricing-block-one .pricing-table .table-header h2{
 	position: relative;
 	display: inline-block;
-	font-size: 60px;
+	font-size: 30px;
 	line-height: 60px;
 	font-weight: 600;
 	padding-left: 20px;
@@ -4334,7 +4338,7 @@ div#mCSB_1_container{
 	text-align: left;
 }
 
-.newsletter-section .single-item .content-box .download-box h6 button{
+.newsletter-section .single-item .content-box .download-box h6 a{
 	position: absolute;
 	top: 0px;
 	right: 0px;
@@ -4432,22 +4436,40 @@ div#mCSB_1_container{
 	background-repeat: no-repeat;
 }
 
-.newsletter-section .shape .shape-5{
+/* .newsletter-section .shape .shape-5{
 	position: absolute;
 	right: 0px;
 	bottom: 87px;
 	width: 713px;
 	height: 579px;
 	background-repeat: no-repeat;
+} */
+
+.newsletter-section .shape .shape-5{
+	position: absolute;
+    right: 0px;
+    bottom: -53px;
+    width: 713px;
+    height: 579px;
+    background-repeat: no-repeat;
 }
 
-.newsletter-section .shape .shape-6{
+/* .newsletter-section .shape .shape-6{
 	position: absolute;
 	right: 250px;
 	bottom: 87px;
 	width: 587px;
 	height: 462px;
 	background-repeat: no-repeat;
+} */
+
+.newsletter-section .shape .shape-6 {
+    position: absolute;
+    right: 276px;
+    bottom: 64px;
+    width: 587px;
+    height: 462px;
+    background-repeat: no-repeat;
 }
 
 .newsletter-section .shape .shape-7{
@@ -4515,6 +4537,8 @@ div#mCSB_1_container{
 	position: relative;
 	display: block;
 	margin-bottom: 24px;
+	width: 10rem;
+	height: 10rem !important;
 }
 
 .footer-top .logo-widget h4{
@@ -6129,7 +6153,7 @@ div#mCSB_1_container{
 .course-block-one .inner-box .image-box .price h2{
 	position: relative;
 	display: inline-block;
-	font-size: 50px;
+	font-size: 35px;
 	line-height: 50px;
 	font-weight: 500;
 	background: #fff;
@@ -7835,7 +7859,7 @@ div#mCSB_1_container{
 
 .footer-style-two .footer-top{
 	position: relative;
-	padding: 114px 0px 0px 0px;
+	padding: 60px 0px 0px 0px;
 	background: #3d3d3d;
 	border-bottom: none;
 }

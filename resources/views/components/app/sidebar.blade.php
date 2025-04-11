@@ -17,7 +17,7 @@
     >
 
         <!-- Sidebar header -->
-        <div class="flex justify-between mb-10 pr-3 sm:px-2">
+        <div class="flex justify-between sm:px-2">
             <!-- Close button -->
             <button class="lg:hidden text-gray-500 hover:text-gray-400" @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen">
                 <span class="sr-only">Close sidebar</span>
@@ -28,10 +28,10 @@
             <!-- Logo -->
             <a class="block" href="{{ route('dashboard') }}">
                 <!-- Light Theme Logo -->
-                <img class="block dark:hidden custom-logo-size" src="{{ Storage::url($settings->light_theme_logo) }}" alt="Light Logo" />
+                <img class="block dark:hidden w-40 h-40" src="{{ Storage::url($settings->light_theme_logo) }}" alt="Light Logo" />
 
                 <!-- Dark Theme Logo -->
-                <img class="hidden dark:block custom-logo-size" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Logo" />
+                <img class="hidden dark:block w-40 h-40" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Logo" />
             </a>
 
         </div>
@@ -94,6 +94,22 @@
                     </li>
                     @endif
 
+                    @if (Auth::user()->hasPermission('read_chats'))
+                    <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] @if(in_array(Request::segment(1), ['chats'])){{ 'from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['chats']) ? 1 : 0 }} }">
+                        <a class="block text-gray-800 dark:text-gray-100 truncate transition @if(!in_array(Request::segment(1), ['chats'])){{ 'hover:text-gray-900 dark:hover:text-white' }}@endif" href="{{ route('chats') }}">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <!-- SVG Icon for Users -->
+                                    <svg class="shrink-0 fill-current @if(in_array(Request::segment(1), ['chats'])){{ 'text-violet-500' }}@else{{ 'text-gray-400 dark:text-gray-500' }}@endif" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path d="M8 0a3 3 0 0 1 3 3v2h4a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4V3a3 3 0 0 1 3-3zM4 7V5h8v2H4zm4 7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Chat</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    @endif
+
                     <!-- Course Management -->
                     @if (Auth::user()->hasPermission('read_course_management'))
                     <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] @if(in_array(Request::segment(1), ['course'])){{ 'from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['course']) ? 1 : 0 }} }">
@@ -142,6 +158,24 @@
                                             <path d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm-4 6a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z" />
                                         </svg>
                                         <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Payments</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endif
+
+                    {{-- Newsletter --}}
+                    @if (Auth::user()->hasPermission('read_newsletter'))
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] @if(in_array(Request::segment(1), ['newsletter'])){{ 'from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['payments']) ? 1 : 0 }} }">
+                            <a class="block text-gray-800 dark:text-gray-100 truncate transition @if(!in_array(Request::segment(1), ['newsletter'])){{ 'hover:text-gray-900 dark:hover:text-white' }}@endif" href="{{ route('newsletter') }}">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <!-- SVG Icon for Users -->
+                                        <svg class="shrink-0 fill-current @if(in_array(Request::segment(1), ['newsletter'])){{ 'text-violet-500' }}@else{{ 'text-gray-400 dark:text-gray-500' }}@endif" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                            <path d="M6 0a6 6 0 0 0-6 6c0 1.077.304 2.062.78 2.912a1 1 0 1 0 1.745-.976A3.945 3.945 0 0 1 2 6a4 4 0 0 1 4-4c.693 0 1.344.194 1.936.525A1 1 0 1 0 8.912.779 5.944 5.944 0 0 0 6 0Z" />
+                                            <path d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm-4 6a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z" />
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Newsletter</span>
                                     </div>
                                 </div>
                             </a>

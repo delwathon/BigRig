@@ -383,7 +383,7 @@ class SettingsController extends Controller
         return view('pages/settings/sliders', compact('sliders'));  
     }
 
-    public function slidersStore(Request $request)
+    public function sliderStore(Request $request)
     {
         $request->validate([
             'slider_title' => 'required|string|max:255',
@@ -391,11 +391,25 @@ class SettingsController extends Controller
             'button_name' => 'nullable|string|max:20',
             'button_url' => 'nullable|string|max:2048', // Ensure valid URL format
             'image_url' => 'required|image|mimes:jpg,png,jpeg|max:2048', // Ensure image is uploaded
-        ]);        
+            'image_url_2' => 'required|image|mimes:jpg,png,jpeg|max:2048', // Ensure image is uploaded
+        ],
+        [
+            'image_url.image' => 'Slider Picture: The uploaded file must be an image.',
+            'image_url.mimes' => 'Slider Picture: Only JPG and PNG file types are allowed.',
+            'image_url.max' => 'Slider Picture: The image size must not exceed 2 MB.',
+            'image_url_2.image' => 'Slider Picture 2: The uploaded file must be an image.',
+            'image_url_2.mimes' => 'Slider Picture 2: Only JPG and PNG file types are allowed.',
+            'image_url_2.max' => 'Slider Picture 2: The image size must not exceed 2 MB.',
+        ]);       
 
         // Handle image_url upload
         if ($request->hasFile('image_url')) {
             $filePath = $request->file('image_url')->store('sliders', 'public');
+        }
+
+        // Handle image_url upload
+        if ($request->hasFile('image_url_2')) {
+            $filePath_2 = $request->file('image_url_2')->store('sliders', 'public');
         }
 
         Slider::create([
@@ -404,19 +418,78 @@ class SettingsController extends Controller
             'button_name' => $request->input('button_name'),
             'button_url' => $request->input('button_url'),
             'image_url' => $filePath,
+            'image_url_2' => $filePath_2,
         ]);            
 
         return redirect()->back()->with('success', 'Slider created successfully.');
+    }
+
+    public function sliderUpdate(Request $request, Slider $slider)
+    {
+        $request->validate([
+            'id' => 'required|exists:sliders,id',
+            'slider_title' => 'required|string|max:255',
+            'slider_text' => 'required|string|max:255',
+            'button_name' => 'nullable|string|max:20',
+            'button_url' => 'nullable|string|max:2048', // Ensure valid URL format
+            'image_url' => 'required|image|mimes:jpg,png,jpeg|max:2048', // Ensure image is uploaded
+            'image_url_2' => 'required|image|mimes:jpg,png,jpeg|max:2048', // Ensure image is uploaded
+        ],
+        [
+            'image_url.image' => 'Slider Picture: The uploaded file must be an image.',
+            'image_url.mimes' => 'Slider Picture: Only JPG and PNG file types are allowed.',
+            'image_url.max' => 'Slider Picture: The image size must not exceed 2 MB.',
+            'image_url_2.image' => 'Slider Picture 2: The uploaded file must be an image.',
+            'image_url_2.mimes' => 'Slider Picture 2: Only JPG and PNG file types are allowed.',
+            'image_url_2.max' => 'Slider Picture 2: The image size must not exceed 2 MB.',
+        ]);
+
+        $slider = Slider::findOrFail($request->input('id'));
+
+        // Update fields
+        $slider->title = $request->input('slider_title');
+        $slider->text = $request->input('slider_text');
+        $slider->button_name = $request->input('button_name');
+        $slider->button_url = $request->input('button_url');
+
+        // Handle image upload
+        if ($request->hasFile('image_url')) {
+            $oldImagePath = $slider->image_url;
+            $filePath = $request->file('image_url')->store('sliders', 'public');
+
+            $oldImagePath_2 = $slider->image_url_2;
+            $filePath_2 = $request->file('image_url_2')->store('sliders', 'public');
+
+            $slider->image_url = $filePath;
+            $slider->image_url_2 = $filePath_2;
+
+            if ($oldImagePath && Storage::disk('public')->exists($oldImagePath)) {
+                Storage::disk('public')->delete($oldImagePath);
+            }
+
+            if ($oldImagePath_2 && Storage::disk('public')->exists($oldImagePath_2)) {
+                Storage::disk('public')->delete($oldImagePath_2);
+            }
+        }
+
+        $slider->save();
+
+        return redirect()->back()->with('success', 'Slider updated successfully!');
     }
 
     public function slidersDestroy($id)
     {
         $slider = Slider::findOrFail($id);
         $filePath = $slider->image_url;
+        $filePath_2 = $slider->image_url_2;
         $slider->delete();
 
         if ($filePath && Storage::disk('public')->exists($filePath)) {
             Storage::disk('public')->delete($filePath);
+        }
+        
+        if ($filePath_2 && Storage::disk('public')->exists($filePath_2)) {
+            Storage::disk('public')->delete($filePath_2);
         }
         return redirect()->back()->with('success', 'Slider deleted successfully.');
     }

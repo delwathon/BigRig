@@ -81,8 +81,8 @@
                     <h5>Get Your First Free Online Lesson Today… <a href="{{ route('contact') }}"><i class="flaticon-right-arrow-1"></i>Contact Now</a></h5>
                 </div>
                 <ul class="option-list clearfix">
-                    <li><h6><i class="flaticon-pdf"></i><a href="javascript:void(0)">Traffic Signs</a></h6></li>
-                    <li><h6><i class="flaticon-pdf"></i><a href="javascript:void(0)">Driving Tips</a></h6></li>
+                    <li><h6><i class="flaticon-pdf"></i><a href="{{ Storage::url('miscellaneous/traffic_rules.pdf') }}" download>Traffic Signs</a></h6></li>
+                    {{-- <li><h6><i class="flaticon-pdf"></i><a href="javascript:void(0)">Driving Tips</a></h6></li> --}}
                 </ul>
             </div>
         </div>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="btn-box">
-                        <a href="{{route('register')}}" class="theme-btn btn-one">Get Started</a>
+                        <a href="{{route('login')}}" class="theme-btn btn-one">Login</a>
                     </div>
                 </div>
                 <div class="support-box">

@@ -48,8 +48,8 @@
                                     <div class="text-gray-800 dark:text-gray-100 font-bold mb-4">
                                         <span class="text-2xl">₦</span>
                                         <span class="text-3xl" 
-                                            x-text="annual ? '{{ $objective->price }}' : '{{ $objective->price + ($objective->price * 0.1) }}'">
-                                            {{ $objective->price }}
+                                            x-text="annual ? '{{ number_format($objective->price, 2) }}' : '{{ number_format($objective->price + ($objective->price * 0.1)) }}'">
+                                            {{ number_format($objective->price, 2) }}
                                         </span>
                                         <span class="text-gray-500 font-medium text-sm"></span>
                                     </div>

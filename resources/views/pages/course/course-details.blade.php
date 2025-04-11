@@ -45,7 +45,7 @@
                                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Course Price</h2>
                             </header>
                             <div class="flex items-start">
-                                <div class="text-2xl font-bold text-gray-800 dark:text-gray-100 mr-2">₦{{ $objective->price }}</div>
+                                <div class="text-2xl font-bold text-gray-800 dark:text-gray-100 mr-2">₦{{ number_format($objective->price, 2) }}</div>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="flex flex-col col-span-full sm:col-span-full xl:col-span-full bg-white dark:bg-gray-800 shadow-sm rounded-lg">
                         <div class="px-5 py-3">
                             <header class="flex justify-between items-start mb-2">
-                                {{-- <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Course Requirement(s)</h2> --}}
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Course Requirement(s)</h2>
                             </header>
                             <div class="items-start">                              
                                 <div class="course-details space-y-6">

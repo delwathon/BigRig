@@ -32,7 +32,7 @@
             <!-- Modal header -->
             <div class="px-5 py-3 border-b border-gray-200 dark:border-gray-700/60">
                 <div class="flex justify-between items-center">
-                    <div class="font-semibold text-gray-800 dark:text-gray-100">Edit Custom Service</div>
+                    <div class="font-semibold text-gray-800 dark:text-gray-100">Edit Slider</div>
                     <button class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400" @click="$store.editModal.close()">
                         <div class="sr-only">Close</div>
                         <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16">
@@ -43,7 +43,7 @@
             </div>
 
             <!-- Modal content -->
-            <form method="POST" action="{{ route('custom-service.update') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('slider.update') }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -52,17 +52,32 @@
                         <!-- Form fields -->
                         <input type="hidden" x-model="$store.editModal.data.id" name="id">
                         <div>
-                            <label class="block text-sm font-medium mb-1" for="service_name">Service Name <span class="text-red-500">*</span></label>
-                            <input id="service_name" class="form-input w-full px-2 py-1" type="text" name="service_name" x-model="$store.editModal.data.service_name" required />
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1" for="service_description">Breif Description <span class="text-red-500">*</span></label>
-                            <textarea id="service_description" class="form-textarea w-full px-2 py-1" rows="4" name="service_description" x-model="$store.editModal.data.service_description" required></textarea>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1" for="service_picture">Picture Upload <span class="text-yellow-500 text-xs">370 x 410 px</span></label>
-                            <input id="service_picture" class="form-input w-full px-2 py-1" type="file" name="service_picture" />
+                            <label class="block text-sm font-medium mb-1" for="image_url">Landing Page 1 - Slider Picture <span class="text-yellow-500 text-xs">1029 x 631 px</span></label>
+                            <input id="image_url" class="form-input w-full px-2 py-1" type="file" name="image_url" />
                             <span class="text-xs">.jpg and .png extensions only.</span>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" for="image_url">Landing Page 2 - Slider Picture <span class="text-yellow-500 text-xs">785 x 670 px</span></label>
+                            <input id="image_url" class="form-input w-full px-2 py-1" type="file" name="image_url_2" />
+                            <span class="text-xs">.jpg and .png extensions only.</span>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" for="slider_title">Slider Title <span class="text-red-500">*</span></label>
+                            <input id="slider_title" class="form-input w-full px-2 py-1" type="text" name="slider_title" x-model="$store.editModal.data.slider_title" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" for="slider_text">Slider Text <span class="text-red-500">*</span></label>
+                            <textarea id="slider_text" class="form-textarea w-full px-2 py-1" rows="4" name="slider_text" x-model="$store.editModal.data.slider_text" required></textarea>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="sm:w-1/2">
+                                <label class="block text-sm font-medium mb-1" for="button_name">Button Name </label>
+                                <input id="button_name" class="form-input w-full px-2 py-1" type="text" name="button_name" x-model="$store.editModal.data.button_name"  />
+                            </div>
+                            <div class="sm:w-1/2">
+                                <label class="block text-sm font-medium mb-1" for="button_url">Redirect To </label>
+                                <input id="button_url" class="form-input w-full px-2 py-1" type="text" name="button_url" x-model="$store.editModal.data.button_url"  />
+                            </div>
                         </div>
                     </div>
                 </div>

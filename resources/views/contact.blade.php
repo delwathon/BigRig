@@ -64,7 +64,8 @@
                                 <h2>Send your enquiry</h2>
                                 <p>Complete the enquiry form & we will be in touch as soon as possible.</p>
                             </div>
-                            <form method="post" action="" id="contact-form"> 
+                            <form method="get" action="{{ route('contact') }}" id="contact-form">
+                            @csrf
                                 <div class="row clearfix">
                                     <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                         <input type="text" name="username" placeholder="Your Name" required="">

@@ -20,7 +20,7 @@ class CreateTrainingObjectiveTable extends Migration
             $table->integer('theory_session')->nullable();
             $table->integer('practical_session')->nullable();
             $table->string('examination')->nullable();
-            $table->decimal('price', 8, 2);
+            $table->decimal('price', 10, 2);
             $table->text('course_details')->nullable();
             $table->text('requirement');
             $table->string('image_url')->nullable();

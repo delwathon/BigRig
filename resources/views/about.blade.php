@@ -51,10 +51,10 @@
                                 <div class="text">
                                     {!! $about->company_history !!}
                                 </div>
-                                <ul class="link-box clearfix">
+                                {{-- <ul class="link-box clearfix">
                                     <li><a href="javascript:void(0)">Brief History</a></li>
                                     <li><a href="javascript:void(0)">Our Statements</a></li>
-                                </ul>
+                                </ul> --}}
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
         <div class="shape" style="background-image: url({{asset('assets/images/shape/shape-75.png')}});"></div>
         <div class="auto-container">
             <div class="row clearfix">
-                <div class="col-lg-8 col-md-12 col-sm-12 content-column">
+                <div class="col-lg-12 col-md-12 col-sm-12 content-column">
                     <div class="content-box">
                         <div class="history-slide">
                             @foreach ($achievements as $achievement)
@@ -142,16 +142,16 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="btn-box">
+                        {{-- <div class="btn-box">
                             <a href="javascript:void(0)" class="theme-btn btn-five">Achievements So Far</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 image-column">
+                {{-- <div class="col-lg-4 col-md-12 col-sm-12 image-column">
                     <div class="image-inner">
                         <figure class="image"><img src="{{ Storage::url($about->achievement_picture) }}" alt=""></figure>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

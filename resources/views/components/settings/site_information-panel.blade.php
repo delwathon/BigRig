@@ -15,21 +15,21 @@
                     <div class="sm:w-1/3">
                         <label class="block text-sm font-medium mb-1" for="dark_theme_logo">Dark Theme Logo <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">300 x 300 px</span></label>
                         <div class="mr-4">
-                            <img class="w-40 h-20" src="{{ Storage::url($settings->dark_theme_logo) }}" width="80" height="80" alt="Dark Theme Logo" name="dark_theme_logo"/>
+                            <img class="w-40 h-40" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Theme Logo" name="dark_theme_logo"/>
                             <input id="picture" class="form-input w-full px-2 py-1" type="file" name="dark_theme_logo" />
                         </div>
                     </div>
                     <div class="sm:w-1/3">
                         <label class="block text-sm font-medium mb-1" for="light_theme_logo">Light Theme Logo <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">300 x 300 px</span></label>
                         <div class="mr-4">
-                            <img class="w-40 h-20" src="{{ Storage::url($settings->light_theme_logo) }}" width="80" height="80" alt="Light Theme Logo" name="light_theme_logo"/>
+                            <img class="w-40 h-40" src="{{ Storage::url($settings->light_theme_logo) }}" alt="Light Theme Logo" name="light_theme_logo"/>
                             <input id="picture" class="form-input w-full px-2 py-1" type="file" name="light_theme_logo" />
                         </div>
                     </div>
                     <div class="sm:w-1/3">
                         <label class="block text-sm font-medium mb-1" for="favicon">Favicon <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">48 x 48 px</span></label>
                         <div class="mr-4">
-                            <img class="w-40 h-20" src="{{ Storage::url($settings->favicon) }}" width="80" height="80" alt="Favicon" name="favicon"/>
+                            <img class="w-40 h-40" src="{{ Storage::url($settings->favicon) }}" alt="Favicon" name="favicon"/>
                             <input id="favicon" class="form-input w-full px-2 py-1" type="file" name="favicon" />
                         </div>
                     </div>
@@ -186,7 +186,52 @@
                         <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Deactivate Preloader' : 'Activate Preloader'"></div>
                     </div>
                 </div>
-            </section>  
+            </section> 
+            
+            {{-- <section class="border-b pb-5">
+                <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Training Video URL, Driving Tips, & Trafic Signs</h3>
+                
+                <div class="flex items-center gap-6"> <!-- Flex container to align them in a row -->
+                    <!-- WhatsApp Support -->
+                    <div class="flex items-center" x-data="{ checked: {{ $settings->show_whatsapp_support ? 'true' : 'false' }} }">
+                        <div class="form-switch">
+                            <input type="hidden" name="show_whatsapp_support" value="0"> <!-- Ensures false is sent when unchecked -->
+                            <input type="checkbox" name="show_whatsapp_support" id="switch-whatsapp" class="sr-only" x-model="checked" value="1" />
+                            <label class="bg-gray-400 dark:bg-gray-700" for="switch-whatsapp">
+                                <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                                <span class="sr-only">Whatsapp Support Widget</span>
+                            </label>
+                        </div>
+                        <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Hide Whatsapp Support Widget' : 'Show Whatsapp Support Widget'"></div>
+                    </div>
+            
+                    <!-- Telegram Support -->
+                    <div class="flex items-center" x-data="{ checked: {{ $settings->show_telegram_support ? 'true' : 'false' }} }">
+                        <div class="form-switch">
+                            <input type="hidden" name="show_telegram_support" value="0"> <!-- Ensures false is sent when unchecked -->
+                            <input type="checkbox" name="show_telegram_support" id="switch-telegram" class="sr-only" x-model="checked" value="1" />
+                            <label class="bg-gray-400 dark:bg-gray-700" for="switch-telegram">
+                                <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                                <span class="sr-only">Telegram Support Widget</span>
+                            </label>
+                        </div>
+                        <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Hide Telegram Support Widget' : 'Show Telegram Support Widget'"></div>
+                    </div>
+
+                    <!-- Telegram Support -->
+                    <div class="flex items-center" x-data="{ checked: {{ $settings->show_preloader ? 'true' : 'false' }} }">
+                        <div class="form-switch">
+                            <input type="hidden" name="show_preloader" value="0"> <!-- Ensures false is sent when unchecked -->
+                            <input type="checkbox" name="show_preloader" id="switch-preloader" class="sr-only" x-model="checked" value="1" />
+                            <label class="bg-gray-400 dark:bg-gray-700" for="switch-preloader">
+                                <span class="bg-white shadow-sm" aria-hidden="true"></span>
+                                <span class="sr-only">Website Preloader</span>
+                            </label>
+                        </div>
+                        <div class="text-sm text-gray-400 dark:text-gray-500 italic ml-2" x-text="checked ? 'Deactivate Preloader' : 'Activate Preloader'"></div>
+                    </div>
+                </div>
+            </section>  --}}
             
             <section x-data="{ selected: '{{ $settings->preferred_landing_page }}' }">
                 <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Preferred Landing Page</h3>                
@@ -208,7 +253,7 @@
                             </div>
                         </div>
                         <div class="mr-4">
-                            <img class="w-full h-60" src="{{ Storage::url('landing-page/landing-page-1.png') }}" height="80" alt="Landing Page 1"/>
+                            <img class="w-full h-52" src="{{ Storage::url('landing-page/landing-page-1.png') }}" height="60" alt="Landing Page 1"/>
                         </div>
                     </div>
             
@@ -226,7 +271,7 @@
                             </div>
                         </div>
                         <div class="mr-4">
-                            <img class="w-full h-60" src="{{ Storage::url('landing-page/landing-page-2.png') }}" height="80" alt="Landing Page 2"/>
+                            <img class="w-full h-52" src="{{ Storage::url('landing-page/landing-page-2.png') }}" height="60" alt="Landing Page 2"/>
                         </div>
                     </div>
             

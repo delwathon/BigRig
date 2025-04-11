@@ -49,13 +49,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
-        @livewireStyles  
-        <style>
-            .custom-logo-size {
-                height: 150px;
-                width: 200px;
-            }
-        </style>      
+        @livewireStyles    
 
         <script>
             if (localStorage.getItem('dark-mode') === 'false' || !('dark-mode' in localStorage)) {

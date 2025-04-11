@@ -28,15 +28,25 @@
 
         </div>
 
-        <!-- Cards -->
-        <div class="grid grid-cols-12 gap-6">
+        
             
             <!-- Users cards -->
-            @foreach($users as $user)
-                <x-community.users-tiles-cards :user="$user" />
-            @endforeach
-
-        </div>
+            @if ($users->isEmpty())
+                <div class="col-span-full bg-white dark:bg-gray-800 shadow-sm rounded-xl">
+                    <div class="flex flex-col h-full text-center p-5">
+                        <div class="grow mb-1">
+                            <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">No record found.</h3>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <!-- Cards -->
+                <div class="grid grid-cols-12 gap-6">
+                    @foreach($users as $user)
+                        <x-community.users-tiles-cards :user="$user" />
+                    @endforeach
+                </div>
+            @endif
 
         <!-- Pagination -->
         <div class="mt-8">

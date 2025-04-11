@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="btn-box">
-                        <a href="{{route('register')}}" class="theme-btn btn-one">Get Started</a>
+                        <a href="{{route('login')}}" class="theme-btn btn-one">Login</a>
                     </div>
                 </div>
                 <div class="support-box">

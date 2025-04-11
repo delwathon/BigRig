@@ -20,6 +20,7 @@ class Slider extends Model
         'button_name',
         'button_url',
         'image_url',
+        'image_url_2',
     ];
 
     protected $table = 'sliders';

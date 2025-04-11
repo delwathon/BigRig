@@ -92,7 +92,7 @@
                                     <div class="mt-6">
                                         <div class="mb-4">
                                         <button type="submit" id="payButton" class="btn w-full bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white">
-                                            Pay ₦{{ number_format($subscription->total_amount * $exchange_rate, 2) }}
+                                            Pay ₦{{ number_format($subscription->total_amount, 2) }}
                                         </button>
                                         </div>
                                         {{-- <div class="text-center">

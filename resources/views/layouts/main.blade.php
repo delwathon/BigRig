@@ -50,6 +50,19 @@
     <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
 
     @yield('head') <!-- Optional section for additional styles/scripts -->
+
+    <style>
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -57,6 +70,28 @@
     @if ($settings->show_preloader)
         @include('partials.preloader')
     @endif
+
+    @foreach (['success' => 'alert-success', 'info' => 'alert-info'] as $key => $alertClass)
+        @if (session($key))
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050; right: 20px; top: 20px;">
+                <div class="alert {{ $alertClass }} alert-dismissible fade show shadow-lg" role="alert" 
+                    style="min-width: 300px; animation: slideDown 0.5s ease-out;">
+                    {{ session($key) }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <script>
+                setTimeout(function() {
+                    let alert = document.querySelector(".alert");
+                    if (alert) {
+                        alert.classList.remove("show");
+                        setTimeout(() => alert.remove(), 500);
+                    }
+                }, 5000); // Hide after 5 seconds
+            </script>
+        @endif
+    @endforeach
 
     <!-- Include sidebar -->
     @include('partials.sidebar')

@@ -21,7 +21,7 @@
             <x-settings.sliders-panel :sliders="$sliders" />
 
             <!-- Sidebar -->
-            <form method="POST" action="{{ route('sliders.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('slider.store') }}" enctype="multipart/form-data">
             @csrf
                 <div>
                     <div class="lg:sticky lg:top-16 bg-gradient-to-r from-white/30 dark:from-gray-800/30 lg:overflow-x-hidden lg:overflow-y-auto no-scrollbar lg:shrink-0 border-t lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-700/60 lg:w-[320px] xl:w-[352px] 2xl:w-[calc(352px+80px)] lg:h-[calc(100dvh-64px)]">
@@ -33,23 +33,27 @@
                                     <div>
                                         <div class="space-y-4">
                                             <div>
-                                                <label class="block text-sm font-medium mb-1" for="card-nr">Slider Picture <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">1029 x 631 px</span></label>
+                                                <label class="block text-sm font-medium mb-1" for="card-nr">Landing Page 1 - Slider Picture <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">1029 x 631 px</span></label>
                                                 <input id="card-nr" class="form-input w-full" type="file" name="image_url" required />
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium mb-1" for="card-nr">Landing Page 2 - Slider Picture <span class="text-red-500">*</span> <span class="text-yellow-500 text-xs">785 x 670 px</span></label>
+                                                <input id="card-nr" class="form-input w-full" type="file" name="image_url_2" required />
                                             </div>
                                             <div>
                                                 <label class="block text-sm font-medium mb-1" for="card-name">Slider Title <span class="text-red-500">*</span></label>
                                                 <input id="card-name" class="form-input w-full" type="text" placeholder="Need Car For Driving Test" name="slider_title" required />
                                             </div>
                                             <div>
-                                                <label class="block text-sm font-medium mb-1" for="card-name">Slider Text <span class="text-red-500">*</span></label>
-                                                <textarea id="requirements" class="form-textarea w-full px-2 py-1" rows="4" placeholder="Register with us and embark on a journey towards a brighter future behind the wheel." name="slider_text" required></textarea>
+                                                <label class="block text-sm font-medium mb-1" for="slider_text">Slider Text <span class="text-red-500">*</span></label>
+                                                <textarea id="slider_text" class="form-textarea w-full px-2 py-1" rows="4" placeholder="Register with us and embark on a journey towards a brighter future behind the wheel." name="slider_text" required></textarea>
                                             </div>
                                             <div>
                                                 <label class="block text-sm font-medium mb-1" for="card-name">Button Name </label>
                                                 <input id="card-name" class="form-input w-full" type="text" placeholder="Register Now" name="button_name" />
                                             </div>
                                             <div>
-                                                <label class="block text-sm font-medium mb-1" for="card-name">Route To </label>
+                                                <label class="block text-sm font-medium mb-1" for="card-name">Redirect To </label>
                                                 <input id="card-name" class="form-input w-full" type="text" placeholder="/register" name="button_url" />
                                             </div>
                                         </div>

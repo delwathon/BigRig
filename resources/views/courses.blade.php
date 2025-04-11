@@ -94,7 +94,7 @@
                                 </div>
                                 <figure class="image"><img src="{{ Storage::url($course->image_url) }}" alt="{{ $course->objective }}"></figure>
                             </div>
-                            <div class="content-box">
+                            {{-- <div class="content-box">
                                 <p>Course Overview</p>
                                 <div class="single-box">
                                     <div class="single-item">
@@ -116,13 +116,13 @@
                                 <div class="btn-box">
                                     <a href="{{ route('course', ['name' => Str::slug($course->objective)]) }}">Course Details</a>
                                 </div>                                                                     
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="lower-box">
                             <div class="icon-box"><img src="assets/images/icons/icon-41.png" alt=""></div>
                             <div class="icon-box-2"><img src="assets/images/icons/icon-42.png" alt=""></div>
                             <h6>{{ $settings->site_name }}</h6>
-                            <h3><a href="javascript:void(0)">{{ $course->objective }} Training</a></h3>
+                            <h3><a href="{{ route('course', ['name' => Str::slug($course->objective)]) }}">{{ $course->objective }} Training</a></h3>
                         </div>
                     </div>
                 </div>

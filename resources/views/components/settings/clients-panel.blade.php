@@ -40,7 +40,7 @@
             <table class="table-auto w-full dark:text-gray-400">
                 <!-- Table header -->
                 <thead class="text-xs uppercase text-gray-400 dark:text-gray-500">
-                    <tr class="flex flex-wrap md:table-row md:flex-no-wrap">
+                    <tr class="flex flex-wrap md:table-row md:flex-no-wrap border-b border-gray-200 dark:border-gray-700/60 py-2 md:py-0">
                         <th class="w-full hidden md:w-auto md:table-cell py-2">
                             <div class="font-semibold text-left">Clients</div>
                         </th>
@@ -52,25 +52,33 @@
                 <!-- Table body -->
                 <tbody class="text-sm">
                     <!-- Row -->
-                    @foreach ($clients as $client)
+                    @if ($clients->isEmpty())
                         <tr class="flex flex-wrap md:table-row md:flex-no-wrap border-b border-gray-200 dark:border-gray-700/60 py-2 md:py-0">
-                            <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
-                                <div class="flex items-center">
-                                    <div class="shrink-0 rounded-full mr-2 sm:mr-3">
-                                        <img class="rounded-sm border-2 border-white dark:border-gray-800 box-content" src="{{ Storage::url($client->logo) }}" width="60" height="40" alt="User 01" />
-                                    </div>
-                                    <div class="font-medium text-gray-800 dark:text-gray-100">{{ $client->name }}</div>
-                                </div>
-                            </td>
-                            <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
-                                <button type="button" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600" @click="$store.deleteModal.open({{ $client->id }})" aria-controls="delete-modal">
-                                    <svg class="fill-current text-red-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
-                                        <path d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z" />
-                                    </svg>
-                                </button>
+                            <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2" colspan="2">
+                                <div class="font-medium text-center">No record found.</div>
                             </td>
                         </tr>
-                    @endforeach
+                    @else
+                        @foreach ($clients as $client)
+                            <tr class="flex flex-wrap md:table-row md:flex-no-wrap border-b border-gray-200 dark:border-gray-700/60 py-2 md:py-0">
+                                <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
+                                    <div class="flex items-center">
+                                        <div class="shrink-0 rounded-full mr-2 sm:mr-3">
+                                            <img class="rounded-sm border-2 border-white dark:border-gray-800 box-content" src="{{ Storage::url($client->logo) }}" width="60" height="40" alt="User 01" />
+                                        </div>
+                                        <div class="font-medium text-gray-800 dark:text-gray-100">{{ $client->name }}</div>
+                                    </div>
+                                </td>
+                                <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
+                                    <button type="button" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600" @click="$store.deleteModal.open({{ $client->id }})" aria-controls="delete-modal">
+                                        <svg class="fill-current text-red-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
+                                            <path d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z" />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
 
@@ -107,7 +115,7 @@
             <table class="table-auto w-full dark:text-gray-400">
                 <!-- Table header -->
                 <thead class="text-xs uppercase text-gray-400 dark:text-gray-500">
-                    <tr class="flex flex-wrap md:table-row md:flex-no-wrap">
+                    <tr class="flex flex-wrap md:table-row md:flex-no-wrap border-b border-gray-200 dark:border-gray-700/60 py-2 md:py-0">
                         <th class="w-full hidden md:w-auto md:table-cell py-2">
                             <div class="font-semibold text-left">Partner Name</div>
                         </th>
@@ -119,22 +127,30 @@
                 <!-- Table body -->
                 <tbody class="text-sm">
                     <!-- Row -->
-                    @foreach ($partners as $partner)
+                    @if ($partners->isEmpty())
                         <tr class="flex flex-wrap md:table-row md:flex-no-wrap border-b border-gray-200 dark:border-gray-700/60 py-2 md:py-0">
-                            <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
-                                <div class="flex items-center">
-                                    <div class="font-medium text-gray-800 dark:text-gray-100">{{ $partner->name }}</div>
-                                </div>
-                            </td>
-                            <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
-                                <button type="button" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600" @click="$store.deleteModal.open({{ $partner->id }})" aria-controls="delete-modal">
-                                    <svg class="fill-current text-red-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
-                                        <path d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z" />
-                                    </svg>
-                                </button>
+                            <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2" colspan="2">
+                                <div class="font-medium text-center">No record found.</div>
                             </td>
                         </tr>
-                    @endforeach
+                    @else
+                        @foreach ($partners as $partner)
+                            <tr class="flex flex-wrap md:table-row md:flex-no-wrap border-b border-gray-200 dark:border-gray-700/60 py-2 md:py-0">
+                                <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
+                                    <div class="flex items-center">
+                                        <div class="font-medium text-gray-800 dark:text-gray-100">{{ $partner->name }}</div>
+                                    </div>
+                                </td>
+                                <td class="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
+                                    <button type="button" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600" @click="$store.deleteModal.open({{ $partner->id }})" aria-controls="delete-modal">
+                                        <svg class="fill-current text-red-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
+                                            <path d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z" />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
 

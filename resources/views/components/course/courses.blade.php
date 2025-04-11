@@ -38,55 +38,65 @@
                 <h2 class="text-gray-800 dark:text-gray-100 font-semibold mb-2">Course List</h2>
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
                     <ul class="space-y-3">
-                        @foreach($objectives as $objective)
-                        <!-- Item -->
-                        <li class="sm:flex sm:items-center sm:justify-between border-b border-gray-200 dark:border-gray-700/60 p-2">
-                            <div class="sm:grow flex items-center text-sm">
-                                <!-- Icon -->
-                                <div class="w-12 h-12 shrink-0 my-2 mr-3">
-                                    <img class="w-full h-12" src="{{ Storage::url($objective->image_url) }}" width="20" height="20" alt="{{ $objective->objective }}" />
-                                </div>
-                                <!-- Position -->
-                                <a href="{{ route('course-details', ['id' => $objective->id]) }}">
-                                    <div class="font-medium text-gray-800 dark:text-gray-100">{{ $objective->objective }}</div>
-                                    <div class="flex flex-nowrap items-center space-x-2 whitespace-nowrap">
-                                        <div>Duration: {{ $objective->duration }} weeks</div>
-                                        <div class="text-gray-400 dark:text-gray-600">|</div>
-                                        <div>Cost: ₦{{ $objective->price }}</div>
+                        @if ($objectives->isEmpty())
+                            <div class="col-span-full bg-transparent dark:bg-transparent shadow-sm rounded-xl">
+                                <div class="flex flex-col h-full text-center p-5">
+                                    <div class="grow mb-1">
+                                        <h3 class="text-lg text-gray-800 dark:text-gray-100 font-semibold mb-1">No record found.</h3>
                                     </div>
-                                </a>
-                            </div>
-                            <!-- Tags -->
-                            <div class="sm:ml-2 mt-2 sm:mt-0">
-                                <div class="flex items-center space-x-2">
-                                    <!-- Edit Button -->
-                                    <button type="button"  @click="$store.editModal.open({
-                                            id: {{ $objective->id }},
-                                            objective: `{{ $objective->objective }}`,
-                                            price: {{ $objective->price }},
-                                            duration: {{ $objective->duration }},
-                                            theory_session: '{{ $objective->theory_session }}',
-                                            practical_session: '{{ $objective->practical_session }}',
-                                            examination: '{{ $objective->examination }}',
-                                            requirements: `{!! $objective->requirement !!}`,
-                                            video_url: '{{ $objective->video_url }}'
-                                        })" 
-                                        aria-controls="edit-modal" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600">
-                                        <svg class="fill-current text-gray-400 dark:text-gray-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
-                                            <path d="M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z" />
-                                        </svg>
-                                    </button>
-
-                                    <!-- Delete Button -->
-                                    <button type="button" @click="$store.deleteModal.open({{ $objective->id }})" aria-controls="delete-modal" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600" aria-controls="delete-modal">
-                                        <svg class="fill-current text-red-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
-                                            <path d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z" />
-                                        </svg>
-                                    </button>
                                 </div>
                             </div>
-                        </li>
-                        @endforeach
+                        @else
+                            @foreach($objectives as $objective)
+                            <!-- Item -->
+                            <li class="sm:flex sm:items-center sm:justify-between border-b border-gray-200 dark:border-gray-700/60 p-2">
+                                <div class="sm:grow flex items-center text-sm">
+                                    <!-- Icon -->
+                                    <div class="w-12 h-12 shrink-0 my-2 mr-3">
+                                        <img class="w-full h-12" src="{{ Storage::url($objective->image_url) }}" width="20" height="20" alt="{{ $objective->objective }}" />
+                                    </div>
+                                    <!-- Position -->
+                                    <a href="{{ route('course-details', ['id' => $objective->id]) }}">
+                                        <div class="font-medium text-gray-800 dark:text-gray-100">{{ $objective->objective }}</div>
+                                        <div class="flex flex-nowrap items-center space-x-2 whitespace-nowrap">
+                                            <div>Duration: {{ $objective->duration }} weeks</div>
+                                            <div class="text-gray-400 dark:text-gray-600">|</div>
+                                            <div>Cost: ₦{{ number_format($objective->price, 2) }}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- Tags -->
+                                <div class="sm:ml-2 mt-2 sm:mt-0">
+                                    <div class="flex items-center space-x-2">
+                                        <!-- Edit Button -->
+                                        <button type="button"  @click="$store.editModal.open({
+                                                id: {{ $objective->id }},
+                                                objective: `{{ $objective->objective }}`,
+                                                price: {{ $objective->price }},
+                                                duration: {{ $objective->duration }},
+                                                theory_session: '{{ $objective->theory_session }}',
+                                                practical_session: '{{ $objective->practical_session }}',
+                                                examination: '{{ $objective->examination }}',
+                                                requirements: `{!! $objective->requirement !!}`,
+                                                video_url: '{{ $objective->video_url }}'
+                                            })" 
+                                            aria-controls="edit-modal" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600">
+                                            <svg class="fill-current text-gray-400 dark:text-gray-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
+                                                <path d="M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z" />
+                                            </svg>
+                                        </button>
+
+                                        <!-- Delete Button -->
+                                        <button type="button" @click="$store.deleteModal.open({{ $objective->id }})" aria-controls="delete-modal" class="btn bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600" aria-controls="delete-modal">
+                                            <svg class="fill-current text-red-500 shrink-0" width="16" height="16" viewBox="0 0 16 16">
+                                                <path d="M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>

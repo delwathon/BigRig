@@ -38,7 +38,7 @@
                         </div>
                         <div class="image-box pull-right">
                             <figure class="image overlay-layer">
-                                <img class="slider-image" src="{{ Storage::url($slider->image_url) }}" alt="">
+                                <img class="slider-image" src="{{ Storage::url($slider->image_url_2) }}" alt="{{ $slider->title }}">
                             </figure>
                         </div>
                     </div>
@@ -154,9 +154,9 @@
                                 <div class="lower-box">
                                     <ul class="arrow-icon clearfix">
                                         <li><i class="flaticon-right-arrow-1"></i></li>
-                                        <li><i class="flaticon-right-arrow-1"></i></li>
-                                        <li><i class="flaticon-right-arrow-1"></i></li>
                                         {{-- <li><i class="flaticon-right-arrow-1"></i></li>
+                                        <li><i class="flaticon-right-arrow-1"></i></li>
+                                        <li><i class="flaticon-right-arrow-1"></i></li>
                                         <li><i class="flaticon-right-arrow-1"></i></li> --}}
                                     </ul>
                                     <div class="link">
@@ -205,11 +205,12 @@
                             <div class="sec-title">
                                 <h2>{{ $about->pass_rate }}% of students <br />pass the driving test <br />on first try</h2>
                             </div>
-                            <p>Check out which of our courses would be most suitable for you.</p>
-                            <form action="#" method="post">
+                            <p>Subscribe to our newsletter.</p>
+                            <form action="{{ route('email-subscription') }}" method="post">
+                            @csrf
                                 <div class="form-group">
-                                    <input type="text" name="phone" placeholder="Phone Num*" required="">
-                                    <a href="{{ route('register') }}" type="submit" class="theme-btn btn-two">Register Now</a>
+                                    <input type="text" name="email" placeholder="Email*" required="">
+                                    <button type="submit" class="theme-btn btn-two">Subscribe</a>
                                 </div>
                             </form>
                         </div>
@@ -281,7 +282,7 @@
                             <p>Begin hands-on training with expert instructors to build essential skills for real-world driving success.</p>
                         </div>
                         <div class="btn-box">
-                            <a href="{{route('contact')}}" class="theme-btn btn-two">Send Request</a> 
+                            <a href="{{route('register')}}" class="theme-btn btn-two">Get Started</a> 
                         </div>
                     </div>
                 </div>
@@ -303,7 +304,7 @@
                         $maxPrice = $objectives->max('price');
                     @endphp
                     <div class="col-lg-4 col-md-6 mb-5 col-sm-12 pricing-block">
-                        <div class="pricing-block-one @if($objective->price == $maxPrice) active-block @endif wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <div class="mb-5 pricing-block-one @if($objective->price == $maxPrice) active-block @endif wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="pricing-table">
                                 <div class="table-header">
                                     @php
@@ -331,14 +332,13 @@
                                 </div>
                                 <div class="table-content">
                                     <ul class="feature-list clearfix">
-                                        <li>Theory<span>4 Lessons</span></li>
-                                        <li>Practical<span>16 Lessons</span></li>
-                                        <li>2 Months<span>2 hrs/day</span></li>
-                                        <li>Car Type<span>Manual/Auto</span></li>
+                                        <li>Duration<span>{{ $objective->duration }} Weeks</span></li>
+                                        <li>Theory<span>{{ $objective->theory_session }} Hours</span></li>
+                                        <li>Practical<span>{{ $objective->practical_session }} Hours</span></li>
                                         <li>Certificate<span>Yes</span></li>
                                     </ul>
                                     <div class="btn-box">
-                                        <a href="javascript:void(0)" class="theme-btn btn-two">Enrol Now</a>
+                                        <a href="{{ route('register') }}" class="theme-btn btn-two">Enrol Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -429,12 +429,12 @@
                 <div class="col-lg-4 col-md-6 col-sm-12 title-column">
                     <div class="title-inner">
                         <div class="sec-title">
-                            <h2>The advanced level course <br />is designed for our learners</h2>
+                            <h2>Get yourself<br />familiarized with traffic rules</h2>
                         </div>
                         <div class="download-box">
                             <div class="icon"><i class="flaticon-download"></i></div>
-                            <h4><a href="{{ route('index') }}">Download Course Content</a></h4>
-                            <h5>pdf.4mb</h5>
+                            <h4><a href="{{ Storage::url('miscellaneous/traffic_rules.pdf') }}" download>Download</a></h4>
+                            <h5>pdf.3mb</h5>
                         </div>
                     </div>
                 </div>
@@ -547,7 +547,7 @@
             <div class="shape-9" style="background-image: url({{asset('assets/images/shape/shape-30.png')}});"></div>
         </div>
         <div class="auto-container">
-            <span class="big-text">BigRig Truck Driving School</span>
+            {{-- <span class="big-text">BigRig</span> --}}
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-12 col-sm-12 single-column">
                     <div class="single-item">
@@ -557,7 +557,7 @@
                             <h2>Learn <br />Traffic Signs</h2>
                             <p>Follow the rules while you drive.</p>
                             <div class="download-box">
-                                <h6>Download.pdf <button><i class="flaticon-download"></i></button></h6>
+                                <h6>Download.pdf <a href="{{ Storage::url('miscellaneous/traffic_rules.pdf') }}" download><i class="flaticon-download"></i></a></h6>
                             </div>
                         </div>
                     </div>
@@ -570,9 +570,9 @@
                             <h2>Don’t <br />Miss Anything</h2>
                             <p>Subscribe to get offers & updates.</p>
                             <div class="subscribe-form">
-                                <form action="#" method="post">
+                                <form action="{{ route('email-subscription') }}" method="post">
                                     <div class="form-group">
-                                        <input type="email" name="email" placeholder="Email Address" required="">
+                                        <input type="email" name="email" placeholder="Email Address*" required="">
                                         <button type="submit"><i class="flaticon-send"></i></button>
                                     </div>
                                 </form>

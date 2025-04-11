@@ -21,6 +21,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\TrainingScheduleController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\TestimonialsController;
+use App\Http\Controllers\EmailSubscriptionController;
 use App\Models\Settings;
 
 /*
@@ -57,6 +58,7 @@ Route::get('/course-information/{name}', [WebsiteController::class, 'course_deta
 Route::get('/our-instructors', [WebsiteController::class, 'instructors'])->name('our-instructors');
 Route::get('/faq', [WebsiteController::class, 'faq'])->name('faq');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
+Route::post('/email-subscription', [WebsiteController::class, 'email_subscription'])->name('email-subscription');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -87,7 +89,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/settings/faqs/update', [SettingsController::class, 'faqsUpdate'])->name('faqs.update');
     Route::get('/settings/faqs/destroy/{id}', [SettingsController::class, 'faqsDestroy'])->name('faqs.destroy');
     Route::get('/settings/sliders', [SettingsController::class, 'slidersIndex'])->name('sliders');
-    Route::post('/settings/sliders/store', [SettingsController::class, 'slidersStore'])->name('sliders.store');
+    Route::post('/settings/sliders/store', [SettingsController::class, 'sliderStore'])->name('slider.store');
+    Route::put('/settings/sliders/update', [SettingsController::class, 'sliderUpdate'])->name('slider.update');
     Route::get('/settings/sliders/destroy/{id}', [SettingsController::class, 'slidersDestroy'])->name('sliders.destroy');
     Route::get('/settings/founder', [SettingsController::class, 'founderIndex'])->name('founder');
     Route::put('/settings/founder/update', [SettingsController::class, 'founderUpdate'])->name('founder.update');
@@ -133,6 +136,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/testimonials/store', [TestimonialsController::class, 'store'])->name('testimonial.store');
     Route::put('/testimonials/update', [TestimonialsController::class, 'update'])->name('testimonial.update');
     Route::get('/testimonials/destroy/{id}', [TestimonialsController::class, 'destroy'])->name('testimonial.destroy');
+    Route::get('/newsletter', [EmailSubscriptionController::class, 'index'])->name('newsletter');
 
 
 
