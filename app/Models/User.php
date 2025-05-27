@@ -80,13 +80,31 @@ class User extends Authenticatable
         return $this->hasMany(Subscription::class);
     }
 
-    public function role()
+    // public function role()
+    // {
+    //     return $this->belongsTo(Role::class);
+    // }
+
+    public function roles()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
-    public function hasPermission($permissionName)
+    public function permissions()
     {
-        return $this->role && $this->role->permissions->contains('name', $permissionName);
+        return $this->hasManyThrough(Permission::class, Role::class, 'id', 'id', null, null)
+            ->withPivot('role_id')
+            ->distinct();
+    }
+
+    public function hasPermission($permission)
+    {
+        return $this->roles()
+            ->with('permissions')
+            ->get()
+            ->pluck('permissions')
+            ->flatten()
+            ->pluck('name') // or 'slug', whatever you use
+            ->contains($permission);
     }
 }

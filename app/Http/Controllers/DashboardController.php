@@ -33,13 +33,17 @@ class DashboardController extends Controller
 
         // Get the number of active users
         $activeStudents = User::where('user_active', 1)
-            ->where('role_id', 10)
-            ->count();
+        ->whereHas('roles', function ($query) {
+            $query->where('roles.id', 10);
+        })
+        ->count();
         
         // Get the number of active users
         $instructors = User::where('user_active', 1)
-            ->where('role_id', '!=', 10)
-            ->count();
+        ->whereHas('roles', function ($query) {
+            $query->where('roles.id', '!=', 10);
+        })
+        ->count();
 
         // Get the number of users created today
         $today = Carbon::today();

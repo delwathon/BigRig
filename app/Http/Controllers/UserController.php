@@ -33,12 +33,16 @@ class UserController extends Controller
         }
 
         if (Auth::user()->hasPermission('read_revoked_user')) {
-            $users = User::where('role_id', 10)
-                ->paginate(9);
+            $users = User::whereHas('roles', function ($query) {
+                        $query->where('roles.id', 10);
+                    })
+                    ->paginate(9);
         } else {
             $users = User::where('user_active', 1)
-                ->where('role_id', 10)
-                ->paginate(9);
+                    ->whereHas('roles', function ($query) {
+                        $query->where('roles.id', 10);
+                    })
+                    ->paginate(9);
         }
         
         return view('pages/community/users-tiles', compact('users'));

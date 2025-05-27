@@ -78,7 +78,7 @@ class CreateNewUser implements CreatesNewUsers
 
         $activeBatch = EnrolmentBatches::where('active_batch', true)->first();
 
-        // Create the user
+        // Create the user (without role_id)
         $user = User::create([
             'enrolment_batch_id' => $activeBatch->id,
             'firstName' => $input['firstName'],
@@ -89,9 +89,11 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'profile_photo_path' => null,
-            'role_id' => 10,
             'user_active' => 0,
         ]);
+
+        // Attach default role via pivot table
+        $user->roles()->attach(10);
 
         // Store medical details
         Medical::create([

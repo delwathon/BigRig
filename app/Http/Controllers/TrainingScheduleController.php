@@ -21,14 +21,21 @@ class TrainingScheduleController extends Controller
     {
         // Retrieve training objectives, instructors, students, and batches
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
+
         $instructors = User::where('user_active', 1)
-                    ->where('role_id', '!=', 10) // Exclude role_id = 10
-                    ->orderBy('firstName', 'asc')
-                    ->get();
+            ->whereHas('roles', function ($query) {
+                $query->where('roles.id', '!=', 10);
+            })
+            ->orderBy('firstName', 'asc')
+            ->get();
+
         $students = User::where('user_active', 1)
-                    ->where('role_id', 10)
-                    ->orderBy('firstName', 'asc')
-                    ->get();
+            ->whereHas('roles', function ($query) {
+                $query->where('roles.id', 10);
+            })
+            ->orderBy('firstName', 'asc')
+            ->get();
+
         $batches = EnrolmentBatches::orderBy('id', 'asc')->get();
 
         // Retrieve schedules with relationships
@@ -63,14 +70,18 @@ class TrainingScheduleController extends Controller
 
     public function getInstructors($course_id)
     {
-        // Fetch all role_ids from RoleCourse where course_id matches the given course_id
+        // Get all role IDs linked to the course
         $roleIds = RoleCourse::where('course_id', $course_id)
-        ->pluck('role_id');
+            ->pluck('role_id');
 
-        // Fetch all users where their role_id is in the list of roleIds
-        $instructors = User::whereIn('role_id', $roleIds)->orderBy('firstName', 'asc')->get(['id', 'firstName', 'lastName']);
+        // Fetch users who have any of those roles
+        $instructors = User::whereHas('roles', function ($query) use ($roleIds) {
+                $query->whereIn('roles.id', $roleIds);
+            })
+            ->orderBy('firstName', 'asc')
+            ->get(['id', 'firstName', 'lastName']);
 
-        // Return the instructors as JSON
+        // Return as JSON
         return response()->json($instructors);
     }
 

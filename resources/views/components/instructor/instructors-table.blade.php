@@ -69,7 +69,9 @@
                                 <div class="text-left">{{ $instructor->email }}</div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                <div class="text-left">{{ $instructor->role->role_name ?? 'No Role' }}</div>
+                                <div class="text-left">
+                                    {{ $instructor->roles->pluck('role_name')->implode(', ') ?: 'No Role' }}
+                                </div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                 <div class="text-left">{{ $instructor->mobileNumber }}</div>

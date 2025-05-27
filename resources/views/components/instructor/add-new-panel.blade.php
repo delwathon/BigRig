@@ -70,9 +70,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="" for="userRole">Role</label>
-                            <select id="userRole" name="userRole" class="form-select w-full focus:border-gray-300">
-                                <option value="">--Select--</option>
+                            <label class="" for="userRole">Roles</label>
+                            <select id="userRole" name="userRole[]" multiple class="form-select w-full focus:border-gray-300 h-40">
+                                <option disabled>--Select--</option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->role_name }}</option>
                                 @endforeach
