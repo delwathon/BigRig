@@ -5,13 +5,13 @@
     >
     <div class="sticky top-16 bg-white dark:bg-[#151D2C] overflow-x-hidden overflow-y-auto no-scrollbar shrink-0 border-r border-gray-200 dark:border-gray-700/60 md:w-[18rem] xl:w-[20rem] h-[calc(100dvh-64px)]">
 
-        <!-- #Marketing group -->
+        
         <div>
-            <!-- Group header -->
+            
             <div class="sticky top-0 z-10">
                 <div class="flex items-center bg-white dark:bg-[#151D2C] border-b border-gray-200 dark:border-gray-700/60 px-5 h-16">
                     <div class="w-full flex items-center justify-between">
-                        <!-- Channel menu -->
+                        
                         <div class="relative" x-data="{ open: false }">
                             <button
                                 class="grow flex items-center truncate"
@@ -77,7 +77,7 @@
                                 </ul>
                             </div> --}}
                         </div>
-                        <!-- Edit button -->
+                        
                         <button class="p-1.5 shrink-0 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 shadow-sm ml-2">
                             <svg class="fill-current text-gray-400 dark:text-gray-500" width="16" height="16" viewBox="0 0 16 16">
                                 <path d="M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z" />
@@ -86,9 +86,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Group body -->
+            
             <div class="px-5 py-4">
-                <!-- Search form -->
+                
                 <form class="relative">
                     <label for="msg-search" class="sr-only">Search</label>
                     <input id="msg-search" class="form-input w-full pl-9 bg-white dark:bg-gray-800" type="search" placeholder="Search…" />
@@ -99,7 +99,7 @@
                         </svg>
                     </button>
                 </form>
-                <!-- Direct messages -->
+                
                 <div class="mt-4">
                     <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-3">Direct messages</div>
                     <ul class="mb-6">
@@ -191,7 +191,7 @@
                         </li>
                     </ul>
                 </div>
-                <!-- Channels -->
+                
                 <div class="mt-4">
                     <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-3">Channels</div>
                     <ul class="mb-6">
