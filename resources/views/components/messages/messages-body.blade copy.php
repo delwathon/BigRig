@@ -1,4 +1,6 @@
 <div class="grow flex flex-col md:translate-x-0 duration-300 ease-in-out":class="msgSidebarOpen ? 'translate-x-1/3' : 'translate-x-0'">
+
+    
     <div class="sticky top-16">
         <div class="flex items-center justify-between before:absolute before:inset-0 before:backdrop-blur-md before:bg-gray-50/90 dark:before:bg-[#151D2C]/90 before:-z-10 border-b border-gray-200 dark:border-gray-700/60 px-4 sm:px-6 md:px-5 h-16">
             
@@ -41,8 +43,8 @@
         </div>
     </div>
 
-    <livewire:chat-box :receiverId="$selectedUserId" />
-    <!-- <div class="grow px-4 sm:px-6 md:px-5 py-6">
+    
+    <div class="grow px-4 sm:px-6 md:px-5 py-6">
         
         <div class="flex items-start mb-4 last:mb-0">
             <img class="rounded-full w-8 h-8 mr-4" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01" />
@@ -178,6 +180,6 @@
                 <button type="submit" class="btn bg-gray-900 text-gray-100 hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-800 dark:hover:bg-white whitespace-nowrap">Send -&gt;</button>
             </form>
         </div>
-    </div> -->
+    </div>
 
 </div>
