@@ -22,6 +22,8 @@ use App\Http\Controllers\TrainingScheduleController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\EmailSubscriptionController;
+use App\Http\Controllers\EmailConfigController;
+use App\Http\Controllers\PaymentGatewayConfigController;
 use App\Models\Settings;
 
 /*
@@ -107,6 +109,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/settings/achievement/store', [SettingsController::class, 'achievementsStore'])->name('achievement.store');
     Route::put('/settings/achievement/update', [SettingsController::class, 'achievementsUpdate'])->name('achievement.update');
     Route::get('/settings/achievement/destroy/{id}', [SettingsController::class, 'achievementsDestroy'])->name('achievement.destroy');
+    Route::get('/settings/email-configuration', [EmailConfigController::class, 'index'])->name('email-config');
+    Route::put('/settings/email-configuration/update', [EmailConfigController::class, 'update'])->name('email-config.update');
+    Route::get('/settings/payment-gateways', [PaymentGatewayConfigController::class, 'index'])->name('payment-gateway-config');
+    Route::put('/settings/payment-gateways/{id}', [PaymentGatewayConfigController::class, 'update'])->name('payment-gateway-config.update');
+    Route::patch('settings/payment-gateway/{id}/toggle', [PaymentGatewayConfigController::class, 'toggle'])->name('payment-gateway-config.toggle');
     Route::get('/user-roles', [RoleController::class, 'Index'])->name('user-roles');
     Route::post('/user-roles/store', [RoleController::class, 'roleStore'])->name('user-roles.store');
     Route::get('/user-roles/destroy/{id}', [RoleController::class, 'roleDestroy'])->name('user-roles.destroy');

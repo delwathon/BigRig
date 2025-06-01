@@ -14,6 +14,9 @@ feat: complete user roles, forum, chatting, and major registration/permission fi
 
 Pending:
 - Create user email in cPanel
-- Admin email & Paystack config templates
-- Add base currency symbol to settings
+- Admin email & Paystack config templates ✅
+- Add base currency symbol to settings ✅
 - Include income/expense in transactions
+- Student page send message open contact chat directly
+- Chat Notification
+- Move all modals to pages x-app-layout closing tag

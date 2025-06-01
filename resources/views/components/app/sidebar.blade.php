@@ -251,7 +251,7 @@
                                 <!-- Website Management -->
                                  @if (Auth::user()->hasPermission('update_website_management'))
                                 <li class="mb-1 last:mb-0">
-                                    <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate @if(Route::is('account')){{ '!text-violet-500' }}@endif" href="{{ route('site_settings') }}">
+                                    <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate @if(Route::is('site_information')){{ '!text-violet-500' }}@endif" href="{{ route('site_settings') }}">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Website Management</span>
                                     </a>
                                 </li>
@@ -259,7 +259,7 @@
 
                                 @if (Auth::user()->hasPermission('update_email_configuration'))
                                 <li class="mb-1 last:mb-0">
-                                    <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate @if(Route::is('notifications')){{ '!text-violet-500' }}@endif" href="{{ route('notifications') }}">
+                                    <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate @if(Route::is('email-config')){{ '!text-violet-500' }}@endif" href="{{ route('email-config') }}">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Email Configuration</span>
                                     </a>
                                 </li>
@@ -267,7 +267,7 @@
 
                                 @if (Auth::user()->hasPermission('update_payment_configuration'))
                                 <li class="mb-1 last:mb-0">
-                                    <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate @if(Route::is('apps')){{ '!text-violet-500' }}@endif" href="{{ route('apps') }}">
+                                    <a class="block text-gray-500/90 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition truncate @if(Route::is('payment-gateway-config')){{ '!text-violet-500' }}@endif" href="{{ route('payment-gateway-config') }}">
                                         <span class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Payment Configuration</span>
                                     </a>
                                 </li>

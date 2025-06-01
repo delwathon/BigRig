@@ -807,5 +807,4 @@ class SettingsController extends Controller
 
         return redirect()->back()->with('success', 'Batch update successful!');
     }
-
 }
