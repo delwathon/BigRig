@@ -29,6 +29,7 @@ class SettingsSeeder extends Seeder
             'youtube_handle' => null,
             'tiktok_handle' => null,
             'linkedin_handle' => null,
+            'base_currency' => '₦',
         ]       
     ];
 
