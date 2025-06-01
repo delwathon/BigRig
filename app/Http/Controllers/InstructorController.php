@@ -119,17 +119,4 @@ class InstructorController extends Controller
     {
         //
     }
-
-    public function deactivate($id)
-    {
-        $instructor = User::findOrFail($id);
-
-        // Toggle user visibility (0 → 1, 1 → 0)
-        $instructor->update([
-            'user_active' => !$instructor->user_active,
-            'website_visibility' => false
-        ]);
-
-        return redirect()->back()->with('success', 'Instructor account status updated successfully!');
-    }
 }

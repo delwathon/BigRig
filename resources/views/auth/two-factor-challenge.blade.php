@@ -9,7 +9,7 @@
                 <img class="block dark:hidden w-40 h-40" src="{{ Storage::url($settings->light_theme_logo) }}" alt="Light Logo" />
 
                 <!-- Dark Theme Logo -->
-                <img class="hidden dark:block" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Logo" />
+                <img class="hidden dark:block w-40 h-40" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Logo" />
             </a>
         </div>
     </div>

@@ -28,16 +28,28 @@ class CheckoutController extends Controller
             return false; // No instructors available
         }
 
+        // Prevent duplicate assignment
+        $existing = StudentInstructorDistribution::where([
+            'student_id' => $student_id,
+            'course_id' => $course_id,
+        ])->exists();
+
+        if ($existing) {
+            return; // Already assigned
+        }
+
         foreach ((array) $instructor_roles as $instructor_role) {
-            $instructors = User::where('role_id', $instructor_role)
-                ->leftJoin('student_instructor_distributions', 'users.id', '=', 'student_instructor_distributions.instructor_id')
-                ->select('users.id', DB::raw('COUNT(student_instructor_distributions.student_id) as student_count'))
-                ->groupBy('users.id')
-                ->orderBy('student_count', 'asc')
-                ->get();
+            $instructors = User::whereHas('roles', function ($query) use ($instructor_role) {
+                $query->where('roles.id', $instructor_role);
+            })
+            ->leftJoin('student_instructor_distributions', 'users.id', '=', 'student_instructor_distributions.instructor_id')
+            ->select('users.id', DB::raw('COUNT(student_instructor_distributions.student_id) as student_count'))
+            ->groupBy('users.id')
+            ->orderBy('student_count', 'asc')
+            ->get();
 
             if ($instructors->isEmpty()) {
-                return false;
+                continue;
             }
 
             $selected_instructor = $instructors->first();
@@ -49,6 +61,8 @@ class CheckoutController extends Controller
                 'instructor_id' => $selected_instructor->id,
                 'course_id' => $course_id,
             ]);
+
+            return; // Stop after first successful assignment
         }
     }
 

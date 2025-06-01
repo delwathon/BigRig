@@ -1,3 +1,7 @@
+@php
+    $userVisibility = $user->user_active;
+@endphp
+
 <div class="col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-gray-800 shadow-sm rounded-xl">
     <div class="flex flex-col h-full">
         <!-- Card top -->
@@ -17,7 +21,7 @@
                             <img class="rounded-full h-16" src="{{ $user->profile_photo_path ? Storage::url($user->profile_photo_path) : Storage::url('users/avatar.png') }}" width="64" height="64" alt="{{ $user->firstName }}" />
                         </a>
                         <div class="mt-1 pr-1">
-                            <a class="inline-flex text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white" href="{{ route('user-profile') }}">
+                            <a class="inline-flex" :class="{{ $userVisibility }} ? 'text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white' : 'text-red-500 hover:text-red-600'" href="{{ route('user-profile') }}">
                                 <h2 class="text-xl leading-snug justify-center font-semibold">{{ $user->firstName }} {{ $user->middleName }} {{ $user->lastName }}</h2>
                             </a>
                             <div class="flex items-center"><span class="text-sm font-medium text-gray-400 dark:text-gray-500 -mt-0.5 mr-1">-&gt;</span> <span>{{ $user->mobileNumber }}</span></div>
@@ -41,7 +45,7 @@
                         </svg>
                     </button>
                     <div
-                        class="origin-top-right z-10 absolute top-full right-0 min-w-36 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 py-1.5 rounded-lg shadow-lg overflow-hidden mt-1"                
+                        class="origin-top-right z-10 absolute top-full right-0 min-w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 py-1.5 rounded-lg shadow-lg overflow-hidden mt-1"                
                         @click.outside="open = false"
                         @keydown.escape.window="open = false"
                         x-show="open"
@@ -54,9 +58,23 @@
                         x-cloak                
                     >
                         <ul>
+                            @if (!$user->hasVerifiedEmail())
                             <li>
-                                <a class="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Deactivate</a>
+                                <a class="font-medium text-sm text-green-500 hover:text-green-600 flex py-1 px-3" href="javascript:void(0)" @click="$store.verifyAccountModal.open({ id: {{ $user->id }} })" aria-controls="verify-account-modal">Verify Account</a>
                             </li>
+                            @else
+
+                            <li>
+                                <a 
+                                    class="font-medium text-sm flex py-1 px-3" 
+                                    :class="{{ $userVisibility }} ? 'text-red-500 hover:text-red-600' : 'text-green-500 hover:text-green-600'"
+                                    href="javascript:void(0)" 
+                                    @click="$store.deactivateModal.open({ id: {{ $user->id }}, user_active: {{ $userVisibility }} })"
+                                    aria-controls="delete-modal">
+                                    {{ $userVisibility ? 'Deactivate Account' : 'Activate Account' }}
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </div>            

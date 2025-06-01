@@ -38,14 +38,14 @@
                 <!-- Table body -->
                 <tbody class="text-sm divide-y divide-gray-100 dark:divide-gray-700/60 border-b border-gray-200 dark:border-gray-700/60">
                     <!-- Row -->
-                    @if ($transactions->isEmpty())
+                    @if ($payments->isEmpty())
                         <tr class="text-center">
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap" colspan="7">
                                 <div class="text-center">No record found.</div>
                             </td>
                         </tr>
                     @else
-                        @foreach($transactions as $transaction)
+                        @foreach($payments as $transaction)
                             @php                    
                                 if ($transaction->payment_status === 'completed') :
                                     $status_color = 'bg-green-500/20 text-green-700';
@@ -98,7 +98,7 @@
                                     </div>
                                 </td>
                                 <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
-                                    <div class="text-right font-medium {{$amount_color}}">₦{{ number_format($transaction->total_amount, 2) }}</div>
+                                    <div class="text-right font-medium {{$amount_color}}">{{ $settings->base_currency }}{{ number_format($transaction->total_amount, 2) }}</div>
                                 </td>
                             </tr>
                         @endforeach

@@ -31,11 +31,12 @@ class WebsiteController extends Controller
         $objectives = TrainingObjective::orderBy('price', 'asc')->get();
         $truck = TrainingObjective::where('objective', 'like', '%truck%')->first();
         $testimonials = Testimonials::where('website_visibility', true)->paginate(10);
-        // dd($truck);
-        $instructors = User::with('role')
+        $instructors = User::with('roles')
                         ->where('user_active', 1)
                         ->where('website_visibility', 1)
-                        ->where('role_id', '!=', 10)
+                        ->whereHas('roles', function ($query) {
+                            $query->where('roles.id', '!=', 10);
+                        })
                         ->take(3)
                         ->get();
     
@@ -63,10 +64,12 @@ class WebsiteController extends Controller
         $about = AboutCompany::first();
         $founder = Founder::first();
         $achievements = Achievements::orderBy('year', 'desc')->get();
-        $instructors = User::with('role')
+        $instructors = User::with('roles')
                         ->where('user_active', 1)
                         ->where('website_visibility', 1)
-                        ->where('role_id', '!=', 10)
+                        ->whereHas('roles', function ($query) {
+                            $query->where('roles.id', '!=', 10);
+                        })
                         ->take(3)
                         ->get();
 
@@ -77,10 +80,13 @@ class WebsiteController extends Controller
     {
         $site = Settings::first();
         $about = AboutCompany::first();
-        $instructors = User::with('role')
+        $instructors = User::with('roles')
                         ->where('user_active', 1)
                         ->where('website_visibility', 1)
-                        ->where('role_id', '!=', 10)
+                        ->whereHas('roles', function ($query) {
+                            $query->where('roles.id', '!=', 10);
+                        })
+                        ->take(3)
                         ->get();
 
         return view('instructors', compact('site', 'about', 'instructors'));
@@ -100,10 +106,12 @@ class WebsiteController extends Controller
         $site = Settings::first();
         $about = AboutCompany::first();
         $course = TrainingObjective::whereRaw("LOWER(REPLACE(objective, ' ', '-')) = ?", [Str::slug($name)])->firstOrFail();
-        $instructors = User::with('role')
+        $instructors = User::with('roles')
                         ->where('user_active', 1)
                         ->where('website_visibility', 1)
-                        ->where('role_id', '!=', 10)
+                        ->whereHas('roles', function ($query) {
+                            $query->where('roles.id', '!=', 10);
+                        })
                         ->take(3)
                         ->get();
 

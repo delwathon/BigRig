@@ -51,4 +51,4 @@
     </div>
 </x-app-layout>
 
-@include('pages.app-layout-scripts.deactivate-instructor')
+@include('pages.app-layout-scripts.deactivate-user')

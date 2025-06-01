@@ -37,6 +37,20 @@
                     <!-- Notes -->
                     <div class="mt-6">
                         <div class="mb-3">
+                            <label for="userRole" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Assign Roles</label>
+                            <select
+                                id="userRole"
+                                name="userRole[]"
+                                multiple
+                                class="form-select w-full dark:bg-gray-800 dark:text-gray-100 text-sm"
+                            >
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->role_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="" for="firstName">First Name</label>
                             <input type="text" id="firstName" name="firstName" class="form-input w-full focus:border-gray-300" placeholder="First Name" />
                         </div>
@@ -68,16 +82,6 @@
                             <label class="" for="mobileNumber">Mobile Number</label>
                             <input type="tel" id="mobileNumber" name="mobileNumber" class="form-input w-full focus:border-gray-300" placeholder="Mobile Number" />
                         </div>
-
-                        <div class="mb-3">
-                            <label class="" for="userRole">Roles</label>
-                            <select id="userRole" name="userRole[]" multiple class="form-select w-full focus:border-gray-300 h-40">
-                                <option disabled>--Select--</option>
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->role_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
                     </div>
 
                     <!-- Download / Report -->
@@ -105,3 +109,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new TomSelect('#userRole', {
+            plugins: ['remove_button'],
+            maxItems: null,
+            placeholder: 'Select roles...',
+            persist: false,
+            create: false
+        });
+    });
+</script>

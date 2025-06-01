@@ -85,10 +85,11 @@ class TrainingScheduleController extends Controller
         return response()->json($instructors);
     }
 
-    public function getInstructorStudents($batch_id, $instructor_id)
+    public function getInstructorStudents($batch_id, $course_id, $instructor_id)
     {
         // Fetch all student_ids from StudentInstructorDistribution
         $studentIds = StudentInstructorDistribution::where('instructor_id', $instructor_id)
+                        ->where('course_id', $course_id)
                         ->where('enrolment_batch_id', $batch_id)
                         ->pluck('student_id');
 

@@ -1,7 +1,19 @@
-Crete user email in cpanel
-Admin Email Config Template
-Admin Paystck Config Template
-Multiple User Role ----------------------------------------- DONE
-Chatting System
-Forum
-Newsletter
+feat: complete user roles, forum, chatting, and major registration/permission fixes
+
+- Implemented multiple user roles system ✅
+- Completed forum template and backend ✅
+- Finalized chatting system integration ✅
+- Fixed course selection and medical history values in student registration ✅
+- Sorted permissions alphabetically ✅
+- Resolved double student assignment to instructors ✅
+- Fixed training schedule fetch by course ✅
+- Styled multiple instructor roles ✅
+- Fixed role/permission updates and session notifications ✅
+- Admin verification and user deactivation functionality ✅
+- Payment dashboard card and table view by role ✅
+
+Pending:
+- Create user email in cPanel
+- Admin email & Paystack config templates
+- Add base currency symbol to settings
+- Include income/expense in transactions

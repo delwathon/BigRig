@@ -27,8 +27,8 @@ class User extends Authenticatable
         'gender',
         'mobileNumber',
         'email',
+        'email_verified_at',
         'password',
-        'role_id',
         'profile_photo_path',
         'user_active',
         'website_visibility'

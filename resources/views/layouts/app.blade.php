@@ -38,6 +38,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet" />
 
+        <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+
+
         <style>
             .cke_notifications_area {
                 display: none !important;
@@ -149,26 +152,6 @@
             </div>
         @endif
 
-        @if ($errors->any())
-            <div x-data="{ open: true }" x-show="open" role="alert" class="fixed bottom-4 left-4 z-50 min-w-80 px-4 py-2 rounded-lg text-sm bg-red-100 text-gray-700 shadow-lg">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <p class="font-semibold">Please fix the following errors:</p>
-                        <ul class="mt-2">
-                            @foreach ($errors->all() as $error)
-                                <li class="text-sm">{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <button @click="open = false" class="text-red-500 hover:text-red-700 focus:outline-none">
-                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        @endif
-
         <div>
             <div class="m-1.5" x-data="{
                 openModal: @if(!Auth::user()->hasVerifiedEmail()) true @else false @endif
@@ -255,8 +238,8 @@
             </div>
 
         </div>
-
         @livewireScriptConfig
+        <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
     </body>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

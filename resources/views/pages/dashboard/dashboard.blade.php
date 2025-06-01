@@ -33,6 +33,7 @@
         
         <!-- Cards -->
         <div class="grid grid-cols-12 gap-6">
+            @if (Auth::user()->hasPermission('read_dashboard_user_card') || Auth::user()->hasPermission('read_dashboard_instructor_card') || Auth::user()->hasPermission('read_dashboard_revenue_card'))
             <div class="flex flex-col col-span-full sm:col-span-12 xl:col-span-4 gap-6">
                 <!-- Line chart (Acme Plus) -->
                 @if (Auth::user()->hasPermission('read_dashboard_user_card'))
@@ -49,14 +50,19 @@
                     <x-dashboard.dashboard-card-02 :revenue="$revenue" :revenuePI="$revenuePI" />
                 @endif
             </div>
+            @endif
 
-            <x-dashboard.calendar :schedules="$schedules" />
+            @if (Auth::user()->hasPermission('read_calendar'))
+                <x-dashboard.calendar :schedules="$schedules" />
+            @endif
 
             <!-- Card (Recent Activity) -->
-            <x-dashboard.dashboard-card-10 />
+            {{-- <x-dashboard.dashboard-card-10 /> --}}
             
             <!-- Card (Income/Expenses) -->
-            <x-dashboard.dashboard-card-11 :subscriptions="$subscriptions" />
+            @if (Auth::user()->hasPermission('read_payments'))
+                <x-dashboard.dashboard-card-11 :subscriptions="$subscriptions" />
+            @endif
 
         </div>
 

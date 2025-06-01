@@ -1,4 +1,4 @@
-<div class="flex h-full">
+<div class="flex h-screen w-full">
     <div id="messages-sidebar" x-data="{ openSearch: false }"
         class="absolute z-20 top-0 bottom-0 w-full md:w-auto md:static md:top-auto md:bottom-auto -mr-px md:translate-x-0 duration-200 ease-in-out"
         :class="msgSidebarOpen ? 'translate-x-0' : '-translate-x-full'"
@@ -72,7 +72,7 @@
                                             border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
                                         @click="msgSidebarOpen = false; $refs.contentarea.scrollTop = 99999999;"
                                     >
-                                        <div class="flex items-center truncate">
+                                        <div class="flex items-center truncate w-full">
                                             <img
                                                 class="w-8 h-8 rounded-full mr-2"
                                                 src="{{ $user['profile_photo_path'] ? Storage::url($user['profile_photo_path']) : Storage::url('users/avatar.png') }}"
@@ -80,7 +80,7 @@
                                                 height="32"
                                                 alt="User"
                                             />
-                                            <div class="truncate">
+                                            <div class="truncate w-full">
                                                 <span class="block text-left text-sm font-medium text-gray-800 dark:text-gray-100">
                                                     {{ $user['firstName'] }} {{ $user['lastName'] }}
                                                 </span>
@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    <div class="h-screen">
+    <div class="h-screen w-full">
         @if ($selectedUserId)
             <livewire:chat-box :receiverId="$selectedUserId" :key="$selectedUserId" />
         @else

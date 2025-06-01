@@ -59,15 +59,15 @@
                         </div>
                         <div class="flex justify-between space-x-1">
                             <span class="italic">Amount:</span>
-                            <span class="font-medium text-gray-700 dark:text-gray-100 text-right">₦<span x-text="Number(transaction.subtotal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })"></span>
+                            <span class="font-medium text-gray-700 dark:text-gray-100 text-right">{{ $settings->base_currency }}<span x-text="Number(transaction.subtotal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })"></span>
                         </div>
                         <div class="flex justify-between space-x-1">
                             <span class="italic">Tax:</span>
-                            <span class="font-medium text-gray-700 dark:text-gray-100 text-right">₦<span x-text="Number(transaction.tax).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })"></span>
+                            <span class="font-medium text-gray-700 dark:text-gray-100 text-right">{{ $settings->base_currency }}<span x-text="Number(transaction.tax).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })"></span>
                         </div>
                         <div class="flex justify-between space-x-1">
                             <span class="italic">Total:</span>
-                            <span class="font-medium text-gray-700 dark:text-gray-100 text-right">₦<span x-text="Number(transaction.total_amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })"></span>
+                            <span class="font-medium text-gray-700 dark:text-gray-100 text-right">{{ $settings->base_currency }}<span x-text="Number(transaction.total_amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })"></span>
                         </div>
                     </div>
                 </div>

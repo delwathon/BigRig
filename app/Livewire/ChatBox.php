@@ -7,6 +7,8 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 class ChatBox extends Component
 {
@@ -33,11 +35,11 @@ class ChatBox extends Component
             ->where('receiver_id', Auth::id())
             ->where('is_read', false)
             ->update(['is_read' => true]);
-        
+
         // Let the parent component know
         $this->dispatch('messagesRead', $this->receiverId);
 
-        // Load messages
+        // Load messages with sender relationship
         $messages = Message::with('sender')
             ->where(function ($query) {
                 $query->where('sender_id', Auth::id())
@@ -45,10 +47,12 @@ class ChatBox extends Component
             })->orWhere(function ($query) {
                 $query->where('sender_id', $this->receiverId)
                     ->where('receiver_id', Auth::id());
-            })->orderBy('created_at')->get();
+            })
+            ->orderBy('created_at')
+            ->get();
 
-        // Format each message as array with sender details
-        $this->messages = $messages->map(function ($msg) {
+        // Format each message
+        $formatted = $messages->map(function ($msg) {
             return [
                 'id' => $msg->id,
                 'sender_id' => $msg->sender_id,
@@ -61,7 +65,18 @@ class ChatBox extends Component
                     ? Storage::url($msg->sender->profile_photo_path)
                     : Storage::url('users/avatar.png'),
             ];
-        })->toArray();
+        });
+
+        // Group formatted messages by date
+        $grouped = $formatted->groupBy(function ($msg) {
+            $date = Carbon::parse($msg['created_at']);
+            if ($date->isToday()) return 'Today';
+            if ($date->isYesterday()) return 'Yesterday';
+            return $date->format('F j, Y'); // e.g. May 30, 2025
+        });
+
+        // Store the grouped messages
+        $this->messages = $grouped->toArray();
     }
 
     public function sendMessage()

@@ -149,4 +149,4 @@
 </div>
 
 <!-- Deactivate Instructor Account Modal -->
-@include('components.modals.deactivate-instructor-modal')
+@include('components.modals.deactivate-user-modal')

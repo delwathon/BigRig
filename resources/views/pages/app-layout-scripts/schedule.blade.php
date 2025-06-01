@@ -85,8 +85,8 @@
 
         // Fetch Students when an Instructor is selected
         if (target.matches('select[id^="instructor_"]')) {
-            if (batchId && instructorId) {
-                fetch(`/getInstructorStudents/${batchId}/${instructorId}`)
+            if (batchId && courseId && instructorId) {
+                fetch(`/getInstructorStudents/${batchId}/${courseId}/${instructorId}`)
                     .then(response => response.json())
                     .then(data => {
                         totalStudentsInput.value = data.length; // Update student count

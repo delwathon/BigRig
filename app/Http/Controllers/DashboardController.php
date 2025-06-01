@@ -81,7 +81,14 @@ class DashboardController extends Controller
 
         $schedules = TrainingSchedule::with(['instructor', 'course', 'topic'])->orderBy('schedule_date', 'asc')->paginate(10);
 
-        $subscriptions = Subscription::with('user')->whereDate('updated_at', $today)->orderBy('updated_at', 'desc')->get();
+        $subscriptions = Subscription::with('user')
+            ->when($user->roles->contains('id', 10), function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->where('payment_status', 'completed')
+            ->take(10)
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         return view('pages/dashboard/dashboard', compact('instructors', 'activeStudents', 'studentPI', 'revenue', 'revenuePI', 'schedules', 'subscriptions'));
     }

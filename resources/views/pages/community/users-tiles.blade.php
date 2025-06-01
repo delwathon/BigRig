@@ -55,4 +55,13 @@
 
     </div>
 
+    <!-- Deactivate Instructor Account Modal -->
+    @include('components.modals.deactivate-user-modal')
+
+    <!-- Verify User Account Modal -->
+    @include('components.modals.verify-account-modal')
+
 </x-app-layout>
+
+@include('pages.app-layout-scripts.deactivate-user')
+@include('pages.app-layout-scripts.verify-account')

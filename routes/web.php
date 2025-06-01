@@ -8,7 +8,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CampaignController;
@@ -65,8 +65,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/checkout/pay', [CheckoutController::class, 'index'])->name('checkout.pay');
     Route::post('/pay', [CheckoutController::class, 'redirectToPaystack'])->name('payment');
     Route::get('/payment/callback', [CheckoutController::class, 'handleGatewayCallback'])->name('payment.callback');
-    // Route::post('/pay', [CheckoutController::class, 'redirectToMonicredit'])->name('payment');
-    // Route::get('/payment/callback', [CheckoutController::class, 'handleMonicreditCallback'])->name('payment.callback');
 
     // Route for the getting the data feed
     Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
@@ -75,7 +73,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/community/user-tiles', [UserController::class, 'indexTiles'])->name('users');
     Route::get('/user-profile', [UserController::class, 'userProfile'])->name('user-profile');
     Route::post('/make-admin', [UserController::class, 'makeAdmin'])->name('make.admin');
-    Route::get('/payments', [TransactionController::class, 'index'])->name('payments');
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
     Route::get('/settings/site_information', [SettingsController::class, 'siteInformationIndex'])->name('site_settings');
     Route::put('/settings/site_information/update', [SettingsController::class, 'siteInformationUpdate'])->name('site_settings.update');
     Route::get('/settings/about-company', [SettingsController::class, 'aboutCompanyIndex'])->name('about-company');
@@ -127,11 +125,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/training-schedule', [TrainingScheduleController::class, 'index'])->name('schedule');
     Route::get('/getTopics/{id}', [TrainingScheduleController::class, 'getTopics']);
     Route::get('/getInstructors/{course_id}', [TrainingScheduleController::class, 'getInstructors']);
-    Route::get('/getInstructorStudents/{batch_id}/{instructor_id}', [TrainingScheduleController::class, 'getInstructorStudents']);
+    Route::get('/getInstructorStudents/{batch_id}/{course_id}/{instructor_id}', [TrainingScheduleController::class, 'getInstructorStudents']);
     Route::post('/training-schedule/create', [TrainingScheduleController::class, 'create'])->name('schedule.create');
     Route::get('/instructors', [InstructorController::class, 'index'])->name('instructors');
     Route::post('/instructor/store', [InstructorController::class, 'store'])->name('instructor.store');
-    Route::get('/instructor/deactivate/{id}', [InstructorController::class, 'deactivate'])->name('instructor.deactivate');
+    Route::get('/user/deactivate/{id}', [UserController::class, 'deactivate'])->name('user.deactivate');
+    Route::get('/user/verify/{id}', [UserController::class, 'verifyAccount'])->name('user.verify');
     Route::get('/testimonials', [TestimonialsController::class, 'index'])->name('testimonials');
     Route::post('/testimonials/store', [TestimonialsController::class, 'store'])->name('testimonial.store');
     Route::put('/testimonials/update', [TestimonialsController::class, 'update'])->name('testimonial.update');
@@ -146,8 +145,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/ecommerce/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/ecommerce/orders', [OrderController::class, 'index'])->name('orders');
     Route::get('/ecommerce/invoices', [InvoiceController::class, 'index'])->name('invoices');
-    // Route::get('/finance/transactions', [TransactionController::class, 'index01'])->name('transactions');
-    // Route::get('/finance/transaction-details', [TransactionController::class, 'index02'])->name('transaction-details');
+    // Route::get('/finance/transactions', [PaymentController::class, 'index01'])->name('transactions');
+    // Route::get('/finance/transaction-details', [PaymentController::class, 'index02'])->name('transaction-details');
     Route::get('/ecommerce/shop', function () {
         return view('pages/ecommerce/shop');
     })->name('shop');    
@@ -193,8 +192,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/finance/cards', function () {
         return view('pages/finance/credit-cards');
     })->name('credit-cards');
-    // Route::get('/finance/transactions', [TransactionController::class, 'index01'])->name('transactions');
-    // Route::get('/finance/transaction-details', [TransactionController::class, 'index02'])->name('transaction-details');
+    // Route::get('/finance/transactions', [PaymentController::class, 'index01'])->name('transactions');
+    // Route::get('/finance/transaction-details', [PaymentController::class, 'index02'])->name('transaction-details');
     Route::get('/job/job-listing', [JobController::class, 'index'])->name('job-listing');
     Route::get('/job/job-post', function () {
         return view('pages/job/job-post');
