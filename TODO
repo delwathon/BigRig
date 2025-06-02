@@ -20,3 +20,5 @@ Pending:
 - Student page send message open contact chat directly
 - Chat Notification
 - Move all modals to pages x-app-layout closing tag
+- Configure dynamic payment config 
+- Verify Email Configuration working with system

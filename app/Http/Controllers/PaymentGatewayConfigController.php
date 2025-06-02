@@ -74,12 +74,14 @@ class PaymentGatewayConfigController extends Controller
         $request->validate([
             'public_key' => 'nullable|string|max:255',
             'secret_key' => 'nullable|string|max:255',
+            'merchant_email' => 'nullable|email|max:255',
             'sandbox' => 'required|boolean',
         ]);
 
         // Update the config
         $gateway->public_key = $request->public_key;
         $gateway->secret_key = Crypt::encryptString($request->secret_key); // Optionally encrypt
+        $gateway->merchant_email = $request->merchant_email;
         $gateway->sandbox     = $request->sandbox;
 
         $gateway->save();

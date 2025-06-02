@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $view->with([
                 'settings' => Settings::first(),
-                'activeBatch' => EnrolmentBatches::where('active_batch', true)->first()
+                'activeBatch' => EnrolmentBatches::where('active_batch', true)->first(),
             ]);
         });
     }

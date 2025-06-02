@@ -13,18 +13,21 @@ class PaymentGatewayConfigSeeder extends Seeder
             'name'        => 'Paystack',
             'public_key'  => null,
             'secret_key'  => null,
+            'merchant_email' => null,
             'sandbox'     => true,
         ],
         [
             'name'        => 'Flutterwave',
             'public_key'  => null,
             'secret_key'  => null,
+            'merchant_email' => null,
             'sandbox'     => true,
         ],
         [
             'name'        => 'Autocredit',
             'public_key'  => null,
             'secret_key'  => null,
+            'merchant_email' => null,
             'sandbox'     => true,
         ],
     ];

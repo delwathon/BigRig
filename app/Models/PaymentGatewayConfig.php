@@ -18,6 +18,7 @@ class PaymentGatewayConfig extends Model
         'name',
         'public_key',
         'secret_key',
+        'merchant_email',
         'sandbox',
         'is_active',
     ];

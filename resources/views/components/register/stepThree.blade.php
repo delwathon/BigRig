@@ -134,19 +134,21 @@
                 $orderSummaryList.append(`
                     <li class="text-sm w-full flex justify-between py-3 border-b border-gray-200 dark:border-gray-700/60">
                         <div>${item.name}</div>
-                        <div class="font-medium text-gray-800 dark:text-gray-100">{{ $settings->base_currency }}${item.price.toFixed(2)}</div>
+                        <div class="font-medium text-gray-800 dark:text-gray-100">{{ $settings->base_currency }}${item.price.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                     </li>
                 `);
             });
 
             // Calculate totals
-            const taxes = (totalPrice * 0.075).toFixed(2); // Assuming 7.5% tax
-            const totalDue = (parseFloat(totalPrice) + parseFloat(taxes)).toFixed(2);
+            const taxes = (totalPrice * 0.075).toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const cleanTotalPrice = parseFloat(totalPrice.toString().replace(/,/g, ''));
+            const cleanTaxes = parseFloat(taxes.toString().replace(/,/g, ''));
+            const totalDue = cleanTotalPrice + cleanTaxes
 
             // Update totals in the DOM
-            $subtotal.text(`{{ $settings->base_currency }}${totalPrice.toFixed(2)}`);
-            $taxes.text(`{{ $settings->base_currency }}${taxes}`);
-            $totalDue.text(`{{ $settings->base_currency }}${totalDue}`);
+            $subtotal.text(`{{ $settings->base_currency }}${totalPrice.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+            $taxes.text(`{{ $settings->base_currency }}${taxes.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+            $totalDue.text(`{{ $settings->base_currency }}${totalDue.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
 
             // Update the training duration note
             if (totalDuration > 0) {
@@ -162,7 +164,7 @@
             const isChecked = $checkbox.is(':checked');
             const $label = $checkbox.closest('label');
             const name = $label.find('h3').text().trim();
-            const priceText = $label.find('.inline-flex.text-green-700').text().replace('{{ $settings->base_currency }}', '').trim();
+            const priceText = $label.find('.inline-flex.text-green-700').text().replace('{{ $settings->base_currency }}', '').replace(/,/g, '').trim();
             const durationText = $label.find('.inline-flex.text-yellow-600').text().replace(' Weeks', '').trim();
 
             // Validate data

@@ -1,7 +1,7 @@
 <div class="grow">
 
     <!-- Panel body -->
-    <div class="p-6 flex flex-wrap gap-6">
+    <div class="p-6 flex flex-wrap">
     @foreach ($gateways as $gateway)
         <section class="w-1/3 md:w-1/3 px-6 border-r-2">
             <div class="mb-8">
@@ -45,6 +45,12 @@
                         <div class="w-full">
                             <label class="text-sm font-medium mb-1" for="secret_key_{{ $gateway->id }}">Secret Key</label>
                             <input id="secret_key_{{ $gateway->id }}" class="form-input w-full" type="password" name="secret_key" value="{{ $gateway->decrypted_secret_key }}" required />
+                        </div>
+
+                        <!-- Public Key -->
+                        <div class="w-full">
+                            <label class="text-sm font-medium mb-1" for="merchant_email_{{ $gateway->id }}">Merchant Email</label>
+                            <input id="merchant_email_{{ $gateway->id }}" class="form-input w-full" type="text" name="merchant_email" value="{{ $gateway->merchant_email ?? '' }}" required />
                         </div>
 
                         <!-- Sandbox Mode -->

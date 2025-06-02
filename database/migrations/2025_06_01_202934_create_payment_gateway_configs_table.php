@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');                    // REQUIRED (gateway name like Paystack, Stripe)
             $table->string('public_key')->nullable(); // Nullable if not all gateways use it yet
             $table->text('secret_key')->nullable(); // Same logic as above
+            $table->string('merchant_email')->nullable(); // Same logic as above
             $table->boolean('sandbox')->default(true); // Default to test mode
             $table->boolean('is_active')->default(false);
             $table->timestamps();
