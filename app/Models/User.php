@@ -107,4 +107,18 @@ class User extends Authenticatable
             ->pluck('name') // or 'slug', whatever you use
             ->contains($permission);
     }
+
+    public function hasRole($role)
+    {
+        $roles = $this->roles()->pluck('role_name')->map(function ($r) {
+            return strtolower($r);
+        });
+
+        if (is_array($role)) {
+            $role = array_map('strtolower', $role);
+            return $roles->intersect($role)->isNotEmpty();
+        }
+
+        return $roles->contains(strtolower($role));
+    }
 }

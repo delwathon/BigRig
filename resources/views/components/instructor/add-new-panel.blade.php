@@ -1,4 +1,5 @@
 <!-- Transaction Panel -->
+@if (Auth::user()->hasPermission('create_instructors'))
 <div
     class="absolute inset-0 sm:left-auto z-20 shadow-xl duration-200 ease-in-out"
     :class="transactionOpen ? 'translate-x-0' : 'translate-x-full'"
@@ -109,6 +110,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

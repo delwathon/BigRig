@@ -32,17 +32,17 @@ class UserController extends Controller
             return redirect('/checkout/pay');
         }
 
-        if (Auth::user()->hasPermission('read_revoked_user')) {
+        if (Auth::user()->hasPermission('read_suspend_user_account')) {
             $users = User::whereHas('roles', function ($query) {
                         $query->where('roles.id', 10);
                     })
-                    ->paginate(9);
+                    ->paginate(15);
         } else {
             $users = User::where('user_active', 1)
                     ->whereHas('roles', function ($query) {
                         $query->where('roles.id', 10);
                     })
-                    ->paginate(9);
+                    ->paginate(15);
         }
         
         return view('pages/community/users-tiles', compact('users'));

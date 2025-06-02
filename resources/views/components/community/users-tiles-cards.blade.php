@@ -29,55 +29,60 @@
                     </div>
                 </header>
                 <!-- Menu button -->
-                <div class="relative inline-flex shrink-0" x-data="{ open: false }">
-                    <button
-                        class="rounded-full"
-                        :class="open ? 'bg-gray-100 dark:bg-gray-700/60 text-gray-500 dark:text-gray-400': 'text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400'"
-                        aria-haspopup="true"
-                        @click.prevent="open = !open"
-                        :aria-expanded="open"
-                    >
-                        <span class="sr-only">Menu</span>
-                        <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
-                            <circle cx="16" cy="16" r="2" />
-                            <circle cx="10" cy="16" r="2" />
-                            <circle cx="22" cy="16" r="2" />
-                        </svg>
-                    </button>
-                    <div
-                        class="origin-top-right z-10 absolute top-full right-0 min-w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 py-1.5 rounded-lg shadow-lg overflow-hidden mt-1"                
-                        @click.outside="open = false"
-                        @keydown.escape.window="open = false"
-                        x-show="open"
-                        x-transition:enter="transition ease-out duration-200 transform"
-                        x-transition:enter-start="opacity-0 -translate-y-2"
-                        x-transition:enter-end="opacity-100 translate-y-0"
-                        x-transition:leave="transition ease-out duration-200"
-                        x-transition:leave-start="opacity-100"
-                        x-transition:leave-end="opacity-0"
-                        x-cloak                
-                    >
-                        <ul>
-                            @if (!$user->hasVerifiedEmail())
-                            <li>
-                                <a class="font-medium text-sm text-green-500 hover:text-green-600 flex py-1 px-3" href="javascript:void(0)" @click="$store.verifyAccountModal.open({ id: {{ $user->id }} })" aria-controls="verify-account-modal">Verify Account</a>
-                            </li>
-                            @else
-
-                            <li>
-                                <a 
-                                    class="font-medium text-sm flex py-1 px-3" 
-                                    :class="{{ $userVisibility }} ? 'text-red-500 hover:text-red-600' : 'text-green-500 hover:text-green-600'"
-                                    href="javascript:void(0)" 
-                                    @click="$store.deactivateModal.open({ id: {{ $user->id }}, user_active: {{ $userVisibility }} })"
-                                    aria-controls="delete-modal">
-                                    {{ $userVisibility ? 'Deactivate Account' : 'Activate Account' }}
-                                </a>
-                            </li>
-                            @endif
-                        </ul>
+                @if (Auth::user()->hasPermission('update_verify_user_account') || Auth::user()->hasPermission('update_suspend_user_account'))
+                    <div class="relative inline-flex shrink-0" x-data="{ open: false }">
+                        <button
+                            class="rounded-full"
+                            :class="open ? 'bg-gray-100 dark:bg-gray-700/60 text-gray-500 dark:text-gray-400': 'text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400'"
+                            aria-haspopup="true"
+                            @click.prevent="open = !open"
+                            :aria-expanded="open"
+                        >
+                            <span class="sr-only">Menu</span>
+                            <svg class="w-8 h-8 fill-current" viewBox="0 0 32 32">
+                                <circle cx="16" cy="16" r="2" />
+                                <circle cx="10" cy="16" r="2" />
+                                <circle cx="22" cy="16" r="2" />
+                            </svg>
+                        </button>
+                        <div
+                            class="origin-top-right z-10 absolute top-full right-0 min-w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 py-1.5 rounded-lg shadow-lg overflow-hidden mt-1"                
+                            @click.outside="open = false"
+                            @keydown.escape.window="open = false"
+                            x-show="open"
+                            x-transition:enter="transition ease-out duration-200 transform"
+                            x-transition:enter-start="opacity-0 -translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-out duration-200"
+                            x-transition:leave-start="opacity-100"
+                            x-transition:leave-end="opacity-0"
+                            x-cloak                
+                        >
+                            <ul>
+                                @if (!$user->hasVerifiedEmail())
+                                    @if (Auth::user()->hasPermission('update_verify_user_account'))
+                                        <li>
+                                            <a class="font-medium text-sm text-green-500 hover:text-green-600 flex py-1 px-3" href="javascript:void(0)" @click="$store.verifyAccountModal.open({ id: {{ $user->id }} })" aria-controls="verify-account-modal">Verify Account</a>
+                                        </li>                                    
+                                    @endif
+                                @else
+                                    @if (Auth::user()->hasPermission('update_suspend_user_account'))
+                                        <li>
+                                            <a 
+                                                class="font-medium text-sm flex py-1 px-3" 
+                                                :class="{{ $userVisibility }} ? 'text-red-500 hover:text-red-600' : 'text-green-500 hover:text-green-600'"
+                                                href="javascript:void(0)" 
+                                                @click="$store.deactivateModal.open({ id: {{ $user->id }}, user_active: {{ $userVisibility }} })"
+                                                aria-controls="delete-modal">
+                                                {{ $userVisibility ? 'Suspend Account' : 'Activate Account' }}
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endif
+                            </ul>
+                        </div>
                     </div>
-                </div>            
+                @endif           
             </div>
             <!-- Bio -->
             <div class="mt-2">

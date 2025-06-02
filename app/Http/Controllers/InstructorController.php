@@ -15,21 +15,18 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->hasPermission('read_revoked_user')) {
-            $instructors = User::with('roles')
-                ->whereHas('roles', function ($query) {
-                    $query->where('roles.id', '!=', 10); // Exclude users with role_id = 10
-                })
-                ->orderBy('firstName', 'asc')
-                ->paginate(10);
+        if (Auth::user()->hasPermission('read_suspend_user_account')) {
+            $instructors = User::whereHas('roles', function ($query) {
+                        $query->where('roles.id', '!=', 10);
+                    })
+                    ->paginate(15);
         } else {
-            $instructors = User::with('roles')
-                ->where('user_active', 1)
-                ->whereHas('roles', function ($query) {
-                    $query->where('roles.id', '!=', 10);
-                })
-                ->orderBy('firstName', 'asc')
-                ->paginate(10);
+            $instructors = User::where('user_active', 1)
+                    ->whereHas('roles', function ($query) {
+                        $query->where('roles.id', '!=', 2);
+                        $query->where('roles.id', '!=', 10);
+                    })
+                    ->paginate(15);
         }
 
         $instructors_count = $instructors->count();
