@@ -38,7 +38,7 @@ class CreateSettingsTable extends Migration
             $table->boolean('show_telegram_support')->default(false);
             $table->boolean('show_preloader')->default(false);
             $table->integer('preferred_landing_page')->default(1);
-            $table->string('base_currency')->default(₦);
+            $table->string('base_currency')->default('₦');
             $table->timestamps();
         });
     }

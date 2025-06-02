@@ -16,13 +16,12 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            SettingsSeeder::class,
             AboutCompanySeeder::class,
+            FounderSeeder::class,
             RolesAndPermissionsSeeder::class,
             UserSeeder::class,
-            SettingsSeeder::class,
-            TrainingObjectiveSeeder::class,
             FaqsSeeder::class,
-            FounderSeeder::class,
             ServicesSeeder::class,
             ClientsSeeder::class,
             AchievementsSeeder::class,

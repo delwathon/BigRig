@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('batch_name');
             $table->date('c_date');
-            $table->bool('active_batch')->default(false);;
+            $table->boolean('active_batch')->default(false);;
             $table->timestamps();
         });
     }
