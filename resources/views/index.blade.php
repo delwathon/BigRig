@@ -490,7 +490,7 @@
                                 </div>
                                 <div class="lower-content">
                                     <h4><a href="index.html">{{ $instructor->firstName }} {{ $instructor->lastName }}</a></h4>
-                                    <span class="designation">{{ $instructor->role->role_name }}</span>
+                                    <span class="designation">{{ $instructor->roles->pluck('role_name')->implode(', ') }}</span>
                                 </div>
                             </div>
                         </div>

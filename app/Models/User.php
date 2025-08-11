@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\ForumPost;
+use App\Models\ForumComment;
 
 class User extends Authenticatable
 {
@@ -120,5 +122,15 @@ class User extends Authenticatable
         }
 
         return $roles->contains(strtolower($role));
+    }
+
+    public function forumPosts()
+    {
+        return $this->hasMany(ForumPost::class);
+    }
+
+    public function forumComments()
+    {
+        return $this->hasMany(ForumComment::class);
     }
 }

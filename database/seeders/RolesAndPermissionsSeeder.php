@@ -16,6 +16,11 @@ class RolesAndPermissionsSeeder extends Seeder
             'role_description' => 'Organization owner with unrestricted access to all system features, settings, and user permissions.'
         ]);
 
+        $itRole = Role::create([
+            'role_name' => 'IT Consultant',
+            'role_description' => 'Technical advisor responsible for managing, maintaining, and improving the institution\'s digital infrastructure and software systems.'
+        ]);
+
         $adminRole = Role::create([
             'role_name' => 'Admin',
             'role_description' => 'Responsible for managing operations and administrative tasks on behalf of the organization owner, with access to critical backend settings.'
@@ -49,11 +54,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $safetyRole = Role::create([
             'role_name' => 'Safety & Compliance Instructor',
             'role_description' => 'Ensures students and instructors adhere to international driving laws, transportation safety standards, and compliance protocols.'
-        ]);
-
-        $itRole = Role::create([
-            'role_name' => 'IT Consultant',
-            'role_description' => 'Technical advisor responsible for managing, maintaining, and improving the institution\'s digital infrastructure and software systems.'
         ]);
 
         $studentRole = Role::create([

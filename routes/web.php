@@ -25,6 +25,9 @@ use App\Http\Controllers\EmailSubscriptionController;
 use App\Http\Controllers\EmailConfigController;
 use App\Http\Controllers\PaymentGatewayConfigController;
 use App\Models\Settings;
+use App\Livewire\ForumList;
+use App\Livewire\ForumCreatePost;
+use App\Livewire\ForumPostPage;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,6 +146,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/testimonials/update', [TestimonialsController::class, 'update'])->name('testimonial.update');
     Route::get('/testimonials/destroy/{id}', [TestimonialsController::class, 'destroy'])->name('testimonial.destroy');
     Route::get('/newsletter', [EmailSubscriptionController::class, 'index'])->name('newsletter');
+    Route::get('/forum/{category?}', ForumList::class)->name('forum.list');
+    Route::get('/forum/create/post', ForumCreatePost::class)->name('forum.create');
+    Route::get('/forum/single/{postId}', ForumPostPage::class)->name('forum.post');
+
 
 
 

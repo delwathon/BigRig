@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 01, 2025 at 09:02 PM
+-- Host: 127.0.0.1
+-- Generation Time: Aug 11, 2025 at 06:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mosaic`
+-- Database: `bigrig`
 --
 
 -- --------------------------------------------------------
@@ -39,10 +39,6 @@ CREATE TABLE `about_company` (
   `years_of_existence` int(11) DEFAULT NULL,
   `instructors_count` int(11) DEFAULT NULL,
   `pass_rate` float NOT NULL,
-  `achievement_year` int(11) NOT NULL,
-  `achievement_title` varchar(255) NOT NULL,
-  `achievement_details` text NOT NULL,
-  `achievement_picture` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -51,8 +47,8 @@ CREATE TABLE `about_company` (
 -- Dumping data for table `about_company`
 --
 
-INSERT INTO `about_company` (`id`, `banner_title`, `banner_picture`, `history_title`, `training_hours`, `company_history`, `mission_statement`, `students_count`, `years_of_existence`, `instructors_count`, `pass_rate`, `achievement_year`, `achievement_title`, `achievement_details`, `achievement_picture`, `created_at`, `updated_at`) VALUES
-(1, 'About Our Driving School', 'banners/gQD9shYdL4rMwaXY1BfYserc6aLX6FTOVMu6VH9b.jpg', 'Driving Excellence: The BigRig Advantage', 86.5, '<p>At BigRig Driving School, we are dedicated to empowering aspiring professional drivers with the skills and knowledge needed to excel in the transportation industry. Our mission is to deliver high-quality, comprehensive training tailored to the needs of both beginners and experienced drivers seeking to upgrade their qualifications. With a state-of-the-art fleet of trucks and highly experienced instructors, we provide hands-on learning in a supportive and safe environment. Our curriculum emphasizes safety, technical proficiency, and real-world applications, ensuring our graduates are confident and road-ready. We take pride in fostering a community where students not only achieve their driving goals but also build lasting careers. Whether you&rsquo;re preparing for your commercial driver&rsquo;s license (CDL) or aiming to specialize in advanced operations, BigRig Driving School is your partner in professional growth. Join us to embark on a transformative journey and become a trusted name in the trucking industry. At BigRig Driving School, your success is our destination!</p>', '<p>BigRig Driving School helps aspiring drivers gain the skills, confidence, and knowledge needed for professional driving. With expert instructors and a safe learning environment, we train responsible drivers to ensure safer roads and a better transportation industry.</p>', 1752, 12, 27, 92.5, 2024, 'Pioneering Road Safety Initiative', 'In 2022, BigRig Driving School proudly launched its \"Pioneering Road Safety Initiative,\" a program designed to enhance driver awareness and reduce road accidents nationwide. The initiative focused on comprehensive safety workshops, simulated driving scenarios, and hands-on training sessions led by industry experts. Over the course of the year, we successfully trained over 1,000 participants, equipping them with advanced safety strategies and fostering a culture of responsibility on the road. This milestone reflects our unwavering dedication to creating safer roads for everyone.', 'achievements/lTvwVMwpObH2ZeOQ42bwgDizuozbSeEv3sePozFR.jpg', NULL, '2025-03-25 11:15:59');
+INSERT INTO `about_company` (`id`, `banner_title`, `banner_picture`, `history_title`, `training_hours`, `company_history`, `mission_statement`, `students_count`, `years_of_existence`, `instructors_count`, `pass_rate`, `created_at`, `updated_at`) VALUES
+(1, 'About Our Driving School', 'banners/gQD9shYdL4rMwaXY1BfYserc6aLX6FTOVMu6VH9b.jpg', 'Driving Excellence: The BigRig Advantage', 86.5, '<p>At BigRig Driving School, we are dedicated to empowering aspiring professional drivers with the skills and knowledge needed to excel in the transportation industry. Our mission is to deliver high-quality, comprehensive training tailored to the needs of both beginners and experienced drivers seeking to upgrade their qualifications. With a state-of-the-art fleet of trucks and highly experienced instructors, we provide hands-on learning in a supportive and safe environment. Our curriculum emphasizes safety, technical proficiency, and real-world applications, ensuring our graduates are confident and road-ready. We take pride in fostering a community where students not only achieve their driving goals but also build lasting careers. Whether you&rsquo;re preparing for your commercial driver&rsquo;s license (CDL) or aiming to specialize in advanced operations, BigRig Driving School is your partner in professional growth. Join us to embark on a transformative journey and become a trusted name in the trucking industry. At BigRig Driving School, your success is our destination!</p>', '<p>BigRig Driving School helps aspiring drivers gain the skills, confidence, and knowledge needed for professional driving. With expert instructors and a safe learning environment, we train responsible drivers to ensure safer roads and a better transportation industry.</p>', 1752, 12, 27, 92.5, NULL, '2025-03-25 11:15:59');
 
 -- --------------------------------------------------------
 
@@ -177,6 +173,13 @@ CREATE TABLE `clients` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `clients`
+--
+
+INSERT INTO `clients` (`id`, `name`, `logo`, `type`, `created_at`, `updated_at`) VALUES
+(3, 'Federal Road Safety Corps', NULL, 'partner', '2025-04-08 21:56:45', '2025-04-08 21:56:45');
 
 -- --------------------------------------------------------
 
@@ -1159,6 +1162,32 @@ INSERT INTO `datafeeds` (`id`, `label`, `data`, `dataset_name`, `data_type`, `cr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `email_configs`
+--
+
+CREATE TABLE `email_configs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `from_name` varchar(255) DEFAULT NULL,
+  `from_email` varchar(255) DEFAULT NULL,
+  `smtp_username` varchar(255) DEFAULT NULL,
+  `smtp_password` text DEFAULT NULL,
+  `smtp_host` varchar(255) DEFAULT NULL,
+  `smtp_port` varchar(255) DEFAULT NULL,
+  `smtp_encryption` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `email_configs`
+--
+
+INSERT INTO `email_configs` (`id`, `from_name`, `from_email`, `smtp_username`, `smtp_password`, `smtp_host`, `smtp_port`, `smtp_encryption`, `created_at`, `updated_at`) VALUES
+(1, 'BigRig International Truck Driving School', 'no-reply@delwathon.com', 'no-reply@delwathon.com', 'eyJpdiI6Imh5UHFlaEVxd3hVZVoyM2hGWVg3SFE9PSIsInZhbHVlIjoiaWVhTWg5YnB0cXlDV00wcWttOEJSTWZITTNUSHpRRDlLQjFFeVdZTmEvcz0iLCJtYWMiOiJhZmY1ZjI5YTc0MTk1ZTA4MzRjNmZkNTkzZDc1M2IzODhmNmFkZTE4MjMzMWQ3ZjUzNzA2MDdmNjExNWYyNDM5IiwidGFnIjoiIn0=', 'delwathon.com', '465', 'ssl', '2025-06-11 11:02:40', '2025-06-11 11:02:40');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `email_subscriptions`
 --
 
@@ -1217,6 +1246,53 @@ CREATE TABLE `faqs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `question` text NOT NULL,
   `answer` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `faqs`
+--
+
+INSERT INTO `faqs` (`id`, `question`, `answer`, `created_at`, `updated_at`) VALUES
+(1, 'How long does the truck driving course take?', 'The training last for 3 months which is 12 weeks', '2025-04-08 22:15:32', '2025-04-08 22:15:32'),
+(2, 'Is first aid or emergency training included?', 'Yes, it’s often mandatory for school bus drivers.', '2025-04-08 22:19:26', '2025-04-08 22:19:26'),
+(3, 'Do I receive a certification after my forklift training?', 'Yes, a forklift operator certificate is issued after passing.', '2025-04-08 22:20:47', '2025-04-08 22:22:59'),
+(4, 'Where is the BigRig office located?', 'No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.', '2025-04-08 22:25:50', '2025-04-08 22:25:50'),
+(5, 'What types of licenses do you offer training for?', 'Typically Class A, B, or C (depending on the country).', '2025-04-08 22:27:17', '2025-04-08 22:27:17'),
+(6, 'Do I need a driving license before enrolling for the truck driving course?', 'Yes, usually a valid regular driver’s license is required with a minimum of 6 months experience.', '2025-04-08 22:29:23', '2025-04-08 22:30:49'),
+(7, 'Are there refresher courses for forklift operators?', 'Yes, refresher courses are available and recommended every 3 years to maintain certification.', '2025-04-15 03:02:21', '2025-04-15 03:02:21'),
+(8, 'What qualifications do I need to become a school bus driver?', 'You need a valid CDL with a school bus endorsement, be at least 21 years old, pass a background check, and have good vision and hearing.', '2025-04-15 03:03:55', '2025-04-15 03:03:55'),
+(9, 'Can I drive a school bus if I have a criminal record?', 'Criminal history checks are part of the application process, and certain offenses may disqualify you from becoming a school bus driver.', '2025-04-15 03:04:28', '2025-04-15 03:04:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_comments`
+--
+
+CREATE TABLE `forum_comments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `forum_post_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `body` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_posts`
+--
+
+CREATE TABLE `forum_posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
+  `votes_count` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1419,6 +1495,22 @@ INSERT INTO `members` (`id`, `image`, `name`, `link`, `location`, `content`, `cr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `sender_id` bigint(20) UNSIGNED NOT NULL,
+  `receiver_id` bigint(20) UNSIGNED NOT NULL,
+  `body` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -1470,7 +1562,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (37, '2025_03_19_134710_create_role_courses_table', 3),
 (38, '2025_01_23_120007_create_training_schedules_table', 4),
 (39, '2025_04_02_125452_create_testimonials_table', 5),
-(40, '2025_04_04_152052_create_email_subscriptions_table', 6);
+(40, '2025_04_04_152052_create_email_subscriptions_table', 6),
+(41, '2025_05_27_070913_create_role_user_table', 7),
+(42, '2025_05_30_225535_create_messages_table', 7),
+(43, '2025_05_31_012743_add_is_read_to_messages_table', 7),
+(44, '2025_06_01_192507_create_email_configs_table', 7),
+(45, '2025_06_01_202934_create_payment_gateway_configs_table', 7),
+(46, '2025_06_11_131008_create_forum_posts_table', 7),
+(47, '2025_06_11_131047_create_forum_comments_table', 7);
 
 -- --------------------------------------------------------
 
@@ -1528,6 +1627,33 @@ CREATE TABLE `password_reset_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment_gateway_configs`
+--
+
+CREATE TABLE `payment_gateway_configs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `public_key` varchar(255) DEFAULT NULL,
+  `secret_key` text DEFAULT NULL,
+  `merchant_email` varchar(255) DEFAULT NULL,
+  `sandbox` tinyint(1) NOT NULL DEFAULT 1,
+  `is_active` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payment_gateway_configs`
+--
+
+INSERT INTO `payment_gateway_configs` (`id`, `name`, `public_key`, `secret_key`, `merchant_email`, `sandbox`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Paystack', 'pk_test_bc6584c6ff611cc2d594ba74ea5f81c5c29c1b2c', 'eyJpdiI6InFic3RPcjNOVklHeEdsOTB1SmFWeGc9PSIsInZhbHVlIjoiWUhiL0lUc2FkRFFvY3FacnBhTlJUWjBiVHNJWkF4cm94UWo0T1YvVDg4ejZKempWUjQ0T0x3MG8zNzRxVTNLUkw0M3NrY0pFNUdZQUpDSE1PSVFFcHc9PSIsIm1hYyI6ImNkYjI5NWVmYmNhMThmNGM3MzZkMWNiYWRiYjY2NjkwM2U4NGNmZGU0MDM3MDQzNDg3MGQyMzFjYTg4NTNjZjgiLCJ0YWciOiIifQ==', 'delwathon@gmail.com', 1, 1, '2025-06-02 16:08:07', '2025-06-11 11:02:50'),
+(2, 'Flutterwave', NULL, NULL, NULL, 1, 0, '2025-06-02 16:08:07', '2025-06-02 16:08:07'),
+(3, 'Autocredit', NULL, NULL, NULL, 1, 0, '2025-06-02 16:08:07', '2025-06-02 16:08:07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `permissions`
 --
 
@@ -1543,34 +1669,45 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'create_roles_and_permissions', '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
-(2, 'create_instructors', '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
-(3, 'read_roles_and_permissions', '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
-(4, 'read_instructors', '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
-(5, 'read_course_management', '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
-(6, 'read_student_accounts', '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
-(7, 'read_management_navigation', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(8, 'read_training_schedule', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(9, 'read_payments', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(10, 'read_dashboard_user_card', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(11, 'read_dashboard_instructor_card', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(12, 'read_dashboard_revenue_card', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(13, 'update_roles_and_permissions', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(14, 'update_instructors', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(15, 'update_website_management', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(16, 'update_course_management', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(17, 'delete_roles_and_permissions', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(18, 'delete_instructors', '2025-03-10 15:27:28', '2025-03-10 15:27:28'),
-(19, 'read_revoked_user', '2025-03-18 23:45:49', '2025-03-18 23:45:49'),
-(20, 'update_revoked_user', '2025-03-18 23:45:49', '2025-03-18 23:45:49'),
-(21, 'update_role_course_permission', '2025-03-21 12:56:52', '2025-03-21 12:56:52'),
-(22, 'create_testimonials', '2025-04-02 11:53:37', '2025-04-02 11:53:37'),
-(23, 'read_testimonials', '2025-04-02 11:53:37', '2025-04-02 11:53:37'),
-(24, 'update_testimonials', '2025-04-02 11:53:37', '2025-04-02 11:53:37'),
-(25, 'delete_testimonials', '2025-04-02 11:53:37', '2025-04-02 11:53:37'),
-(26, 'read_chats', '2025-04-04 11:57:11', '2025-04-04 11:57:11'),
-(27, 'create_newsletter', '2025-04-04 17:17:05', '2025-04-04 17:17:05'),
-(28, 'read_newsletter', '2025-04-04 17:17:05', '2025-04-04 17:17:05');
+(1, 'read_calendar', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(2, 'read_chats', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(3, 'read_course_management', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(4, 'update_course_management', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(5, 'create_forum', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(6, 'delete_forum', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(7, 'read_forum', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(8, 'update_forum', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(9, 'create_instructors', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(10, 'delete_instructors', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(11, 'read_instructors', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(12, 'update_instructors', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(13, 'read_dashboard_instructor_card', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(14, 'read_dashboard_revenue_card', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(15, 'read_dashboard_user_card', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(16, 'read_management_navigation', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(17, 'create_newsletter', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(18, 'read_newsletter', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(19, 'update_email_configuration', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(20, 'update_payment_configuration', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(21, 'create_payments', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(22, 'read_payments', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(23, 'read_roles_and_permissions', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(24, 'create_roles_and_permissions', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(25, 'delete_roles_and_permissions', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(26, 'update_roles_and_permissions', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(27, 'update_role_course_permission', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(28, 'read_student_accounts', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(29, 'create_testimonials', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(30, 'delete_testimonials', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(31, 'read_testimonials', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(32, 'update_testimonials', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(33, 'read_training_schedule', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(34, 'create_training_schedule', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(35, 'delete_training_schedule', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(36, 'update_suspend_user_account', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(37, 'read_suspend_user_account', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(38, 'update_verify_user_account', '2025-06-02 16:08:06', '2025-06-02 16:08:06'),
+(39, 'update_website_management', '2025-06-02 16:08:06', '2025-06-02 16:08:06');
 
 -- --------------------------------------------------------
 
@@ -1619,7 +1756,8 @@ INSERT INTO `roles` (`id`, `role_name`, `role_description`, `created_at`, `updat
 (7, 'Forklift Instructor', NULL, '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
 (8, 'Defensive Driving Instructor', NULL, '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
 (9, 'Safety & Compliance Instructor', NULL, '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
-(10, 'Student', NULL, '2025-03-10 15:27:27', '2025-03-10 15:27:27');
+(10, 'Student', NULL, '2025-03-10 15:27:27', '2025-03-10 15:27:27'),
+(14, 'Hazmat Instructor', NULL, '2025-04-08 21:07:03', '2025-04-08 21:07:03');
 
 -- --------------------------------------------------------
 
@@ -1653,7 +1791,16 @@ INSERT INTO `role_courses` (`id`, `role_id`, `course_id`, `created_at`, `updated
 (14, 5, 4, '2025-04-04 20:37:55', '2025-04-04 20:37:55'),
 (15, 9, 1, '2025-04-04 20:38:09', '2025-04-04 20:38:09'),
 (16, 9, 3, '2025-04-04 20:38:10', '2025-04-04 20:38:10'),
-(17, 9, 4, '2025-04-04 20:38:11', '2025-04-04 20:38:11');
+(17, 9, 4, '2025-04-04 20:38:11', '2025-04-04 20:38:11'),
+(18, 14, 1, '2025-04-08 21:08:33', '2025-04-08 21:08:33'),
+(19, 6, 4, '2025-04-08 21:12:28', '2025-04-08 21:12:28'),
+(20, 8, 2, '2025-04-08 21:13:13', '2025-04-08 21:13:13'),
+(21, 14, 2, '2025-04-08 21:14:29', '2025-04-08 21:14:29'),
+(22, 9, 2, '2025-04-08 21:16:53', '2025-04-08 21:16:53'),
+(23, 1, 1, '2025-08-11 16:15:53', '2025-08-11 16:15:53'),
+(24, 1, 2, '2025-08-11 16:15:55', '2025-08-11 16:15:55'),
+(25, 1, 3, '2025-08-11 16:15:56', '2025-08-11 16:15:56'),
+(26, 1, 4, '2025-08-11 16:15:56', '2025-08-11 16:15:56');
 
 -- --------------------------------------------------------
 
@@ -1674,75 +1821,111 @@ CREATE TABLE `role_permission` (
 --
 
 INSERT INTO `role_permission` (`id`, `role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '2025-08-11 16:12:39', '2025-08-11 16:12:39'),
+(2, 1, 1, '2025-08-11 16:12:40', '2025-08-11 16:12:40'),
+(3, 1, 3, '2025-08-11 16:12:41', '2025-08-11 16:12:41'),
+(4, 1, 4, '2025-08-11 16:13:56', '2025-08-11 16:13:56'),
+(5, 1, 13, '2025-08-11 16:13:58', '2025-08-11 16:13:58'),
+(6, 1, 14, '2025-08-11 16:13:59', '2025-08-11 16:13:59'),
+(7, 1, 15, '2025-08-11 16:14:00', '2025-08-11 16:14:00'),
+(8, 1, 19, '2025-08-11 16:14:01', '2025-08-11 16:14:01'),
+(9, 1, 5, '2025-08-11 16:14:02', '2025-08-11 16:14:02'),
+(10, 1, 7, '2025-08-11 16:14:03', '2025-08-11 16:14:03'),
+(11, 1, 8, '2025-08-11 16:14:06', '2025-08-11 16:14:06'),
+(12, 1, 6, '2025-08-11 16:14:07', '2025-08-11 16:14:07'),
+(13, 1, 10, '2025-08-11 16:14:08', '2025-08-11 16:14:08'),
+(14, 1, 12, '2025-08-11 16:14:10', '2025-08-11 16:14:10'),
+(15, 1, 11, '2025-08-11 16:14:11', '2025-08-11 16:14:11'),
+(16, 1, 9, '2025-08-11 16:14:12', '2025-08-11 16:14:12'),
+(17, 1, 16, '2025-08-11 16:14:14', '2025-08-11 16:14:14'),
+(18, 1, 17, '2025-08-11 16:14:26', '2025-08-11 16:14:26'),
+(19, 1, 18, '2025-08-11 16:14:28', '2025-08-11 16:14:28'),
+(20, 1, 20, '2025-08-11 16:14:30', '2025-08-11 16:14:30'),
+(21, 1, 22, '2025-08-11 16:14:33', '2025-08-11 16:14:33'),
+(22, 1, 21, '2025-08-11 16:14:34', '2025-08-11 16:14:34'),
+(23, 1, 27, '2025-08-11 16:14:37', '2025-08-11 16:14:37'),
+(24, 1, 24, '2025-08-11 16:14:39', '2025-08-11 16:14:39'),
+(25, 1, 23, '2025-08-11 16:14:40', '2025-08-11 16:14:40'),
+(26, 1, 26, '2025-08-11 16:14:42', '2025-08-11 16:14:42'),
+(27, 1, 25, '2025-08-11 16:14:43', '2025-08-11 16:14:43'),
+(28, 1, 28, '2025-08-11 16:14:45', '2025-08-11 16:14:45'),
+(29, 1, 37, '2025-08-11 16:14:46', '2025-08-11 16:14:46'),
+(30, 1, 36, '2025-08-11 16:14:48', '2025-08-11 16:14:48'),
+(31, 1, 29, '2025-08-11 16:15:25', '2025-08-11 16:15:25'),
+(32, 1, 31, '2025-08-11 16:15:26', '2025-08-11 16:15:26'),
+(33, 1, 32, '2025-08-11 16:15:28', '2025-08-11 16:15:28'),
+(34, 1, 30, '2025-08-11 16:15:29', '2025-08-11 16:15:29'),
+(35, 1, 35, '2025-08-11 16:15:30', '2025-08-11 16:15:30'),
+(36, 1, 33, '2025-08-11 16:15:32', '2025-08-11 16:15:32'),
+(37, 1, 34, '2025-08-11 16:15:33', '2025-08-11 16:15:33'),
+(38, 1, 38, '2025-08-11 16:15:35', '2025-08-11 16:15:35'),
+(39, 1, 39, '2025-08-11 16:15:37', '2025-08-11 16:15:37'),
+(40, 2, 1, '2025-08-11 16:17:46', '2025-08-11 16:17:46'),
+(41, 2, 2, '2025-08-11 16:17:47', '2025-08-11 16:17:47'),
+(42, 2, 3, '2025-08-11 16:17:48', '2025-08-11 16:17:48'),
+(43, 2, 4, '2025-08-11 16:17:49', '2025-08-11 16:17:49'),
+(44, 2, 13, '2025-08-11 16:17:50', '2025-08-11 16:17:50'),
+(45, 2, 14, '2025-08-11 16:17:51', '2025-08-11 16:17:51'),
+(46, 2, 15, '2025-08-11 16:17:52', '2025-08-11 16:17:52'),
+(47, 2, 19, '2025-08-11 16:17:54', '2025-08-11 16:17:54'),
+(48, 2, 5, '2025-08-11 16:17:56', '2025-08-11 16:17:56'),
+(49, 2, 7, '2025-08-11 16:17:57', '2025-08-11 16:17:57'),
+(50, 2, 8, '2025-08-11 16:17:59', '2025-08-11 16:17:59'),
+(51, 2, 6, '2025-08-11 16:18:00', '2025-08-11 16:18:00'),
+(52, 2, 10, '2025-08-11 16:18:01', '2025-08-11 16:18:01'),
+(53, 2, 12, '2025-08-11 16:18:02', '2025-08-11 16:18:02'),
+(54, 2, 11, '2025-08-11 16:18:04', '2025-08-11 16:18:04'),
+(55, 2, 9, '2025-08-11 16:18:05', '2025-08-11 16:18:05'),
+(56, 2, 16, '2025-08-11 16:18:06', '2025-08-11 16:18:06'),
+(57, 2, 18, '2025-08-11 16:18:07', '2025-08-11 16:18:07'),
+(58, 2, 17, '2025-08-11 16:18:08', '2025-08-11 16:18:08'),
+(59, 2, 20, '2025-08-11 16:18:10', '2025-08-11 16:18:10'),
+(60, 2, 22, '2025-08-11 16:18:15', '2025-08-11 16:18:15'),
+(61, 2, 21, '2025-08-11 16:18:17', '2025-08-11 16:18:17'),
+(62, 2, 27, '2025-08-11 16:18:19', '2025-08-11 16:18:19'),
+(63, 2, 24, '2025-08-11 16:18:21', '2025-08-11 16:18:21'),
+(64, 2, 23, '2025-08-11 16:18:22', '2025-08-11 16:18:22'),
+(65, 2, 26, '2025-08-11 16:18:24', '2025-08-11 16:18:24'),
+(66, 2, 25, '2025-08-11 16:18:25', '2025-08-11 16:18:25'),
+(67, 2, 28, '2025-08-11 16:18:26', '2025-08-11 16:18:26'),
+(68, 2, 37, '2025-08-11 16:18:28', '2025-08-11 16:18:28'),
+(69, 2, 36, '2025-08-11 16:18:29', '2025-08-11 16:18:29'),
+(70, 2, 30, '2025-08-11 16:18:30', '2025-08-11 16:18:30'),
+(71, 2, 32, '2025-08-11 16:18:31', '2025-08-11 16:18:31'),
+(72, 2, 31, '2025-08-11 16:18:32', '2025-08-11 16:18:32'),
+(73, 2, 29, '2025-08-11 16:18:33', '2025-08-11 16:18:33'),
+(74, 2, 34, '2025-08-11 16:18:34', '2025-08-11 16:18:34'),
+(75, 2, 33, '2025-08-11 16:18:44', '2025-08-11 16:18:44'),
+(76, 2, 38, '2025-08-11 16:18:45', '2025-08-11 16:18:45'),
+(77, 2, 39, '2025-08-11 16:18:46', '2025-08-11 16:18:46'),
+(78, 2, 35, '2025-08-11 16:18:47', '2025-08-11 16:18:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_user`
+--
+
+CREATE TABLE `role_user` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_user`
+--
+
+INSERT INTO `role_user` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, NULL, NULL),
-(2, 1, 2, NULL, NULL),
-(3, 1, 3, NULL, NULL),
-(4, 1, 4, NULL, NULL),
-(5, 1, 5, NULL, NULL),
-(6, 1, 6, NULL, NULL),
-(7, 1, 7, NULL, NULL),
-(8, 1, 8, NULL, NULL),
-(9, 1, 9, NULL, NULL),
-(10, 1, 10, NULL, NULL),
-(11, 1, 11, NULL, NULL),
-(12, 1, 12, NULL, NULL),
-(13, 1, 13, NULL, NULL),
-(14, 1, 14, NULL, NULL),
-(15, 1, 15, NULL, NULL),
-(16, 1, 16, NULL, NULL),
-(17, 1, 17, NULL, NULL),
-(18, 1, 18, NULL, NULL),
-(19, 1, 19, '2025-03-18 23:45:49', '2025-03-18 23:45:49'),
-(20, 1, 21, '2025-03-21 12:56:52', '2025-03-21 12:56:52'),
-(21, 1, 20, '2025-03-21 13:08:35', '2025-03-21 13:08:35'),
-(22, 4, 2, '2025-03-22 16:56:47', '2025-03-22 16:56:47'),
-(23, 4, 4, '2025-03-22 16:56:50', '2025-03-22 16:56:50'),
-(24, 4, 14, '2025-03-22 16:56:52', '2025-03-22 16:56:52'),
-(30, 4, 5, '2025-03-22 16:56:59', '2025-03-22 16:56:59'),
-(31, 4, 16, '2025-03-22 16:57:00', '2025-03-22 16:57:00'),
-(32, 4, 11, '2025-03-22 16:57:02', '2025-03-22 16:57:02'),
-(33, 4, 12, '2025-03-22 16:57:02', '2025-03-22 16:57:02'),
-(34, 4, 10, '2025-03-22 16:57:04', '2025-03-22 16:57:04'),
-(35, 4, 7, '2025-03-22 16:57:05', '2025-03-22 16:57:05'),
-(36, 4, 9, '2025-03-22 16:57:06', '2025-03-22 16:57:06'),
-(39, 4, 6, '2025-03-22 16:57:09', '2025-03-22 16:57:09'),
-(40, 4, 8, '2025-03-22 16:57:10', '2025-03-22 16:57:10'),
-(42, 4, 15, '2025-03-22 16:57:12', '2025-03-22 16:57:12'),
-(43, 2, 2, '2025-03-22 16:57:29', '2025-03-22 16:57:29'),
-(44, 2, 4, '2025-03-22 16:57:30', '2025-03-22 16:57:30'),
-(45, 2, 14, '2025-03-22 16:57:30', '2025-03-22 16:57:30'),
-(46, 2, 18, '2025-03-22 16:57:31', '2025-03-22 16:57:31'),
-(47, 2, 1, '2025-03-22 16:57:32', '2025-03-22 16:57:32'),
-(48, 2, 3, '2025-03-22 16:57:33', '2025-03-22 16:57:33'),
-(49, 2, 13, '2025-03-22 16:57:34', '2025-03-22 16:57:34'),
-(50, 2, 17, '2025-03-22 16:57:35', '2025-03-22 16:57:35'),
-(51, 2, 5, '2025-03-22 16:57:36', '2025-03-22 16:57:36'),
-(52, 2, 16, '2025-03-22 16:57:37', '2025-03-22 16:57:37'),
-(53, 2, 11, '2025-03-22 16:57:38', '2025-03-22 16:57:38'),
-(54, 2, 12, '2025-03-22 16:57:39', '2025-03-22 16:57:39'),
-(55, 2, 10, '2025-03-22 16:57:39', '2025-03-22 16:57:39'),
-(56, 2, 7, '2025-03-22 16:57:40', '2025-03-22 16:57:40'),
-(57, 2, 9, '2025-03-22 16:57:41', '2025-03-22 16:57:41'),
-(58, 2, 19, '2025-03-22 16:57:42', '2025-03-22 16:57:42'),
-(59, 2, 20, '2025-03-22 16:57:43', '2025-03-22 16:57:43'),
-(60, 2, 6, '2025-03-22 16:57:44', '2025-03-22 16:57:44'),
-(61, 2, 8, '2025-03-22 16:57:45', '2025-03-22 16:57:45'),
-(62, 2, 21, '2025-03-22 16:57:46', '2025-03-22 16:57:46'),
-(63, 2, 15, '2025-03-22 16:57:47', '2025-03-22 16:57:47'),
-(64, 1, 22, '2025-04-02 11:53:37', '2025-04-02 11:53:37'),
-(65, 1, 23, '2025-04-02 11:53:37', '2025-04-02 11:53:37'),
-(66, 1, 24, '2025-04-02 11:53:37', '2025-04-02 11:53:37'),
-(67, 1, 25, '2025-04-02 11:53:37', '2025-04-02 11:53:37'),
-(68, 2, 22, '2025-04-03 12:50:10', '2025-04-03 12:50:10'),
-(69, 2, 23, '2025-04-03 12:50:11', '2025-04-03 12:50:11'),
-(70, 2, 24, '2025-04-03 12:50:13', '2025-04-03 12:50:13'),
-(71, 2, 25, '2025-04-03 12:50:14', '2025-04-03 12:50:14'),
-(72, 1, 26, '2025-04-04 11:57:11', '2025-04-04 11:57:11'),
-(73, 2, 26, '2025-04-04 11:57:21', '2025-04-04 11:57:21'),
-(74, 1, 27, '2025-04-04 17:17:05', '2025-04-04 17:17:05'),
-(75, 1, 28, '2025-04-04 17:17:05', '2025-04-04 17:17:05'),
-(76, 2, 27, '2025-04-04 20:50:02', '2025-04-04 20:50:02'),
-(77, 2, 28, '2025-04-04 20:50:04', '2025-04-04 20:50:04');
+(2, 2, 2, NULL, NULL),
+(3, 3, 4, NULL, NULL),
+(4, 4, 4, NULL, NULL),
+(5, 5, 5, NULL, NULL),
+(6, 6, 9, NULL, NULL),
+(7, 7, 6, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1764,8 +1947,17 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `service_name`, `service_description`, `service_picture`, `created_at`, `updated_at`) VALUES
-(1, 'Private Lesson', 'Our training program offers personalized one-on-one instruction, ensuring each student receives hands-on truck driving experience.', 'custom-services/dd3mzcuRf0CPQKGf3Z9pjZKJsOqmzvGDMQLW6rGx.jpg', '2025-03-25 11:20:51', '2025-03-25 11:20:51'),
-(2, 'Forklift Training', 'Our Forklift Operator Training and Certification program is one of the fastest and easiest ways to complete your required training.', 'custom-services/zK7btqoorUnzVMbcrAxMGmk8cdeiPXoXPpmzCpj6.png', '2025-03-25 11:21:42', '2025-03-25 11:21:42');
+(3, 'CDL Training', 'Class A trains for bigrigs; Class B covers dump trucks, delivery vehicles, and commercial buses.', 'custom-services/uw3diFhbAA2RoewYbhdReu27diLkIjTb40pKNHlr.png', '2025-04-06 15:39:07', '2025-04-08 19:40:39'),
+(4, 'Forklift Operator Training', 'Programs offering certification in operating warehouse and industrial equipment safely and efficiently.', 'custom-services/Zx82fQpj8ZPIxvttJdtc9567x7tX08S2w5hNaFPU.png', '2025-04-06 15:40:54', '2025-04-08 19:47:52'),
+(5, 'School Bus & BRT Training', 'Training designed for individuals planning to operate school buses or Bus Rapid Transit vehicles safely.', 'custom-services/d7OcHdvA6ZCngGWmsCtLHgUfg9fZ3sI1MQE9f4Xs.png', '2025-04-06 15:42:28', '2025-04-08 19:43:07'),
+(6, 'Defensive Driving Courses', 'Teaching advanced driving techniques focused on safety, accident prevention, and handling emergencies.', 'custom-services/0g8JQ7VrGBVemhw6tGza4AeZy67jgoW5iaTegJGV.png', '2025-04-06 15:43:59', '2025-04-06 15:43:59'),
+(7, 'Refresher Courses', 'For drivers who already have a CDL but want to refresh their skills or get updated on new laws/regulations.', 'custom-services/TwnmTnk5xLYhha1ygNa6qGAW4wPap0AIy5Ifs80Y.png', '2025-04-06 15:44:54', '2025-04-06 15:44:54'),
+(8, 'Vehicle Inspection & Road Test Preparation', 'Pre-trip inspection training with mock tests and hands-on CDL road test practice.', 'custom-services/9bfBWNtMvQ2izBNAFYFJ3ctHXFTZLjOpJ2PMqUz2.png', '2025-04-06 15:46:15', '2025-04-08 19:50:42'),
+(9, 'Regular/Private Vehicle Driving Lessons', 'Designed for individuals seeking basic car driving lessons or driver’s license preparation support.', 'custom-services/5w4ifV79RknkVKR3ICGjYbSXePflabK3dgMoRNDJ.png', '2025-04-06 15:57:06', '2025-04-08 19:52:58'),
+(10, 'Corporate Training Programs', 'Customized programs for companies needing to certify or upskill their fleet drivers.', 'custom-services/OLS6GHF5CR5Z9wol5TnalgX8nbaK9KZ2F1k1nFlr.png', '2025-04-06 15:58:33', '2025-04-06 15:58:33'),
+(11, 'Job Placement Assistance', 'Helping graduates connect with trucking companies or logistics firms looking to hire qualified drivers.', 'custom-services/r8BrsT5pZvZBPSIGQiYTXCnRnVxJwlzHKNKDGFMy.png', '2025-04-06 15:59:57', '2025-04-06 15:59:57'),
+(12, 'Licensing Assistance', 'Assistance with scheduling and completing the DMV/FRSC written and driving tests.', 'custom-services/pQvwE192qtROhqCVvvJJp1qmUkGRz8hK1k6g0QlI.png', '2025-04-06 16:01:47', '2025-04-06 16:01:47'),
+(13, 'Heavy Equipment Operation Training', 'Training to operate cranes, bulldozers, or other construction and heavy-duty equipment.', 'custom-services/yHpKBjQ88W90Ru6cDAXkfzKAP8Ty8yYzZ5OIPjUZ.png', '2025-04-06 16:02:52', '2025-04-06 16:02:52');
 
 -- --------------------------------------------------------
 
@@ -1787,7 +1979,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Rdtx0Pl6fFnLj3zEpZ3neCAyOcjbRbhTZ8fB8PI2', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNllYRkFXbkRIa3owdnRDSzJ4ZXZieUcxU2hkbXhxbWQyM0FrY0FacyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1743809228);
+('yLThkUTZ8shk1XoUCSFvlwoqLk2zQmKCbhRBabRP', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRWNDbmxxNjdCQ2w5aXBYbVFSVlp3RjM2NUZyQUExTTZqSkpCcVVPNyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2luc3RydWN0b3JzIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jb3Vyc2UvZGV0YWlscy8xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1754934412);
 
 -- --------------------------------------------------------
 
@@ -1831,7 +2023,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `site_name`, `site_tagline`, `commence_year`, `site_description`, `site_keywords`, `headquarters`, `business_email`, `secondary_email`, `business_contact`, `secondary_contact`, `whatsapp_support`, `telegram_support`, `dark_theme_logo`, `light_theme_logo`, `favicon`, `facebook_handle`, `twitter_handle`, `instagram_handle`, `youtube_handle`, `tiktok_handle`, `linkedin_handle`, `show_whatsapp_support`, `show_telegram_support`, `show_preloader`, `preferred_landing_page`, `created_at`, `updated_at`) VALUES
-(1, 'BigRig International Truck Driving School', NULL, '2024', 'Kickstart your career with confidence at BigRig International Truck Driving School! We specialize in professional CDL training designed to equip aspiring truck drivers with the skills, knowledge, and hands-on experience needed to excel in the transportation industry. Whether you\'re a beginner or looking to enhance your driving expertise, our certified instructors and modern fleet ensure a top-tier learning environment. Join us to navigate the road to success and drive your future forward!', 'Truck driving school, CDL training, Commercial driver’s license, Professional truck driver training, CDL certification, Class A CDL training, Trucking career, CDL test preparation, Hands-on truck driving experience, Transportation industry training, Big rig driving school, International truck driving training, CDL license school, Start a trucking career, Truck driver education', 'No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.', 'info@bigrigdrivingschool.ng', NULL, '+1 (913) 705-0526', NULL, '+234 814 648 2898', '1909224348', 'logo/rAaWpcHKRoUhPojPRMC92hdk17CD7PArJrNavTqn.png', 'logo/rmL4Uh0lvxz7mz3vh9XQ5QjYqelrb9ZgQKy6Yvay.png', 'logo/wkf3mzYjeo7PMRLCKxTOs7Vy93acsdcvaxhE0FwV.ico', NULL, NULL, 'https://www.instagram.com/bigrig_truckdrivingschool/', NULL, NULL, NULL, 1, 0, 0, 2, '2025-03-10 15:27:27', '2025-04-04 20:34:53');
+(1, 'BigRig International Truck Driving School', NULL, '2024', 'Kickstart your career with confidence at BigRig International Truck Driving School! We specialize in professional CDL training designed to equip aspiring truck drivers with the skills, knowledge, and hands-on experience needed to excel in the transportation industry. Whether you\'re a beginner or looking to enhance your driving expertise, our certified instructors and modern fleet ensure a top-tier learning environment. Join us to navigate the road to success and drive your future forward!', 'Truck driving school, CDL training, Commercial driver’s license, Professional truck driver training, CDL certification, Class A CDL training, Trucking career, CDL test preparation, Hands-on truck driving experience, Transportation industry training, Big rig driving school, International truck driving training, CDL license school, Start a trucking career, Truck driver education', 'No 6, Blue Gate Estate, Opposite Liberty Stadium, Ring Road, Ibadan, Oyo State.', 'info@bigrigdrivingschool.ng', NULL, '+1 (210) 422-3150', NULL, '+1 (210) 422-3150', NULL, 'logo/rAaWpcHKRoUhPojPRMC92hdk17CD7PArJrNavTqn.png', 'logo/rmL4Uh0lvxz7mz3vh9XQ5QjYqelrb9ZgQKy6Yvay.png', 'logo/wkf3mzYjeo7PMRLCKxTOs7Vy93acsdcvaxhE0FwV.ico', NULL, NULL, 'https://www.instagram.com/bigrig_truckdrivingschool/', NULL, NULL, NULL, 1, 0, 0, 2, '2025-03-10 15:27:27', '2025-04-08 21:54:51');
 
 -- --------------------------------------------------------
 
@@ -1857,7 +2049,9 @@ CREATE TABLE `sliders` (
 
 INSERT INTO `sliders` (`id`, `title`, `text`, `button_name`, `button_url`, `image_url`, `image_url_2`, `created_at`, `updated_at`) VALUES
 (3, 'Shift Gears Toward a Better Future.', 'Join our dedicated team and get hand-on experience with truck, forklift, school bus and regular vehicles.', 'Already A Member?', '/login', 'sliders/71NMebEk88TInneucsN8ekvkFgmQQ8E5E8b8iSUK.png', 'sliders/4kKlbwwEcVSPt45zmibeHJ0DBo9dXgs6CfTmouDO.png', '2025-03-26 19:15:18', '2025-04-04 15:05:53'),
-(7, 'Kickstart Your Trucking Career Today!', 'Ready for a high-paying, in-demand career? Become a Professional Truck Driver and hit the open road with confidence! Get top-notch training, great benefits, and job security.', NULL, NULL, 'sliders/FgFhJdR2lPXXcqPr65GhnbEPVbKmowRqFXFADjiv.png', 'sliders/pSSBravBKNlcteHwKhMRJs4q2tmiUJiMGbZ7loX5.png', '2025-04-04 20:55:50', '2025-04-04 20:55:50');
+(8, 'Shift Gears Toward a Better Future.', 'Join our dedicated team and get hand-on experience with truck, forklift, school bus and regular vehicles.', NULL, NULL, 'sliders/kGLpo0mj0p8iXd0lILtvbRSKGyAgWIBFy0RFXlUZ.png', 'sliders/eC1hkRWuhZmYSuLNUekNhSs4SB0HF170rFgWP1Dn.jpg', '2025-04-05 18:43:12', '2025-04-06 02:20:06'),
+(9, 'Kickstart Your Trucking Career Today!', 'Ready for a high-paying, in-demand career? Become a Professional Truck Driver and hit the open road with confidence! Get top-notch training, great benefits, and job security.', NULL, NULL, 'sliders/ARiAIChGAi0PhMDEUsCQ4WoLcBFbV3rchnDZk0nF.png', 'sliders/4HFFdGeV2R3V6KWswyD79L92UZttpWV3ExO7hHeV.jpg', '2025-04-05 18:45:36', '2025-04-06 13:58:32'),
+(10, 'Shift Gears Toward a Better Future.', 'Join our dedicated team and get hand-on experience with truck, forklift, school bus and regular vehicles.', NULL, NULL, 'sliders/RB4iA4bBIsN1XvvLWMwLff83XIOBZuJDezEc3iFr.png', 'sliders/d5JXD2xMDIs7qzrN7B0u6E8IaJ0jOFROwqTKWkPo.jpg', '2025-04-05 18:51:07', '2025-04-06 13:59:32');
 
 -- --------------------------------------------------------
 
@@ -1948,10 +2142,10 @@ CREATE TABLE `training_objectives` (
 --
 
 INSERT INTO `training_objectives` (`id`, `objective`, `requirement`, `price`, `duration`, `theory_session`, `practical_session`, `examination`, `image_url`, `video_thumbnail_url`, `course_details`, `video_url`, `created_at`, `updated_at`) VALUES
-(1, 'Truck Driving', '<ul>\r\n	<li>Minimum age: 21 years</li>\r\n	<li>Valid driver&#39;s license</li>\r\n	<li>Medical fitness certificate</li>\r\n	<li>Background check clearance</li>\r\n</ul>', 1800000.00, 8, 30, 100, '2 hours', 'courses/Tkj5y9Uvev7j8PeQ2RcTyUHCXLGOeWIA8h0Do3s1.jpg', 'courses/ndCGhmlRjYGRYWUlaQyUvne0CsDsUCGaS0chXQSh.jpg', '<h2><strong>Learn Truck Driving at A1 Driving School</strong></h2>\r\n\r\n<p>BigRig International Truck Driving Training is based on the National Skills Qualification curriculum and framework while maintaining international best practices. We provide training in all aspects of trucking, including inspection, air brake system maintenance, all forms of docking, goods carriage, hazards and journey management, just to mention a few.</p>\r\n\r\n<p>BigRig International Truck Driving&nbsp;Training Breakdown</p>\r\n\r\n<p>Lesson Days: 2 month 3 times a week (Mondays, Wednesdays and Fridays)<br />\r\nTraining Hours: 1 hr. Practical<br />\r\nCertificate of Participant (Issued based on performance)</p>\r\n\r\n<p>Student assessment takes place every Tuesday and Thursday, and it is applicable only to CATEGORY<strong>&nbsp;A.&nbsp;</strong>This is based on National Skills Qualification Operating standard to be sure the learning process is adhered to and the learner understand all the units of the curriculum and outcome of the training</p>\r\n\r\n<p>Note: Our crash course for our busy &ldquo;students,&rdquo; which is scheduled for every&nbsp;<strong>Saturday and Sunday,</strong>&nbsp;attracts an additional fee of N20,000/weekend</p>\r\n\r\n<p><strong>​REQUIREMENT FOR ALL CATEGORIES</strong></p>\r\n\r\n<p>For you to be eligible for enrollment at BigRig International Truck Driving School</p>\r\n\r\n<ul>\r\n	<li>You must be 21 years and above with 4 years of driving experience</li>\r\n	<li>Have a clean criminal records because trailer truck cost hundreds of thousands of naira and the cargo they carries runs in millions. a clean criminal record makes you eligible</li>\r\n	<li>Proven ability to effectively drive a manual transmission (manual driving test N4,000 fee apply )</li>\r\n	<li>Letter of interest duly signed, it can be in hard or soft copy</li>\r\n	<li>Any valid class of drivers license</li>\r\n	<li>Sponsorship letter</li>\r\n	<li>National Identity Number (slip or card)</li>\r\n	<li>A letter of indemnity duly signed at the front desk with a witness who is not a staff of our organization</li>\r\n</ul>\r\n\r\n<p><strong>CATEGORY A</strong></p>\r\n\r\n<p><strong>Schedule</strong>: Training will run for a total of Three (3) months, Two (2) months of practical and theory Three (3) times a week and one (1) month of assessment two (2) times a week.</p>\r\n\r\n<p><strong>Training includes</strong></p>\r\n\r\n<ol>\r\n	<li>All 16 units use the National Skills Qualification standard while maintaining international best practices.</li>\r\n	<li><strong>Forklift training</strong>&nbsp;for self loading and unloading of fragile cargo</li>\r\n	<li>Tea break</li>\r\n	<li>Globally recognized certification</li>\r\n	<li>Hand gloves, helmet and reflective jacket</li>\r\n</ol>\r\n\r\n<p><strong>Training Fee: (N1,450,000)</strong></p>\r\n\r\n<p><strong>CATEGORY B</strong></p>\r\n\r\n<p>Regular class twelve (12) sessions of theory and ten (10) practical sessions<br />\r\n1 hour practical training (1 month)</p>\r\n\r\n<p><strong>CATEGORY C</strong></p>\r\n\r\n<p>Pay as you learn: This is for students who do not have the full amount but still want to enroll for truck training. A minimum of three (3) sessions will be required for you to enroll.</p>', 'https://www.youtube.com/watch?v=mwqoD6O5JII', '2025-03-26 23:43:09', '2025-04-04 15:31:28'),
-(2, 'Forklift Driving', '<ul>\r\n	<li>Minimum age: 21 years</li>\r\n	<li>Valid driver&#39;s license</li>\r\n	<li>Medical fitness certificate</li>\r\n	<li>Background check clearance</li>\r\n</ul>', 1180.00, 8, 30, 100, '2 hours', 'courses/mWPglaDjZQ2sUEGWMghhC1z9rUPocUecuOiOXHtl.jpg', 'courses/O6HOfUNfKZYCffDBlMpoVyIMntu2wSSrQNZ7mc4C.jpg', '<p><strong>Qualification</strong></p>\r\n\r\n<p><strong>Class A (CDL)</strong></p>\r\n\r\n<p>Must be 18 years of age</p>\r\n\r\n<p>Must have class c(regular drivers license) with 6 months of driving experience</p>\r\n\r\n<p>Must be able to pass pre-employment drug test &amp; physical test</p>\r\n\r\n<p>Must have NIN(National Identity Number)</p>', NULL, '2025-03-26 23:55:14', '2025-03-27 14:39:04'),
-(3, 'BRT or Bus Driving', '<ul>\r\n	<li>Minimum age: 21 years</li>\r\n	<li>Valid driver&#39;s license</li>\r\n	<li>Medical fitness certificate</li>\r\n	<li>Background check clearance</li>\r\n</ul>', 510.00, 8, 30, 100, '2 hours', 'courses/GlndcLcglhkF56REEKLwmUMgyZkRv67jonyM3H9r.jpg', 'courses/l8CXSBkSmaShA0Qaar91zGCrsCpGbezcxsuXdzVl.jpg', NULL, NULL, '2025-03-27 00:25:31', '2025-04-04 14:05:03'),
-(4, 'Conventional Driving', '<ul>\r\n	<li>Must be above the age of 18</li>\r\n	<li>No physical disability</li>\r\n</ul>', 300000.00, 8, 12, 20, '2 Hours', 'courses/sCpiaEr9c1i7mrU4ZrhQpPOSaymwxWVtLoIvSdM0.png', NULL, NULL, NULL, '2025-04-04 12:03:57', '2025-04-04 12:03:57');
+(1, 'CDL(commercial Truck) training', '<ul>\r\n	<li><strong>You must have a valid driver&#39;s license</strong></li>\r\n	<li><strong>You must have a minimum of 6 months driving experience&nbsp;</strong></li>\r\n	<li><strong>You must be 18&nbsp;years of age&nbsp;and&nbsp;above</strong></li>\r\n	<li><strong>You must have a valid NIN</strong></li>\r\n	<li><strong>You must be a Nigerian Citizen or member of ECOWAS States</strong></li>\r\n	<li><strong>Road test will be conducted for pre-qualification for #5,000 NGN</strong></li>\r\n	<li><strong>No&nbsp;felony (e.g Kidnapping ,Terrorism, Murder, trafficking etc)</strong></li>\r\n	<li><strong>You must pass vision Test, medical Test(physical)&nbsp;and pre-employment drug screening, within 90 days of enrolment&nbsp;</strong></li>\r\n</ul>', 1800000.00, 12, 40, 40, '2 hours', 'courses/Tkj5y9Uvev7j8PeQ2RcTyUHCXLGOeWIA8h0Do3s1.jpg', 'courses/ndCGhmlRjYGRYWUlaQyUvne0CsDsUCGaS0chXQSh.jpg', '<h2><strong>Learn Truck Driving at BigRig International Truck Driving School</strong></h2>\r\n\r\n<p>BigRig International Truck Driving Training is based on the National Skills Qualification curriculum and framework while maintaining international best practices. We provide training in all aspects of trucking, including inspection, air brake system maintenance, all forms of docking, goods carriage, hazards and journey management, just to mention a few.</p>\r\n\r\n<p>BigRig International Truck Driving&nbsp;Training Breakdown</p>\r\n\r\n<p>Lesson Days: 2 month 3 times a week (Mondays, Wednesdays and Fridays)<br />\r\nTraining Hours: 1 hr. Practical<br />\r\nCertificate of Participant (Issued based on performance)</p>\r\n\r\n<p>Student assessment takes place every Tuesday and Thursday, and it is applicable only to CATEGORY<strong>&nbsp;A.&nbsp;</strong>This is based on National Skills Qualification Operating standard to be sure the learning process is adhered to and the learner understand all the units of the curriculum and outcome of the training</p>\r\n\r\n<p>Note: Our crash course for our busy &ldquo;students,&rdquo; which is scheduled for every&nbsp;<strong>Saturday and Sunday,</strong>&nbsp;attracts an additional fee of N20,000/weekend</p>\r\n\r\n<p><strong>​REQUIREMENT FOR ENROLLING FOR THIS COURSE</strong></p>\r\n\r\n<p>For you to be eligible for enrollment for this course at BigRig International Truck Driving School</p>\r\n\r\n<ul>\r\n	<li>You must have a valid driver&#39;s license</li>\r\n	<li>You must have a minimum of 6 months driving experience</li>\r\n	<li>You must be 18&nbsp;years old and above</li>\r\n	<li>You must have a valid NIN</li>\r\n	<li>You must be a Nigerian Citizen or member of ECOWAS state</li>\r\n	<li>Road test will be conducted for pre-qualification for 3,000 NGN</li>\r\n	<li>No felony</li>\r\n	<li>You must pass vision, medical and pre-employment drug screening, within 90 days.</li>\r\n</ul>\r\n\r\n<p><strong>CATEGORY A</strong></p>\r\n\r\n<p><strong>Schedule</strong>: Training will run for a total of Three (3) months, Two (2) months of practical and theory Three (3) times a week and one (1) month of assessment two (2) times a week.</p>\r\n\r\n<p><strong>Training includes</strong></p>\r\n\r\n<ol>\r\n	<li>All 16 units use the National Skills Qualification standard while maintaining international best practices.</li>\r\n	<li><strong>Forklift training</strong>&nbsp;for self loading and unloading of fragile cargo</li>\r\n	<li>Tea break</li>\r\n	<li>Globally recognized certification</li>\r\n	<li>Hand gloves, helmet and reflective jacket</li>\r\n</ol>\r\n\r\n<p><strong>Training Fee: (N1,450,000)</strong></p>\r\n\r\n<p><strong>CATEGORY B</strong></p>\r\n\r\n<p>Regular class twelve (12) sessions of theory and ten (10) practical sessions<br />\r\n1 hour practical training (1 month)</p>\r\n\r\n<p><strong>CATEGORY C</strong></p>\r\n\r\n<p>Pay as you learn: This is for students who do not have the full amount but still want to enroll for truck training. A minimum of three (3) sessions will be required for you to enroll.</p>', 'https://www.youtube.com/watch?v=mwqoD6O5JII', '2025-03-26 23:43:09', '2025-04-28 04:43:20'),
+(2, 'Forklift Training', '<ul>\r\n	<li><strong>You must be 18&nbsp;years of age or older</strong></li>\r\n	<li><strong>You must have a valid NIN</strong></li>\r\n	<li><strong>You must be a Nigerian Citizen or member of ECOWAS States</strong></li>\r\n</ul>', 470000.00, 3, 15, 10, '2 hours', 'courses/mWPglaDjZQ2sUEGWMghhC1z9rUPocUecuOiOXHtl.jpg', 'courses/O6HOfUNfKZYCffDBlMpoVyIMntu2wSSrQNZ7mc4C.jpg', '<p><strong>Qualification</strong></p>\r\n\r\n<p><strong>Class A (CDL)</strong></p>\r\n\r\n<p>Must be 18 years of age</p>\r\n\r\n<p>Must have class c(regular drivers license) with 6 months of driving experience</p>\r\n\r\n<p>Must be able to pass pre-employment drug test &amp; physical test</p>\r\n\r\n<p>Must have NIN(National Identity Number)</p>', NULL, '2025-03-26 23:55:14', '2025-04-28 04:36:17'),
+(3, 'BRT or School Bus Training', '<ul>\r\n	<li><strong>Must have a valid driver&#39;s license</strong></li>\r\n	<li><strong>Must have a minimum of 6 months driving experience</strong></li>\r\n	<li><strong>Must be 18&nbsp;years old and older</strong></li>\r\n	<li><strong>A valid NIN is required</strong></li>\r\n	<li><strong>You must be a Nigerian Citizen or member of ECOWAS States</strong></li>\r\n</ul>', 1200000.00, 8, 20, 20, '2 hours', 'courses/GlndcLcglhkF56REEKLwmUMgyZkRv67jonyM3H9r.jpg', 'courses/l8CXSBkSmaShA0Qaar91zGCrsCpGbezcxsuXdzVl.jpg', NULL, NULL, '2025-03-27 00:25:31', '2025-04-28 04:36:28'),
+(4, 'Conventional Driving', '<ul>\r\n	<li><strong>You must be 16 years of age or older</strong></li>\r\n	<li><strong>You must have a valid NIN</strong></li>\r\n	<li><strong>You must be a Nigerian Citizen or member of ECOWAS States</strong></li>\r\n</ul>', 350000.00, 6, 20, 20, '40 Hours', 'courses/sCpiaEr9c1i7mrU4ZrhQpPOSaymwxWVtLoIvSdM0.png', NULL, NULL, NULL, '2025-04-04 12:03:57', '2025-04-28 04:37:30');
 
 -- --------------------------------------------------------
 
@@ -2042,13 +2236,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `enrolment_batch_id`, `firstName`, `middleName`, `lastName`, `gender`, `mobileNumber`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `role_id`, `profile_photo_path`, `user_active`, `website_visibility`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Adekola', NULL, 'Adedapo', 'Male', '+1 (913) 705-0526', 'admin@bigrigdrivingschool.ng', '2023-12-31 23:00:00', '$2y$12$4vyZtQOTNnFjM8NhiHI2H.3ztaH2eC24f3/KpbKzMsVIGvBTDlJf.', NULL, NULL, NULL, NULL, NULL, 1, 'profile-photos/2Ygx6fHJ90yt0VjfK3sIBLPpg1Fi92kEqMfUNR3t.jpg', 1, 1, '2025-03-10 15:27:28', '2025-04-04 20:49:22'),
-(2, NULL, 'Rilwan', NULL, 'Adelaja', 'Male', '+234 814 648 2898', 'younghardehlaja@gmail.com', '2025-03-23 22:17:15', '$2y$12$3uT/xrDuRSlDDcpMCSLIWO4ywrlQr9iva/erj3zT2arRQAk8ehM1.', NULL, NULL, NULL, NULL, NULL, 2, 'profile-photos/EYJ8sIxdMY9JDq8DJPl4MF05Jkg89AtXt8c5RydO.jpg', 1, 1, '2025-03-22 16:53:47', '2025-04-04 20:51:54'),
-(3, NULL, 'Tolulope', NULL, 'Fashola', 'Female', '+234 815 616 2164', 'serahtolu@gmail.com', '2025-03-23 22:17:21', '$2y$12$lINfMn839kqbF2hSg173NOKHViCD32izROmDNdLiF0YuCbZ0f4xfe', NULL, NULL, NULL, NULL, NULL, 4, NULL, 1, 0, '2025-03-22 16:54:58', '2025-03-22 16:54:58'),
-(4, NULL, 'Fegor', NULL, 'Otomi', 'Male', '+234 813 267 0440', 'otomifegor@gmail.com', '2025-03-23 22:17:25', '$2y$12$SLrvdmtqJYXUklV6LrU.C.PjDK0S1qsaQIa/qigC20mn8adP7BF/2', NULL, NULL, NULL, NULL, NULL, 4, NULL, 1, 0, '2025-03-22 16:56:27', '2025-03-22 16:56:27'),
-(5, NULL, 'Iyanu', 'Damilare', 'Adabale', 'Male', '07033102202', 'dammyadabs@gmail.com', NULL, '$2y$12$lIFleG/a0KmFXRZ8ckn.aeZj.G0pdMyEPBypsPJP3MeBuarEZIzY2', NULL, NULL, NULL, NULL, NULL, 8, 'users/xaevYaBzv0n1lcvCa49Edb3pnxg5SOhQubgt3NZ1.jpg', 1, 1, '2025-03-23 22:22:56', '2025-03-23 22:30:29'),
-(6, NULL, 'Akinwumi', 'Hammed', 'Olalekan', 'Male', '08068650846', 'akinwumiolalekan321@gmail.com', NULL, '$2y$12$cotDgnAeozfXNT5icBOoIumDlVWamOBcwqRz5Q9v6WNZHX6Z6rFu.', NULL, NULL, NULL, NULL, NULL, 9, NULL, 1, 1, '2025-03-24 05:26:30', '2025-03-24 05:26:49'),
-(7, NULL, 'Emeka', NULL, 'Okafor', 'Male', '+1 (318) 625-2254', 'eogbonna60@gmail.com', NULL, '$2y$12$TT7kOUtCMJCCLpsscuVirOiSVzb/SkvGZ4/8OC4C5aqAYhROcg4cC', NULL, NULL, NULL, NULL, NULL, 6, 'users/Ybm1pC2JK4sPNJkZzXLqHgvBemTH5sivOF0AMty0.png', 1, 1, '2025-03-27 14:13:27', '2025-03-27 14:13:50');
+(1, NULL, 'Adekola', NULL, 'Adedapo', 'Male', '+1 (913) 705-0526', 'adekola.adedapo@bigrigdrivingschool.ng', '2023-12-31 23:00:00', '$2y$12$4vyZtQOTNnFjM8NhiHI2H.3ztaH2eC24f3/KpbKzMsVIGvBTDlJf.', NULL, NULL, NULL, NULL, NULL, NULL, 'profile-photos/2Ygx6fHJ90yt0VjfK3sIBLPpg1Fi92kEqMfUNR3t.jpg', 1, 1, '2025-03-10 15:27:28', '2025-04-04 20:49:22'),
+(2, NULL, 'Rilwan', NULL, 'Adelaja', 'Male', '+234 814 648 2898', 'rilwan.adelaja@bigrigdrivingschool.ng', '2025-03-23 22:17:15', '$2y$12$3uT/xrDuRSlDDcpMCSLIWO4ywrlQr9iva/erj3zT2arRQAk8ehM1.', NULL, NULL, NULL, NULL, NULL, NULL, 'profile-photos/EYJ8sIxdMY9JDq8DJPl4MF05Jkg89AtXt8c5RydO.jpg', 1, 1, '2025-03-22 16:53:47', '2025-04-04 20:51:54'),
+(3, NULL, 'Tolulope', NULL, 'Fashola', 'Female', '+234 815 616 2164', 'tolulope.fashola@bigrigdrivingschool.ng', '2025-03-23 22:17:21', '$2y$12$lINfMn839kqbF2hSg173NOKHViCD32izROmDNdLiF0YuCbZ0f4xfe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2025-03-22 16:54:58', '2025-03-22 16:54:58'),
+(4, NULL, 'Fegor', NULL, 'Otomi', 'Male', '+234 813 267 0440', 'fegor.otomi@bigrigdrivingschool.ng', '2025-03-23 22:17:25', '$2y$12$SLrvdmtqJYXUklV6LrU.C.PjDK0S1qsaQIa/qigC20mn8adP7BF/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2025-03-22 16:56:27', '2025-03-22 16:56:27'),
+(5, NULL, 'Iyanu', 'Damilare', 'Adabale', 'Male', '07033102202', 'iyanu.adebale@bigrigdrivingschool.ng', NULL, '$2y$12$lIFleG/a0KmFXRZ8ckn.aeZj.G0pdMyEPBypsPJP3MeBuarEZIzY2', NULL, NULL, NULL, NULL, NULL, NULL, 'users/xaevYaBzv0n1lcvCa49Edb3pnxg5SOhQubgt3NZ1.jpg', 1, 1, '2025-03-23 22:22:56', '2025-03-23 22:30:29'),
+(6, NULL, 'Akinwumi', 'Hammed', 'Olalekan', 'Male', '08068650846', 'akinwumi.olalekan@bigrigdrivingschool.ng', NULL, '$2y$12$cotDgnAeozfXNT5icBOoIumDlVWamOBcwqRz5Q9v6WNZHX6Z6rFu.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2025-03-24 05:26:30', '2025-04-28 04:47:22'),
+(7, NULL, 'Emeka', NULL, 'Okafor', 'Male', '+1 (318) 625-2254', 'emeka.okafor@bigrigdrivingschool.ng', NULL, '$2y$12$TT7kOUtCMJCCLpsscuVirOiSVzb/SkvGZ4/8OC4C5aqAYhROcg4cC', NULL, NULL, NULL, NULL, NULL, NULL, 'users/Ybm1pC2JK4sPNJkZzXLqHgvBemTH5sivOF0AMty0.png', 1, 1, '2025-03-27 14:13:27', '2025-03-27 14:13:50');
 
 --
 -- Indexes for dumped tables
@@ -2111,6 +2305,12 @@ ALTER TABLE `datafeeds`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `email_configs`
+--
+ALTER TABLE `email_configs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `email_subscriptions`
 --
 ALTER TABLE `email_subscriptions`
@@ -2134,6 +2334,21 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `faqs`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `forum_comments`
+--
+ALTER TABLE `forum_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `forum_comments_forum_post_id_foreign` (`forum_post_id`),
+  ADD KEY `forum_comments_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `forum_posts`
+--
+ALTER TABLE `forum_posts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `forum_posts_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `founder`
@@ -2173,6 +2388,14 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `messages_sender_id_foreign` (`sender_id`),
+  ADD KEY `messages_receiver_id_foreign` (`receiver_id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -2189,6 +2412,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `payment_gateway_configs`
+--
+ALTER TABLE `payment_gateway_configs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `permissions`
@@ -2227,6 +2456,14 @@ ALTER TABLE `role_permission`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_permission_role_id_foreign` (`role_id`),
   ADD KEY `role_permission_permission_id_foreign` (`permission_id`);
+
+--
+-- Indexes for table `role_user`
+--
+ALTER TABLE `role_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_user_user_id_foreign` (`user_id`),
+  ADD KEY `role_user_role_id_foreign` (`role_id`);
 
 --
 -- Indexes for table `services`
@@ -2341,7 +2578,7 @@ ALTER TABLE `campaign_marketer`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `course_materials`
@@ -2368,6 +2605,12 @@ ALTER TABLE `datafeeds`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=866;
 
 --
+-- AUTO_INCREMENT for table `email_configs`
+--
+ALTER TABLE `email_configs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `email_subscriptions`
 --
 ALTER TABLE `email_subscriptions`
@@ -2389,6 +2632,18 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `faqs`
 --
 ALTER TABLE `faqs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `forum_comments`
+--
+ALTER TABLE `forum_comments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `forum_posts`
+--
+ALTER TABLE `forum_posts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -2419,7 +2674,7 @@ ALTER TABLE `marketers`
 -- AUTO_INCREMENT for table `medicals`
 --
 ALTER TABLE `medicals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `members`
@@ -2428,10 +2683,16 @@ ALTER TABLE `members`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -2440,10 +2701,16 @@ ALTER TABLE `orders`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `payment_gateway_configs`
+--
+ALTER TABLE `payment_gateway_configs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2455,25 +2722,31 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `role_courses`
 --
 ALTER TABLE `role_courses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `role_permission`
 --
 ALTER TABLE `role_permission`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
+-- AUTO_INCREMENT for table `role_user`
+--
+ALTER TABLE `role_user`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -2485,7 +2758,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `student_instructor_distributions`
@@ -2497,7 +2770,7 @@ ALTER TABLE `student_instructor_distributions`
 -- AUTO_INCREMENT for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
@@ -2546,10 +2819,30 @@ ALTER TABLE `curriculum`
   ADD CONSTRAINT `curriculum_objective_id_foreign` FOREIGN KEY (`objective_id`) REFERENCES `training_objectives` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `forum_comments`
+--
+ALTER TABLE `forum_comments`
+  ADD CONSTRAINT `forum_comments_forum_post_id_foreign` FOREIGN KEY (`forum_post_id`) REFERENCES `forum_posts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `forum_comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `forum_posts`
+--
+ALTER TABLE `forum_posts`
+  ADD CONSTRAINT `forum_posts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `medicals`
 --
 ALTER TABLE `medicals`
   ADD CONSTRAINT `medicals_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_receiver_id_foreign` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `messages_sender_id_foreign` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `role_courses`
@@ -2564,6 +2857,13 @@ ALTER TABLE `role_courses`
 ALTER TABLE `role_permission`
   ADD CONSTRAINT `role_permission_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_permission_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `role_user`
+--
+ALTER TABLE `role_user`
+  ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `student_instructor_distributions`

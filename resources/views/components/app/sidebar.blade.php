@@ -111,12 +111,12 @@
                     @endif
 
                     @if (Auth::user()->hasPermission('read_forum'))
-                    <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] @if(in_array(Request::segment(2), ['forum'])){{ 'from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]' }}@endif" x-data="{ open: {{ in_array(Request::segment(2), ['forum']) ? 1 : 0 }} }">
-                        <a class="block text-gray-800 dark:text-gray-100 truncate transition @if(!in_array(Request::segment(2), ['forum'])){{ 'hover:text-gray-900 dark:hover:text-white' }}@endif" href="{{ route('forum') }}">
+                    <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] @if(in_array(Request::segment(1), ['forum'])){{ 'from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]' }}@endif" x-data="{ open: {{ in_array(Request::segment(1), ['forum']) ? 1 : 0 }} }">
+                        <a class="block text-gray-800 dark:text-gray-100 truncate transition @if(!in_array(Request::segment(1), ['forum'])){{ 'hover:text-gray-900 dark:hover:text-white' }}@endif" href="{{ route('forum.list') }}">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <!-- SVG Icon for Users -->
-                                     <svg class="shrink-0 fill-current @if(in_array(Request::segment(2), ['forum'])){{ 'text-violet-500' }}@else{{ 'text-gray-400 dark:text-gray-500' }}@endif" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20">
+                                     <svg class="shrink-0 fill-current @if(in_array(Request::segment(1), ['forum'])){{ 'text-violet-500' }}@else{{ 'text-gray-400 dark:text-gray-500' }}@endif" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 1.104-.896 2-2 2H7l-4 4V6c0-1.104.896-2 2-2h14c1.104 0 2 .896 2 2v6z" />
                                     </svg>

@@ -70,7 +70,11 @@ class EmailConfigController extends Controller
         ]);
 
         $emailConfig = EmailConfig::first();
-        
+
+        if (!$emailConfig) {
+            $emailConfig = new EmailConfig();
+        }
+
         $emailConfig->from_name = $request->from_name;
         $emailConfig->from_email = $request->from_email;
         $emailConfig->smtp_username = $request->smtp_username;
@@ -79,7 +83,6 @@ class EmailConfigController extends Controller
         $emailConfig->smtp_port = $request->smtp_port;
         $emailConfig->smtp_encryption = $request->smtp_encryption;
         $emailConfig->save();
-                    
 
         return redirect()->back()->with('success', 'Email configuration updated successfully.');
     }
