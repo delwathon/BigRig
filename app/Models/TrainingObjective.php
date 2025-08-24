@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Curriculum;
+use App\Models\CourseMaterial;
 
 class TrainingObjective extends Model
 {
@@ -35,5 +36,15 @@ class TrainingObjective extends Model
     {
         return $this->hasMany(Curriculum::class, 'objective_id');
     }
-    
+
+    public function materials()
+    {
+        return $this->hasMany(CourseMaterial::class, 'objective_id');
+    }
+
+    public function courseMaterials()
+    {
+        return $this->hasMany(CourseMaterial::class, 'objective_id');
+    }
+
 }

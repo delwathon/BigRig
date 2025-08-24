@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\TrainingObjective;
 
 class CourseMaterial extends Model
 {
@@ -14,12 +13,33 @@ class CourseMaterial extends Model
         'objective_id',
         'file_name',
         'file_url',
+        'file_size',
+        'file_type',
+        'description',
+        'uploaded_by'
     ];
 
-    protected $table = 'course_materials';
-
-    public function trainingObjective()
+    /**
+     * Get the course/objective that owns this material
+     */
+    public function objective()
     {
         return $this->belongsTo(TrainingObjective::class, 'objective_id');
+    }
+
+    /**
+     * Alternative name for the same relationship (course)
+     */
+    public function course()
+    {
+        return $this->belongsTo(TrainingObjective::class, 'objective_id');
+    }
+
+    /**
+     * Get the user who uploaded this material
+     */
+    public function uploadedBy()
+    {
+        return $this->belongsTo(User::class, 'uploaded_by');
     }
 }

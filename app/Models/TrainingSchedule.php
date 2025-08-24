@@ -22,6 +22,7 @@ class TrainingSchedule extends Model
         'instructor_id',
         'course_id',
         'topic_id',
+        'session_type',
         'students',
         'schedule_date',
         'time_start',

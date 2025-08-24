@@ -44,6 +44,12 @@ class Subscription extends Model
         return $this->belongsTo(User::class);
     }
 
+
+    public function course()
+    {
+        return $this->belongsTo(TrainingObjective::class, 'course_id');
+    }
+
     // Define the relationship method to get the objectives by decoding JSON
     // public function getObjectivesAttribute()
     // {

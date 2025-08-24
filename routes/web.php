@@ -24,6 +24,17 @@ use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\EmailSubscriptionController;
 use App\Http\Controllers\EmailConfigController;
 use App\Http\Controllers\PaymentGatewayConfigController;
+
+use App\Http\Controllers\StudentDashboardController;
+use App\Http\Controllers\StudentCourseController;
+use App\Http\Controllers\StudentScheduleController;
+use App\Http\Controllers\StudentMaterialsController;
+use App\Http\Controllers\StudentProgressController;
+use App\Http\Controllers\StudentAttendanceController;
+use App\Http\Controllers\StudentAssignmentController;
+use App\Http\Controllers\StudentAnnouncementController;
+
+
 use App\Models\Settings;
 use App\Livewire\ForumList;
 use App\Livewire\ForumCreatePost;
@@ -64,6 +75,24 @@ Route::get('/our-instructors', [WebsiteController::class, 'instructors'])->name(
 Route::get('/faq', [WebsiteController::class, 'faq'])->name('faq');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::post('/email-subscription', [WebsiteController::class, 'email_subscription'])->name('email-subscription');
+
+
+// Student specific routes
+// Route::middleware(function ($request, $next) {
+//     if (!Auth::user()->hasRole('student')) {
+//         abort(403, 'Unauthorized access.');
+//     }
+//     return $next($request);
+// })->prefix('student')->name('student.')->group(function () {
+
+//     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard');
+//     Route::get('/schedule', [StudentScheduleController::class, 'index'])->name('schedule');
+//     Route::get('/materials', [StudentMaterialsController::class, 'index'])->name('materials');
+//     Route::get('/material/download/{id}', [StudentMaterialsController::class, 'download'])->name('download-material');
+//     Route::get('/course-details', [StudentCourseController::class, 'show'])->name('course-details');
+//     Route::get('/progress', [StudentProgressController::class, 'index'])->name('progress');
+
+// });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -150,6 +179,31 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/forum/create/post', ForumCreatePost::class)->name('forum.create');
     Route::get('/forum/single/{postId}', ForumPostPage::class)->name('forum.post');
 
+    // Student Routes
+    Route::get('/student-dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
+    // Courses
+    Route::get('/student-courses', [StudentCourseController::class, 'index'])->name('student.courses');
+    Route::get('/student-course/{id}', [StudentCourseController::class, 'show'])->name('student.course-details');
+    // Schedule
+    Route::get('/student-schedule', [StudentScheduleController::class, 'index'])->name('student.schedule');
+    Route::get('/student-schedule/calendar', [StudentScheduleController::class, 'calendar'])->name('student.schedule.calendar');
+    // Materials
+    Route::get('/student-materials', [StudentMaterialsController::class, 'index'])->name('student.materials');
+    Route::get('/student-material/download/{id}', [StudentMaterialsController::class, 'download'])->name('student.download-material');
+    // Progress
+    Route::get('/student-progress', [StudentProgressController::class, 'index'])->name('student.progress');
+    Route::get('/student-progress/{courseId}', [StudentProgressController::class, 'course'])->name('student.progress.course');
+    // Attendance
+    Route::get('/student-attendance', [StudentAttendanceController::class, 'index'])->name('student.attendance');
+    // Assignments
+    Route::get('/student-assignments', [StudentAssignmentController::class, 'index'])->name('student.assignments');
+    Route::get('/student-assignment/{id}', [StudentAssignmentController::class, 'show'])->name('student.assignment.show');
+    Route::post('/student-assignment/{id}/submit', [StudentAssignmentController::class, 'submit'])->name('student.assignment.submit');
+
+    // Announcements
+    Route::get('/student-announcements', [StudentAnnouncementController::class, 'index'])->name('student.announcements');
+    Route::get('/student-announcement/{id}', [StudentAnnouncementController::class, 'show'])->name('student.announcement.show');
+
 
 
 
@@ -163,25 +217,25 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Route::get('/finance/transaction-details', [PaymentController::class, 'index02'])->name('transaction-details');
     Route::get('/ecommerce/shop', function () {
         return view('pages/ecommerce/shop');
-    })->name('shop');    
+    })->name('shop');
     Route::get('/ecommerce/shop-2', function () {
         return view('pages/ecommerce/shop-2');
-    })->name('shop-2');     
+    })->name('shop-2');
     Route::get('/ecommerce/product', function () {
         return view('pages/ecommerce/product');
     })->name('product');
     Route::get('/ecommerce/cart', function () {
         return view('pages/ecommerce/cart');
-    })->name('cart');    
+    })->name('cart');
     Route::get('/ecommerce/cart-2', function () {
         return view('pages/ecommerce/cart-2');
-    })->name('cart-2');    
+    })->name('cart-2');
     Route::get('/ecommerce/cart-3', function () {
         return view('pages/ecommerce/cart-3');
-    })->name('cart-3');    
+    })->name('cart-3');
     Route::get('/ecommerce/pay', function () {
         return view('pages/ecommerce/pay');
-    })->name('pay');     
+    })->name('pay');
     Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns');
     Route::get('/community/users-tabs', [MemberController::class, 'indexTabs'])->name('users-tabs');
     Route::get('/community/users-tiles', [MemberController::class, 'indexTiles'])->name('users-tiles');
@@ -190,19 +244,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // })->name('profile');
     Route::get('/community/feed', function () {
         return view('pages/community/feed');
-    })->name('feed');     
+    })->name('feed');
     Route::get('/community/forum', function () {
         return view('pages/community/forum');
     })->name('forum');
     Route::get('/community/forum-post', function () {
         return view('pages/community/forum-post');
-    })->name('forum-post');    
+    })->name('forum-post');
     Route::get('/community/meetups', function () {
         return view('pages/community/meetups');
-    })->name('meetups');    
+    })->name('meetups');
     Route::get('/community/meetups-post', function () {
         return view('pages/community/meetups-post');
-    })->name('meetups-post');    
+    })->name('meetups-post');
     Route::get('/finance/cards', function () {
         return view('pages/finance/credit-cards');
     })->name('credit-cards');
@@ -211,7 +265,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/job/job-listing', [JobController::class, 'index'])->name('job-listing');
     Route::get('/job/job-post', function () {
         return view('pages/job/job-post');
-    })->name('job-post');    
+    })->name('job-post');
     Route::get('/job/company-profile', function () {
         return view('pages/job/company-profile');
     })->name('company-profile');
@@ -223,52 +277,52 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('tasks-kanban');
     Route::get('/tasks/list', function () {
         return view('pages/tasks/tasks-list');
-    })->name('tasks-list');       
+    })->name('tasks-list');
     Route::get('/inbox', function () {
         return view('pages/inbox');
-    })->name('inbox'); 
+    })->name('inbox');
     Route::get('/calendar', function () {
         return view('pages/calendar');
-    })->name('calendar'); 
+    })->name('calendar');
     Route::get('/settings/notifications', function () {
         return view('pages/settings/notifications');
-    })->name('notifications');  
+    })->name('notifications');
     Route::get('/settings/apps', function () {
         return view('pages/settings/apps');
     })->name('apps');
     Route::get('/settings/plans', function () {
         return view('pages/settings/plans');
-    })->name('plans');      
+    })->name('plans');
     Route::get('/settings/billing', function () {
         return view('pages/settings/billing');
-    })->name('billing');  
+    })->name('billing');
     Route::get('/settings/feedback', function () {
         return view('pages/settings/feedback');
     })->name('feedback');
     Route::get('/utility/changelog', function () {
         return view('pages/utility/changelog');
-    })->name('changelog');  
+    })->name('changelog');
     Route::get('/utility/roadmap', function () {
         return view('pages/utility/roadmap');
-    })->name('roadmap');  
+    })->name('roadmap');
     // Route::get('/utility/faqs', function () {
     //     return view('pages/utility/faqs');
-    // })->name('faqs');  
+    // })->name('faqs');
     Route::get('/utility/empty-state', function () {
         return view('pages/utility/empty-state');
-    })->name('empty-state');  
+    })->name('empty-state');
     Route::get('/utility/404', function () {
         return view('pages/utility/404');
     })->name('404');
     Route::get('/onboarding-01', function () {
         return view('pages/onboarding-01');
-    })->name('onboarding-01');   
+    })->name('onboarding-01');
     Route::get('/onboarding-02', function () {
         return view('pages/onboarding-02');
-    })->name('onboarding-02');   
+    })->name('onboarding-02');
     Route::get('/onboarding-03', function () {
         return view('pages/onboarding-03');
-    })->name('onboarding-03');   
+    })->name('onboarding-03');
     Route::get('/onboarding-04', function () {
         return view('pages/onboarding-04');
     })->name('onboarding-04');
@@ -286,7 +340,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('alert-page');
     Route::get('/component/modal', function () {
         return view('pages/component/modal-page');
-    })->name('modal-page'); 
+    })->name('modal-page');
     Route::get('/component/pagination', function () {
         return view('pages/component/pagination-page');
     })->name('pagination-page');
@@ -298,7 +352,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('breadcrumb-page');
     Route::get('/component/badge', function () {
         return view('pages/component/badge-page');
-    })->name('badge-page'); 
+    })->name('badge-page');
     Route::get('/component/avatar', function () {
         return view('pages/component/avatar-page');
     })->name('avatar-page');
@@ -314,5 +368,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::fallback(function() {
         return view('pages/utility/404');
-    });    
+    });
 });

@@ -21,6 +21,13 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
+        $user = Auth::user();
+
+        // Check if user is a student and redirect to student dashboard
+        if ($user->hasRole('student')) {
+            return redirect()->route('student.dashboard');
+        }
+
         // Check subscription payment status
         $subscription = Subscription::where('user_id', $user->id)->first();
 
@@ -37,7 +44,7 @@ class DashboardController extends Controller
             $query->where('roles.id', 10);
         })
         ->count();
-        
+
         // Get the number of active users
         $instructors = User::where('user_active', 1)
         ->whereHas('roles', function ($query) {
@@ -58,7 +65,7 @@ class DashboardController extends Controller
         if ($studentsYesterday > 0) {
             $studentPI = (($studentsToday - $studentsYesterday) / $studentsYesterday) * 100;
         }
-        
+
         // Get all revenue
         $revenue = Subscription::where('payment_status', 'completed')
             ->sum('total_amount');

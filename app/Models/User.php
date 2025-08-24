@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\ForumPost;
 use App\Models\ForumComment;
+use App\Models\EnrolmentBatches;
 
 class User extends Authenticatable
 {
@@ -132,5 +133,10 @@ class User extends Authenticatable
     public function forumComments()
     {
         return $this->hasMany(ForumComment::class);
+    }
+
+    public function enrolmentBatch()
+    {
+        return $this->belongsTo(EnrolmentBatches::class, 'enrolment_batch_id');
     }
 }
