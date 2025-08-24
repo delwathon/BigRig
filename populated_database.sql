@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2025 at 06:49 PM
+-- Generation Time: Aug 25, 2025 at 12:26 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,6 +74,41 @@ INSERT INTO `achievements` (`id`, `title`, `year`, `description`, `picture`, `cr
 (1, 'Pioneering Road Safety Initiative', '2024', '<p>In 2024, <strong>BigRig Driving School</strong> proudly launched its Pioneering Road Safety Initiative, a program designed to enhance driver awareness and reduce road accidents nationwide. The initiative focused on comprehensive safety workshops, simulated driving scenarios, and hands-on training sessions led by industry experts. Over the course of the year, we successfully trained over 1,000 participants, equipping them with advanced safety strategies and fostering a culture of responsibility on the road. This milestone reflects our unwavering dedication to creating safer roads for everyone.</p>', 'achievements/gSwq6WoHYHCFZwSdX18AeHhK7wQ5e8FKW4gOxX6C.jpg', '2025-03-25 11:17:43', '2025-03-25 11:17:43'),
 (2, 'Award of Excellence', '2025', '<p>In 2022, <strong>BigRig Driving School</strong> proudly launched its Pioneering Road Safety Initiative, a program designed to enhance driver awareness and reduce road accidents nationwide. The initiative focused on comprehensive safety workshops, simulated driving scenarios, and hands-on training sessions led by industry experts. Over the course of the year, we successfully trained over 1,000 participants, equipping them with advanced safety strategies and fostering a culture of responsibility on the road. This milestone reflects our unwavering dedication to creating safer roads for everyone.</p>', 'achievements/BSOhkAshL1MgWY8Xt6gHCevIsbwh7D8iTCRVvB6A.jpg', '2025-03-25 11:18:46', '2025-03-25 11:18:46'),
 (3, 'Best Truck Driving Institution', '2025', '<p>In 2025, <strong>BigRig Driving School</strong> proudly launched its Pioneering Road Safety Initiative, a program designed to enhance driver awareness and reduce road accidents nationwide. The initiative focused on comprehensive safety workshops, simulated driving scenarios, and hands-on training sessions led by industry experts. Over the course of the year, we successfully trained over 1,000 participants, equipping them with advanced safety strategies and fostering a culture of responsibility on the road. This milestone reflects our unwavering dedication to creating safer roads for everyone.</p>', 'achievements/aR6SZCo6omRevPJNrfsf1aoq4Sd1SEj7wonQldAp.jpg', '2025-03-25 11:19:37', '2025-03-25 11:19:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcements`
+--
+
+CREATE TABLE `announcements` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `type` enum('general','course','batch','urgent') NOT NULL,
+  `priority` enum('low','medium','high') NOT NULL,
+  `course_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `batch_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_by` bigint(20) UNSIGNED NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `publish_date` datetime DEFAULT NULL,
+  `expiry_date` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcement_reads`
+--
+
+CREATE TABLE `announcement_reads` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `announcement_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `read_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -192,6 +227,10 @@ CREATE TABLE `course_materials` (
   `objective_id` bigint(20) UNSIGNED NOT NULL,
   `file_name` varchar(255) NOT NULL,
   `file_url` varchar(255) NOT NULL,
+  `file_size` varchar(255) DEFAULT NULL,
+  `file_type` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `uploaded_by` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -200,9 +239,9 @@ CREATE TABLE `course_materials` (
 -- Dumping data for table `course_materials`
 --
 
-INSERT INTO `course_materials` (`id`, `objective_id`, `file_name`, `file_url`, `created_at`, `updated_at`) VALUES
-(1, 1, 'TSDA Week 1 - Assignment.docx', 'course_materials/uwr7gWLJpfNLN0brMC5HNdwcKUOYQcDOUCRMeYyD.docx', '2025-04-04 15:46:16', '2025-04-04 15:46:16'),
-(2, 1, 'Abiodun Afuwape.pdf', 'course_materials/b9YBiSzGv1qxMK59uzoRUFFLlqqojrxXwzBUc5LL.pdf', '2025-04-04 15:54:03', '2025-04-04 15:54:03');
+INSERT INTO `course_materials` (`id`, `objective_id`, `file_name`, `file_url`, `file_size`, `file_type`, `description`, `uploaded_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'TSDA Week 1 - Assignment.docx', 'course_materials/uwr7gWLJpfNLN0brMC5HNdwcKUOYQcDOUCRMeYyD.docx', NULL, NULL, NULL, NULL, '2025-04-04 15:46:16', '2025-04-04 15:46:16'),
+(2, 1, 'Abiodun Afuwape.pdf', 'course_materials/b9YBiSzGv1qxMK59uzoRUFFLlqqojrxXwzBUc5LL.pdf', NULL, NULL, NULL, NULL, '2025-04-04 15:54:03', '2025-04-04 15:54:03');
 
 -- --------------------------------------------------------
 
@@ -1457,6 +1496,14 @@ CREATE TABLE `medicals` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `medicals`
+--
+
+INSERT INTO `medicals` (`id`, `user_id`, `weight`, `height`, `visual_impairment`, `hearing_aid`, `physical_disability`, `weed`, `alcohol`, `prescribed_medication`, `failed_drug_test`, `attachments`, `created_at`, `updated_at`) VALUES
+(3, 8, 87.00, 5.60, 'None', 'None', 'None', 'No', 'No', 'NIL', 'NIL', NULL, '2025-08-19 12:58:44', '2025-08-19 12:58:44'),
+(4, 9, NULL, NULL, 'None', 'None', 'None', 'No', 'No', 'NIL', 'NIL', NULL, '2025-08-24 05:59:20', '2025-08-24 05:59:20');
+
 -- --------------------------------------------------------
 
 --
@@ -1507,6 +1554,13 @@ CREATE TABLE `messages` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `body`, `created_at`, `updated_at`, `is_read`) VALUES
+(1, 8, 1, 'Hello', '2025-08-19 13:49:03', '2025-08-19 13:49:03', 0);
 
 -- --------------------------------------------------------
 
@@ -1569,7 +1623,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (44, '2025_06_01_192507_create_email_configs_table', 7),
 (45, '2025_06_01_202934_create_payment_gateway_configs_table', 7),
 (46, '2025_06_11_131008_create_forum_posts_table', 7),
-(47, '2025_06_11_131047_create_forum_comments_table', 7);
+(47, '2025_06_11_131047_create_forum_comments_table', 7),
+(48, '2025_08_24_055610_create_student_attendance_table', 8),
+(49, '2025_08_24_055829_create_student_progress_table', 9),
+(50, '2025_08_24_060010_create_announcements_table', 10),
+(51, '2025_08_24_061532_create_announcement_reads_table', 11),
+(52, '2025_08_24_153202_create_schedule_change_requests_table', 12);
 
 -- --------------------------------------------------------
 
@@ -1925,7 +1984,34 @@ INSERT INTO `role_user` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`)
 (4, 4, 4, NULL, NULL),
 (5, 5, 5, NULL, NULL),
 (6, 6, 9, NULL, NULL),
-(7, 7, 6, NULL, NULL);
+(7, 7, 6, NULL, NULL),
+(8, 8, 10, NULL, NULL),
+(9, 9, 10, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule_change_requests`
+--
+
+CREATE TABLE `schedule_change_requests` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `schedule_id` bigint(20) UNSIGNED NOT NULL,
+  `instructor_id` bigint(20) UNSIGNED NOT NULL,
+  `type` enum('reschedule','cancel','substitute') NOT NULL,
+  `reason` text NOT NULL,
+  `new_date` date DEFAULT NULL,
+  `new_time_start` time DEFAULT NULL,
+  `new_time_stop` time DEFAULT NULL,
+  `substitute_instructor_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `admin_notes` text DEFAULT NULL,
+  `reviewed_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `requested_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `reviewed_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1979,7 +2065,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('yLThkUTZ8shk1XoUCSFvlwoqLk2zQmKCbhRBabRP', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRWNDbmxxNjdCQ2w5aXBYbVFSVlp3RjM2NUZyQUExTTZqSkpCcVVPNyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2luc3RydWN0b3JzIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jb3Vyc2UvZGV0YWlscy8xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1754934412);
+('TcwBs1SvFcIJdV1Yel404UiIJ8HTGSox41Nfy7Yg', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWVdpVm1jR1hIaURBTXA5ZzhYc3FaY29iQ2hNaU1maXRxYjdMM080bCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1756077887);
 
 -- --------------------------------------------------------
 
@@ -2056,6 +2142,33 @@ INSERT INTO `sliders` (`id`, `title`, `text`, `button_name`, `button_url`, `imag
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student_attendance`
+--
+
+CREATE TABLE `student_attendance` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `student_id` bigint(20) UNSIGNED NOT NULL,
+  `schedule_id` bigint(20) UNSIGNED NOT NULL,
+  `course_id` bigint(20) UNSIGNED NOT NULL,
+  `status` enum('present','absent','late','excused') NOT NULL DEFAULT 'absent',
+  `check_in_time` time DEFAULT NULL,
+  `check_out_time` time DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `marked_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `student_attendance`
+--
+
+INSERT INTO `student_attendance` (`id`, `student_id`, `schedule_id`, `course_id`, `status`, `check_in_time`, `check_out_time`, `notes`, `marked_by`, `created_at`, `updated_at`) VALUES
+(1, 9, 1, 1, 'present', '15:53:40', NULL, NULL, 7, '2025-08-24 14:53:40', '2025-08-24 14:53:40');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student_instructor_distributions`
 --
 
@@ -2065,6 +2178,36 @@ CREATE TABLE `student_instructor_distributions` (
   `student_id` bigint(20) UNSIGNED NOT NULL,
   `instructor_id` bigint(20) UNSIGNED NOT NULL,
   `course_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `student_instructor_distributions`
+--
+
+INSERT INTO `student_instructor_distributions` (`id`, `enrolment_batch_id`, `student_id`, `instructor_id`, `course_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 8, 7, 4, '2025-08-19 12:59:03', '2025-08-19 12:59:03'),
+(2, 1, 9, 7, 1, '2025-08-24 05:59:56', '2025-08-24 05:59:56'),
+(3, 1, 9, 7, 4, '2025-08-24 05:59:56', '2025-08-24 05:59:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_progress`
+--
+
+CREATE TABLE `student_progress` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `student_id` bigint(20) UNSIGNED NOT NULL,
+  `course_id` bigint(20) UNSIGNED NOT NULL,
+  `topic_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `type` enum('theory','practical') NOT NULL,
+  `completed` tinyint(1) NOT NULL DEFAULT 0,
+  `score` int(11) DEFAULT NULL,
+  `hours_completed` int(11) NOT NULL DEFAULT 0,
+  `completion_date` date DEFAULT NULL,
+  `feedback` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2088,6 +2231,14 @@ CREATE TABLE `subscriptions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subscriptions`
+--
+
+INSERT INTO `subscriptions` (`id`, `user_id`, `payment_reference`, `objectives`, `subtotal`, `tax`, `total_amount`, `payment_status`, `payment_method`, `created_at`, `updated_at`) VALUES
+(3, 8, 'ClKlDHsHa94jeu2txsSPyEFkj', '\"[4]\"', 350000.00, 26250.00, 376250.00, 'completed', 'Paystack', '2025-08-19 12:58:44', '2025-08-19 12:59:03'),
+(4, 9, 'iqgb4oOLii6Xc2yCBE9y07wgE', '\"[1,4]\"', 2150000.00, 161250.00, 2311250.00, 'completed', 'Paystack', '2025-08-24 05:59:20', '2025-08-24 05:59:56');
 
 -- --------------------------------------------------------
 
@@ -2159,6 +2310,7 @@ CREATE TABLE `training_schedules` (
   `instructor_id` bigint(20) UNSIGNED NOT NULL,
   `course_id` bigint(20) UNSIGNED NOT NULL,
   `topic_id` bigint(20) UNSIGNED NOT NULL,
+  `session_type` enum('theory','practical') NOT NULL DEFAULT 'theory',
   `students` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`students`)),
   `schedule_date` date NOT NULL,
   `time_start` time NOT NULL,
@@ -2166,6 +2318,13 @@ CREATE TABLE `training_schedules` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `training_schedules`
+--
+
+INSERT INTO `training_schedules` (`id`, `batch_id`, `instructor_id`, `course_id`, `topic_id`, `session_type`, `students`, `schedule_date`, `time_start`, `time_stop`, `created_at`, `updated_at`) VALUES
+(1, 1, 7, 1, 3, 'theory', '\"[8]\"', '2025-08-24', '17:00:00', '18:00:00', '2025-08-24 14:49:55', '2025-08-24 14:49:55');
 
 -- --------------------------------------------------------
 
@@ -2242,7 +2401,9 @@ INSERT INTO `users` (`id`, `enrolment_batch_id`, `firstName`, `middleName`, `las
 (4, NULL, 'Fegor', NULL, 'Otomi', 'Male', '+234 813 267 0440', 'fegor.otomi@bigrigdrivingschool.ng', '2025-03-23 22:17:25', '$2y$12$SLrvdmtqJYXUklV6LrU.C.PjDK0S1qsaQIa/qigC20mn8adP7BF/2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2025-03-22 16:56:27', '2025-03-22 16:56:27'),
 (5, NULL, 'Iyanu', 'Damilare', 'Adabale', 'Male', '07033102202', 'iyanu.adebale@bigrigdrivingschool.ng', NULL, '$2y$12$lIFleG/a0KmFXRZ8ckn.aeZj.G0pdMyEPBypsPJP3MeBuarEZIzY2', NULL, NULL, NULL, NULL, NULL, NULL, 'users/xaevYaBzv0n1lcvCa49Edb3pnxg5SOhQubgt3NZ1.jpg', 1, 1, '2025-03-23 22:22:56', '2025-03-23 22:30:29'),
 (6, NULL, 'Akinwumi', 'Hammed', 'Olalekan', 'Male', '08068650846', 'akinwumi.olalekan@bigrigdrivingschool.ng', NULL, '$2y$12$cotDgnAeozfXNT5icBOoIumDlVWamOBcwqRz5Q9v6WNZHX6Z6rFu.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2025-03-24 05:26:30', '2025-04-28 04:47:22'),
-(7, NULL, 'Emeka', NULL, 'Okafor', 'Male', '+1 (318) 625-2254', 'emeka.okafor@bigrigdrivingschool.ng', NULL, '$2y$12$TT7kOUtCMJCCLpsscuVirOiSVzb/SkvGZ4/8OC4C5aqAYhROcg4cC', NULL, NULL, NULL, NULL, NULL, NULL, 'users/Ybm1pC2JK4sPNJkZzXLqHgvBemTH5sivOF0AMty0.png', 1, 1, '2025-03-27 14:13:27', '2025-03-27 14:13:50');
+(7, NULL, 'Emeka', NULL, 'Okafor', 'Male', '+1 (318) 625-2254', 'emeka.okafor@bigrigdrivingschool.ng', '2025-08-24 07:38:42', '$2y$12$TT7kOUtCMJCCLpsscuVirOiSVzb/SkvGZ4/8OC4C5aqAYhROcg4cC', NULL, NULL, NULL, NULL, NULL, NULL, 'users/Ybm1pC2JK4sPNJkZzXLqHgvBemTH5sivOF0AMty0.png', 1, 1, '2025-03-27 14:13:27', '2025-03-27 14:13:50'),
+(8, 1, 'Omowunmi', 'Rasheedat', 'Oladepo', 'Female', '08165185523', 'omowunmi.oladepo@mobile-power.co.uk', '2025-08-19 14:05:22', '$2y$12$DF3QMxM81DTZv9t9G4gBzOYLCMgvnfSIz1q5uQR61m.0R6uEsB4FK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2025-08-19 12:58:44', '2025-08-19 12:59:03'),
+(9, 1, 'Saheed', NULL, 'Adewale', 'Male', '08146456577', 'saheed.adewale@gmail.com', '2025-08-24 07:00:08', '$2y$12$sEB5LJTmKvD/qT/sF.dYyOsMV1/gTM95c8XLHS0PZHKFTAYwxnEAW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2025-08-24 05:59:20', '2025-08-24 05:59:56');
 
 --
 -- Indexes for dumped tables
@@ -2259,6 +2420,23 @@ ALTER TABLE `about_company`
 --
 ALTER TABLE `achievements`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `announcements_course_id_foreign` (`course_id`),
+  ADD KEY `announcements_batch_id_foreign` (`batch_id`),
+  ADD KEY `announcements_created_by_foreign` (`created_by`);
+
+--
+-- Indexes for table `announcement_reads`
+--
+ALTER TABLE `announcement_reads`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `announcement_reads_announcement_id_user_id_unique` (`announcement_id`,`user_id`),
+  ADD KEY `announcement_reads_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `campaigns`
@@ -2283,7 +2461,8 @@ ALTER TABLE `clients`
 --
 ALTER TABLE `course_materials`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `course_materials_objective_id_foreign` (`objective_id`);
+  ADD KEY `course_materials_objective_id_foreign` (`objective_id`),
+  ADD KEY `course_materials_uploaded_by_foreign` (`uploaded_by`);
 
 --
 -- Indexes for table `curriculum`
@@ -2466,6 +2645,16 @@ ALTER TABLE `role_user`
   ADD KEY `role_user_role_id_foreign` (`role_id`);
 
 --
+-- Indexes for table `schedule_change_requests`
+--
+ALTER TABLE `schedule_change_requests`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `schedule_change_requests_schedule_id_foreign` (`schedule_id`),
+  ADD KEY `schedule_change_requests_instructor_id_foreign` (`instructor_id`),
+  ADD KEY `schedule_change_requests_substitute_instructor_id_foreign` (`substitute_instructor_id`),
+  ADD KEY `schedule_change_requests_reviewed_by_foreign` (`reviewed_by`);
+
+--
 -- Indexes for table `services`
 --
 ALTER TABLE `services`
@@ -2492,6 +2681,16 @@ ALTER TABLE `sliders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student_attendance`
+--
+ALTER TABLE `student_attendance`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `student_attendance_student_id_schedule_id_unique` (`student_id`,`schedule_id`),
+  ADD KEY `student_attendance_schedule_id_foreign` (`schedule_id`),
+  ADD KEY `student_attendance_course_id_foreign` (`course_id`),
+  ADD KEY `student_attendance_marked_by_foreign` (`marked_by`);
+
+--
 -- Indexes for table `student_instructor_distributions`
 --
 ALTER TABLE `student_instructor_distributions`
@@ -2500,6 +2699,15 @@ ALTER TABLE `student_instructor_distributions`
   ADD KEY `student_instructor_distributions_student_id_foreign` (`student_id`),
   ADD KEY `student_instructor_distributions_instructor_id_foreign` (`instructor_id`),
   ADD KEY `student_instructor_distributions_course_id_foreign` (`course_id`);
+
+--
+-- Indexes for table `student_progress`
+--
+ALTER TABLE `student_progress`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `student_progress_student_id_course_id_topic_id_type_unique` (`student_id`,`course_id`,`topic_id`,`type`),
+  ADD KEY `student_progress_course_id_foreign` (`course_id`),
+  ADD KEY `student_progress_topic_id_foreign` (`topic_id`);
 
 --
 -- Indexes for table `subscriptions`
@@ -2561,6 +2769,18 @@ ALTER TABLE `about_company`
 --
 ALTER TABLE `achievements`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `announcement_reads`
+--
+ALTER TABLE `announcement_reads`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `campaigns`
@@ -2674,7 +2894,7 @@ ALTER TABLE `marketers`
 -- AUTO_INCREMENT for table `medicals`
 --
 ALTER TABLE `medicals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `members`
@@ -2686,13 +2906,13 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -2740,7 +2960,13 @@ ALTER TABLE `role_permission`
 -- AUTO_INCREMENT for table `role_user`
 --
 ALTER TABLE `role_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `schedule_change_requests`
+--
+ALTER TABLE `schedule_change_requests`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `services`
@@ -2761,16 +2987,28 @@ ALTER TABLE `sliders`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `student_attendance`
+--
+ALTER TABLE `student_attendance`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `student_instructor_distributions`
 --
 ALTER TABLE `student_instructor_distributions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `student_progress`
+--
+ALTER TABLE `student_progress`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
@@ -2788,7 +3026,7 @@ ALTER TABLE `training_objectives`
 -- AUTO_INCREMENT for table `training_schedules`
 --
 ALTER TABLE `training_schedules`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `transactions`
@@ -2800,17 +3038,33 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD CONSTRAINT `announcements_batch_id_foreign` FOREIGN KEY (`batch_id`) REFERENCES `enrolment_batches` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `announcements_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `training_objectives` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `announcements_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `announcement_reads`
+--
+ALTER TABLE `announcement_reads`
+  ADD CONSTRAINT `announcement_reads_announcement_id_foreign` FOREIGN KEY (`announcement_id`) REFERENCES `announcements` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `announcement_reads_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `course_materials`
 --
 ALTER TABLE `course_materials`
-  ADD CONSTRAINT `course_materials_objective_id_foreign` FOREIGN KEY (`objective_id`) REFERENCES `training_objectives` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `course_materials_objective_id_foreign` FOREIGN KEY (`objective_id`) REFERENCES `training_objectives` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `course_materials_uploaded_by_foreign` FOREIGN KEY (`uploaded_by`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `curriculum`
@@ -2866,6 +3120,24 @@ ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `schedule_change_requests`
+--
+ALTER TABLE `schedule_change_requests`
+  ADD CONSTRAINT `schedule_change_requests_instructor_id_foreign` FOREIGN KEY (`instructor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `schedule_change_requests_reviewed_by_foreign` FOREIGN KEY (`reviewed_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `schedule_change_requests_schedule_id_foreign` FOREIGN KEY (`schedule_id`) REFERENCES `training_schedules` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `schedule_change_requests_substitute_instructor_id_foreign` FOREIGN KEY (`substitute_instructor_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `student_attendance`
+--
+ALTER TABLE `student_attendance`
+  ADD CONSTRAINT `student_attendance_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `training_objectives` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `student_attendance_marked_by_foreign` FOREIGN KEY (`marked_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `student_attendance_schedule_id_foreign` FOREIGN KEY (`schedule_id`) REFERENCES `training_schedules` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `student_attendance_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `student_instructor_distributions`
 --
 ALTER TABLE `student_instructor_distributions`
@@ -2873,6 +3145,14 @@ ALTER TABLE `student_instructor_distributions`
   ADD CONSTRAINT `student_instructor_distributions_enrolment_batch_id_foreign` FOREIGN KEY (`enrolment_batch_id`) REFERENCES `enrolment_batches` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `student_instructor_distributions_instructor_id_foreign` FOREIGN KEY (`instructor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `student_instructor_distributions_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `student_progress`
+--
+ALTER TABLE `student_progress`
+  ADD CONSTRAINT `student_progress_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `training_objectives` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `student_progress_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `student_progress_topic_id_foreign` FOREIGN KEY (`topic_id`) REFERENCES `curriculum` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `subscriptions`
