@@ -1,4 +1,6 @@
-{{-- resources/views/student/schedule.blade.php --}}
+@php
+use Carbon\Carbon;
+@endphp
 <x-app-layout>
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
@@ -134,6 +136,7 @@
                 @else
                     @foreach($groupedSchedules as $date => $daySchedules)
                         @php
+                            $date = Carbon::parse($date)->format('Y-m-d');
                             $carbonDate = Carbon::parse($date);
                             $isToday = $carbonDate->isToday();
                             $isPast = $carbonDate->isPast() && !$isToday;

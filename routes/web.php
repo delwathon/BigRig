@@ -34,6 +34,12 @@ use App\Http\Controllers\StudentAttendanceController;
 use App\Http\Controllers\StudentAssignmentController;
 use App\Http\Controllers\StudentAnnouncementController;
 
+use \App\Http\Controllers\Instructor\InstructorDashboardController;
+use \App\Http\Controllers\Instructor\StudentManagementController;
+use \App\Http\Controllers\Instructor\AttendanceController;
+use \App\Http\Controllers\Instructor\MaterialController;
+use \App\Http\Controllers\Instructor\AnnouncementController;
+use \App\Http\Controllers\Instructor\ScheduleController;
 
 use App\Models\Settings;
 use App\Livewire\ForumList;
@@ -180,6 +186,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/forum/single/{postId}', ForumPostPage::class)->name('forum.post');
 
     // Student Routes
+    // Dashboard
     Route::get('/student-dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
     // Courses
     Route::get('/student-courses', [StudentCourseController::class, 'index'])->name('student.courses');
@@ -204,6 +211,50 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/student-announcements', [StudentAnnouncementController::class, 'index'])->name('student.announcements');
     Route::get('/student-announcement/{id}', [StudentAnnouncementController::class, 'show'])->name('student.announcement.show');
 
+
+
+
+
+    // Instructor Routes
+    // Dashboard
+    Route::get('/instructor-dashboard', [InstructorDashboardController::class, 'index'])->name('instructor.dashboard');
+
+    // Students Management
+    Route::get('/instructor-students', [StudentManagementController::class, 'index'])->name('instructor.students');
+    Route::get('/instructor-students/course/{courseId}', [StudentManagementController::class, 'byCourse'])->name('instructor.course.students');
+    Route::get('/student/{id}', [StudentManagementController::class, 'show'])->name('instructor.student.show');
+
+    // Attendance
+    Route::get('/instructor-attendance', [AttendanceController::class, 'index'])->name('instructor.attendance');
+    Route::get('/instructor-attendance/mark/{scheduleId}', [AttendanceController::class, 'mark'])->name('instructor.attendance.mark');
+    Route::post('/instructor-attendance/save', [AttendanceController::class, 'save'])->name('instructor.attendance.save');
+    Route::get('/instructor-attendance/report', [AttendanceController::class, 'report'])->name('instructor.attendance.report');
+    Route::get('/instructor-attendance/edit/{scheduleId}', [AttendanceController::class, 'edit'])->name('instructor.attendance.edit');
+
+    // Materials
+    Route::get('/instructor-materials', [MaterialController::class, 'index'])->name('instructor.materials');
+    Route::post('/instructor-materials/upload', [MaterialController::class, 'upload'])->name('instructor.materials.upload');
+    Route::delete('/instructor-materials/{id}', [MaterialController::class, 'destroy'])->name('instructor.materials.destroy');
+    Route::get('/instructor-materials/course/{courseId}', [MaterialController::class, 'byCourse'])->name('instructors.materials.course');
+    Route::get('/instructor-materials/download/{id}', [MaterialController::class, 'download'])->name('instructors.materials.download');
+
+    // Announcements
+    Route::get('/instructor-announcements', [AnnouncementController::class, 'index'])->name('instructor.announcements');
+    Route::get('/instructor-announcements/create', [AnnouncementController::class, 'create'])->name('instructor.announcements.create');
+    Route::post('/instructor-announcements', [AnnouncementController::class, 'store'])->name('instructor.announcements.store');
+    Route::get('/instructor-announcements/{id}', [AnnouncementController::class, 'show'])->name('instructor.announcements.show');
+    Route::get('/instructor-announcements/{id}/edit', [AnnouncementController::class, 'edit'])->name('instructor.announcements.edit');
+    Route::put('/instructor-announcements/{id}', [AnnouncementController::class, 'update'])->name('instructor.announcements.update');
+    Route::delete('/instructor-announcements/{id}', [AnnouncementController::class, 'destroy'])->name('instructor.announcements.destroy');
+    Route::patch('/instructor-announcements/{id}/toggle', [AnnouncementController::class, 'toggle'])->name('instructor.announcements.toggle');
+
+    // Schedule
+    Route::get('/instructor-schedule', [ScheduleController::class, 'index'])->name('instructor.schedule');
+    Route::get('/instructor-schedule/calendar', [ScheduleController::class, 'calendar'])->name('instructor.schedule.calendar');
+    Route::get('/instructor-schedule/export', [ScheduleController::class, 'export'])->name('instructor.schedule.export');
+    Route::get('/instructor-schedule/{id}', [ScheduleController::class, 'show'])->name('instructor.schedule.show');
+    Route::match(['get', 'post'], '/instructor-schedule/{id}/request-change', [ScheduleController::class, 'requestChange'])->name('instructor.schedule.request-change');
+    Route::get('/instructor-schedule-change-requests', [ScheduleController::class, 'changeRequests'])->name('instructor.schedule.change-requests');
 
 
 

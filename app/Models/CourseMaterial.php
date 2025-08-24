@@ -42,4 +42,23 @@ class CourseMaterial extends Model
     {
         return $this->belongsTo(User::class, 'uploaded_by');
     }
+
+    /**
+     * Get the uploader's name
+     */
+    public function getUploaderNameAttribute()
+    {
+        if ($this->uploadedBy) {
+            return $this->uploadedBy->firstName . ' ' . $this->uploadedBy->lastName;
+        }
+        return 'Unknown';
+    }
+
+    /**
+     * Check if file exists
+     */
+    public function fileExists()
+    {
+        return \Storage::disk('public')->exists($this->file_url);
+    }
 }

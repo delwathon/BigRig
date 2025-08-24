@@ -48,7 +48,8 @@ class StudentProgressController extends Controller
 
                 $totalSchedules = $allSchedules->count();
                 $completedSchedules = $allSchedules->filter(function($schedule) {
-                    return Carbon::parse($schedule->schedule_date . ' ' . $schedule->time_stop)->isPast();
+                    $schedule_date = Carbon::parse($schedule->schedule_date)->format('Y-m-d');
+                    return Carbon::parse($schedule_date . ' ' . $schedule->time_stop)->isPast();
                 })->count();
             }
 
@@ -85,11 +86,13 @@ class StudentProgressController extends Controller
                 ->get();
 
             $theoryCompleted = $theorySchedules->filter(function($schedule) {
-                return Carbon::parse($schedule->schedule_date . ' ' . $schedule->time_stop)->isPast();
+                $schedule_date = Carbon::parse($schedule->schedule_date)->format('Y-m-d');
+                return Carbon::parse($schedule_date . ' ' . $schedule->time_stop)->isPast();
             })->count();
 
             $practicalCompleted = $practicalSchedules->filter(function($schedule) {
-                return Carbon::parse($schedule->schedule_date . ' ' . $schedule->time_stop)->isPast();
+                $schedule_date = Carbon::parse($schedule->schedule_date)->format('Y-m-d');
+                return Carbon::parse($schedule_date . ' ' . $schedule->time_stop)->isPast();
             })->count();
 
             return [

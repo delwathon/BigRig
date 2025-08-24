@@ -280,6 +280,89 @@
                         </li>
                     </ul>
                 </div>
+
+            @elseif(Auth::user()->hasRole(['cmv instructor', 'admin']))
+                <!-- Instructor Navigation -->
+                <div class="space-y-3">
+                    <h3 class="text-xs uppercase text-gray-400 dark:text-gray-500 font-semibold pl-3">
+                        <span class="lg:hidden">Instructor</span>
+                        <span class="lg:block">Instructor Portal</span>
+                    </h3>
+                    <ul class="mt-3">
+                        <!-- Dashboard -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.dashboard') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.dashboard') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">Dashboard</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- My Students -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.students*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.students') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">My Students</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Attendance -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.attendance*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.attendance') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">Attendance</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Course Materials -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.materials*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.materials') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">Course Materials</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Schedule -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.schedule*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.schedule') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">My Schedule</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Announcements -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.announcements*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.announcements') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">Announcements</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             @else
                 <!-- Pages group -->
                 <div>
