@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Settings;
-use App\Models\EnrolmentBatches;
+use App\Models\EnrolmentBatch;
 use App\Models\EmailConfig;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
             view()->composer('*', function ($view) {
                 $view->with([
                     'settings' => Settings::first(),
-                    'activeBatch' => EnrolmentBatches::where('active_batch', true)->first(),
+                    'activeBatch' => EnrolmentBatch::where('active_batch', true)->first(),
                 ]);
             });
         }

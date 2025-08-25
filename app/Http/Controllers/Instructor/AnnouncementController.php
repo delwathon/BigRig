@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Announcement;
 use App\Models\TrainingObjective;
-use App\Models\EnrolmentBatches;
+use App\Models\EnrolmentBatch;
 use App\Models\StudentInstructorDistribution;
 use App\Models\AnnouncementRead;
 use Carbon\Carbon;
@@ -72,7 +72,7 @@ class AnnouncementController extends Controller
         $courses = TrainingObjective::whereIn('id', $assignedCourseIds)->get();
 
         // Get batches that have students under this instructor
-        $batches = EnrolmentBatches::whereIn('id',
+        $batches = EnrolmentBatch::whereIn('id',
             StudentInstructorDistribution::where('instructor_id', $instructor->id)
                 ->join('users', 'student_instructor_distributions.student_id', '=', 'users.id')
                 ->pluck('users.enrolment_batch_id')
@@ -176,7 +176,7 @@ class AnnouncementController extends Controller
 
         $courses = TrainingObjective::whereIn('id', $assignedCourseIds)->get();
 
-        $batches = EnrolmentBatches::whereIn('id',
+        $batches = EnrolmentBatch::whereIn('id',
             StudentInstructorDistribution::where('instructor_id', $instructor->id)
                 ->join('users', 'student_instructor_distributions.student_id', '=', 'users.id')
                 ->pluck('users.enrolment_batch_id')

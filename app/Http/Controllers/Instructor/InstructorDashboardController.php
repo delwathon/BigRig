@@ -10,7 +10,7 @@ use App\Models\TrainingSchedule;
 use App\Models\StudentAttendance;
 use App\Models\CourseMaterial;
 use App\Models\TrainingObjective;
-use App\Models\EnrolmentBatches;
+use App\Models\EnrolmentBatch;
 use App\Models\Curriculum;
 use Carbon\Carbon;
 use DB;

@@ -8,7 +8,7 @@ use App\Models\TrainingObjective;
 use App\Models\TrainingSchedule;
 use App\Models\Curriculum;
 use App\Models\User;
-use App\Models\EnrolmentBatches;
+use App\Models\EnrolmentBatch;
 use App\Models\RoleCourse;
 use App\Models\StudentInstructorDistribution;
 
@@ -36,7 +36,7 @@ class TrainingScheduleController extends Controller
             ->orderBy('firstName', 'asc')
             ->get();
 
-        $batches = EnrolmentBatches::orderBy('id', 'asc')->get();
+        $batches = EnrolmentBatch::orderBy('id', 'asc')->get();
 
         // Retrieve schedules with relationships
         $schedules = TrainingSchedule::with(['instructor', 'course', 'topic'])
@@ -56,14 +56,14 @@ class TrainingScheduleController extends Controller
             return $schedule;
         });
 
-        return view('pages/schedule/index', compact('objectives', 'instructors', 'students', 'schedules', 'batches'));  
+        return view('pages/schedule/index', compact('objectives', 'instructors', 'students', 'schedules', 'batches'));
     }
 
     public function getTopics($id)
     {
         // Fetch topics where objective_id matches the selected course ID
         $topics = Curriculum::where('objective_id', $id)->orderBy('id', 'asc')->get(['id', 'topic']);
-        
+
         // Return the topics as JSON
         return response()->json($topics);
     }
@@ -94,8 +94,8 @@ class TrainingScheduleController extends Controller
                         ->pluck('student_id');
 
         // Fetch students only if student IDs exist
-        $students = $studentIds->isNotEmpty() 
-            ? User::whereIn('id', $studentIds)->orderBy('id', 'asc')->get(['id', 'firstName', 'lastName']) 
+        $students = $studentIds->isNotEmpty()
+            ? User::whereIn('id', $studentIds)->orderBy('id', 'asc')->get(['id', 'firstName', 'lastName'])
             : collect(); // Return an empty collection if no students found
 
         return response()->json($students);
@@ -146,7 +146,7 @@ class TrainingScheduleController extends Controller
             })
             ->where('time_stop', '!=', $formattedTimeStart) // Exclude exact end-to-start matches
             ->where('time_start', '!=', $formattedTimeStop) // Exclude exact start-to-end matches
-            ->first(); 
+            ->first();
 
 
             if ($existingSchedule) {

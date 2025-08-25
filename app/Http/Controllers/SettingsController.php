@@ -15,10 +15,10 @@ use App\Models\Services;
 use App\Models\Clients;
 use App\Models\AboutCompany;
 use App\Models\Achievements;
-use App\Models\EnrolmentBatches;
+use App\Models\EnrolmentBatch;
 
 class SettingsController extends Controller
-{    
+{
     /**
      * siteInformationIndex
      *
@@ -27,9 +27,9 @@ class SettingsController extends Controller
     public function siteInformationIndex()
     {
         // $settings = Settings::first();
-        return view('pages/settings/site_information');  
+        return view('pages/settings/site_information');
     }
-    
+
     /**
      * siteInformationUpdate
      *
@@ -132,11 +132,11 @@ class SettingsController extends Controller
 
         return redirect()->back()->with('success', 'Settings updated successfully!');
     }
-    
+
     public function aboutCompanyIndex()
     {
         $about = AboutCompany::first();
-        return view('pages/settings/about', compact('about'));  
+        return view('pages/settings/about', compact('about'));
     }
 
     /**
@@ -244,7 +244,7 @@ class SettingsController extends Controller
             'image_url' => $filePath,
             'video_thumbnail_url' => $filePath2, // This will now be null if no file is uploaded
             'video_url' => $request->input('video_url'),
-        ]);            
+        ]);
 
         return redirect()->back()->with('success', 'Objective created successfully.');
     }
@@ -336,7 +336,7 @@ class SettingsController extends Controller
     public function faqsIndex()
     {
         $faqs = Faqs::orderBy('id', 'asc')->simplePaginate(8);
-        return view('pages/settings/faqs', compact('faqs'));  
+        return view('pages/settings/faqs', compact('faqs'));
     }
 
     public function faqsStore(Request $request)
@@ -349,7 +349,7 @@ class SettingsController extends Controller
         Faqs::create([
             'question' => $request->input('question'),
             'answer' => $request->input('answer'),
-        ]);            
+        ]);
 
         return redirect()->back()->with('success', 'Faq created successfully.');
     }
@@ -382,7 +382,7 @@ class SettingsController extends Controller
     {
         $sliders = Slider::orderBy('id', 'asc')->get();
         $sliders = Slider::simplePaginate(5);
-        return view('pages/settings/sliders', compact('sliders'));  
+        return view('pages/settings/sliders', compact('sliders'));
     }
 
     public function sliderStore(Request $request)
@@ -402,7 +402,7 @@ class SettingsController extends Controller
             'image_url_2.image' => 'Slider Picture 2: The uploaded file must be an image.',
             'image_url_2.mimes' => 'Slider Picture 2: Only JPG and PNG file types are allowed.',
             'image_url_2.max' => 'Slider Picture 2: The image size must not exceed 2 MB.',
-        ]);       
+        ]);
 
         // Handle image_url upload
         if ($request->hasFile('image_url')) {
@@ -421,7 +421,7 @@ class SettingsController extends Controller
             'button_url' => $request->input('button_url'),
             'image_url' => $filePath,
             'image_url_2' => $filePath_2,
-        ]);            
+        ]);
 
         return redirect()->back()->with('success', 'Slider created successfully.');
     }
@@ -489,7 +489,7 @@ class SettingsController extends Controller
         if ($filePath && Storage::disk('public')->exists($filePath)) {
             Storage::disk('public')->delete($filePath);
         }
-        
+
         if ($filePath_2 && Storage::disk('public')->exists($filePath_2)) {
             Storage::disk('public')->delete($filePath_2);
         }
@@ -499,7 +499,7 @@ class SettingsController extends Controller
     public function founderIndex()
     {
         $founder = Founder::first();
-        return view('pages/settings/founder', compact('founder'));  
+        return view('pages/settings/founder', compact('founder'));
     }
 
     public function founderUpdate(Request $request)
@@ -576,7 +576,7 @@ class SettingsController extends Controller
     {
         $services = Services::orderBy('id', 'asc')->get();
         $services = Services::simplePaginate(8);
-        return view('pages/settings/services', compact('services'));  
+        return view('pages/settings/services', compact('services'));
     }
 
     public function customServicesStore(Request $request)
@@ -596,7 +596,7 @@ class SettingsController extends Controller
             'service_name' => $request->input('service_name'),
             'service_description' => $request->input('service_description'),
             'service_picture' => $filePath,
-        ]);            
+        ]);
 
         return redirect()->back()->with('success', 'Custom service created successfully.');
     }
@@ -667,19 +667,19 @@ class SettingsController extends Controller
             'type' => 'required|string|in:client,partner',
             'client_logo' => 'required_if:type,client|nullable|image|mimes:jpg,png,jpeg|max:2048',
         ]);
-        
+
         $filePath = null;
-        
+
         if ($request->hasFile('client_logo')) {
             $filePath = $request->file('client_logo')->store('clients', 'public');
         }
-        
+
         Clients::create([
             'name' => $request->input('client_name'),
             'type' => $request->input('type'),
             'logo' => $filePath, // Will be null if no file is uploaded
         ]);
-                    
+
 
         return redirect()->back()->with('success', 'Custom service created successfully.');
     }
@@ -765,8 +765,8 @@ class SettingsController extends Controller
 
     public function enrolmentBatchIndex()
     {
-        $batches = EnrolmentBatches::orderBy('id', 'asc')->simplePaginate(8);
-        
+        $batches = EnrolmentBatch::orderBy('id', 'asc')->simplePaginate(8);
+
         return view('pages/settings/enrolment-batch', compact('batches'));
     }
 
@@ -776,21 +776,21 @@ class SettingsController extends Controller
             'batch_name' => 'required|string|max:255',
             'commencement_date' => 'required|date',
         ]);
-        
+
         $formattedDate = Carbon::createFromFormat('M d, Y', $request->input('commencement_date'))->format('Y-m-d');
 
-        EnrolmentBatches::create([
+        EnrolmentBatch::create([
             'batch_name' => $request->input('batch_name'),
             'c_date' => $formattedDate,
         ]);
-                    
+
 
         return redirect()->back()->with('success', 'Enrolment batch created successfully.');
     }
 
     public function enrolmentBatchDestroy($id)
     {
-        $enrolment_batch = EnrolmentBatches::findOrFail($id);
+        $enrolment_batch = EnrolmentBatch::findOrFail($id);
         $enrolment_batch->delete();
 
         return redirect()->back()->with('success', 'Enrolment batch deleted successfully.');
@@ -799,10 +799,10 @@ class SettingsController extends Controller
     public function setActiveBatch($id)
     {
         // Set all other rows to false first
-        EnrolmentBatches::where('active_batch', true)->update(['active_batch' => false]);
+        EnrolmentBatch::where('active_batch', true)->update(['active_batch' => false]);
 
         // Activate only the selected batch
-        $batch = EnrolmentBatches::findOrFail($id);
+        $batch = EnrolmentBatch::findOrFail($id);
         $batch->update(['active_batch' => true]);
 
         return redirect()->back()->with('success', 'Batch update successful!');
