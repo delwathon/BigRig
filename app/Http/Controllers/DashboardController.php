@@ -21,22 +21,17 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        // Check if user is a student and redirect to student dashboard
         if ($user->hasRole('student')) {
             return redirect()->route('student.dashboard');
-        } elseif ($user->hasRole('lead instructor')) {
-            return redirect()->route('instructor.dashboard');
-        } elseif ($user->hasRole('cmv instrucor')) {
-            return redirect()->route('instructor.dashboard');
-        } elseif ($user->hasRole('mv instrucor')) {
-            return redirect()->route('instructor.dashboard');
-        } elseif ($user->hasRole('forklift instructor')) {
-            return redirect()->route('instructor.dashboard');
-        } elseif ($user->hasRole('defensive driving instructor')) {
-            return redirect()->route('instructor.dashboard');
-        } elseif ($user->hasRole('safety and compliance instructor')) {
-            return redirect()->route('instructor.dashboard');
-        } elseif ($user->hasRole('hazmat instructor')) {
+        } elseif ($user->hasRole([
+            'lead instructor',
+            'cmv instructor',
+            'mv instructor',
+            'forklift instructor',
+            'defensive driving instructor',
+            'safety and compliance instructor',
+            'hazmat instructor'
+        ])) {
             return redirect()->route('instructor.dashboard');
         }
 
