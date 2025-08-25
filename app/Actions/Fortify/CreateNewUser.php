@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Medical;
 use App\Models\Subscription;
 use App\Models\TrainingObjective;
-use App\Models\EnrolmentBatches;
+use App\Models\EnrolmentBatch;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -76,7 +76,7 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        $activeBatch = EnrolmentBatches::where('active_batch', true)->first();
+        $activeBatch = EnrolmentBatch::where('active_batch', true)->first();
 
         // Create the user (without role_id)
         $user = User::create([

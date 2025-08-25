@@ -6,15 +6,18 @@ use App\Models\RoleCourse;
 
 class InstructorAssignmentService
 {
-    public function getEligibleInstructorRoles(): array
+    /**
+     * Get eligible instructor roles for a specific course
+     * @param int $courseId
+     * @return array
+     */
+    public function getEligibleInstructorRoles($courseId)
     {
-        $eligibleInstructor = RoleCourse::select('course_id as course', 'role_id')
-            ->get()
-            ->groupBy('course')
-            ->map(fn($roles) => $roles->pluck('role_id')->toArray())
+        // Get role IDs that can teach this specific course
+        $roleIds = RoleCourse::where('course_id', $courseId)
+            ->pluck('role_id')
             ->toArray();
-        
-        return $eligibleInstructor;
+
+        return $roleIds;
     }
 }
-

@@ -44,6 +44,7 @@
             {{-- Update the student navigation section --}}
 
             @if(Auth::user()->hasRole('student'))
+            
                 <!-- Student Navigation -->
                 <div class="space-y-3">
                     <h3 class="text-xs uppercase text-gray-400 dark:text-gray-500 font-semibold pl-3">
@@ -281,7 +282,8 @@
                     </ul>
                 </div>
 
-            @elseif(Auth::user()->hasRole(['cmv instructor', 'admin']))
+            @elseif(Auth::user()->hasRole(['lead instructor', 'cmv instructor', 'mv instructor', 'forklift instructor', 'defensive driving instructor', 'safety and compliance instructor', 'hazmat instructor']))
+
                 <!-- Instructor Navigation -->
                 <div class="space-y-3">
                     <h3 class="text-xs uppercase text-gray-400 dark:text-gray-500 font-semibold pl-3">
@@ -292,11 +294,15 @@
                         <!-- Dashboard -->
                         <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.dashboard') ? 'bg-gray-900' : '' }}">
                             <a href="{{ route('instructor.dashboard') }}" class="block text-gray-200 hover:text-white">
-                                <div class="flex items-center">
-                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
-                                        <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
-                                    </svg>
-                                    <span class="text-sm font-medium ml-4">Dashboard</span>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
+                                            <path d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z" />
+                                            <path d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z" />
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4">Dashboard</span>
+                                    </div>
                                 </div>
                             </a>
                         </li>
@@ -304,11 +310,47 @@
                         <!-- My Students -->
                         <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.students*') ? 'bg-gray-900' : '' }}">
                             <a href="{{ route('instructor.students') }}" class="block text-gray-200 hover:text-white">
-                                <div class="flex items-center">
-                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
-                                        <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                    </svg>
-                                    <span class="text-sm font-medium ml-4">My Students</span>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4">My Students</span>
+                                    </div>
+                                    {{-- Student Count Badge --}}
+                                    @php
+                                        $totalStudents = \App\Models\StudentInstructorDistribution::where('instructor_id', Auth::id())->count();
+                                    @endphp
+                                    @if($totalStudents > 0)
+                                        <span class="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-blue-500 rounded-full">
+                                            {{ $totalStudents > 99 ? '99+' : $totalStudents }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Schedule -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.schedule*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.schedule') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M8 1v2H3v18h18V3h-5V1h5a2 2 0 012 2v18a2 2 0 01-2 2H3a2 2 0 01-2-2V3a2 2 0 012-2h5zm0 5v2h8V6H8zm0 4v2h8v-2H8zm0 4v2h5v-2H8z"/>
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4">Schedule</span>
+                                    </div>
+                                    {{-- Today's Classes Badge --}}
+                                    @php
+                                        $todayClasses = \App\Models\TrainingSchedule::where('instructor_id', Auth::id())
+                                            ->whereDate('schedule_date', \Carbon\Carbon::today())
+                                            ->count();
+                                    @endphp
+                                    @if($todayClasses > 0)
+                                        <span class="inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium text-green-600 bg-green-100 rounded">
+                                            {{ $todayClasses }} today
+                                        </span>
+                                    @endif
                                 </div>
                             </a>
                         </li>
@@ -337,28 +379,194 @@
                             </a>
                         </li>
 
-                        <!-- Schedule -->
-                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.schedule*') ? 'bg-gray-900' : '' }}">
-                            <a href="{{ route('instructor.schedule') }}" class="block text-gray-200 hover:text-white">
-                                <div class="flex items-center">
-                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
-                                        <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                    </svg>
-                                    <span class="text-sm font-medium ml-4">My Schedule</span>
+                        <!-- Announcements -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.announcements*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.announcements') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4">Announcements</span>
+                                    </div>
+                                    {{-- Unread Announcements Badge --}}
+                                    @php
+                                        $unreadAnnouncements = \App\Models\Announcement::where('is_active', true)
+                                            ->where('created_at', '>', Auth::user()->last_login_at ?? Auth::user()->created_at)
+                                            ->count();
+                                    @endphp
+                                    @if($unreadAnnouncements > 0)
+                                        <span class="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">
+                                            {{ $unreadAnnouncements > 99 ? '99+' : $unreadAnnouncements }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Communication Section -->
+                <div class="space-y-3 mt-8">
+                    <h3 class="text-xs uppercase text-gray-400 dark:text-gray-500 font-semibold pl-3">
+                        <span class="lg:hidden">Comm</span>
+                        <span class="lg:block">Communication</span>
+                    </h3>
+                    <ul class="mt-3">
+                        <!-- Messages/Chat -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('chats*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('chats') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4">Messages</span>
+                                    </div>
+                                    {{-- Unread Messages Badge --}}
+                                    @php
+                                        $unreadMessages = \App\Models\Message::where('receiver_id', Auth::id())
+                                            ->where('is_read', false)
+                                            ->count();
+                                    @endphp
+                                    @if($unreadMessages > 0)
+                                        <span class="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-purple-500 rounded-full">
+                                            {{ $unreadMessages > 99 ? '99+' : $unreadMessages }}
+                                        </span>
+                                    @endif
                                 </div>
                             </a>
                         </li>
 
-                        <!-- Announcements -->
-                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('instructor.announcements*') ? 'bg-gray-900' : '' }}">
-                            <a href="{{ route('instructor.announcements') }}" class="block text-gray-200 hover:text-white">
-                                <div class="flex items-center">
-                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
-                                        <path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6"/>
-                                    </svg>
-                                    <span class="text-sm font-medium ml-4">Announcements</span>
+                        <!-- Forum -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('forum*') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('forum.list') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4">Discussion Forum</span>
+                                    </div>
+                                    {{-- New Posts Badge --}}
+                                    @php
+                                        $lastVisit = session('forum_last_visit', now()->subDay());
+                                        $newPosts = \App\Models\ForumPost::where('created_at', '>', $lastVisit)->count();
+                                    @endphp
+                                    @if($newPosts > 0)
+                                        <span class="inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium text-orange-600 bg-orange-100 rounded">
+                                            {{ $newPosts }} new
+                                        </span>
+                                    @endif
                                 </div>
                             </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Reports Section -->
+                <div class="space-y-3 mt-8">
+                    <h3 class="text-xs uppercase text-gray-400 dark:text-gray-500 font-semibold pl-3">
+                        <span class="lg:hidden">Reports</span>
+                        <span class="lg:block">Reports & Analytics</span>
+                    </h3>
+                    <ul class="mt-3">
+                        <!-- Attendance Report -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->is('instructor/attendance/report') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.attendance.report') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M9 17v1a1 1 0 001 1h4a1 1 0 001-1v-1m3-2V8a2 2 0 00-2-2H8a2 2 0 00-2 2v7m3-2h6"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">Attendance Report</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Student Progress -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5">
+                            <a href="javascript:void(0)" class="block text-gray-200 hover:text-white opacity-50 cursor-not-allowed">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">Student Progress</span>
+                                    <span class="ml-2 text-xs text-gray-500">(Coming Soon)</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Change Requests -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->is('instructor/schedule-change-requests') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('instructor.schedule.change-requests') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4">Change Requests</span>
+                                    </div>
+                                    {{-- Pending Requests Badge --}}
+                                    @php
+                                        $pendingRequests = \App\Models\ScheduleChangeRequest::where('instructor_id', Auth::id())
+                                            ->where('status', 'pending')
+                                            ->count();
+                                    @endphp
+                                    @if($pendingRequests > 0)
+                                        <span class="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-yellow-500 rounded-full">
+                                            {{ $pendingRequests }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="space-y-3 mt-8">
+                    <h3 class="text-xs uppercase text-gray-400 dark:text-gray-500 font-semibold pl-3">
+                        <span class="lg:hidden">Settings</span>
+                        <span class="lg:block">Account Settings</span>
+                    </h3>
+                    <ul class="mt-3">
+                        <!-- Profile -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 {{ request()->routeIs('profile.show') ? 'bg-gray-900' : '' }}">
+                            <a href="{{ route('profile.show') }}" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">My Profile</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Help Center -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5">
+                            <a href="#" class="block text-gray-200 hover:text-white">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4">Help Center</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <!-- Logout -->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="block w-full text-left text-gray-200 hover:text-white">
+                                    <div class="flex items-center">
+                                        <svg class="shrink-0 fill-current" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                        </svg>
+                                        <span class="text-sm font-medium ml-4">Logout</span>
+                                    </div>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>

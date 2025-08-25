@@ -21,30 +21,25 @@ class MaterialController extends Controller
         $instructor = Auth::user();
 
         // Get courses assigned to this instructor
-        $assignedCourseIds = StudentInstructorDistribution::where('instructor_id', $instructor->id)
-            ->pluck('course_id')
+        $assignedCourseIds = StudentInstructorDistribution::pluck('course_id')
             ->unique();
 
         $courses = TrainingObjective::whereIn('id', $assignedCourseIds)->get();
 
         // Get materials uploaded by this instructor
-        $materials = CourseMaterial::where('uploaded_by', $instructor->id)
-            ->with('objective')
+        $materials = CourseMaterial::with('objective')
             ->orderBy('created_at', 'desc')
             ->paginate(20);
 
         // Get materials statistics
         $stats = [
-            'total_materials' => CourseMaterial::where('uploaded_by', $instructor->id)->count(),
+            'total_materials' => CourseMaterial::count(),
             'total_size' => $this->formatFileSize(
-                CourseMaterial::where('uploaded_by', $instructor->id)
-                    ->sum(\DB::raw("CAST(REPLACE(REPLACE(file_size, 'MB', ''), 'KB', '') AS DECIMAL(10,2))"))
+                CourseMaterial::sum(\DB::raw("CAST(REPLACE(REPLACE(file_size, 'MB', ''), 'KB', '') AS DECIMAL(10,2))"))
             ),
-            'courses_with_materials' => CourseMaterial::where('uploaded_by', $instructor->id)
-                ->distinct('objective_id')
+            'courses_with_materials' => CourseMaterial::distinct('objective_id')
                 ->count('objective_id'),
-            'recent_uploads' => CourseMaterial::where('uploaded_by', $instructor->id)
-                ->where('created_at', '>=', now()->subDays(7))
+            'recent_uploads' => CourseMaterial::where('created_at', '>=', now()->subDays(7))
                 ->count(),
         ];
 
@@ -171,16 +166,48 @@ class MaterialController extends Controller
     /**
      * Download material (for instructor preview)
      */
+    // public function download($id)
+    // {
+    //     $material = CourseMaterial::findOrFail($id);
+    //     $filePath = storage_path('app/public/' . $material->file_url);
+
+    //     if (file_exists($filePath)) {
+    //         return response()->download($filePath, $material->file_name);
+    //     }
+
+    //     return redirect()->back()->with('error', 'File not found.');
+    // }
+
+    /**
+     * Download a material file
+     */
     public function download($id)
     {
-        $material = CourseMaterial::findOrFail($id);
-        $filePath = storage_path('app/public/' . $material->file_url);
+        $instructor = Auth::user();
 
-        if (file_exists($filePath)) {
-            return response()->download($filePath, $material->file_name);
+        // Get the material
+        $material = CourseMaterial::findOrFail($id);
+
+        // Verify instructor has access to this material's course
+        $hasAccess = StudentInstructorDistribution::where('instructor_id', $instructor->id)
+            ->where('course_id', $material->objective_id)
+            ->exists();
+
+        // Also check if instructor uploaded it
+        if (!$hasAccess && $material->uploaded_by != $instructor->id) {
+            abort(403, 'You do not have permission to download this material.');
         }
 
-        return redirect()->back()->with('error', 'File not found.');
+        // Build file path
+        $filePath = storage_path('app/public/' . $material->file_url);
+
+        // Check if file exists
+        if (!file_exists($filePath)) {
+            return redirect()->back()->with('error', 'File not found.');
+        }
+
+        // Return file download
+        return response()->download($filePath, $material->file_name);
     }
 
     /**

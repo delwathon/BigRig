@@ -29,7 +29,7 @@ class TrainingSchedule extends Model
     // Relationships
     public function batch()
     {
-        return $this->belongsTo(EnrolmentBatches::class, 'batch_id');
+        return $this->belongsTo(EnrolmentBatch::class, 'batch_id');
     }
 
     public function course()

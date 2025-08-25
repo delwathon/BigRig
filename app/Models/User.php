@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\ForumPost;
 use App\Models\ForumComment;
-use App\Models\EnrolmentBatches;
+use App\Models\EnrolmentBatch;
 
 class User extends Authenticatable
 {
@@ -137,6 +137,32 @@ class User extends Authenticatable
 
     public function enrolmentBatch()
     {
-        return $this->belongsTo(EnrolmentBatches::class, 'enrolment_batch_id');
+        return $this->belongsTo(EnrolmentBatch::class, 'enrolment_batch_id');
+    }
+
+    /**
+     * Check if user is a teaching instructor (not admin/management)
+     */
+    public function isTeachingInstructor()
+    {
+        $teachingRoles = [5, 6, 7, 8, 9]; // MV, CMV, Forklift, Defensive, Safety instructors
+        return $this->roles()->whereIn('roles.id', $teachingRoles)->exists();
+    }
+
+    /**
+     * Check if user has administrative role
+     */
+    public function isAdministrative()
+    {
+        $adminRoles = [1, 2, 3, 4]; // SuperAdmin, IT Consultant, Admin, Lead Instructor
+        return $this->roles()->whereIn('roles.id', $adminRoles)->exists();
+    }
+
+    /**
+     * Instructor distributions relationship
+     */
+    public function instructorDistributions()
+    {
+        return $this->hasMany(StudentInstructorDistribution::class, 'instructor_id');
     }
 }
