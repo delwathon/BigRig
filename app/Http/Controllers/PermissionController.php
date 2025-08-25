@@ -66,11 +66,14 @@ class PermissionController extends Controller
                     'name' => "{$action}_{$permissionName}",
                 ]);
         
-                // Assign the permission to role ID 1
-                RolePermission::create([
-                    'role_id' => 1, // Assuming role ID 1
-                    'permission_id' => $permission->id,
-                ]);
+                $roleIds = [1, 2]; // Add more role IDs here if needed
+
+                foreach ($roleIds as $roleId) {
+                    RolePermission::create([
+                        'role_id' => $roleId,
+                        'permission_id' => $permission->id,
+                    ]);
+                }
             }
         }
 

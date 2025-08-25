@@ -37,5 +37,6 @@ class Settings extends Model
         'show_telegram_support',
         'show_preloader',
         'preferred_landing_page',
+        'base_currency',
     ];
 }

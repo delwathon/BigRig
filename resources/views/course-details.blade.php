@@ -46,7 +46,7 @@
                                     $priceParts = explode('.', number_format($course->price, 2, '.', ''));
                                 @endphp
 
-                                <h2>{{ $priceParts[0] }}<sup>.{{ $priceParts[1] }}</sup><span>₦</span></h2>
+                                <h2>{{ $priceParts[0] }}<sup>.{{ $priceParts[1] }}</sup><span>{{ $settings->base_currency }}</span></h2>
 
                                 <h5>Per Person</h5>
                             </div>

@@ -16,27 +16,16 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            DashboardTableSeeder::class,
-            AnalyticsTableSeeder::class,
-            FintechTableSeeder::class,
-            CustomerSeeder::class,
-            OrderSeeder::class,
-            InvoiceSeeder::class,
-            MemberSeeder::class,
-            TransactionSeeder::class,
-            JobSeeder::class,
-            CampaignSeeder::class,
-            MarketerSeeder::class,
-            CampaignMarketerSeeder::class,
-            TrainingObjectiveSeeder::class,
             SettingsSeeder::class,
-            FaqsSeeder::class,
+            AboutCompanySeeder::class,
             FounderSeeder::class,
+            RolesAndPermissionsSeeder::class,
+            UserSeeder::class,
+            FaqsSeeder::class,
             ServicesSeeder::class,
             ClientsSeeder::class,
             AchievementsSeeder::class,
-            RolesAndPermissionsSeeder::class,
-            UserSeeder::class,
+            PaymentGatewayConfigSeeder::class,
         ]);
     }
 }

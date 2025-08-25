@@ -46,7 +46,7 @@
                                     </div>
                                     <!-- Price -->
                                     <div class="text-gray-800 dark:text-gray-100 font-bold mb-4">
-                                        <span class="text-2xl">₦</span>
+                                        <span class="text-2xl">{{ $settings->base_currency }}</span>
                                         <span class="text-3xl" 
                                             x-text="annual ? '{{ number_format($objective->price, 2) }}' : '{{ number_format($objective->price + ($objective->price * 0.1)) }}'">
                                             {{ number_format($objective->price, 2) }}

@@ -46,7 +46,12 @@ class ManageRolePermissions extends Component
             ];
         }
 
-        $this->permissions = array_values($groupedPermissions);
+        // Sort grouped permissions by 'name' (entity name)
+        usort($groupedPermissions, function ($a, $b) {
+            return strcmp($a['name'], $b['name']);
+        });
+
+        $this->permissions = $groupedPermissions;
     }
 
     public function render()
@@ -58,4 +63,3 @@ class ManageRolePermissions extends Component
         ]);
     }
 }
-

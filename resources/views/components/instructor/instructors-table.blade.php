@@ -1,6 +1,6 @@
 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-xl">
     <header class="px-5 py-4">
-        <h2 class="font-semibold text-gray-800 dark:text-gray-100">All Instructors <span class="text-gray-400 dark:text-gray-500 font-medium">{{ $count }}</span></h2>
+        <h2 class="font-semibold text-gray-800 dark:text-gray-100">All Instructors</h2>
     </header>
 
     <div x-data="handleSelect">
@@ -36,7 +36,7 @@
                                 <div class="font-semibold text-left">Website Visibility</div>
                             </th>
                         @endif
-                        @if (Auth::user()->hasPermission('update_instructors') || Auth::user()->hasPermission('delete_instructors'))
+                        @if (Auth::user()->hasPermission('update_instructors') || Auth::user()->hasPermission('delete_instructors') || Auth::user()->hasPermission('update_suspend_user_account'))
                             <th class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                 <span class="font-semibold text-left">Actions</span>
                             </th>
@@ -69,7 +69,9 @@
                                 <div class="text-left">{{ $instructor->email }}</div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                                <div class="text-left">{{ $instructor->role->role_name ?? 'No Role' }}</div>
+                                <div class="text-left">
+                                    {{ $instructor->roles->pluck('role_name')->implode(', ') ?: 'No Role' }}
+                                </div>
                             </td>
                             <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                                 <div class="text-left">{{ $instructor->mobileNumber }}</div>
@@ -80,7 +82,7 @@
                                     @livewire('website-visibility', ['user' => $instructor])
                                 </td>                            
                             @endif
-                            @if (Auth::user()->hasPermission('update_instructors') || Auth::user()->hasPermission('delete_instructors'))
+                            @if (Auth::user()->hasPermission('update_instructors') || Auth::user()->hasPermission('delete_instructors') || Auth::user()->hasPermission('update_suspend_user_account'))
                                 <td class="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
                                     <div class="relative inline-flex" x-data="{ open: false }">
                                         <button
@@ -111,26 +113,32 @@
                                             x-cloak                
                                         >
                                             <ul>
-                                                <li>
-                                                    <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="{{ route('users') }}" @click="open = false" @focus="open = true" @focusout="open = false">View</a>
-                                                </li>
+                                                @if (Auth::user()->hasPermission('read_instructors'))
+                                                    <li>
+                                                        <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">View</a>
+                                                    </li>
+                                                @endif
+                                                @if (Auth::user()->hasPermission('update_instructors'))
                                                 <li>
                                                     <a class="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" href="javascript:void(0)" @click="open = false" @focus="open = true" @focusout="open = false">Edit</a>
                                                 </li>
-                                                @php
-                                                    $userVisibility = $instructor->user_active;
-                                                @endphp
+                                                @endif
+                                                @if (Auth::user()->hasPermission('update_suspend_user_account'))
+                                                    @php
+                                                        $userVisibility = $instructor->user_active;
+                                                    @endphp
 
-                                                <li>
-                                                    <a 
-                                                        class="font-medium text-sm flex py-1 px-3" 
-                                                        :class="{{ $userVisibility }} ? 'text-red-500 hover:text-red-600' : 'text-green-500 hover:text-green-600'"
-                                                        href="javascript:void(0)" 
-                                                        @click="$store.deactivateModal.open({ id: {{ $instructor->id }}, user_active: {{ $userVisibility }} })"
-                                                        aria-controls="delete-modal">
-                                                        {{ $userVisibility ? 'Deactivate Account' : 'Activate Account' }}
-                                                    </a>
-                                                </li>
+                                                    <li>
+                                                        <a 
+                                                            class="font-medium text-sm flex py-1 px-3" 
+                                                            :class="{{ $userVisibility }} ? 'text-red-500 hover:text-red-600' : 'text-green-500 hover:text-green-600'"
+                                                            href="javascript:void(0)" 
+                                                            @click="$store.deactivateModal.open({ id: {{ $instructor->id }}, user_active: {{ $userVisibility }} })"
+                                                            aria-controls="delete-modal">
+                                                            {{ $userVisibility ? 'Suspend Account' : 'Activate Account' }}
+                                                        </a>
+                                                    </li>
+                                                @endif
                                             </ul>
                                         </div>
                                     </div>
@@ -147,4 +155,4 @@
 </div>
 
 <!-- Deactivate Instructor Account Modal -->
-@include('components.modals.deactivate-instructor-modal')
+@include('components.modals.deactivate-user-modal')

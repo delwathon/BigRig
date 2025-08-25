@@ -21,6 +21,25 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
+        // Check if user is a student and redirect to student dashboard
+        if ($user->hasRole('student')) {
+            return redirect()->route('student.dashboard');
+        } elseif ($user->hasRole('lead instructor')) {
+            return redirect()->route('instructor.dashboard');
+        } elseif ($user->hasRole('cmv instrucor')) {
+            return redirect()->route('instructor.dashboard');
+        } elseif ($user->hasRole('mv instrucor')) {
+            return redirect()->route('instructor.dashboard');
+        } elseif ($user->hasRole('forklift instructor')) {
+            return redirect()->route('instructor.dashboard');
+        } elseif ($user->hasRole('defensive driving instructor')) {
+            return redirect()->route('instructor.dashboard');
+        } elseif ($user->hasRole('safety and compliance instructor')) {
+            return redirect()->route('instructor.dashboard');
+        } elseif ($user->hasRole('hazmat instructor')) {
+            return redirect()->route('instructor.dashboard');
+        }
+
         // Check subscription payment status
         $subscription = Subscription::where('user_id', $user->id)->first();
 
@@ -33,13 +52,17 @@ class DashboardController extends Controller
 
         // Get the number of active users
         $activeStudents = User::where('user_active', 1)
-            ->where('role_id', 10)
-            ->count();
-        
+        ->whereHas('roles', function ($query) {
+            $query->where('roles.id', 10);
+        })
+        ->count();
+
         // Get the number of active users
         $instructors = User::where('user_active', 1)
-            ->where('role_id', '!=', 10)
-            ->count();
+        ->whereHas('roles', function ($query) {
+            $query->where('roles.id', '!=', 10);
+        })
+        ->count();
 
         // Get the number of users created today
         $today = Carbon::today();
@@ -54,7 +77,7 @@ class DashboardController extends Controller
         if ($studentsYesterday > 0) {
             $studentPI = (($studentsToday - $studentsYesterday) / $studentsYesterday) * 100;
         }
-        
+
         // Get all revenue
         $revenue = Subscription::where('payment_status', 'completed')
             ->sum('total_amount');
@@ -77,7 +100,14 @@ class DashboardController extends Controller
 
         $schedules = TrainingSchedule::with(['instructor', 'course', 'topic'])->orderBy('schedule_date', 'asc')->paginate(10);
 
-        $subscriptions = Subscription::with('user')->whereDate('updated_at', $today)->orderBy('updated_at', 'desc')->get();
+        $subscriptions = Subscription::with('user')
+            ->when($user->roles->contains('id', 10), function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->where('payment_status', 'completed')
+            ->take(10)
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         return view('pages/dashboard/dashboard', compact('instructors', 'activeStudents', 'studentPI', 'revenue', 'revenuePI', 'schedules', 'subscriptions'));
     }

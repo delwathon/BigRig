@@ -1,5 +1,6 @@
 <div class="space-y-8">
     <!-- Alert -->
+     @if (Auth::user()->hasPermission('create_training_schedule'))
     <div class="relative bg-[linear-gradient(135deg,var(--tw-gradient-stops))] from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04] rounded-lg p-5">
         <div class="relative">
             <div class="text-sm font-medium text-gray-800 dark:text-violet-200 mb-2">Assign Training Schedule</div>
@@ -63,14 +64,20 @@
             </form>
         </div>
     </div>
-      
+    @endif
 
+    @if (Auth::user()->hasPermission('read_training_schedule'))
     <!-- White box -->
     <div class="bg-white dark:bg-gray-800 shadow-sm rounded-xl p-5 min-w-60">
         <div class="grid md:grid-cols-1 xl:grid-cols-1 gap-6">
             <!-- Group 1 -->
             <div>
-                <h2 class="text-gray-800 dark:text-gray-100 font-semibold mb-2 border-b border-gray-200 dark:border-gray-700/60 pb-2">Scheduled Classes</h2>
+                <h2 class="text-gray-800 dark:text-gray-100 font-semibold mb-2 border-b border-gray-200 dark:border-gray-700/60 pb-2">
+                    Scheduled Classes
+                    @if(Auth::user()->hasRole('student'))
+                        For You
+                    @endif
+                </h2>
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
                     <!-- Table -->
                     <div class="overflow-x-auto">
@@ -96,9 +103,11 @@
                                     <th class="p-2">
                                         <div class="font-semibold text-left">Assigned Students</div>
                                     </th>
+                                    @if (Auth::user()->hasPermission('delete_training_schedule'))
                                     <th class="p-2">
                                         <div class="font-semibold text-center">Action</div>
                                     </th>
+                                    @endif
                                 </tr>
                             </thead>
                             <!-- Table body -->
@@ -149,7 +158,7 @@
                                                     {{ count(json_decode($schedule->students)) }}
                                                 </div>
                                             </td>
-                                            
+                                            @if (Auth::user()->hasPermission('delete_training_schedule'))
                                             <td class="p-2">
                                                 <div class="flex items-center space-x-4 pl-10 md:pl-0">
                                                     <button type="button" @click="$store.deleteModal.open({{ $schedule->id }})" aria-controls="delete-modal" class="text-red-500 hover:text-red-600 rounded-full">
@@ -161,6 +170,7 @@
                                                     </button>
                                                 </div>
                                             </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 @endif
@@ -171,6 +181,7 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 
 <!-- Delete Schedule Modal -->

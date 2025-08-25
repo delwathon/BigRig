@@ -16,16 +16,33 @@ class UserSeeder extends Seeder
             'lastName' => 'Adedapo',
             'gender' => 'Male',
             'mobileNumber' => '+1 (913) 705-0526',
-            'email' => 'admin@bigrigdrivingschool.ng',
-            'email_verified_at' => '2024-01-01 00:00:00',
+            'email' => 'adekola.adedapo@bigrigdrivingschool.ng',
+            'email_verified_at' => '2025-01-01 00:00:00',
             'password' => '$2y$12$4vyZtQOTNnFjM8NhiHI2H.3ztaH2eC24f3/KpbKzMsVIGvBTDlJf.',
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'two_factor_confirmed_at' => null,
             'remember_token' => null,
             'current_team_id' => null,
-            'role_id' => 1,
-            'profile_photo_path' => 'profile-photos/lwj9SQxN1NPlRtm5Jn9mOD8dsesdXRY7cCELDlLb.jpg',
+            'profile_photo_path' => null,
+            'user_active' => 1,
+        ],
+        [
+            'firstName' => 'Rilwan',
+            'enrolment_batch_id' => null,
+            'middleName' => null,
+            'lastName' => 'Adelaja',
+            'gender' => 'Male',
+            'mobileNumber' => '+234 814 648 2898',
+            'email' => 'rilwan.adelaja@bigrigdrivingschool.ng',
+            'email_verified_at' => '2025-01-01 00:00:00',
+            'password' => '$2y$12$4vyZtQOTNnFjM8NhiHI2H.3ztaH2eC24f3/KpbKzMsVIGvBTDlJf.',
+            'two_factor_secret' => null,
+            'two_factor_recovery_codes' => null,
+            'two_factor_confirmed_at' => null,
+            'remember_token' => null,
+            'current_team_id' => null,
+            'profile_photo_path' => null,
             'user_active' => 1,
         ]       
     ];
@@ -37,8 +54,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        foreach ($this->data as $d) {
-            User::create($d);
+        $roleAssignments = [1, 2]; // role IDs for each user in the $data array
+
+        foreach ($this->data as $index => $userData) {
+            $user = User::create($userData);
+
+            // Attach role according to user index
+            $roleId = $roleAssignments[$index] ?? null;
+            if ($roleId) {
+                $user->roles()->attach($roleId);
+            }
         }
     }
 }

@@ -50,10 +50,11 @@ class SettingsController extends Controller
             'headquarters' => 'required|string',
             'business_email' => 'required|email',
             'secondary_email' => 'nullable|email',
-            'business_contact' => 'required|string|max:17',
-            'secondary_contact' => 'nullable|string|max:17',
-            'whatsapp_support' => 'nullable|string|max:17',
-            'telegram_support' => 'nullable|string|max:17',
+            'business_contact' => 'required|string|max:20',
+            'secondary_contact' => 'nullable|string|max:20',
+            'whatsapp_support' => 'nullable|string|max:20',
+            'telegram_support' => 'nullable|string|max:20',
+            'base_currency' => 'required|string|max:1',
             'facebook_handle' => 'nullable|string',
             'twitter_handle' => 'nullable|string',
             'instagram_handle' => 'nullable|string',
@@ -114,6 +115,7 @@ class SettingsController extends Controller
         $settings->secondary_contact = $request->input('secondary_contact');
         $settings->whatsapp_support = $request->input('whatsapp_support');
         $settings->telegram_support = $request->input('telegram_support');
+        $settings->base_currency = $request->input('base_currency');
         $settings->facebook_handle = $request->input('facebook_handle');
         $settings->twitter_handle = $request->input('twitter_handle');
         $settings->instagram_handle = $request->input('instagram_handle');
@@ -805,5 +807,4 @@ class SettingsController extends Controller
 
         return redirect()->back()->with('success', 'Batch update successful!');
     }
-
 }

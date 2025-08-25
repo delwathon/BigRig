@@ -14,7 +14,7 @@
                 <img class="block dark:hidden w-40 h-40" src="{{ Storage::url($settings->light_theme_logo) }}" alt="Light Logo" />
 
                 <!-- Dark Theme Logo -->
-                <img class="hidden dark:block" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Logo" />
+                <img class="hidden dark:block w-40 h-40" src="{{ Storage::url($settings->dark_theme_logo) }}" alt="Dark Logo" />
             </a>
             <div class="text-sm">
                 Have an account? <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="{{ route('login') }}">Sign In</a>

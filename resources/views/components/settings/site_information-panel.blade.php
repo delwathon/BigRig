@@ -143,6 +143,17 @@
                 </div>
             </section>
 
+            <!-- Base Currency -->
+            <section>
+                <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Base Currency</h3>
+                <div class="sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
+                    <div class="sm:w-1/4">
+                        <label class="block text-sm font-medium mb-1" for="base_currency">Currency Symbol <span class="text-red-500">*</span></label>
+                        <input id="base_currency" class="form-input w-full" type="text" value="{{ $settings->base_currency }}" name="base_currency"/>
+                    </div>
+                </div>
+            </section>
+
             <section class="border-b pb-5">
                 <h3 class="text-xl leading-snug text-gray-800 dark:text-gray-100 font-bold mb-1">Visibility</h3>
                 

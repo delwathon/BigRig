@@ -15,25 +15,23 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->hasPermission('read_revoked_user')) {
-            $instructors = User::with('role')
-                        ->where('role_id', '!=', 10) // Exclude role_id = 10
-                        ->orderBy('role_id', 'asc')
-                        ->paginate(10);
+        if (Auth::user()->hasPermission('read_suspend_user_account')) {
+            $instructors = User::whereHas('roles', function ($query) {
+                        $query->where('roles.id', '!=', 10);
+                    })
+                    ->paginate(15);
         } else {
-            $instructors = User::with('role')
-                        ->where('user_active', 1)
-                        ->where('role_id', '!=', 10) // Exclude role_id = 10
-                        ->orderBy('firstName', 'asc')
-                        ->paginate(10);
+            $instructors = User::where('user_active', 1)
+                    ->whereHas('roles', function ($query) {
+                        $query->where('roles.id', '!=', 2);
+                        $query->where('roles.id', '!=', 10);
+                    })
+                    ->paginate(15);
         }
 
-                    // User::where('user_active', 1)
-                    // ->whereNotIn('role_id', [10, 12, 13]) // Excludes role_id = 10, 12, 13
-                    // ->paginate(10);
-                
         $instructors_count = $instructors->count();
         $roles = Role::where('id', '!=', 10)->orderBy('role_name', 'asc')->get();
+
         return view('pages/instructor/index', compact('instructors', 'instructors_count', 'roles'));
     }
 
@@ -57,32 +55,32 @@ class InstructorController extends Controller
             'gender' => ['required', 'string', 'in:Male,Female'],
             'mobileNumber' => ['required', 'string', 'max:17', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'userRole' => 'required|exists:roles,id',
-            'profile_photo' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Ensure image is uploaded
-        ]);    
-        
-        $userRole = (int) $request->input('userRole');
+            'userRole' => 'required|array',
+            'userRole.*' => 'exists:roles,id',
+            'profile_photo' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+        ]);
 
         $filePath = null;
 
-        // Handle profile_photo upload
         if ($request->hasFile('profile_photo')) {
             $filePath = $request->file('profile_photo')->store('users', 'public');
         }
 
-        // Create the user
-        User::create([
+        // Create the user without role_id
+        $user = User::create([
             'firstName' => $request->input('firstName'),
-            'middleName' => $request->input('middleName') ?? null,
+            'middleName' => $request->input('middleName'),
             'lastName' => $request->input('lastName'),
             'gender' => $request->input('gender'),
             'mobileNumber' => $request->input('mobileNumber'),
             'email' => $request->input('email'),
             'password' => Hash::make('12345678'),
-            'profile_photo_path' => $filePath ?? null,
-            'role_id' => $userRole,
+            'profile_photo_path' => $filePath,
             'user_active' => 1,
-        ]);            
+        ]);
+
+        // Attach roles using the pivot table
+        $user->roles()->attach($request->input('userRole'));
 
         return redirect()->back()->with('success', 'Instructor created successfully.');
     }
@@ -117,18 +115,5 @@ class InstructorController extends Controller
     public function destroy(Instructor $instructor)
     {
         //
-    }
-
-    public function deactivate($id)
-    {
-        $instructor = User::findOrFail($id);
-
-        // Toggle user visibility (0 → 1, 1 → 0)
-        $instructor->update([
-            'user_active' => !$instructor->user_active,
-            'website_visibility' => false
-        ]);
-
-        return redirect()->back()->with('success', 'Instructor account status updated successfully!');
     }
 }

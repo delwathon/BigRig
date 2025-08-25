@@ -99,7 +99,7 @@
                                         $formattedPrice = number_format($course->price, 2, '.', ',');
                                         [$whole, $decimal] = explode('.', $formattedPrice);
                                     @endphp
-                                    <h2><span class="text">From</span><span class="symble">₦</span>{!! $whole !!}<sub>.{{ $decimal }}</sub></h2>
+                                    <h2><span class="text">From</span><span class="symble">{{ $settings->base_currency }}</span>{!! $whole !!}<sub>.{{ $decimal }}</sub></h2>
                                 </div>
                                 <figure class="image"><img src="{{ Storage::url($course->image_url) }}" alt="{{ $course->objective }}"></figure>
                             </div>
@@ -490,7 +490,7 @@
                                 </div>
                                 <div class="lower-content">
                                     <h4><a href="index.html">{{ $instructor->firstName }} {{ $instructor->lastName }}</a></h4>
-                                    <span class="designation">{{ $instructor->role->role_name }}</span>
+                                    <span class="designation">{{ $instructor->roles->pluck('role_name')->implode(', ') }}</span>
                                 </div>
                             </div>
                         </div>

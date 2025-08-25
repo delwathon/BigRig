@@ -315,7 +315,7 @@
                                         <span class="popular">popular</span>
                                     @endif
                                     <h2>
-                                        <span class="symble"></span>₦{{ $dollars }}
+                                        <span class="symble"></span>{{ $settings->base_currency }}{{ $dollars }}
                                         <span class="text">.{{ $cents }}</span>
                                         <span class="course">per Course</span>
                                     </h2>                                

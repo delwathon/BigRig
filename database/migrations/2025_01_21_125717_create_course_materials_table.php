@@ -18,6 +18,10 @@ return new class extends Migration
                   ->onDelete('cascade'); // Optional: cascade on delete
             $table->string('file_name');
             $table->string('file_url');
+            $table->string('file_size')->nullable();
+            $table->string('file_type')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('uploaded_by')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

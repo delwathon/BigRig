@@ -30,6 +30,8 @@ return new class extends Migration
                   ->constrained('curriculum', 'id')
                   ->onDelete('cascade');
 
+            $table->enum('session_type', ['theory', 'practical'])->default('theory');
+
             $table->json('students');
 
             $table->date('schedule_date');

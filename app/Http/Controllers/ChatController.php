@@ -10,9 +10,6 @@ class ChatController extends Controller
 {
     public function chatIndex()
     {
-        $users = User::where('user_active', 1)
-            ->where('id', '!=', Auth::user()->id)
-            ->get();
-        return view('pages/messages', compact('users'));  
+        return view('pages.messages'); // No need to pass users anymore
     }
 }

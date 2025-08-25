@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\ForumPost;
+use App\Models\ForumComment;
+use App\Models\EnrolmentBatches;
 
 class User extends Authenticatable
 {
@@ -27,8 +30,8 @@ class User extends Authenticatable
         'gender',
         'mobileNumber',
         'email',
+        'email_verified_at',
         'password',
-        'role_id',
         'profile_photo_path',
         'user_active',
         'website_visibility'
@@ -80,13 +83,60 @@ class User extends Authenticatable
         return $this->hasMany(Subscription::class);
     }
 
-    public function role()
+    // public function role()
+    // {
+    //     return $this->belongsTo(Role::class);
+    // }
+
+    public function roles()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
-    public function hasPermission($permissionName)
+    public function permissions()
     {
-        return $this->role && $this->role->permissions->contains('name', $permissionName);
+        return $this->hasManyThrough(Permission::class, Role::class, 'id', 'id', null, null)
+            ->withPivot('role_id')
+            ->distinct();
+    }
+
+    public function hasPermission($permission)
+    {
+        return $this->roles()
+            ->with('permissions')
+            ->get()
+            ->pluck('permissions')
+            ->flatten()
+            ->pluck('name') // or 'slug', whatever you use
+            ->contains($permission);
+    }
+
+    public function hasRole($role)
+    {
+        $roles = $this->roles()->pluck('role_name')->map(function ($r) {
+            return strtolower($r);
+        });
+
+        if (is_array($role)) {
+            $role = array_map('strtolower', $role);
+            return $roles->intersect($role)->isNotEmpty();
+        }
+
+        return $roles->contains(strtolower($role));
+    }
+
+    public function forumPosts()
+    {
+        return $this->hasMany(ForumPost::class);
+    }
+
+    public function forumComments()
+    {
+        return $this->hasMany(ForumComment::class);
+    }
+
+    public function enrolmentBatch()
+    {
+        return $this->belongsTo(EnrolmentBatches::class, 'enrolment_batch_id');
     }
 }

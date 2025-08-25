@@ -46,7 +46,7 @@
             @foreach ($courses as $course)
                 <div class="sm:flex space-y-3 sm:space-y-0 sm:space-x-4 mb-8">
                     <label class="flex-1 relative block cursor-pointer">
-                        <input type="checkbox" name="selected_objective[]" class="peer sr-only" value="1" {{ is_array(old('selected_objective')) && in_array('1', old('selected_objective')) ? 'checked' : '' }} />
+                        <input type="checkbox" name="selected_objective[]" class="peer sr-only" value="{{ $course->id }}" {{ is_array(old('selected_objective')) && in_array($course->id, old('selected_objective')) ? 'checked' : '' }} />
                         <div class="sm:flex h-full px-4 py-6 rounded-lg border-b border-gray-200 dark:border-gray-700/60 hover:border-gray-300 dark:hover:border-gray-600 shadow-sm transition">
                             <img class="rounded-sm block mb-4 sm:mb-0 mr-5 shrink-0" src="{{ Storage::url($course->image_url) }}" width="200" height="142" alt="{{ $course->objective }}" />
                             <div class="grow">
@@ -64,7 +64,7 @@
                                         <div class="text-gray-400 dark:text-gray-600">·</div>
                                         <!-- Price -->
                                         <div>
-                                            <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">₦{{ $course->price }}</div>
+                                            <div class="inline-flex text-sm font-medium bg-green-500/20 text-green-700 rounded-full text-center px-2 py-0.5">{{ $settings->base_currency }}{{ number_format($course->price, 2) }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -134,19 +134,21 @@
                 $orderSummaryList.append(`
                     <li class="text-sm w-full flex justify-between py-3 border-b border-gray-200 dark:border-gray-700/60">
                         <div>${item.name}</div>
-                        <div class="font-medium text-gray-800 dark:text-gray-100">₦${item.price.toFixed(2)}</div>
+                        <div class="font-medium text-gray-800 dark:text-gray-100">{{ $settings->base_currency }}${item.price.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                     </li>
                 `);
             });
 
             // Calculate totals
-            const taxes = (totalPrice * 0.075).toFixed(2); // Assuming 7.5% tax
-            const totalDue = (parseFloat(totalPrice) + parseFloat(taxes)).toFixed(2);
+            const taxes = (totalPrice * 0.075).toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const cleanTotalPrice = parseFloat(totalPrice.toString().replace(/,/g, ''));
+            const cleanTaxes = parseFloat(taxes.toString().replace(/,/g, ''));
+            const totalDue = cleanTotalPrice + cleanTaxes
 
             // Update totals in the DOM
-            $subtotal.text(`₦${totalPrice.toFixed(2)}`);
-            $taxes.text(`₦${taxes}`);
-            $totalDue.text(`₦${totalDue}`);
+            $subtotal.text(`{{ $settings->base_currency }}${totalPrice.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+            $taxes.text(`{{ $settings->base_currency }}${taxes.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+            $totalDue.text(`{{ $settings->base_currency }}${totalDue.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
 
             // Update the training duration note
             if (totalDuration > 0) {
@@ -162,7 +164,7 @@
             const isChecked = $checkbox.is(':checked');
             const $label = $checkbox.closest('label');
             const name = $label.find('h3').text().trim();
-            const priceText = $label.find('.inline-flex.text-green-700').text().replace('₦', '').trim();
+            const priceText = $label.find('.inline-flex.text-green-700').text().replace('{{ $settings->base_currency }}', '').replace(/,/g, '').trim();
             const durationText = $label.find('.inline-flex.text-yellow-600').text().replace(' Weeks', '').trim();
 
             // Validate data
