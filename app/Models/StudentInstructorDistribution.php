@@ -15,12 +15,12 @@ class StudentInstructorDistribution extends Model
         'student_id',
         'instructor_id',
         'course_id',
-        'batch_id',
-        'assigned_date'
+        'enrolment_batch_id', // FIXED: Changed from 'batch_id' to 'enrolment_batch_id'
     ];
 
     protected $casts = [
-        'assigned_date' => 'date',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     public function student()
@@ -40,6 +40,6 @@ class StudentInstructorDistribution extends Model
 
     public function batch()
     {
-        return $this->belongsTo(EnrolmentBatch::class, 'batch_id');
+        return $this->belongsTo(EnrolmentBatch::class, 'enrolment_batch_id'); // FIXED: Specify the foreign key
     }
 }

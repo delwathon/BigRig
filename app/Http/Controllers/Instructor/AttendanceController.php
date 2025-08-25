@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Instructor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\EnrolmentBatch;
+use App\Models\TrainingObjective;
 use App\Models\TrainingSchedule;
 use App\Models\StudentAttendance;
 use App\Models\StudentInstructorDistribution;
@@ -177,75 +179,138 @@ class AttendanceController extends Controller
     /**
      * Get attendance report for a course
      */
+    /**
+     * Generate attendance report
+     */
     public function report(Request $request)
     {
         $instructor = Auth::user();
 
-        $courseId = $request->input('course_id');
-        $startDate = $request->input('start_date', Carbon::now()->startOfMonth());
-        $endDate = $request->input('end_date', Carbon::now()->endOfMonth());
+        // Get filter parameters
+        $courseId = $request->get('course_id');
+        $batchId = $request->get('batch_id');
+        $dateFrom = $request->get('date_from', Carbon::now()->subMonth()->format('Y-m-d'));
+        $dateTo = $request->get('date_to', Carbon::now()->format('Y-m-d'));
 
-        // Get courses for filter dropdown
-        $courses = StudentInstructorDistribution::where('instructor_id', $instructor->id)
-            ->distinct('course_id')
-            ->with('course')
-            ->get()
-            ->pluck('course');
+        // Get courses assigned to instructor
+        $courses = TrainingObjective::whereIn('id',
+            StudentInstructorDistribution::where('instructor_id', $instructor->id)
+                ->pluck('course_id')
+                ->unique()
+        )->get();
+
+        // Get batches
+        $batches = EnrolmentBatch::whereIn('id',
+            User::whereIn('id',
+                StudentInstructorDistribution::where('instructor_id', $instructor->id)
+                    ->pluck('student_id')
+            )->pluck('enrolment_batch_id')->unique()
+        )->get();
+
+        // Get students based on filters
+        $studentsQuery = StudentInstructorDistribution::where('instructor_id', $instructor->id)
+            ->with('student');
 
         if ($courseId) {
-            // Get attendance data for the selected course
-            $schedules = TrainingSchedule::where('instructor_id', $instructor->id)
-                ->where('course_id', $courseId)
-                ->whereBetween('schedule_date', [$startDate, $endDate])
-                ->with(['attendances.student', 'topic'])
-                ->orderBy('schedule_date')
-                ->get();
-
-            // Get all students in this course
-            $students = StudentInstructorDistribution::where('instructor_id', $instructor->id)
-                ->where('course_id', $courseId)
-                ->with('student')
-                ->get()
-                ->pluck('student');
-
-            // Build attendance matrix
-            $attendanceMatrix = [];
-            foreach ($students as $student) {
-                $studentAttendance = [];
-                foreach ($schedules as $schedule) {
-                    $attendance = $schedule->attendances->where('student_id', $student->id)->first();
-                    $studentAttendance[$schedule->id] = $attendance ? $attendance->status : 'not_marked';
-                }
-
-                // Calculate statistics
-                $stats = [
-                    'present' => collect($studentAttendance)->filter(fn($s) => $s == 'present')->count(),
-                    'absent' => collect($studentAttendance)->filter(fn($s) => $s == 'absent')->count(),
-                    'late' => collect($studentAttendance)->filter(fn($s) => $s == 'late')->count(),
-                    'excused' => collect($studentAttendance)->filter(fn($s) => $s == 'excused')->count(),
-                ];
-
-                $total = $stats['present'] + $stats['absent'] + $stats['late'] + $stats['excused'];
-                $attendanceRate = $total > 0 ? round((($stats['present'] + $stats['late']) / $total) * 100) : 0;
-
-                $attendanceMatrix[] = [
-                    'student' => $student,
-                    'attendance' => $studentAttendance,
-                    'stats' => $stats,
-                    'rate' => $attendanceRate
-                ];
-            }
-
-            return view('instructor.attendance.report', compact(
-                'courses',
-                'schedules',
-                'attendanceMatrix',
-                'courseId',
-                'startDate',
-                'endDate'
-            ));
+            $studentsQuery->where('course_id', $courseId);
         }
 
-        return view('instructor.attendance.report', compact('courses'));
+        $students = $studentsQuery->get()->pluck('student')->unique('id');
+
+        if ($batchId) {
+            $students = $students->where('enrolment_batch_id', $batchId);
+        }
+
+        // Generate report data for each student
+        $studentReports = [];
+        foreach ($students as $student) {
+            $attendanceQuery = StudentAttendance::where('student_id', $student->id)
+                ->whereBetween('created_at', [$dateFrom, $dateTo]);
+
+            if ($courseId) {
+                $attendanceQuery->where('course_id', $courseId);
+            }
+
+            $attendanceRecords = $attendanceQuery->get();
+
+            $totalClasses = $attendanceRecords->count();
+            $present = $attendanceRecords->where('status', 'present')->count();
+            $absent = $attendanceRecords->where('status', 'absent')->count();
+            $late = $attendanceRecords->where('status', 'late')->count();
+            $excused = $attendanceRecords->where('status', 'excused')->count();
+
+            $attendanceRate = $totalClasses > 0
+                ? round((($present + $late) / $totalClasses) * 100)
+                : 0;
+
+            $studentReports[] = [
+                'student' => $student,
+                'course' => $courseId ? TrainingObjective::find($courseId) : null,
+                'total_classes' => $totalClasses,
+                'present' => $present,
+                'absent' => $absent,
+                'late' => $late,
+                'excused' => $excused,
+                'attendance_rate' => $attendanceRate
+            ];
+        }
+
+        // Calculate overall statistics
+        $stats = [
+            'total_sessions' => collect($studentReports)->sum('total_classes'),
+            'total_present' => collect($studentReports)->sum('present'),
+            'total_absent' => collect($studentReports)->sum('absent'),
+            'total_late' => collect($studentReports)->sum('late'),
+            'total_excused' => collect($studentReports)->sum('excused'),
+            'average_attendance' => collect($studentReports)->avg('attendance_rate') ?? 0,
+        ];
+
+        // Prepare chart data
+        $chartData = $this->prepareChartData($instructor->id, $courseId, $dateFrom, $dateTo);
+
+        return view('instructor.attendance.report', compact(
+            'studentReports',
+            'stats',
+            'courses',
+            'batches',
+            'chartData'
+        ));
+    }
+
+    /**
+     * Prepare chart data for visualization
+     */
+    private function prepareChartData($instructorId, $courseId, $dateFrom, $dateTo)
+    {
+        $dates = [];
+        $rates = [];
+
+        // Get daily attendance rates for the period
+        $period = Carbon::parse($dateFrom)->daysUntil($dateTo);
+
+        foreach ($period as $date) {
+            if ($date->isWeekday()) { // Assuming classes are on weekdays
+                $schedules = TrainingSchedule::where('instructor_id', $instructorId)
+                    ->whereDate('schedule_date', $date)
+                    ->when($courseId, function($query) use ($courseId) {
+                        $query->where('course_id', $courseId);
+                    })
+                    ->pluck('id');
+
+                if ($schedules->count() > 0) {
+                    $attendance = StudentAttendance::whereIn('schedule_id', $schedules)->get();
+                    $total = $attendance->count();
+                    $present = $attendance->whereIn('status', ['present', 'late'])->count();
+
+                    $dates[] = $date->format('M d');
+                    $rates[] = $total > 0 ? round(($present / $total) * 100) : 0;
+                }
+            }
+        }
+
+        return [
+            'dates' => $dates,
+            'rates' => $rates
+        ];
     }
 }
