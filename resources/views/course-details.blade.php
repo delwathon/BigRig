@@ -142,6 +142,10 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 text-column">
+                    <header class="flex justify-between items-start mb-2">
+                        <h2 class="text-md font-semibold text-gray-800 dark:text-gray-100">Course Requirement</h2>
+                    </header>
+                    <p class="mb-3">For you to be eligible for enrollment for this course at BigRig International Truck Driving School:</p>
                     <div class="course-requirement text-inner">
                         {!! $course->requirement !!}
                     </div>
@@ -184,7 +188,7 @@
                                 </div>
                                 <div class="lower-content">
                                     <h4><a href="index.html">{{ $instructor->firstName }} {{ $instructor->lastName }}</a></h4>
-                                    <span class="designation">{{ $instructor->role->role_name }}</span>
+                                    <span class="designation">{{ $instructor->roles->pluck('role_name')->implode(', ') }}</span>
                                 </div>
                             </div>
                         </div>
