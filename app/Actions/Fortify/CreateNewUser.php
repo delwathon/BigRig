@@ -37,28 +37,8 @@ class CreateNewUser implements CreatesNewUsers
             'physical_disability' => ['required', 'string', 'in:None,Ulcer,Cancer,HIV,Abdominal Pain'],
             'weed' => ['required', 'string', 'in:Yes,No'],
             'alcohol' => ['required', 'string', 'in:No,Often,Casually,Daily User'],
-            'prescribed_medication' => [
-                'required',
-                'string',
-                'min:3',
-                'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value !== 'NIL' && strlen($value) < 10) {
-                        $fail('The ' . $attribute . ' must be at least 10 characters when not equal to NIL.');
-                    }
-                },
-            ],
-            'failed_drug_test' => [
-                'required',
-                'string',
-                'min:3',
-                'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value !== 'NIL' && strlen($value) < 10) {
-                        $fail('The ' . $attribute . ' must be at least 10 characters when not equal to NIL.');
-                    }
-                },
-            ],
+            'prescribed_medication' => ['nullable', 'string'],
+            'failed_drug_test' => ['nullable', 'string'],
             'selected_objective' => [
                 'required',
                 'array', // Enforce that it must be an array
