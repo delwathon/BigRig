@@ -122,7 +122,7 @@
                             <div class="icon-box"><img src="assets/images/icons/icon-41.png" alt=""></div>
                             <div class="icon-box-2"><img src="assets/images/icons/icon-42.png" alt=""></div>
                             <h6>{{ $settings->site_name }}</h6>
-                            <h3><a href="{{ route('course', ['name' => Str::slug($course->objective)]) }}">{{ $course->objective }} Training</a></h3>
+                            <h3><a href="{{ route('course', ['name' => Str::slug($course->objective)]) }}">{{ $course->objective }}</a></h3>
                         </div>
                     </div>
                 </div>

@@ -53,9 +53,10 @@
                     <div class="flex flex-col col-span-full sm:col-span-full xl:col-span-full bg-white dark:bg-gray-800 shadow-sm rounded-lg">
                         <div class="px-5 py-3">
                             <header class="flex justify-between items-start mb-2">
-                                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Course Requirement(s)</h2>
+                                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">REQUIREMENT FOR ENROLLING FOR THIS COURSE</h2>
                             </header>
-                            <div class="items-start">                              
+                            <div class="items-start"> 
+                                <p class="mb-3">For you to be eligible for enrollment for this course at BigRig International Truck Driving School:</p>                             
                                 <div class="course-details space-y-6">
                                     {!! $objective->requirement !!}
                                 </div>
