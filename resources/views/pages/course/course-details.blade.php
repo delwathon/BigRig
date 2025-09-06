@@ -167,7 +167,7 @@
                                             <img class="w-9 h-9 rounded-full" src="{{ asset('images/company-icon-03.svg') }}" width="36" height="36" alt="Course Picture" />
                                         </div>
                                         <div>
-                                            <a class="inline-flex font-semibold text-gray-800 dark:text-gray-100" href="{{ route('job-post') }}">{{ $curricula->topic }}</a>
+                                            <a class="inline-flex font-semibold text-gray-800 dark:text-gray-100" href="javascript:void(0)">{{ $curricula->topic }}</a>
                                             <div class="text-sm">{{ $curricula->summary }}</div>
                                         </div>
                                     </div>
