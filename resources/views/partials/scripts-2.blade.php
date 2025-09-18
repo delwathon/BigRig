@@ -91,22 +91,36 @@
 </script>
 
 <script>
-function sendToWhatsApp(event) {
-    event.preventDefault(); // Prevent form submission
+  function sendToWhatsApp(event) {
+      event.preventDefault(); // Prevent form submission
 
-    // Get user input
-    let name = document.getElementById("name").value;
-    let message = document.getElementById("message").value;
+      // Get user input
+      let name = document.getElementById("name").value;
+      let message = document.getElementById("message").value;
 
-    // Format message
-    let whatsappMessage = `Hello! My name is *${name}*\n\n${message}`;
+      // Format message
+      let whatsappMessage = `Name: *${name}*\n\n${message}`;
 
-    // Encode URL
-    let encodedMessage = encodeURIComponent(whatsappMessage);
-    let phoneNumber = "{{ $settings->whatsapp_support }}".replace(/\s+/g, '');
-    let whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      // Encode URL
+      let encodedMessage = encodeURIComponent(whatsappMessage);
+      
+      // Clean phone number - remove ALL non-digit characters
+      let phoneNumber = "{{ $settings->whatsapp_support }}";
+      phoneNumber = phoneNumber.replace(/[^0-9]/g, ''); // Remove everything except numbers
+      
+      // Add 0 prefix if it doesn't already start with 0
+      if (!phoneNumber.startsWith('0')) {
+          phoneNumber = '0' + phoneNumber;
+      }
+      
+      console.log("Original:", "{{ $settings->whatsapp_support }}"); // Debug: shows "+1 (210) 422-3150"
+      console.log("Cleaned with 0:", phoneNumber); // Debug: should show "012104223150"
+      
+      let whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      
+      console.log("Final URL:", whatsappURL); // Debug: check the final URL
 
-    // Open WhatsApp chat
-    window.open(whatsappURL, "_blank");
-}
+      // Open WhatsApp chat
+      window.open(whatsappURL, "_blank");
+  }
 </script>
