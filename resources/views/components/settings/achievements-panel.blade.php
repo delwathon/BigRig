@@ -26,14 +26,14 @@
                 @foreach ($achievements as $achievement)
                     <article class="flex bg-white dark:bg-gray-800 shadow-sm rounded-xl overflow-hidden">
                         <!-- Image -->
-                        <a class="relative block w-24 sm:w-56 xl:sidebar-expanded:w-40 2xl:sidebar-expanded:w-56 shrink-0" href="{{ route('meetups-post') }}">
+                        <a class="relative block w-24 sm:w-56 xl:sidebar-expanded:w-40 2xl:sidebar-expanded:w-56 shrink-0" href="javascript:void(0)">
                             <img class="absolute object-cover object-center w-full h-full" src="{{ Storage::url($achievement->picture) }}" width="220" height="236" alt="{{ $achievement->title }}" />
                         </a>
                         <!-- Content -->
                         <div class="grow p-5 flex flex-col">
                             <div class="grow">
                                 <div class="text-sm font-semibold text-violet-500 uppercase mb-2">{{ $achievement->year }}</div>
-                                <a class="inline-flex mb-2" href="{{ route('meetups-post') }}">
+                                <a class="inline-flex mb-2" href="javascript:void(0)">
                                     <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100">{{ $achievement->title }}</h3>
                                 </a>
                                 <div class="text-sm">{!! $achievement->description !!}</div>
