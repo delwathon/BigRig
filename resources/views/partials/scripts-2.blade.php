@@ -103,8 +103,14 @@
 
       // Encode URL
       let encodedMessage = encodeURIComponent(whatsappMessage);
-      let phoneNumber = "{{ $settings->whatsapp_support }}".replace(/\s+/g, '');
+      
+      // Clean phone number - remove ALL non-digit characters
+      let phoneNumber = "{{ $settings->whatsapp_support }}";
+      phoneNumber = phoneNumber.replace(/[^0-9]/g, ''); // Remove everything except numbers
+      
       let whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      
+      console.log("Final URL:", whatsappURL); // Debug: check the final URL
 
       // Open WhatsApp chat
       window.open(whatsappURL, "_blank");
