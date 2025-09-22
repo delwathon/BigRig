@@ -25,6 +25,11 @@ class StudentDashboardController extends Controller
             ->latest()
             ->first();
 
+        if (!$subscription) {
+            // Redirect to checkout/pay if payment is still pending
+            return redirect('/checkout/pay');
+        }
+
         // Get enrolled courses from the subscription
         $enrolledCourses = collect();
         if ($subscription) {
