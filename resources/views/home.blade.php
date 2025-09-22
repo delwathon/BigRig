@@ -328,7 +328,7 @@
                                     @endphp
 
                                     <h4>{{ $firstWord }}</h4>
-                                    <p>{{ $remainingWords }} Training</p>
+                                    <p>{{ $remainingWords }}</p>
                                 </div>
                                 <div class="table-content">
                                     <ul class="feature-list clearfix">
